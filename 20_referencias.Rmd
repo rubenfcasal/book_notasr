@@ -38,6 +38,8 @@ Para referencias adicionales recomiendo consultar:
 
 - Fernández-Casal R., Roca-Pardiñas J., Costa J., y Oviedo de la Fuente, M. (2022). *[Introducción al Análisis de Datos con R](https://rubenfcasal.github.io/intror)*. [github](https://github.com/rubenfcasal/intror).
 
+- Peng, R.D. (2022). *[R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience)*, [Leanpub](https://leanpub.com/rprogramming).
+
 
 ### Programación avanzada en R {-}
 
@@ -65,11 +67,32 @@ Para referencias adicionales recomiendo consultar:
 - Moraga, P. (2019). *[Geospatial health data: Modeling and visualization with R-INLA and shiny](https://www.paulamoraga.com/book-geospatial)*, [CRC](https://www.routledge.com/9780367357955).
     
 - Pebesma, E., y Bivand, R. (2021). *[Spatial Data Science](https://keen-swartz-3146c4.netlify.app)*.
-  
+
+
+### Datos faltantes {-}
+
+- Buuren, S. (2018). *[Flexible Imputation of Missing Data](https://stefvanbuuren.name/fimd)*, [Chapman & Hall](). 
     
 ### Rmarkdown {-}
 
 - Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). *[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro)*,   [github](https://github.com/rubenfcasal/bookdown_intro). Incluye un apéndice con una [Introducción a RMarkdown](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html). 
+
+### Manuales oficiales {-}
+
+<https://cran.r-project.org/manuals.html>
+
+-   [Intro to R](http://colinfay.me/intro-to-r/)
+
+-   [R Data Import/Export](http://colinfay.me/r-data-import-export/)
+
+-   [R Installation and Administration](http://colinfay.me/r-installation-administration/)
+
+-   [Writing R extensions](http://colinfay.me/writing-r-extensions/)
+
+-   [The R language definition](http://colinfay.me/r-language-definition/)
+
+-   [R Internals](http://colinfay.me/r-internals/)
+
 
 
 ## Enlaces {.unnumbered #links}
@@ -81,7 +104,9 @@ Para referencias adicionales recomiendo consultar:
 
 [***Bookdown***](https://bookdown.org):
 
-[***Introducción a RMarkdown***](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html). 
+- [Notas de programación en R](https://rubenfcasal.github.io/book_notasr/)
+
+- [Introducción a RMarkdown](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html). 
 
 [***Posit (RStudio)***](https://posit.co)
 
