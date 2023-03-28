@@ -2,11 +2,13 @@
 
 ## Rubén Fernández Casal (rubenfcasal@gmail.com)
 
-Este es un libro con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R). 
+Este es un libro, ***en proceso de elaboración***, con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R). 
 El contenido está sesgado por la experiencia personal (es mi forma de programar en R) pero puede resultar útil para otras personas.
-Cualquier sugerencia de mejora será bien recibida.
+Cualquier sugerencia de mejora o comentario será bien recibido.
 
-Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/notasr](https://github.com/rubenfcasal/book_notasr). 
+<!-- Envíame un correo si lo usas... -->
+
+Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/book_notasr](https://github.com/rubenfcasal/book_notasr). 
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
 <https://rubenfcasal.github.io/book_notasr>.
