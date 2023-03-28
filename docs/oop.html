@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Programación orientada a objetos (funciones genéricas) | Notas de Programación en R</title>
+  <meta name="description" content="Libro con notas personales sobre programación en R" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Programación orientada a objetos (funciones genéricas) | Notas de Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Libro con notas personales sobre programación en R" />
+  <meta name="github-repo" content="rubenfcasal/notasr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Programación orientada a objetos (funciones genéricas) | Notas de Programación en R" />
+  
+  <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
+  
+
+<meta name="author" content="Rubén Fernández Casal (rubenfcasal@gmail.com)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="funciones.html"/>
+<link rel="next" href="desarrollo.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="organizacion.html"><a href="organizacion.html"><i class="fa fa-check"></i><b>1.1</b> Organización</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="organizacion.html"><a href="organizacion.html#codigo"><i class="fa fa-check"></i><b>1.1.1</b> Código e informes</a></li>
+<li class="chapter" data-level="1.1.2" data-path="organizacion.html"><a href="organizacion.html#datos"><i class="fa fa-check"></i><b>1.1.2</b> Datos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I R</b></span></li>
+<li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> El lenguaje R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="paquetes.html"><a href="paquetes.html"><i class="fa fa-check"></i><b>2.1</b> Paquetes</a></li>
+<li class="chapter" data-level="2.2" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
+<li class="chapter" data-level="2.3" data-path="oop.html"><a href="oop.html"><i class="fa fa-check"></i><b>2.3</b> Programación orientada a objetos (funciones genéricas)</a></li>
+<li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
+</ul></li>
+<li class="part"><span><b>II Tidyverse</b></span></li>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
+<ul>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
+<ul>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="oop" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Programación orientada a objetos (funciones genéricas)<a href="oop.html#oop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>“Everything that exists in R is an object”.</p>
+<p>— John M. Chambers</p>
+</blockquote>
+<p>R implementa programación orientada a objetos (OOP).
+Por ejemplo, es bien conocido que algunas funciones (entre ellas <code>print()</code>, <code>plot()</code> o <code>summary()</code>) se comportan de manera diferente dependiendo de la clase (el tipo de objeto) de sus argumentos, son las denominadas <em>funciones genéricas</em>.</p>
+<p>Realmente R dispone de varios sistemas de OOP, entre ellos podríamos destacar (ver capítulos en <a href="https://adv-r.hadley.nz/oo.html">Object-oriented programming</a> de <a href="https://adv-r.hadley.nz">Advanced R</a>):</p>
+<ul>
+<li><p><a href="https://adv-r.hadley.nz/s3.html">S3</a>: Es un sistema muy simple, las clases no tienen una definición formal. Es el empleado en el paquete <code>base</code> de R y en la mayoría de paquetes que usan OOP.
+Descrito inicialmente en:</p>
+<p>Becker R.A., Chambers J.M. y Wilks A.R. (1988), <em><a href="https://www.amazon.es/dp/053409192X">The New S Language: A Programming Environment for Data Analysis and Graphics</a></em> (A.K.A. the <em>Blue Book</em>). Chapman &amp; Hall.</p>
+<p>Chambers J.M. y Hastie T.J. eds. (1992), <em><a href="https://www.amazon.com/gp/product/0534167659">Statistical Models in S</a></em> (A.K.A. the <em>White Book</em>). Chapman &amp; Hall.</p></li>
+<li><p><a href="https://adv-r.hadley.nz/s4.html">S4</a> (<strong>no lo recomiendo</strong>): Está implementado en el paquete <code>methods</code> (uno de los <em>paquetes base</em>) de R.
+Descrito inicialmente en:</p>
+<p>Chambers J.M. (1998), <em><a href="https://www.amazon.com/gp/product/0387985034">Programming with Data</a></em> (A.K.A. the <em>Green Book</em>). Springer.</p></li>
+<li><p><a href="https://adv-r.hadley.nz/r6.html">R6</a>: Es un sistema OOP encapsulado similar al de otros lenguajes de programación. Está implementado en el paquete <a href="https://r6.r-lib.org"><code>R6</code></a> (no se instala por defecto).</p></li>
+</ul>
+<p>Yo en principio <strong>recomendaría usar el sistema S3</strong>, aunque es bastante rudimentario y puede resultar inicialmente confuso a programadores con experiencia en otros lenguajes.
+En cualquier caso es muy recomendable conocer su funcionamiento.
+Este sistema esta basado en funciones genéricas.
+La clase es un atributo de los objetos (<em>encapsulación</em>), una cadena de texto o un vector de cadenas (<em>herencia</em>), al que se puede acceder con la función <a href="https://rdrr.io/r/base/class.html"><code>class()</code></a>.
+A partir de la clase del argumento, la función genérica determina el método (función especializada) al que debe llamar (<em>polimorfismo</em>).
+En S3 el despacho de métodos (<em>method dispatch</em>) es muy simple, si la función genérica es <code>generica()</code> y la clase del primer argumento es <code>"clase"</code>, se llama a la función (método) <code>generica.clase()</code> si existe.
+Si la clase del objeto es heredada (un vector de cadenas), se van buscando los métodos por orden de parentesco y si no se encuentra ninguno, se llama al método por defecto <code>generica.default()</code> (se llama a la primera función de <code>paste0("generica.", c(class(x), "default"))</code> que se encuentre en la ruta de búsqueda; podríamos reemplazarla…).</p>
+<p>La función genérica suele ser muy sencilla, básicamente incluye una llamada a <code>UseMethod("generica")</code>.
+Por ejemplo:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="oop.html#cb36-1" aria-hidden="true" tabindex="-1"></a>plot</span></code></pre></div>
+<pre><code>## function (x, y, ...) 
+## UseMethod(&quot;plot&quot;)
+## &lt;bytecode: 0x0000014a26629710&gt;
+## &lt;environment: namespace:base&gt;</code></pre>
+<p>Podemos obtener los métodos asociados a una función genérica con <code>methods(genérica)</code>.
+Por ejemplo:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="oop.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(plot)</span></code></pre></div>
+<pre><code>##  [1] plot.acf*           plot.data.frame*    plot.decomposed.ts*
+##  [4] plot.default        plot.dendrogram*    plot.density*      
+##  [7] plot.ecdf           plot.factor*        plot.formula*      
+## [10] plot.function       plot.hclust*        plot.histogram*    
+## [13] plot.HoltWinters*   plot.isoreg*        plot.lm*           
+## [16] plot.medpolish*     plot.mlm*           plot.ppr*          
+## [19] plot.prcomp*        plot.princomp*      plot.profile.nls*  
+## [22] plot.R6*            plot.raster*        plot.spec*         
+## [25] plot.stepfun        plot.stl*           plot.table*        
+## [28] plot.ts             plot.tskernel*      plot.TukeyHSD*     
+## see &#39;?methods&#39; for accessing help and source code</code></pre>
+<p>Podemos acceder a la ayuda del correspondiente método de la forma habitual (e.g. <code>?plot.lm</code>), pero puede que algunos métodos no sean objetos definidos como exportables en el <em>namespace</em> del paquete que los implementa (los marcados con un <code>*</code>) y por tanto no son en principio accesibles para el usuario.
+Siempre podemos acceder a ellos empleando <code>paquete:::metodo</code> o <code>getAnywhere(metodo)</code> (e.g. <code>stats:::plot.lm</code> o <code>getAnywhere(plot.lm)</code>).</p>
+<p>Para listar los métodos disponibles para una clase, podemos emplear el parámetro <code>class</code>.
+Por ejemplo:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="oop.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] add1           alias          anova          case.names     coerce        
+##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
+## [11] drop1          dummy.coef     effects        extractAIC     family        
+## [16] formula        hatvalues      influence      initialize     kappa         
+## [21] labels         logLik         model.frame    model.matrix   nobs          
+## [26] plot           predict        print          proj           qr            
+## [31] residuals      rstandard      rstudent       show           simulate      
+## [36] slotsFromS3    summary        variable.names vcov          
+## see &#39;?methods&#39; for accessing help and source code</code></pre>
+<p>Para una programación orientada a objetos más formal la recomendación es emplear el sistema R6.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="funciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="desarrollo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rubenfcasal/notasr/edit/master/02_lenguaje_r.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Notas_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

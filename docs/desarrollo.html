@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Desarrollo de funciones y paquetes | Notas de Programación en R</title>
+  <meta name="description" content="Libro con notas personales sobre programación en R" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Desarrollo de funciones y paquetes | Notas de Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Libro con notas personales sobre programación en R" />
+  <meta name="github-repo" content="rubenfcasal/notasr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Desarrollo de funciones y paquetes | Notas de Programación en R" />
+  
+  <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
+  
+
+<meta name="author" content="Rubén Fernández Casal (rubenfcasal@gmail.com)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="oop.html"/>
+<link rel="next" href="tidyverse.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="organizacion.html"><a href="organizacion.html"><i class="fa fa-check"></i><b>1.1</b> Organización</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="organizacion.html"><a href="organizacion.html#codigo"><i class="fa fa-check"></i><b>1.1.1</b> Código e informes</a></li>
+<li class="chapter" data-level="1.1.2" data-path="organizacion.html"><a href="organizacion.html#datos"><i class="fa fa-check"></i><b>1.1.2</b> Datos</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I R</b></span></li>
+<li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> El lenguaje R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="paquetes.html"><a href="paquetes.html"><i class="fa fa-check"></i><b>2.1</b> Paquetes</a></li>
+<li class="chapter" data-level="2.2" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
+<li class="chapter" data-level="2.3" data-path="oop.html"><a href="oop.html"><i class="fa fa-check"></i><b>2.3</b> Programación orientada a objetos (funciones genéricas)</a></li>
+<li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
+</ul></li>
+<li class="part"><span><b>II Tidyverse</b></span></li>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
+<ul>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
+<ul>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="desarrollo" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Desarrollo de funciones y paquetes<a href="desarrollo.html#desarrollo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- 
+Pendiente: nociones básicas de creación de funciones
+-->
+<p>La recomendación es documentar todas las funciones que se crean y preferiblemente empleando el formato <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a>.
+Por ejemplo:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="desarrollo.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel_list(path, pattern, ...) </span></span>
+<span id="cb42-2"><a href="desarrollo.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
+<span id="cb42-3"><a href="desarrollo.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Lee los ficheros xls y xlsx de un directorio</span></span>
+<span id="cb42-4"><a href="desarrollo.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb42-5"><a href="desarrollo.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param path Ruta al directorio con los ficheros excel </span></span>
+<span id="cb42-6"><a href="desarrollo.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (por defecto el directorio de trabajo).</span></span>
+<span id="cb42-7"><a href="desarrollo.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param pattern Expresión regular empleada en la selección de ficheros </span></span>
+<span id="cb42-8"><a href="desarrollo.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (ver `list.files()`).</span></span>
+<span id="cb42-9"><a href="desarrollo.html#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ... Parámetros adicionales de `readxl::read_excel()`.</span></span>
+<span id="cb42-10"><a href="desarrollo.html#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return Una lista cuyas componentes son las correspondientes tablas de datos </span></span>
+<span id="cb42-11"><a href="desarrollo.html#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (`tibble`) y con nombres los nombres de los archivos sin extensión.</span></span>
+<span id="cb42-12"><a href="desarrollo.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples \dontrun{</span></span>
+<span id="cb42-13"><a href="desarrollo.html#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_list &lt;- read_excel_list(&quot;datos&quot;) # &quot;./datos&quot;</span></span>
+<span id="cb42-14"><a href="desarrollo.html#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_all &lt;- dplyr::bind_rows(data_list)</span></span>
+<span id="cb42-15"><a href="desarrollo.html#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb42-16"><a href="desarrollo.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendiente:</span></span>
+<span id="cb42-17"><a href="desarrollo.html#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Controlar posible error al leer</span></span>
+<span id="cb42-18"><a href="desarrollo.html#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
+<span id="cb42-19"><a href="desarrollo.html#cb42-19" aria-hidden="true" tabindex="-1"></a>read_excel_list <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">&quot;.&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.(xls|xlsx)$&quot;</span>, ...) {</span>
+<span id="cb42-20"><a href="desarrollo.html#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(readxl))  <span class="fu">stop</span>(<span class="st">&quot;&#39;readxl&#39; package required&quot;</span>)</span>
+<span id="cb42-21"><a href="desarrollo.html#cb42-21" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern =</span> pattern, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="co"># ?list.files</span></span>
+<span id="cb42-22"><a href="desarrollo.html#cb42-22" aria-hidden="true" tabindex="-1"></a>  data_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="fu">length</span>(files), <span class="at">mode =</span> <span class="st">&#39;list&#39;</span>)</span>
+<span id="cb42-23"><a href="desarrollo.html#cb42-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) </span>
+<span id="cb42-24"><a href="desarrollo.html#cb42-24" aria-hidden="true" tabindex="-1"></a>      data_list[[i]] <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(files[i], ...)</span>
+<span id="cb42-25"><a href="desarrollo.html#cb42-25" aria-hidden="true" tabindex="-1"></a>  data_names <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&#39;</span><span class="sc">\\</span><span class="st">.xlsx$&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">basename</span>(files)) </span>
+<span id="cb42-26"><a href="desarrollo.html#cb42-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data_list) <span class="ot">&lt;-</span> data_names</span>
+<span id="cb42-27"><a href="desarrollo.html#cb42-27" aria-hidden="true" tabindex="-1"></a>  data_list</span>
+<span id="cb42-28"><a href="desarrollo.html#cb42-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>En muchas ocasiones se emplea como punto de partida una función implementada en R.
+En RStudio la forma más sencilla de obtener el código de la función es emplear <code>View(funcion)</code> (si la función es visible, en caso contrario <code>View(paquete:::funcion)</code>).
+Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma <code>paquete_x.y.z.tar.gz</code> que se puede descargar en la sección <em>Downloads</em> de la web del paquete <em><a href="https://CRAN.R-project.org/package=paquete" class="uri">https://CRAN.R-project.org/package=paquete</a></em>).</p>
+<p>La mejor forma de organizar funciones es crear un paquete.
+Para ello se recomienda seguir:</p>
+<p>Wickham, Hadley (2015). <em><a href="http://r-pkgs.had.co.nz/">R packages: organize, test, document, and share your code</a></em> (actualmente 2ª edición en desarrollo con H. Bryan), <a href="http://shop.oreilly.com/product/0636920034421.do">O’Reilly, 1ª edición</a>.</p>
+<p>También puede ser de utilidad el manual <a href="http://colinfay.me/writing-r-extensions">Writing R Extensions</a> para información adicional.</p>
+
+</div>
+<!-- </div> -->
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="oop.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rubenfcasal/notasr/edit/master/02_lenguaje_r.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Notas_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+- Info: Datos oficiales de COVID-19 en España COVID-19
+https://rubenfcasal.github.io/COVID-19/
+
+- Fichero principal: COVID-19-actualizar.R
+
+- Los informes se reemplazaron por enlaces web para reducir tamaño.
+

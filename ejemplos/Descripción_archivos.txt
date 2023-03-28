@@ -1,0 +1,13 @@
+top500:
+Datos de los 500 supercomputadores comerciales más potentes conocidos actualmente (11-2022).
+
+mortalidad:
+Datos INE comparando mortalidad (defunciones) en 2020 con la de 2019 por CCAA
+https://rubenfcasal.github.io/estadistica_espacial/proc-esp.html#fig:mortalidad
+
+covid19:
+Descarga y procesado de los datos oficiales de COVID-19 en España
+Proyecto predicción cooperativa
+
+
+

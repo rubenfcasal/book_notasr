@@ -1,0 +1,124 @@
+---
+title: "Analisis automático"
+params: 
+  # Nombre del fichero de datos
+  datos: "top500b.RData" 
+  # Numéro máximo de categorías para distribución condicional
+  max.levels: 4 
+author: "Datos: `r params$datos`"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+     # code_folding: hide
+     toc: true
+     toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, out.width = '100%', fig.align = 'center',
+                      fig.width = 12, fig.height = 6)
+# R.options <- list(max.print = 10)
+```
+
+<!-- 
+PENDIENTE:
+- Opción añadir tablas de contingencia o estadísticos distribuciones condicionadas
+- Utilizar paquete skimr: https://docs.ropensci.org/skimr
+-->
+
+```{r message=FALSE, warning=FALSE}
+# params <- list(datos = "ecars2.RData", max.levels = 4)
+# library(dplyr, warn.conflicts = FALSE)
+# library(tidyr)
+datos.name <- load(file = params$datos) 
+datos <- get(datos.name[1])
+
+## Variables
+vnames <- names(datos) # Nombres
+vlabel <- attr(datos, "variable.labels")  # Etiquetas
+if (is.null(vlabel)) vlabel <- vnames
+knitr::kable(as.data.frame(vlabel))
+
+# Se ignoran variables tipo carácter
+vcat <- which(sapply(datos,is.factor))  # Variables categóricas
+vcat.low <- sapply(datos[vcat], function(x) length(levels(x)) <= params$max.levels)
+vcat.low <- vcat[vcat.low]
+vnum <- which(sapply(datos,is.numeric)) # Variables numéricas
+# vnum <- vnum[-1] # Eliminar variables numéricas del análisis
+# vcat <- vcat[-2] # Eliminar variables categóricas del análisis
+```
+
+
+## Variables categóricas
+
+```{r include = length(vnum) > 0}
+# Tablas de frecuencias agrupadas 
+summary(datos[,vcat])
+```
+
+```{r results = "asis", include = length(vcat) > 0}
+# Gráficos de barras
+for (i in vcat) { # i <- 1
+  cat("\n\n### ", vnames[i],":", vlabel[i], "\n\n")
+  barplot(table(datos[[i]]), xlab = vlabel[i], ylab = "Frecuencia") 
+} # for (i in vcat)
+```
+
+
+## Variables numéricas
+
+```{r include = length(vnum) > 0}
+# Descriptivos
+summary(datos[,vnum])
+```
+
+```{r results = "asis", include = length(vnum) > 0}
+# Histogramas
+for (i in vnum) { # i <- 1
+  cat("\n\n### ", vnames[i],":", vlabel[i], "\n\n")
+  hist(datos[[i]], main = paste("Histograma de" , vnames[i]), xlab = vlabel[i], ylab = "Frecuencia")
+} # for (i in vnum)
+```
+
+
+<!-- ## Matriz correlaciones-->
+```{r results = "asis", include = length(vnum) > 1}
+cat("\n\n## Matriz de correlaciones\n\n")
+plot(datos[,vnum])
+mcor <- cor(datos[,vnum], use = "pairwise.complete.obs")
+knitr::kable(mcor, digits = 2)
+```
+
+
+<!-- ## Distribuciones condicionadas -->
+```{r results = "asis", include = length(vnum)*length(vcat.low)}
+cat("\n\n## Distribuciones condicionadas\n\n")
+# Gráficos de 
+for (j in vnum) { # j <- vnum[1]
+  cat("\n\n### ", vnames[j],":", vlabel[j], "\n\n")
+  for (i in vcat.low) { # i <- vcat.low[1]
+    cat("\n\n#### ", vnames[j],"|", vnames[i], ":", vlabel[i], "\n\n")
+    # reformulate(vnames[i], vnames[j])
+    y.formula <- as.formula(paste(vnames[j], vnames[i], sep = "~"))
+    boxplot(y.formula, ylab = vlabel[j], xlab = vlabel[i], data = datos)
+  } # for (i in vcat.low)  
+} # for (j in vnum)
+```
+
+
+```{r results = "asis", include = (length(vcat) > 1)*length(vcat.low)}
+cat("\n\n## Tablas contingencia\n\n")
+for (i in vcat) { # i <- vcat[1]
+  cat("\n\n### ", vnames[i],":", vlabel[i], "\n\n")
+
+  for (j in vcat.low) { # j <- vcat.low[1]
+    if (i == j) next
+    cat("\n\n#### ", vnames[j],"|", vnames[i], "\n\n")
+    barplot(table(datos[c(j, i)]), legend.text = TRUE,
+            ylab = "Frecuencia", xlab = vlabel[i])
+  } # for (j in vcat.low)  
+} # for (i in vcat)
+```
+
+
+
