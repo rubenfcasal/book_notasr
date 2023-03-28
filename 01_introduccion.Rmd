@@ -72,14 +72,17 @@ En mi caso empleo esta opción para paquetes, libros en bookdown, webs con blogd
 En otros casos empleo una carpeta que puede tener subdirectorios (si el proyecto es más grande) para distintos tipos de archivos o para distintas tareas (con el objetivo de facilitar la búsqueda). 
 Por ejemplo: *datos*, *informes*, *resultados_2023*...
 
-Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas) y sin espacios (por ejemplo empleando `_` para separar palabras o iniciales).
+Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas), sin espacios (por ejemplo empleando `_` para separar palabras o iniciales) y sin caracteres especiales (ASCII, sin acentos...).
 Los nombres deberían ser lo más descriptivos posibles (en el sentido de evitar confusión). 
-Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g. *Descripción_archivos.txt*), o incluso en hojas de cálculo.
+Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g. *Descripcion_archivos.txt*), o incluso en hojas de cálculo.
 Yo además acostumbro a incluir archivos del tipo *Notas.txt* (con recordatorios, decisiones...) o *Pendente.txt* (con próximos pasos, mejoras o verificaciones pendientes...).
 
 Además, nos puede interesar establecer opciones de R específicas para el proyecto (por ejemplo opciones de configuración de memoria, de paquetes o variables de entorno, incluyendo claves privadas), de forma que se establezcan automáticamente al iniciar R o RStudio.
-Para más detalles ver la ayuda de `?Startup`
+Para más detalles ver la ayuda de `?Startup`, el apéndice [Invoking R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R) o el post de RStudio
 [Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf](https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf)
+
+Para desarrollar código y proyectos de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
+Se puede configurar RStudio para emplear Git (ver el libro [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html) o la sección [Git and GitHub](https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github)), sin embargo yo prefiero emplear [GitHub Desktop](https://desktop.github.com/).
 
 
 ### Código e informes {#codigo}
@@ -97,17 +100,17 @@ En el caso de informes el proceso sería similar, empleando como punto de partid
 ```
 
 En primer lugar me preocupo de escribir un código funcional y, además de ir añadiendo comentarios de la forma habitual, voy añadiendo secciones y texto rmarkdown en formato spin.
-Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar *Ctrl + Shift + K*, o el botón correspondiente en la barra superior, o seleccionar *File > Knit Compile Report...*), lo transformo a formato *.Rmd* con un comando de la forma:
+Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar^[Para mostrar las combinaciones de teclas en RStudio podemos emplear el menú *Tools > Keyboard Shortcuts Help*.] *Ctrl + Shift + K*, el icono correspondiente en la barra superior, o seleccionar *File > Compile Report...*), lo transformo a formato *.Rmd* con un comando de la forma:
 
 ```{r eval=FALSE}
-knitr::spin("Informe.R",knit = FALSE)
+knitr::spin("Informe.R", knit = FALSE)
 ```
 
 donde termino de redactar (`knitr::purl("Informe.Rmd", documentation = 2)` genera un nuevo fichero *Informe.R* donde resulta más cómodo modificar o desarrollar código).
 
 
 Se recomienda **elegir un estilo que sea consistente y seguirlo por completo** en todo el proyecto.
-Lo principal sería el operador de asignación y el estilo de nombres (de objetos, variables o ficheros):
+Lo principal sería el operador de asignación, el espaciado y el estilo de nombres (de objetos, variables o ficheros):
 
 - `estilo.clasico`: es el estilo del paquete base de R. Muchos programadores no lo recomiendan (principalmente porque este separador no se admite en otros lenguajes y porque puede dar lugar a confusión con métodos S3, ver Sección \@ref(oop)).
 
@@ -125,6 +128,11 @@ Por ejemplo:
 - [Tidyverse style guide](https://style.tidyverse.org)
 
 - [Google’s R Style Guide](https://google.github.io/styleguide/Rguide.html)
+
+Para facilitar la legibilidad **es muy recomendable incluir un espacio** entre los elementos del comando.
+En RStudio se puede seleccionar un trozo de (una línea de) código y pulsar *Ctrl + Shift + A* para formatearlo.
+También podemos emplear el paquete `r cite_pkg(styler)` para formatear el código.
+Por ejemplo, en RStudio podemos emplear *Addins > Styler > Style active file*.
 
 Además se recomienda **crear secciones y documentar el código adecuadamente**.
 En RStudio se puede crear una sección pulsando *Ctrl + Shift + R* o añadiendo al menos 4 guiones (`-`, también `=` o `#`) después de un comentario.
@@ -154,22 +162,18 @@ Esto ya ocurre por defecto si empleamos proyectos de RStudio o si iniciamos RStu
 En general, la recomendación es asumir que el directorio de trabajo es aquel en el que se encuentra el archivo de código (lo que también ocurre por defecto al compilar un documento RMarkdown).
 Si no es el caso se puede emplear el menú *Sesion > Set Working Directory > To Source File Location*.
 
-Para establecer la ruta a archivos o directorios **se recomienda emplear rutas relativas** (usando *../* para acceder a la carpeta anterior; *./* sería el directorio actual de trabajo).
+Para establecer la ruta a archivos o directorios **se recomienda emplear rutas relativas** (usando *../* para acceder a la carpeta anterior; *./* sería el actual directorio de trabajo).
 Por ejemplo:
 ```{r eval=FALSE}
 load("datos/datos_x.RData")
 source("../R/Herramientas.R")
 fecha_txt <- as.character(Sys.Date() - 1, format = "%m_%d") # Por ejemplo...
-rmarkdown::render("informe.Rmd", 
+rmarkdown::render("informe.Rmd", params = list(fecha_txt = fecha_txt),
                   output_file = paste0('informes/informe_', fecha_txt, '.html'), 
-                  # params = list(fecha_txt = fecha_txt),
                   envir = new.env(), encoding = "UTF-8")
 ```
 
 La mejor forma de organizar funciones es desarrollar un paquete, como se comenta más adelante en la Sección \@ref(desarrollo).
-
-Para desarrollar código de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
-Se puede configurar RStudio para emplear Git (ver [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html) y [Git and GitHub](https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github)), sin embargo yo prefiero emplear [GitHub Desktop](https://desktop.github.com/).
 
 
 ### Datos {#datos}
@@ -187,7 +191,7 @@ Crear un fichero de código específicamente para importar los datos^[Con alguno
 Yo habitualmente empleo el mismo nombre para el archivo de código y el archivo de datos que se genera (e.g. *datos.R* contiene el código necesario para generar *datos.RData*; no suelo renombrar el fichero fuente de datos externo, aunque se aleje mucho del estilo elegido).
 Asociado a un mismo conjunto de datos puede haber distintos archivos de código para realizar distintos análisis (el nombre de esos archivos debería dar una pista del análisis que realizan).
 
-En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función `r cite_fun(dput)` para escribirlos en modo texto (e.g. `dput(tolower(names(data)))`) y posteriormente modificarlos a mano.
+En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función `r cite_fun(dput)` para escribirlos en modo texto (e.g. `dput(tolower(names(datos)))` o `dput(levels(datos$factor))`) y posteriormente modificarlos a mano.
 
 Yo recomiendo añadir un atributo `variable.labels` que contenga un vector de etiquetas de las variables y empleando como nombres de las componentes las propias variables:
 ```{r}
@@ -204,6 +208,7 @@ str(cars)
 Para leer ficheros de Excel acostumbro a utilizar los paquetes  [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html) (solo para archivos con extensión *.xlsx*) o [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
+Ver [top500.R](ejemplos/top500/top500.R) en [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos).
 
 
 
