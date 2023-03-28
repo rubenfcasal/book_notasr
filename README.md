@@ -6,12 +6,12 @@ Este es un libro con notas personales sobre programación en R para el análisis
 El contenido está sesgado por la experiencia personal (es mi forma de programar en R) pero puede resultar útil para otras personas.
 Cualquier sugerencia de mejora será bien recibida.
 
-Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/notasr](https://github.com/rubenfcasal/notasr). 
+Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/notasr](https://github.com/rubenfcasal/book_notasr). 
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
-<https://rubenfcasal.github.io/notasr>.
+<https://rubenfcasal.github.io/book_notasr>.
 
-donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/notasr/Notas_R.pdf).
+donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/book_notasr/Notas_R.pdf).
 
 Para seguir los ejemplos mostrados en el libro se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos): [`Rcmdr`](https://CRAN.R-project.org/package=Rcmdr), [`caret`](https://github.com/topepo/caret/), [`tidymodels`](https://tidymodels.tidymodels.org), [`tidyverse`](https://tidyverse.tidyverse.org), [`openxlsx`](https://ycphs.github.io/openxlsx/index.html), [`DT`](https://github.com/rstudio/DT), [`rmarkdown`](https://github.com/rstudio/rmarkdown), [`knitr`](https://yihui.org/knitr/), [`remotes`](https://remotes.r-lib.org), [`devtools`](https://devtools.r-lib.org/).
 Por ejemplo mediante el comando:

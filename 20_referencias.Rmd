@@ -75,7 +75,7 @@ Para referencias adicionales recomiendo consultar:
 ## Enlaces {.unnumbered #links}
 
 
-***Repositorio***: [rubenfcasal/notasr](https://github.com/rubenfcasal/notasr)
+***Repositorio***: [rubenfcasal/book_notasr](https://github.com/rubenfcasal/book_notasr)
 
 ***Recursos para el aprendizaje de R***: En este [post](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r) se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
 
