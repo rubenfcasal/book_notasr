@@ -4,14 +4,14 @@
 #
 # Fecha modificación: 2023/03/27
 # ················································
-# NOTA: Ctrl + Shift + O para Document Outline 
+# NOTA: Ctrl + Shift + O para Document Outline
 
 # Opciones knitr ---------------------------------
 # ················································
 knitr::opts_chunk$set(
-  fig.width = 7, fig.height = 6, fig.align = "center", fig.pos = "!htb", 
-  out.width = "70%",
-  cache = FALSE, cache.path = 'cache/',
+  fig.width = 7, fig.height = 6, fig.align = "center", fig.pos = "!htb",
+  out.width = "80%",
+  cache = TRUE, cache.path = 'cache/',
   echo = TRUE, warning = FALSE, message = FALSE
 )
 
@@ -40,21 +40,21 @@ inline2 <- function(x = "") paste0("`r ", x, "`")
 # (ver Figura/figuras ...)
 cite_fig <- function(..., text = "(ver ") {
     x <- list(...)
-    paste0(text, if(length(x)>1) "figuras: " else "Figura ", 
+    paste0(text, if(length(x)>1) "figuras: " else "Figura ",
       paste0("\\@ref(fig:", x, ")", collapse = ", "),
     ")")
-}  
+}
 
 # [Figura/s: ...]
 cite_fig2 <- function(..., text = "") {
     x <- list(...)
-    paste0(text, if(length(x)>1) "[Figuras: " else "[Figura ", 
+    paste0(text, if(length(x)>1) "[Figuras: " else "[Figura ",
       paste0("\\@ref(fig:", x, ")", collapse = ", "),
     "]")
-}  
+}
 
 # [Figura/s: ...] si latex/pdf
-latexfig <- function(..., output = is_latex()) 
+latexfig <- function(..., output = is_latex())
     if (output) citefig2(..., text = " ") else ""
 
 
@@ -93,7 +93,7 @@ cite_pkg <- function(pkg, ...) {
 # ················································
 
 cite_fun_ <- function(fun, pkg, url, full = FALSE) {
-    fun_full <- if (!missing(pkg)) 
+    fun_full <- if (!missing(pkg))
       paste(pkg, fun, sep = "::") else fun
     if (missing(url)) url <- downlit::autolink_url(fun_full)
     if (full) fun <- fun_full
@@ -109,9 +109,9 @@ cite_fun_ <- function(fun, pkg, url, full = FALSE) {
 
 cite_fun <- function(fun, pkg, ...) {
     fun <- paste0(substitute(fun),"()")
-    if (missing(pkg)) return(cite_fun_(fun, ...)) 
+    if (missing(pkg)) return(cite_fun_(fun, ...))
     cite_fun_(fun, as.character(substitute(pkg)), ...)
-    
+
 }
 
 # cite_fun(subset)
@@ -121,10 +121,9 @@ cite_fun <- function(fun, pkg, ...) {
 # Pendente: cite_fun(remotes::install_version)
 # ················································
 
-# PENDENTE:        
+# PENDENTE:
 # ················································
 # rmd.lines <- function(l = 1) paste0("<br> \vspace{0.5cm}") #cat(rep("<br>", l)) # 0.5*l
-    
-    
-    
-    
+
+
+

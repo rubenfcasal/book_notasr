@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 El lenguaje R | Notas de Programación en R</title>
+  <title>3.1 Operador pipe (tubería, redirección) | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta property="og:title" content="3.1 Operador pipe (tubería, redirección) | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta name="twitter:title" content="3.1 Operador pipe (tubería, redirección) | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="organizacion.html"/>
-<link rel="next" href="paquetes.html"/>
+<link rel="prev" href="tidyverse.html"/>
+<link rel="next" href="referencias.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -192,54 +192,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> El lenguaje R</h1>
-<!-- 
----
-title: "El lenguaje R"
-author: "Notas de Programación en R"
-date: "Rubén Fernández-Casal (rubenfcasal@gmail.com)"
-output:
-  bookdown::html_document2:
-    toc: yes
-    # toc_float: yes
-    # mathjax: local            # copia local de MathJax, hay que establecer:
-    # self_contained: false     # las dependencias se guardan en ficheros externos
-    pandoc_args: ["--number-offset", "1,0"]
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    # keep_tex: yes
-    toc: yes 
-    pandoc_args: ["--number-offset", "1,0"]
-header-includes:
-- \usepackage[spanish]{babel}
-- \setcounter{section}{1} 
----
+<div id="pipe" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Operador <em>pipe</em> (tubería, redirección)</h2>
+<p>El operador <code>%&gt;%</code> (paquete <a href="https://magrittr.tidyverse.org"><code>magrittr</code></a>) permite canalizar la salida de una función a la entrada de otra.
+Por ejemplo, <code>segundo(primero(datos))</code> se traduce en <code>datos %&gt;% primero %&gt;% segundo</code>, lo que facilita la lectura de operaciones (funciones) al escribirlas de izquierda a derecha.</p>
+<p>Desde la versión 4.X de R <code>|&gt;</code>, yo sigo prefiriendo <code>%&gt;%</code>…</p>
+<p>Ejemplos:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pipe.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb43-2"><a href="pipe.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Listamos las etiquetas</span></span>
+<span id="cb43-3"><a href="pipe.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data.frame(Etiquetas = attr(empleados, &quot;variable.labels&quot;))  </span></span>
+<span id="cb43-4"><a href="pipe.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
+<span id="cb43-5"><a href="pipe.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(empleados, &quot;variable.labels&quot;) &lt;- NULL  </span></span>
+<span id="cb43-6"><a href="pipe.html#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="pipe.html#cb43-7" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">|&gt;</span>  <span class="fu">subset</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>, catlab<span class="sc">:</span>sexoraza) <span class="sc">|&gt;</span>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##             catlab      salario           salini         tiempemp    
+##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
+##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
+##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
+##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
+##                      Max.   :135000   Max.   :79980   Max.   :98.00  
+##     expprev       minoria          sexoraza 
+##  Min.   :  3.00   No:80   Blanca varón :70  
+##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
+##  Median : 52.00           Blanca mujer :10  
+##  Mean   : 77.62           Minoría mujer: 0  
+##  3rd Qu.:125.25                             
+##  Max.   :285.00</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pipe.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?&quot;|&gt;&quot;</span></span>
+<span id="cb45-2"><a href="pipe.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados |&gt; subset(catlab != &quot;Seguridad&quot;) |&gt; droplevels() |&gt; </span></span>
+<span id="cb45-3"><a href="pipe.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     boxplot(salario ~ sexo*catlab, data = .)</span></span>
+<span id="cb45-4"><a href="pipe.html#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="pipe.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb45-6"><a href="pipe.html#cb45-6" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">subset</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="pipe.html#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">boxplot</span>(salario <span class="sc">~</span> sexo<span class="sc">*</span>catlab, <span class="at">data =</span> .)</span></code></pre></div>
+<p><img src="10_tidyverse_files/figure-html/unnamed-chunk-1-1.png" width="80%" style="display: block; margin: auto;" /></p>
 
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
--->
-<p>Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (<em>useR</em>).
-Sin embargo, para desarrollar nuevas herramientas de forma efectiva (<em>programeR</em>) es necesario tener una idea del funcionamiento interno de R.
-La referencia recomendada para usuarios de R que deseen mejorar sus conocimientos de programación y comprensión del lenguaje es:</p>
-<p>Wickham, Hadley (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición</a>.</p>
-<p>También puede ser de utilidad el manual <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R Language Definition</a>
-para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Los manuales oficiales también están disponibles en formato bookdown en este <a href="https://colinfay.me/r-manuals">post</a>.<a href="r.html#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="organizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paquetes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +267,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/10_tidyverse.Rmd",
 "text": "Edit"
 },
 "history": {

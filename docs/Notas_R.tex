@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,6 +33,14 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Notas de Programación en R},
+  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -162,23 +170,15 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Notas de Programación en R},
-  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
-\date{Edición: Marzo de 2023. Impresión: 2023-03-28}
+\date{Edición: Marzo de 2023. Impresión: 2023-03-29}
 
 \begin{document}
 \maketitle
@@ -191,16 +191,16 @@
 \chapter*{Prólogo}\label{pruxf3logo}}
 \addcontentsline{toc}{chapter}{Prólogo}
 
-Este es un libro con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R).
+Este es un libro, \textbf{\emph{en proceso de elaboración}}, con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R).
 El contenido está sesgado por la experiencia personal (es mi forma de programar en R) pero puede resultar útil para otras personas.
-Cualquier sugerencia de mejora será bien recibida.
+Cualquier sugerencia de mejora o comentario será bien recibido.
 
-Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está disponible en el repositorio Github: \href{https://github.com/rubenfcasal/notasr}{rubenfcasal/notasr}.
+Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está disponible en el repositorio Github: \href{https://github.com/rubenfcasal/book_notasr}{rubenfcasal/book\_notasr}.
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
-\url{https://rubenfcasal.github.io/notasr}.
+\url{https://rubenfcasal.github.io/book_notasr}.
 
-donde puede descargarse en formato \href{https://rubenfcasal.github.io/notasr/Notas_R.pdf}{pdf}.
+donde puede descargarse en formato \href{https://rubenfcasal.github.io/book_notasr/Notas_R.pdf}{pdf}.
 
 Para seguir los ejemplos mostrados en el libro se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
 \href{https://www.r-project.org}{\texttt{Rcmdr}}, \href{https://github.com/topepo/caret/}{\texttt{caret}}, \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}, \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}}, \href{https://ycphs.github.io/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://github.com/rstudio/DT}{\texttt{DT}}, \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}}, \href{https://yihui.org/knitr/}{\texttt{knitr}}, \href{https://remotes.r-lib.org}{\texttt{remotes}}, \href{https://devtools.r-lib.org/}{\texttt{devtools}}.
@@ -244,7 +244,7 @@ Puede ser una herramienta de gran utilidad a lo largo de todo el proceso de obte
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{figuras/esquema2} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/esquema2} 
 
 }
 
@@ -289,14 +289,17 @@ En mi caso empleo esta opción para paquetes, libros en bookdown, webs con blogd
 En otros casos empleo una carpeta que puede tener subdirectorios (si el proyecto es más grande) para distintos tipos de archivos o para distintas tareas (con el objetivo de facilitar la búsqueda).
 Por ejemplo: \emph{datos}, \emph{informes}, \emph{resultados\_2023}\ldots{}
 
-Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas) y sin espacios (por ejemplo empleando \texttt{\_} para separar palabras o iniciales).
+Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas), sin espacios (por ejemplo empleando \texttt{\_} para separar palabras o iniciales) y sin caracteres especiales (ASCII, sin acentos\ldots).
 Los nombres deberían ser lo más descriptivos posibles (en el sentido de evitar confusión).
-Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g.~\emph{Descripción\_archivos.txt}), o incluso en hojas de cálculo.
+Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g.~\emph{Descripcion\_archivos.txt}), o incluso en hojas de cálculo.
 Yo además acostumbro a incluir archivos del tipo \emph{Notas.txt} (con recordatorios, decisiones\ldots) o \emph{Pendente.txt} (con próximos pasos, mejoras o verificaciones pendientes\ldots).
 
 Además, nos puede interesar establecer opciones de R específicas para el proyecto (por ejemplo opciones de configuración de memoria, de paquetes o variables de entorno, incluyendo claves privadas), de forma que se establezcan automáticamente al iniciar R o RStudio.
-Para más detalles ver la ayuda de \texttt{?Startup}
+Para más detalles ver la ayuda de \texttt{?Startup}, el apéndice \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html\#Invoking-R}{Invoking R} o el post de RStudio
 \href{https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf}{Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf}
+
+Para desarrollar código y proyectos de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
+Se puede configurar RStudio para emplear Git (ver el libro \href{https://happygitwithr.com/index.html}{Happy Git and GitHub for the useR} o la sección \href{https://r-pkgs.org/software-development-practices.html\#sec-sw-dev-practices-git-github}{Git and GitHub}), sin embargo yo prefiero emplear \href{https://desktop.github.com/}{GitHub Desktop}.
 
 \hypertarget{codigo}{%
 \subsection{Código e informes}\label{codigo}}
@@ -315,18 +318,18 @@ En el caso de informes el proceso sería similar, empleando como punto de partid
 \end{verbatim}
 
 En primer lugar me preocupo de escribir un código funcional y, además de ir añadiendo comentarios de la forma habitual, voy añadiendo secciones y texto rmarkdown en formato spin.
-Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar \emph{Ctrl + Shift + K}, o el botón correspondiente en la barra superior, o seleccionar \emph{File \textgreater{} Knit Compile Report\ldots{}}), lo transformo a formato \emph{.Rmd} con un comando de la forma:
+Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar\footnote{Para mostrar las combinaciones de teclas en RStudio podemos emplear el menú \emph{Tools \textgreater{} Keyboard Shortcuts Help}.} \emph{Ctrl + Shift + K}, el icono correspondiente en la barra superior, o seleccionar \emph{File \textgreater{} Compile Report\ldots{}}), lo transformo a formato \emph{.Rmd} con un comando de la forma:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{spin}\NormalTok{(}\StringTok{"Informe.R"}\NormalTok{,}\AttributeTok{knit =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{spin}\NormalTok{(}\StringTok{"Informe.R"}\NormalTok{, }\AttributeTok{knit =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 donde termino de redactar (\texttt{knitr::purl("Informe.Rmd",\ documentation\ =\ 2)} genera un nuevo fichero \emph{Informe.R} donde resulta más cómodo modificar o desarrollar código).
 
 Se recomienda \textbf{elegir un estilo que sea consistente y seguirlo por completo} en todo el proyecto.
-Lo principal sería el operador de asignación y el estilo de nombres (de objetos, variables o ficheros):
+Lo principal sería el operador de asignación, el espaciado y el estilo de nombres (de objetos, variables o ficheros):
 
 \begin{itemize}
 \item
@@ -350,6 +353,11 @@ Por ejemplo:
 \item
   \href{https://google.github.io/styleguide/Rguide.html}{Google's R Style Guide}
 \end{itemize}
+
+Para facilitar la legibilidad \textbf{es muy recomendable incluir un espacio} entre los elementos del comando.
+En RStudio se puede seleccionar un trozo de (una línea de) código y pulsar \emph{Ctrl + Shift + A} para formatearlo.
+También podemos emplear el paquete \href{https://github.com/r-lib/styler}{\texttt{styler}} para formatear el código.
+Por ejemplo, en RStudio podemos emplear \emph{Addins \textgreater{} Styler \textgreater{} Style active file}.
 
 Además se recomienda \textbf{crear secciones y documentar el código adecuadamente}.
 En RStudio se puede crear una sección pulsando \emph{Ctrl + Shift + R} o añadiendo al menos 4 guiones (\texttt{-}, también \texttt{=} o \texttt{\#}) después de un comentario.
@@ -393,7 +401,7 @@ Esto ya ocurre por defecto si empleamos proyectos de RStudio o si iniciamos RStu
 En general, la recomendación es asumir que el directorio de trabajo es aquel en el que se encuentra el archivo de código (lo que también ocurre por defecto al compilar un documento RMarkdown).
 Si no es el caso se puede emplear el menú \emph{Sesion \textgreater{} Set Working Directory \textgreater{} To Source File Location}.
 
-Para establecer la ruta a archivos o directorios \textbf{se recomienda emplear rutas relativas} (usando \emph{../} para acceder a la carpeta anterior; \emph{./} sería el directorio actual de trabajo).
+Para establecer la ruta a archivos o directorios \textbf{se recomienda emplear rutas relativas} (usando \emph{../} para acceder a la carpeta anterior; \emph{./} sería el actual directorio de trabajo).
 Por ejemplo:
 
 \begin{Shaded}
@@ -401,17 +409,13 @@ Por ejemplo:
 \FunctionTok{load}\NormalTok{(}\StringTok{"datos/datos\_x.RData"}\NormalTok{)}
 \FunctionTok{source}\NormalTok{(}\StringTok{"../R/Herramientas.R"}\NormalTok{)}
 \NormalTok{fecha\_txt }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(}\FunctionTok{Sys.Date}\NormalTok{() }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{format =} \StringTok{"\%m\_\%d"}\NormalTok{) }\CommentTok{\# Por ejemplo...}
-\NormalTok{rmarkdown}\SpecialCharTok{::}\FunctionTok{render}\NormalTok{(}\StringTok{"informe.Rmd"}\NormalTok{, }
+\NormalTok{rmarkdown}\SpecialCharTok{::}\FunctionTok{render}\NormalTok{(}\StringTok{"informe.Rmd"}\NormalTok{, }\AttributeTok{params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{fecha\_txt =}\NormalTok{ fecha\_txt),}
                   \AttributeTok{output\_file =} \FunctionTok{paste0}\NormalTok{(}\StringTok{\textquotesingle{}informes/informe\_\textquotesingle{}}\NormalTok{, fecha\_txt, }\StringTok{\textquotesingle{}.html\textquotesingle{}}\NormalTok{), }
-                  \CommentTok{\# params = list(fecha\_txt = fecha\_txt),}
                   \AttributeTok{envir =} \FunctionTok{new.env}\NormalTok{(), }\AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 La mejor forma de organizar funciones es desarrollar un paquete, como se comenta más adelante en la Sección \ref{desarrollo}.
-
-Para desarrollar código de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
-Se puede configurar RStudio para emplear Git (ver \href{https://happygitwithr.com/index.html}{Happy Git and GitHub for the useR} y \href{https://r-pkgs.org/software-development-practices.html\#sec-sw-dev-practices-git-github}{Git and GitHub}), sin embargo yo prefiero emplear \href{https://desktop.github.com/}{GitHub Desktop}.
 
 \hypertarget{datos}{%
 \subsection{Datos}\label{datos}}
@@ -429,7 +433,7 @@ Crear un fichero de código específicamente para importar los datos\footnote{Co
 Yo habitualmente empleo el mismo nombre para el archivo de código y el archivo de datos que se genera (e.g.~\emph{datos.R} contiene el código necesario para generar \emph{datos.RData}; no suelo renombrar el fichero fuente de datos externo, aunque se aleje mucho del estilo elegido).
 Asociado a un mismo conjunto de datos puede haber distintos archivos de código para realizar distintos análisis (el nombre de esos archivos debería dar una pista del análisis que realizan).
 
-En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función \href{https://rdrr.io/r/base/dput.html}{\texttt{dput()}} para escribirlos en modo texto (e.g.~\texttt{dput(tolower(names(data)))}) y posteriormente modificarlos a mano.
+En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función \href{https://rdrr.io/r/base/dput.html}{\texttt{dput()}} para escribirlos en modo texto (e.g.~\texttt{dput(tolower(names(datos)))} o \texttt{dput(levels(datos\$factor))}) y posteriormente modificarlos a mano.
 
 Yo recomiendo añadir un atributo \texttt{variable.labels} que contenga un vector de etiquetas de las variables y empleando como nombres de las componentes las propias variables:
 
@@ -462,6 +466,7 @@ Yo recomiendo añadir un atributo \texttt{variable.labels} que contenga un vecto
 Para leer ficheros de Excel acostumbro a utilizar los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}} (solo para archivos con extensión \emph{.xlsx}) o \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
+Ver \href{ejemplos/top500/top500.R}{top500.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
 
 \hypertarget{part-r}{%
 \part{R}\label{part-r}}
@@ -557,12 +562,13 @@ Al iniciar el programa \texttt{R} se cargan por defecto en memoria los principal
 \end{Shaded}
 
 \begin{verbatim}
-## [1] ".GlobalEnv"        "package:stats"     "package:graphics" 
-## [4] "package:grDevices" "package:utils"     "package:datasets" 
-## [7] "package:methods"   "Autoloads"         "package:base"
+##  [1] ".GlobalEnv"        "package:magrittr"  "package:stats"    
+##  [4] "package:graphics"  "package:grDevices" "package:utils"    
+##  [7] "package:datasets"  "package:methods"   "Autoloads"        
+## [10] "package:base"
 \end{verbatim}
 
-Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete (definido en el denominado \emph{namespace} del paquete).
+Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado \textbf{\emph{namespace}} del paquete.
 Esta ruta determina los objetos visibles en el entorno global y el orden en se buscan (para más detalles ver \href{https://adv-r.hadley.nz/environments.html\#env-basics}{7.2 Environment basics} y \href{https://adv-r.hadley.nz/environments.html\#special-environments}{7.4 Special environments} de \href{https://adv-r.hadley.nz/index.html}{Advanced R}).
 
 Podemos cargar paquetes adicionales (previamente instalados) con \texttt{library()} o \texttt{require()}, por ejemplo:
@@ -597,7 +603,7 @@ Hay que tener cuidado con las versiones instaladas de los paquetes:
 y con sus dependencias (los paquetes tienen su propia ruta de búsqueda, determinada por el \emph{namespace} del paquete).
 Al actualizar o instalar nuevos paquetes pueden aparecer problemas al ejecutar código antiguo (a veces al trabajar en nuevos proyectos acabamos haciendo que los antiguos dejen de funcionar).
 
-Se puede instalar versiones específicas de un paquete con \href{https://remotes.r-lib.org/reference/install_version.html}{\texttt{install\_version()}}:
+Se puede instalar versiones específicas de un paquete con \href{https://remotes.r-lib.org/reference/install_version.html}{\texttt{remotes::install\_version()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -605,12 +611,13 @@ Se puede instalar versiones específicas de un paquete con \href{https://remotes
 \end{Highlighting}
 \end{Shaded}
 
-Para asegurarse que el código de un proyecto se puede ejecutar a lo largo del tiempo se puede emplear el paquete \href{https://rstudio.github.io/renv/}{\texttt{renv}} (se puede configurar automáticamente al crear un proyecto de RStudio).
+Para asegurarse que el código de un proyecto se pueda ejecutar a lo largo del tiempo se puede emplear el paquete \href{https://rstudio.github.io/renv/}{\texttt{renv}} (se puede configurar automáticamente al crear un proyecto de RStudio).
 Este paquete permite registrar las versiones exactas de los paquetes de los que depende un proyecto y volver a instalarlas (incluso en otro equipo) si es necesario. Para más detalles ver la viñeta \href{https://rstudio.github.io/renv/articles/renv.html}{Introduction to renv}.
 
 Sin embargo de esta forma aún dependemos del sistema operativo que deberíamos configurar adecuadamente.
 La recomendación para que un proyecto en R (por ejemplo una aplicación shiny) se pueda ejecutar en cualquier equipo, es emplear un \href{https://es.wikipedia.org/wiki/Docker_(software)}{contenedor docker}.
-Para más detalles ver \href{https://docs.docker.com/get-started/overview/}{Docker overview} y {[}The Rocker Project{]}\url{https://rocker-project.org/}).
+Para más detalles ver \href{https://docs.docker.com/get-started/overview/}{Docker overview} y \href{https://rocker-project.org/}{The Rocker Project}.
+Ver \href{ejemplos/covid19/prediccion_cooperativa/vii_xornadasr.html}{ejemplos/covid19/prediccion\_cooperativa}.
 
 \hypertarget{funciones}{%
 \section{Funciones}\label{funciones}}
@@ -643,7 +650,7 @@ Por ejemplo:
 Hay que tener en cuenta que R emplea \href{https://adv-r.hadley.nz/functions.html\#lazy-evaluation}{Lazy evaluation}, los argumentos no se evalúan hasta que se necesitan (lo cual puede producir mensajes de error inesperados, pero también permite añadir funcionalidades adicionales empleando la denominada \href{http://adv-r.had.co.nz/Computing-on-the-language.html}{evaluación no estándar} o \href{https://adv-r.hadley.nz/metaprogramming.html}{metaprogramación}).
 
 R es un lenguaje interpretado y podemos evaluar expresiones empleando código.
-Por ejemplo, podemos reproducir el proceso de introducir un comando en la consola con las funciones \texttt{eval()} y \texttt{parse()}:
+Por ejemplo, podemos reproducir el proceso de introducir un comando en la consola con las funciones \texttt{eval()} y \texttt{parse()} (aunque esta forma de proceder no es la más eficiente):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -678,6 +685,9 @@ Por ejemplo:
 \NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(}\StringTok{\textquotesingle{}rbind\textquotesingle{}}\NormalTok{, data.list)}
 \end{Highlighting}
 \end{Shaded}
+
+R dispone además de otras herramientas que permiten la programación dinámica.
+Por ejemplo \href{https://rdrr.io/r/stats/delete.response.html}{\texttt{reformulate()}} permite construir formulas para ajuste de modelos o análisis descriptivos.
 
 Hay que tener en cuenta que las funciones tienen su propio entorno y su propia ruta de búsqueda, determinada por el entorno donde se crearon (el \emph{namespace} en el caso de las funciones de un paquete).
 Esto es lo que se conoce como \href{https://adv-r.hadley.nz/functions.html\#lexical-scoping}{Lexical scoping}.
@@ -736,14 +746,14 @@ Realmente R dispone de varios sistemas de OOP, entre ellos podríamos destacar (
 
 \begin{itemize}
 \item
-  \href{https://adv-r.hadley.nz/s3.html}{S3}: Es un sistema muy simple, las clases no tienen una definición formal. Es el empleado en el paquete \texttt{base} de R y en la mayoría de paquetes que usan OOP.
+  \href{https://adv-r.hadley.nz/s3.html}{S3}: Es un sistema muy simple, las clases no tienen una definición formal (no se verifica su consistencia). Es el empleado en el paquete \texttt{base} de R y en la mayoría de paquetes que usan OOP.
   Descrito inicialmente en:
 
   Becker R.A., Chambers J.M. y Wilks A.R. (1988), \emph{\href{https://www.amazon.es/dp/053409192X}{The New S Language: A Programming Environment for Data Analysis and Graphics}} (A.K.A. the \emph{Blue Book}). Chapman \& Hall.
 
   Chambers J.M. y Hastie T.J. eds.~(1992), \emph{\href{https://www.amazon.com/gp/product/0534167659}{Statistical Models in S}} (A.K.A. the \emph{White Book}). Chapman \& Hall.
 \item
-  \href{https://adv-r.hadley.nz/s4.html}{S4} (\textbf{no lo recomiendo}): Está implementado en el paquete \texttt{methods} (uno de los \emph{paquetes base}) de R.
+  \href{https://adv-r.hadley.nz/s4.html}{S4} (\textbf{no lo recomiendo}): Es similar a S3 pero mucho más formal. Está implementado en el paquete \texttt{methods} (uno de los \emph{paquetes base}) de R. Se emplea por ejemplo en los paquetes \href{https://github.com/edzer/sp/}{\texttt{sp}} y \href{http://distr.r-forge.r-project.org/}{\texttt{distr}}.
   Descrito inicialmente en:
 
   Chambers J.M. (1998), \emph{\href{https://www.amazon.com/gp/product/0387985034}{Programming with Data}} (A.K.A. the \emph{Green Book}). Springer.
@@ -771,7 +781,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x0000020c8dacf898>
+## <bytecode: 0x0000000015fc4318>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -865,7 +875,7 @@ Por ejemplo:
 
 En muchas ocasiones se emplea como punto de partida una función implementada en R.
 En RStudio la forma más sencilla de obtener el código de la función es emplear \texttt{View(funcion)} (si la función es visible, en caso contrario \texttt{View(paquete:::funcion)}).
-Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma \texttt{paquete\_x.y.z.tar.gz} que se puede descargar en la sección \emph{Downloads} de la web del paquete \emph{\url{https://CRAN.R-project.org/package=paquete}}).
+Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos para llamarlas, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma \texttt{paquete\_x.y.z.tar.gz} que se puede descargar en la sección \emph{Downloads} de la web del paquete \emph{\url{https://CRAN.R-project.org/package=paquete}}).
 
 La mejor forma de organizar funciones es crear un paquete.
 Para ello se recomienda seguir:
@@ -894,26 +904,107 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 \begin{itemize}
 \tightlist
 \item
-  \href{https://ggplot2.tidyverse.org}{ggplot2}: visualización de datos.
+  \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}}: visualización de datos.
 \item
-  \href{https://dplyr.tidyverse.org}{dplyr}: manipulación de datos.
+  \href{https://dplyr.tidyverse.org}{\texttt{dplyr}}: manipulación de datos.
 \item
-  \href{https://tidyr.tidyverse.org}{tidyr}: reorganización (limpieza) de datos.
+  \href{https://tidyr.tidyverse.org}{\texttt{tidyr}}: reorganización (limpieza) de datos.
 \item
-  \href{https://readr.tidyverse.org}{readr}: importación de datos.
+  \href{https://readr.tidyverse.org}{\texttt{readr}}: importación de datos.
 \item
-  \href{https://tibble.tidyverse.org}{tibble}: tablas de datos (modificación de \texttt{data.frame}).
+  \href{https://tibble.tidyverse.org}{\texttt{tibble}}: tablas de datos (modificación de \texttt{data.frame}).
 \item
-  \href{https://purrr.tidyverse.org}{purrr}: programación funcional.
+  \href{https://purrr.tidyverse.org}{\texttt{purrr}}: programación funcional.
 \item
-  \href{https://github.com/tidyverse/stringr}{stringr}: manipulación de cadenas de texto.
+  \href{https://github.com/tidyverse/stringr}{\texttt{stringr}}: manipulación de cadenas de texto.
 \item
-  \href{https://github.com/tidyverse/forcats}{forcats}: manipulación de factores.
+  \href{https://github.com/tidyverse/forcats}{\texttt{forcats}}: manipulación de factores.
 \item
-  \href{https://github.com/tidyverse/lubridate}{lubridate}: manipulación de fechas y horas.
+  \href{https://github.com/tidyverse/lubridate}{\texttt{lubridate}}: manipulación de fechas y horas.
 \end{itemize}
 
-y un conjunto de paquetes recomendados:
+y un conjunto de paquetes recomendados (\href{https://github.com/wesm/feather}{\texttt{feather}}, \href{https://github.com/tidyverse/haven}{\texttt{haven}}, \href{https://github.com/tidyverse/modelr}{\texttt{modelr}}, \href{https://github.com/tidymodels/broom}{\texttt{broom}}\ldots), entre los que destacaría:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://github.com/tidyverse/readxl}{\texttt{readxl}}: ficheros excel.
+\item
+  \href{https://github.com/tidyverse/hms}{\texttt{hms}}: manipulación de valores temporales.
+\item
+  \href{https://github.com/r-lib/httr}{\texttt{httr}}: web APIs.
+\item
+  \href{https://github.com/jeroen/jsonlite}{\texttt{jsonlite}}: JSON.
+\item
+  \href{https://github.com/tidyverse/rvest}{\texttt{rvest}}: web scraping.
+\item
+  \href{https://github.com/r-lib/xml2}{\texttt{xml2}}: XML.
+\end{itemize}
+
+También hay paquetes ``asociados'':
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}
+\end{itemize}
+
+Muchos otros paquetes están adaptando este estilo (ver e.g.~\href{https://tidyverts.org/}{tidyverts}): \href{https://fable.tidyverts.org}{\texttt{fable}}, \href{https://r-spatial.github.io/sf/}{\texttt{sf}}\ldots{}
+
+Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R\ldots{} para mi ya lo es\ldots{} todo lo que resulte de utilidad es bien venido\ldots{}
+
+\hypertarget{pipe}{%
+\section{\texorpdfstring{Operador \emph{pipe} (tubería, redirección)}{Operador pipe (tubería, redirección)}}\label{pipe}}
+
+El operador \texttt{\%\textgreater{}\%} (paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra.
+Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones (funciones) al escribirlas de izquierda a derecha.
+
+Desde la versión 4.X de R \texttt{\textbar{}\textgreater{}}, yo sigo prefiriendo \texttt{\%\textgreater{}\%}\ldots{}
+
+Ejemplos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
+\CommentTok{\# Listamos las etiquetas}
+\CommentTok{\# data.frame(Etiquetas = attr(empleados, "variable.labels"))  }
+\CommentTok{\# Eliminamos las etiquetas para que no molesten...}
+\CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
+
+\NormalTok{empleados }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             catlab      salario           salini         tiempemp    
+##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
+##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
+##  Directivo     :84   Median : 60500   Median :28740   Median :81.00  
+##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
+##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
+##                      Max.   :135000   Max.   :79980   Max.   :98.00  
+##     expprev       minoria          sexoraza 
+##  Min.   :  3.00   No:80   Blanca varón :70  
+##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
+##  Median : 52.00           Blanca mujer :10  
+##  Mean   : 77.62           Minoría mujer: 0  
+##  3rd Qu.:125.25                             
+##  Max.   :285.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ?"|\textgreater{}"}
+\CommentTok{\# empleados |\textgreater{} subset(catlab != "Seguridad") |\textgreater{} droplevels() |\textgreater{} }
+\CommentTok{\#     boxplot(salario \textasciitilde{} sexo*catlab, data = .)}
+
+\FunctionTok{library}\NormalTok{(magrittr)}
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{!=} \StringTok{"Seguridad"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{droplevels}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{boxplot}\NormalTok{(salario }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sexo}\SpecialCharTok{*}\NormalTok{catlab, }\AttributeTok{data =}\NormalTok{ .)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-1-1} \end{center}
 
 \hypertarget{referencias}{%
 \chapter*{Referencias}\label{referencias}}
@@ -963,6 +1054,8 @@ Para referencias adicionales recomiendo consultar:
   Grolemund, G. (2014). \emph{\href{https://rstudio-education.github.io/hopr}{Hands-on programming with R: Write your own functions and simulations}}, \href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly}.
 \item
   Fernández-Casal R., Roca-Pardiñas J., Costa J., y Oviedo de la Fuente, M. (2022). \emph{\href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}}. \href{https://github.com/rubenfcasal/intror}{github}.
+\item
+  Peng, R.D. (2022). \emph{\href{https://bookdown.org/rdpeng/rprogdatascience}{R Programming for Data Science}}, \href{https://leanpub.com/rprogramming}{Leanpub}.
 \end{itemize}
 
 \hypertarget{programaciuxf3n-avanzada-en-r}{%
@@ -1006,6 +1099,16 @@ Para referencias adicionales recomiendo consultar:
   Pebesma, E., y Bivand, R. (2021). \emph{\href{https://keen-swartz-3146c4.netlify.app}{Spatial Data Science}}.
 \end{itemize}
 
+\hypertarget{datos-faltantes}{%
+\subsection*{Datos faltantes}\label{datos-faltantes}}
+\addcontentsline{toc}{subsection}{Datos faltantes}
+
+\begin{itemize}
+\tightlist
+\item
+  Buuren, S. (2018). \emph{\href{https://stefvanbuuren.name/fimd}{Flexible Imputation of Missing Data}}, \href{}{Chapman \& Hall}.
+\end{itemize}
+
 \hypertarget{rmarkdown}{%
 \subsection*{Rmarkdown}\label{rmarkdown}}
 \addcontentsline{toc}{subsection}{Rmarkdown}
@@ -1016,17 +1119,43 @@ Para referencias adicionales recomiendo consultar:
   Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
 \end{itemize}
 
+\hypertarget{manuales-oficiales}{%
+\subsection*{Manuales oficiales}\label{manuales-oficiales}}
+\addcontentsline{toc}{subsection}{Manuales oficiales}
+
+\url{https://cran.r-project.org/manuals.html}
+
+\begin{itemize}
+\item
+  \href{http://colinfay.me/intro-to-r/}{Intro to R}
+\item
+  \href{http://colinfay.me/r-data-import-export/}{R Data Import/Export}
+\item
+  \href{http://colinfay.me/r-installation-administration/}{R Installation and Administration}
+\item
+  \href{http://colinfay.me/writing-r-extensions/}{Writing R extensions}
+\item
+  \href{http://colinfay.me/r-language-definition/}{The R language definition}
+\item
+  \href{http://colinfay.me/r-internals/}{R Internals}
+\end{itemize}
+
 \hypertarget{links}{%
 \section*{Enlaces}\label{links}}
 \addcontentsline{toc}{section}{Enlaces}
 
-\textbf{\emph{Repositorio}}: \href{https://github.com/rubenfcasal/notasr}{rubenfcasal/notasr}
+\textbf{\emph{Repositorio}}: \href{https://github.com/rubenfcasal/book_notasr}{rubenfcasal/book\_notasr}
 
 \textbf{\emph{Recursos para el aprendizaje de R}}: En este \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{post} se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
 
 \href{https://bookdown.org}{\textbf{\emph{Bookdown}}}:
 
-\href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{\textbf{\emph{Introducción a RMarkdown}}}.
+\begin{itemize}
+\item
+  \href{https://rubenfcasal.github.io/book_notasr/}{Notas de programación en R}
+\item
+  \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
+\end{itemize}
 
 \href{https://posit.co}{\textbf{\emph{Posit (RStudio)}}}
 

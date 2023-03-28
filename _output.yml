@@ -7,7 +7,7 @@ bookdown::gitbook:
         <li><a href="./">Notas de Programación en R</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
-    edit: https://github.com/rubenfcasal/notasr/edit/master/%s
+    edit: https://github.com/rubenfcasal/book_notasr/edit/master/%s
     sharing:
       github: yes
       facebook: no

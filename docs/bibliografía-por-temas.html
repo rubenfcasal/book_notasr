@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Bibliografía por temas | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Bibliografía por temas | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="referencias.html"/>
 <link rel="next" href="links.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -153,7 +154,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
 <li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a></li>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (tubería, redirección)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -162,7 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -186,39 +192,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bibliografía-por-temas" class="section level2 unnumbered hasAnchor">
-<h2>Bibliografía por temas<a href="bibliografía-por-temas.html#bibliografía-por-temas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bibliografía-por-temas" class="section level2 unnumbered">
+<h2>Bibliografía por temas</h2>
 <p><strong><em>En preparación…</em></strong></p>
 <p>A continuación se muestra una selección de <strong><em>libros en abierto</em></strong> que considero que pueden resultar de utilidad.
 Para referencias adicionales recomiendo consultar:</p>
 <ul>
 <li>Baruffa, O. (2022). <em><a href="https://www.bigbookofr.com">Big Book of R</a></em>: Your last-ever bookmark (hopefully…).</li>
 </ul>
-<div id="iniciación-a-la-programación-en-r" class="section level3 unnumbered hasAnchor">
-<h3>Iniciación a la programación en R<a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="iniciación-a-la-programación-en-r" class="section level3 unnumbered">
+<h3>Iniciación a la programación en R</h3>
 <ul>
 <li><p>Wickham, H., y Grolemund, G. (2016). <em><a href="http://r4ds.had.co.nz">R for data science: import, tidy, transform, visualize, and model data</a></em>, <a href="https://es.r4ds.hadley.nz">online-castellano</a>, <a href="http://shop.oreilly.com/product/0636920034407.do">O’Reilly</a>.</p></li>
 <li><p>Grolemund, G. (2014). <em><a href="https://rstudio-education.github.io/hopr">Hands-on programming with R: Write your own functions and simulations</a></em>, <a href="http://shop.oreilly.com/product/0636920028574.do">O’Reilly</a>.</p></li>
 <li><p>Fernández-Casal R., Roca-Pardiñas J., Costa J., y Oviedo de la Fuente, M. (2022). <em><a href="https://rubenfcasal.github.io/intror">Introducción al Análisis de Datos con R</a></em>. <a href="https://github.com/rubenfcasal/intror">github</a>.</p></li>
+<li><p>Peng, R.D. (2022). <em><a href="https://bookdown.org/rdpeng/rprogdatascience">R Programming for Data Science</a></em>, <a href="https://leanpub.com/rprogramming">Leanpub</a>.</p></li>
 </ul>
 </div>
-<div id="programación-avanzada-en-r" class="section level3 unnumbered hasAnchor">
-<h3>Programación avanzada en R<a href="bibliografía-por-temas.html#programación-avanzada-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="programación-avanzada-en-r" class="section level3 unnumbered">
+<h3>Programación avanzada en R</h3>
 <ul>
 <li><p>Wickham, H. (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición.</a>.</p></li>
 <li><p>Wickham, H. (2015). <em><a href="http://r-pkgs.had.co.nz/">R packages: organize, test, document, and share your code</a></em> (actualmente 2ª edición en desarrollo con H. Bryan), <a href="http://shop.oreilly.com/product/0636920034421.do">O’Reilly, 1ª edición</a>.</p></li>
 </ul>
 </div>
-<div id="regresión-y-aprendizaje-estadístico" class="section level3 unnumbered hasAnchor">
-<h3>Regresión y aprendizaje estadístico<a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="regresión-y-aprendizaje-estadístico" class="section level3 unnumbered">
+<h3>Regresión y aprendizaje estadístico</h3>
 <ul>
 <li><p>Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). <em><a href="https://rubenfcasal.github.io/aprendizaje_estadistico">Aprendizaje Estadístico</a></em>. <a href="https://github.com/rubenfcasal/aprendizaje_estadistico">github</a>.</p></li>
 <li><p>Kuhn, M., y Silge, J. (2022). <em><a href="https://www.tmwr.org">Tidy Modeling with R</a></em>, <a href="https://www.oreilly.com/library/view/tidy-modeling-with/9781492096474">O’Reilly</a>.</p></li>
 <li><p>Fernández-Casal R., Cao R. y Costa J. (2023). <em><a href="https://rubenfcasal.github.io/simbook">Técnicas de Simulación y Remuestreo</a></em> (<a href="https://github.com/rubenfcasal/simbook">github</a>). La anterior edición (Fernández-Casal R. y Cao R., 2022, <em>Simulación Estadística</em>) está disponible en la rama <em><a href="https://github.com/rubenfcasal/simbook/tree/primera_edicion">primera_edicion</a></em>.</p></li>
 </ul>
 </div>
-<div id="datos-temporales-y-espaciales" class="section level3 unnumbered hasAnchor">
-<h3>Datos temporales y espaciales<a href="bibliografía-por-temas.html#datos-temporales-y-espaciales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="datos-temporales-y-espaciales" class="section level3 unnumbered">
+<h3>Datos temporales y espaciales</h3>
 <ul>
 <li><p>Fernández-Casal R. y Cotos-Yáñez T.R. (2021). <em><a href="https://rubenfcasal.github.io/estadistica_espacial">Estadística Espacial con R</a></em>. <a href="https://github.com/rubenfcasal/estadistica_espacial">github</a>.</p></li>
 <li><p>Hyndman, R.J., y Athanasopoulos, G. (2021). <em><a href="https://otexts.com/fpp3">Forecasting: principles and practice</a></em>. <a href="https://www.amazon.es/dp/0987507133">OTexts</a>.</p></li>
@@ -227,10 +234,28 @@ Para referencias adicionales recomiendo consultar:</p>
 <li><p>Pebesma, E., y Bivand, R. (2021). <em><a href="https://keen-swartz-3146c4.netlify.app">Spatial Data Science</a></em>.</p></li>
 </ul>
 </div>
-<div id="rmarkdown" class="section level3 unnumbered hasAnchor">
-<h3>Rmarkdown<a href="bibliografía-por-temas.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="datos-faltantes" class="section level3 unnumbered">
+<h3>Datos faltantes</h3>
+<ul>
+<li>Buuren, S. (2018). <em><a href="https://stefvanbuuren.name/fimd">Flexible Imputation of Missing Data</a></em>, <a href="">Chapman &amp; Hall</a>.</li>
+</ul>
+</div>
+<div id="rmarkdown" class="section level3 unnumbered">
+<h3>Rmarkdown</h3>
 <ul>
 <li>Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). <em><a href="https://rubenfcasal.github.io/bookdown_intro">Escritura de libros con bookdown</a></em>, <a href="https://github.com/rubenfcasal/bookdown_intro">github</a>. Incluye un apéndice con una <a href="https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html">Introducción a RMarkdown</a>.</li>
+</ul>
+</div>
+<div id="manuales-oficiales" class="section level3 unnumbered">
+<h3>Manuales oficiales</h3>
+<p><a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+<ul>
+<li><p><a href="http://colinfay.me/intro-to-r/">Intro to R</a></p></li>
+<li><p><a href="http://colinfay.me/r-data-import-export/">R Data Import/Export</a></p></li>
+<li><p><a href="http://colinfay.me/r-installation-administration/">R Installation and Administration</a></p></li>
+<li><p><a href="http://colinfay.me/writing-r-extensions/">Writing R extensions</a></p></li>
+<li><p><a href="http://colinfay.me/r-language-definition/">The R language definition</a></p></li>
+<li><p><a href="http://colinfay.me/r-internals/">R Internals</a></p></li>
 </ul>
 </div>
 </div>
@@ -271,7 +296,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/notasr/edit/master/20_referencias.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/20_referencias.Rmd",
 "text": "Edit"
 },
 "history": {

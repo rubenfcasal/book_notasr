@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Paquetes | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Paquetes | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="r.html"/>
 <link rel="next" href="funciones.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -153,7 +154,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
 <li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a></li>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (tubería, redirección)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -162,7 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -186,8 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paquetes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Paquetes<a href="paquetes.html#paquetes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="paquetes" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Paquetes</h2>
 <p>Al instalar R se instalan los denominados <strong>paquetes base</strong> y (por defecto) los <strong>paquetes recomendados</strong> por los desarrolladores de R (el <em>R Core Team</em>).
 Podemos acceder a la lista de paquetes instalados:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="paquetes.html#cb12-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">installed.packages</span>()</span>
@@ -230,7 +236,7 @@ Para el desarrollo de paquetes es recomendable instalar [`devtools`](https://dev
 <pre><code>## [1] &quot;.GlobalEnv&quot;        &quot;package:stats&quot;     &quot;package:graphics&quot; 
 ## [4] &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; 
 ## [7] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
-<p>Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete (definido en el denominado <em>namespace</em> del paquete).
+<p>Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado <strong><em>namespace</em></strong> del paquete.
 Esta ruta determina los objetos visibles en el entorno global y el orden en se buscan (para más detalles ver <a href="https://adv-r.hadley.nz/environments.html#env-basics">7.2 Environment basics</a> y <a href="https://adv-r.hadley.nz/environments.html#special-environments">7.4 Special environments</a> de <a href="https://adv-r.hadley.nz/index.html">Advanced R</a>).</p>
 <p>Podemos cargar paquetes adicionales (previamente instalados) con <code>library()</code> o <code>require()</code>, por ejemplo:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="paquetes.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(knitr)) {</span>
@@ -246,13 +252,14 @@ También se podrían añadir otros objetos, por ejemplo data.frames, con la func
 <pre><code>## [1] &#39;1.0.10&#39;</code></pre>
 <p>y con sus dependencias (los paquetes tienen su propia ruta de búsqueda, determinada por el <em>namespace</em> del paquete).
 Al actualizar o instalar nuevos paquetes pueden aparecer problemas al ejecutar código antiguo (a veces al trabajar en nuevos proyectos acabamos haciendo que los antiguos dejen de funcionar).</p>
-<p>Se puede instalar versiones específicas de un paquete con <a href="https://remotes.r-lib.org/reference/install_version.html"><code>install_version()</code></a>:</p>
+<p>Se puede instalar versiones específicas de un paquete con <a href="https://remotes.r-lib.org/reference/install_version.html"><code>remotes::install_version()</code></a>:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="paquetes.html#cb24-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_version</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="at">version =</span> <span class="st">&quot;1.11&quot;</span>) <span class="co"># repos = &quot;https://ftp.cixug.es/CRAN&quot;)</span></span></code></pre></div>
-<p>Para asegurarse que el código de un proyecto se puede ejecutar a lo largo del tiempo se puede emplear el paquete <a href="https://rstudio.github.io/renv/"><code>renv</code></a> (se puede configurar automáticamente al crear un proyecto de RStudio).
+<p>Para asegurarse que el código de un proyecto se pueda ejecutar a lo largo del tiempo se puede emplear el paquete <a href="https://rstudio.github.io/renv/"><code>renv</code></a> (se puede configurar automáticamente al crear un proyecto de RStudio).
 Este paquete permite registrar las versiones exactas de los paquetes de los que depende un proyecto y volver a instalarlas (incluso en otro equipo) si es necesario. Para más detalles ver la viñeta <a href="https://rstudio.github.io/renv/articles/renv.html">Introduction to renv</a>.</p>
 <p>Sin embargo de esta forma aún dependemos del sistema operativo que deberíamos configurar adecuadamente.
 La recomendación para que un proyecto en R (por ejemplo una aplicación shiny) se pueda ejecutar en cualquier equipo, es emplear un <a href="https://es.wikipedia.org/wiki/Docker_(software)">contenedor docker</a>.
-Para más detalles ver <a href="https://docs.docker.com/get-started/overview/">Docker overview</a> y [The Rocker Project]<a href="https://rocker-project.org/" class="uri">https://rocker-project.org/</a>).</p>
+Para más detalles ver <a href="https://docs.docker.com/get-started/overview/">Docker overview</a> y <a href="https://rocker-project.org/">The Rocker Project</a>.
+Ver <a href="ejemplos/covid19/prediccion_cooperativa/vii_xornadasr.html">ejemplos/covid19/prediccion_cooperativa</a>.</p>
 </div>
             </section>
 
@@ -291,7 +298,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 Organización | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 Organización | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="r.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -153,7 +154,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
 <li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a></li>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (tubería, redirección)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -162,7 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -186,22 +192,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="organizacion" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Organización<a href="organizacion.html#organizacion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="organizacion" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Organización</h2>
 <p>Para la organización de archivos (datos, código, informes…) lo recomendable es emplear un directorio con la estructura adecuada.</p>
 <p>Dependiendo del objetivo puede interesar emplear un proyecto de RStudio (menú <em>File &gt; New project…</em>).
 En mi caso empleo esta opción para paquetes, libros en bookdown, webs con blogdown y aplicaciones shiny.
 En otros casos empleo una carpeta que puede tener subdirectorios (si el proyecto es más grande) para distintos tipos de archivos o para distintas tareas (con el objetivo de facilitar la búsqueda).
 Por ejemplo: <em>datos</em>, <em>informes</em>, <em>resultados_2023</em>…</p>
-<p>Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas) y sin espacios (por ejemplo empleando <code>_</code> para separar palabras o iniciales).
+<p>Mi recomendación es emplear nombres de archivos y carpetas en minúscula (o con la primera letra en mayúsculas), sin espacios (por ejemplo empleando <code>_</code> para separar palabras o iniciales) y sin caracteres especiales (ASCII, sin acentos…).
 Los nombres deberían ser lo más descriptivos posibles (en el sentido de evitar confusión).
-Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g. <em>Descripción_archivos.txt</em>), o incluso en hojas de cálculo.
+Pueden incluirse descripciones más completas en el código, en ficheros de texto (e.g. <em>Descripcion_archivos.txt</em>), o incluso en hojas de cálculo.
 Yo además acostumbro a incluir archivos del tipo <em>Notas.txt</em> (con recordatorios, decisiones…) o <em>Pendente.txt</em> (con próximos pasos, mejoras o verificaciones pendientes…).</p>
 <p>Además, nos puede interesar establecer opciones de R específicas para el proyecto (por ejemplo opciones de configuración de memoria, de paquetes o variables de entorno, incluyendo claves privadas), de forma que se establezcan automáticamente al iniciar R o RStudio.
-Para más detalles ver la ayuda de <code>?Startup</code>
+Para más detalles ver la ayuda de <code>?Startup</code>, el apéndice <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R">Invoking R</a> o el post de RStudio
 <a href="https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf">Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf</a></p>
-<div id="codigo" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Código e informes<a href="organizacion.html#codigo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para desarrollar código y proyectos de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
+Se puede configurar RStudio para emplear Git (ver el libro <a href="https://happygitwithr.com/index.html">Happy Git and GitHub for the useR</a> o la sección <a href="https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github">Git and GitHub</a>), sin embargo yo prefiero emplear <a href="https://desktop.github.com/">GitHub Desktop</a>.</p>
+<div id="codigo" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Código e informes</h3>
 <p>Mi recomendación a la hora de escribir código es seguir un <strong>proceso iterativo</strong>.
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).</p>
 <p>En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato <a href="https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin">spin</a> (ver e.g. <a href="https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin">Apéndice</a>), en el que el texto RMarkdown se incluye como un comentario de código empleando <code>#'</code>. Por ejemplo:</p>
@@ -211,11 +219,11 @@ Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar
 #&#39;
 #&#39; Texto rmarkdown...</code></pre>
 <p>En primer lugar me preocupo de escribir un código funcional y, además de ir añadiendo comentarios de la forma habitual, voy añadiendo secciones y texto rmarkdown en formato spin.
-Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar <em>Ctrl + Shift + K</em>, o el botón correspondiente en la barra superior, o seleccionar <em>File &gt; Knit Compile Report…</em>), lo transformo a formato <em>.Rmd</em> con un comando de la forma:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="organizacion.html#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">spin</span>(<span class="st">&quot;Informe.R&quot;</span>,<span class="at">knit =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> <em>Ctrl + Shift + K</em>, el icono correspondiente en la barra superior, o seleccionar <em>File &gt; Compile Report…</em>), lo transformo a formato <em>.Rmd</em> con un comando de la forma:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="organizacion.html#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">spin</span>(<span class="st">&quot;Informe.R&quot;</span>, <span class="at">knit =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>donde termino de redactar (<code>knitr::purl("Informe.Rmd", documentation = 2)</code> genera un nuevo fichero <em>Informe.R</em> donde resulta más cómodo modificar o desarrollar código).</p>
 <p>Se recomienda <strong>elegir un estilo que sea consistente y seguirlo por completo</strong> en todo el proyecto.
-Lo principal sería el operador de asignación y el estilo de nombres (de objetos, variables o ficheros):</p>
+Lo principal sería el operador de asignación, el espaciado y el estilo de nombres (de objetos, variables o ficheros):</p>
 <ul>
 <li><p><code>estilo.clasico</code>: es el estilo del paquete base de R. Muchos programadores no lo recomiendan (principalmente porque este separador no se admite en otros lenguajes y porque puede dar lugar a confusión con métodos S3, ver Sección <a href="oop.html#oop">2.3</a>).</p></li>
 <li><p><code>estilo_serpiente</code> (o <code>Estilo_serpiente</code>): es el estilo de la colección de paquetes <a href="https://tidyverse.tidyverse.org"><code>tidyverse</code></a>.</p></li>
@@ -230,6 +238,10 @@ Por ejemplo:</p>
 <li><p><a href="https://style.tidyverse.org">Tidyverse style guide</a></p></li>
 <li><p><a href="https://google.github.io/styleguide/Rguide.html">Google’s R Style Guide</a></p></li>
 </ul>
+<p>Para facilitar la legibilidad <strong>es muy recomendable incluir un espacio</strong> entre los elementos del comando.
+En RStudio se puede seleccionar un trozo de (una línea de) código y pulsar <em>Ctrl + Shift + A</em> para formatearlo.
+También podemos emplear el paquete <a href="https://github.com/r-lib/styler"><code>styler</code></a> para formatear el código.
+Por ejemplo, en RStudio podemos emplear <em>Addins &gt; Styler &gt; Style active file</em>.</p>
 <p>Además se recomienda <strong>crear secciones y documentar el código adecuadamente</strong>.
 En RStudio se puede crear una sección pulsando <em>Ctrl + Shift + R</em> o añadiendo al menos 4 guiones (<code>-</code>, también <code>=</code> o <code>#</code>) después de un comentario.
 Por ejemplo:</p>
@@ -251,21 +263,18 @@ Al principio del código debería ir:</p>
 Esto ya ocurre por defecto si empleamos proyectos de RStudio o si iniciamos RStudio abriendo un archivo de código en esta carpeta.
 En general, la recomendación es asumir que el directorio de trabajo es aquel en el que se encuentra el archivo de código (lo que también ocurre por defecto al compilar un documento RMarkdown).
 Si no es el caso se puede emplear el menú <em>Sesion &gt; Set Working Directory &gt; To Source File Location</em>.</p>
-<p>Para establecer la ruta a archivos o directorios <strong>se recomienda emplear rutas relativas</strong> (usando <em>../</em> para acceder a la carpeta anterior; <em>./</em> sería el directorio actual de trabajo).
+<p>Para establecer la ruta a archivos o directorios <strong>se recomienda emplear rutas relativas</strong> (usando <em>../</em> para acceder a la carpeta anterior; <em>./</em> sería el actual directorio de trabajo).
 Por ejemplo:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="organizacion.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/datos_x.RData&quot;</span>)</span>
 <span id="cb8-2"><a href="organizacion.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;../R/Herramientas.R&quot;</span>)</span>
 <span id="cb8-3"><a href="organizacion.html#cb8-3" aria-hidden="true" tabindex="-1"></a>fecha_txt <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">Sys.Date</span>() <span class="sc">-</span> <span class="dv">1</span>, <span class="at">format =</span> <span class="st">&quot;%m_%d&quot;</span>) <span class="co"># Por ejemplo...</span></span>
-<span id="cb8-4"><a href="organizacion.html#cb8-4" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;informe.Rmd&quot;</span>, </span>
+<span id="cb8-4"><a href="organizacion.html#cb8-4" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;informe.Rmd&quot;</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">fecha_txt =</span> fecha_txt),</span>
 <span id="cb8-5"><a href="organizacion.html#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">output_file =</span> <span class="fu">paste0</span>(<span class="st">&#39;informes/informe_&#39;</span>, fecha_txt, <span class="st">&#39;.html&#39;</span>), </span>
-<span id="cb8-6"><a href="organizacion.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="co"># params = list(fecha_txt = fecha_txt),</span></span>
-<span id="cb8-7"><a href="organizacion.html#cb8-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">envir =</span> <span class="fu">new.env</span>(), <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+<span id="cb8-6"><a href="organizacion.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">envir =</span> <span class="fu">new.env</span>(), <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
 <p>La mejor forma de organizar funciones es desarrollar un paquete, como se comenta más adelante en la Sección <a href="desarrollo.html#desarrollo">2.4</a>.</p>
-<p>Para desarrollar código de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
-Se puede configurar RStudio para emplear Git (ver <a href="https://happygitwithr.com/index.html">Happy Git and GitHub for the useR</a> y <a href="https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github">Git and GitHub</a>), sin embargo yo prefiero emplear <a href="https://desktop.github.com/">GitHub Desktop</a>.</p>
 </div>
-<div id="datos" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Datos<a href="organizacion.html#datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="datos" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Datos</h3>
 <p>La recomendación es emplear ficheros de datos con el formato por defecto de R (datos binarios comprimidos), con extensión <em>.RData</em>.
 Hay que tener en cuenta que lo esperable es que el archivo contenga un conjunto de datos con el mismo nombre, aunque podría no ser el caso e incluso contener varios objetos.</p>
 <p>Uno de los problemas con los ficheros <em>.RData</em> es que, al cargarlos con <a href="https://rdrr.io/r/base/load.html"><code>load()</code></a> de la forma habitual, se añaden al entorno de trabajo los objetos que contienen con los nombres con que se almacenaron (y si ya existe alguno con ese nombre lo sobreescribe)
@@ -273,10 +282,10 @@ Para almacenar un único objeto de forma que se pueda cargar posteriormente espe
 <p>Sin embargo, lo habitual es que inicialmente los datos procedan de una fuente externa.
 Se pueden importar datos externos en casi cualquier formato a R (aunque puede requerir instalar paquetes adicionales).
 Mi recomendación es separar los análisis de la importación de los datos.
-Crear un fichero de código específicamente para importar los datos<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, hacer el (pre)procesado y guardarlos en formato <em>.RData</em>.
+Crear un fichero de código específicamente para importar los datos<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, hacer el (pre)procesado y guardarlos en formato <em>.RData</em>.
 Yo habitualmente empleo el mismo nombre para el archivo de código y el archivo de datos que se genera (e.g. <em>datos.R</em> contiene el código necesario para generar <em>datos.RData</em>; no suelo renombrar el fichero fuente de datos externo, aunque se aleje mucho del estilo elegido).
 Asociado a un mismo conjunto de datos puede haber distintos archivos de código para realizar distintos análisis (el nombre de esos archivos debería dar una pista del análisis que realizan).</p>
-<p>En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función <a href="https://rdrr.io/r/base/dput.html"><code>dput()</code></a> para escribirlos en modo texto (e.g. <code>dput(tolower(names(data)))</code>) y posteriormente modificarlos a mano.</p>
+<p>En muchas ocasiones, para modificar los nombres de las variables o los niveles de un factor, suelo recurrir a la función <a href="https://rdrr.io/r/base/dput.html"><code>dput()</code></a> para escribirlos en modo texto (e.g. <code>dput(tolower(names(datos)))</code> o <code>dput(levels(datos$factor))</code>) y posteriormente modificarlos a mano.</p>
 <p>Yo recomiendo añadir un atributo <code>variable.labels</code> que contenga un vector de etiquetas de las variables y empleando como nombres de las componentes las propias variables:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="organizacion.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
 <span id="cb9-2"><a href="organizacion.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dput(names(cars))</span></span>
@@ -293,7 +302,8 @@ Asociado a un mismo conjunto de datos puede haber distintos archivos de código 
 <span id="cb11-3"><a href="organizacion.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 ylab = variable.labels[&quot;dist&quot;]))</span></span></code></pre></div>
 <p>Para leer ficheros de Excel acostumbro a utilizar los paquetes <a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a> (solo para archivos con extensión <em>.xlsx</em>) o <a href="https://readxl.tidyverse.org"><code>readxl</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
-Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.</p>
+Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
+Ver <a href="ejemplos/top500/top500.R">top500.R</a> en <a href="https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos">ejemplos</a>.</p>
 
 </div>
 </div>
@@ -304,7 +314,8 @@ Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo r
 <div class="footnotes">
 <hr />
 <ol start="2">
-<li id="fn2"><p>Con algunos tipos de datos, se puede emplear los submenús de RStudio <em>File &gt; Import Dataset</em> para seleccionar los ajustes, previsualizando el resultado, y generar el código para importarlos.<a href="organizacion.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Para mostrar las combinaciones de teclas en RStudio podemos emplear el menú <em>Tools &gt; Keyboard Shortcuts Help</em>.<a href="organizacion.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Con algunos tipos de datos, se puede emplear los submenús de RStudio <em>File &gt; Import Dataset</em> para seleccionar los ajustes, previsualizando el resultado, y generar el código para importarlos.<a href="organizacion.html#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -344,7 +355,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/notasr/edit/master/01_introduccion.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/01_introduccion.Rmd",
 "text": "Edit"
 },
 "history": {

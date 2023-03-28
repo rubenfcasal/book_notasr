@@ -1,5 +1,5 @@
 book_filename: 'Notas_R'
-repo: https://github.com/rubenfcasal/notasr
+repo: https://github.com/rubenfcasal/book_notasr
 output_dir: docs
 new_session: yes
 language:
