@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,14 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Notas de Programación en R},
-  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -170,11 +162,19 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Notas de Programación en R},
+  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
@@ -202,7 +202,7 @@ Se puede acceder a la versión en línea a través del siguiente enlace:
 
 donde puede descargarse en formato \href{https://rubenfcasal.github.io/book_notasr/Notas_R.pdf}{pdf}.
 
-Para seguir los ejemplos mostrados en el libro se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
+Para seguir los ejemplos mostrados en el libro (en la carpeta \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos} se incluyen algunos ejemplos adicionales) se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
 \href{https://www.r-project.org}{\texttt{Rcmdr}}, \href{https://github.com/topepo/caret/}{\texttt{caret}}, \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}, \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}}, \href{https://ycphs.github.io/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://github.com/rstudio/DT}{\texttt{DT}}, \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}}, \href{https://yihui.org/knitr/}{\texttt{knitr}}, \href{https://remotes.r-lib.org}{\texttt{remotes}}, \href{https://devtools.r-lib.org/}{\texttt{devtools}}.
 Por ejemplo mediante los siguientes comandos:
 
@@ -441,8 +441,8 @@ Yo recomiendo añadir un atributo \texttt{variable.labels} que contenga un vecto
 \begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(cars)}
 \CommentTok{\# dput(names(cars))}
-\NormalTok{variable.labels }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{speed =} \StringTok{"Speed (mph)"}\NormalTok{, }\AttributeTok{dist =} \StringTok{"Stopping distance (ft)"}\NormalTok{)}
-\FunctionTok{attr}\NormalTok{(cars, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}}\NormalTok{ variable.labels}
+\NormalTok{var.lab }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{speed =} \StringTok{"Speed (mph)"}\NormalTok{, }\AttributeTok{dist =} \StringTok{"Stopping distance (ft)"}\NormalTok{)}
+\FunctionTok{attr}\NormalTok{(cars, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}}\NormalTok{ var.lab}
 \FunctionTok{str}\NormalTok{(cars)}
 \end{Highlighting}
 \end{Shaded}
@@ -458,18 +458,18 @@ Yo recomiendo añadir un atributo \texttt{variable.labels} que contenga un vecto
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# View(cars)}
-\CommentTok{\# with(cars, plot(speed, dist, xlab = variable.labels["speed"], }
-\CommentTok{\#                 ylab = variable.labels["dist"]))}
+\CommentTok{\# with(cars, plot(speed, dist, xlab = var.lab["speed"], }
+\CommentTok{\#                 ylab = var.lab["dist"]))}
 \end{Highlighting}
 \end{Shaded}
 
-Para leer ficheros de Excel acostumbro a utilizar los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}} (solo para archivos con extensión \emph{.xlsx}) o \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}).
+Para leer ficheros de Excel acostumbro a utilizar los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}} (solo para archivos con extensión \emph{.xlsx}) o \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}; Sección \ref{tidyverse}).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
 Ver \href{ejemplos/top500/top500.R}{top500.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
 
-\hypertarget{part-r}{%
-\part{R}\label{part-r}}
+\hypertarget{part-el-entorno-estaduxedstico-r}{%
+\part{El entorno estadístico R}\label{part-el-entorno-estaduxedstico-r}}
 
 \hypertarget{r}{%
 \chapter{El lenguaje R}\label{r}}
@@ -514,7 +514,7 @@ Podemos acceder a la lista de paquetes instalados:
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 \end{verbatim}
 
-Para instalar paquetes adicionales se puede emplear \texttt{install.packages()}.
+Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-29, están disponibles 19325 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -781,7 +781,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x0000000015fc4318>
+## <bytecode: 0x000002a7cc083368>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -837,6 +837,10 @@ Para una programación orientada a objetos más formal la recomendación es empl
 \hypertarget{desarrollo}{%
 \section{Desarrollo de funciones y paquetes}\label{desarrollo}}
 
+Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si ya está implementado (o hay algo que podemos tomar como base, es lo bueno de GNU!): en la descripción de los paquetes en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, en los buscadores especializados (\href{https://rdrr.io/}{rdrr.io}, \href{https://www.rdocumentation.org/}{RDocumentation} o \href{http://rseek.org/}{RSeek}), en foros de programación (\href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}, \href{https://es.stackoverflow.com/questions/tagged/r}{es.StackOverflow}, \href{https://stats.stackexchange.com}{Cross Validated}), en listas de correo (\href{https://stat.ethz.ch/mailman/listinfo}{r-project.org}, \href{https://r-help-es.r-project.narkive.com}{r-help-es}) o directamente en \href{https://www.google.com/search?q=r-project}{Google} (añadiendo \emph{r-project} o similar en la búsqueda)).
+
+El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
+
 La recomendación es documentar todas las funciones que se crean y preferiblemente empleando el formato \href{https://roxygen2.r-lib.org}{\texttt{roxygen2}}.
 Por ejemplo:
 
@@ -857,10 +861,16 @@ Por ejemplo:
 \CommentTok{\#\textquotesingle{} data\_list \textless{}{-} read\_excel\_list("datos") \# "./datos"}
 \CommentTok{\#\textquotesingle{} data\_all \textless{}{-} dplyr::bind\_rows(data\_list)}
 \CommentTok{\#\textquotesingle{} \}}
+\CommentTok{\# ·············································}
+\CommentTok{\# Pruebas: }
+\CommentTok{\#   readxl::readxl\_example("geometry.xls")}
+\CommentTok{\#   path = "C:/Program Files/R/R{-}4.2.2/library/readxl/extdata"}
+\CommentTok{\#   pattern = "\textbackslash{}\textbackslash{}.(xls|xlsx)$"}
 \CommentTok{\# Pendiente:}
 \CommentTok{\#   {-} Controlar posible error al leer}
 \CommentTok{\# ·············································}
 \NormalTok{read\_excel\_list }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{path =} \StringTok{"."}\NormalTok{, }\AttributeTok{pattern =} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(xls|xlsx)$"}\NormalTok{, ...) \{}
+  
   \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(readxl))  }\FunctionTok{stop}\NormalTok{(}\StringTok{"\textquotesingle{}readxl\textquotesingle{} package required"}\NormalTok{)}
 \NormalTok{  files }\OtherTok{\textless{}{-}} \FunctionTok{dir}\NormalTok{(path, }\AttributeTok{pattern =}\NormalTok{ pattern, }\AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# ?list.files}
 \NormalTok{  data\_list }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\FunctionTok{length}\NormalTok{(files), }\AttributeTok{mode =} \StringTok{\textquotesingle{}list\textquotesingle{}}\NormalTok{)}
@@ -873,7 +883,7 @@ Por ejemplo:
 \end{Highlighting}
 \end{Shaded}
 
-En muchas ocasiones se emplea como punto de partida una función implementada en R.
+En muchas ocasiones se emplea como punto de partida una función ya implementada en algún paquete de R.
 En RStudio la forma más sencilla de obtener el código de la función es emplear \texttt{View(funcion)} (si la función es visible, en caso contrario \texttt{View(paquete:::funcion)}).
 Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos para llamarlas, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma \texttt{paquete\_x.y.z.tar.gz} que se puede descargar en la sección \emph{Downloads} de la web del paquete \emph{\url{https://CRAN.R-project.org/package=paquete}}).
 
@@ -888,7 +898,7 @@ También puede ser de utilidad el manual \href{http://colinfay.me/writing-r-exte
 \part{Tidyverse}\label{part-tidyverse}}
 
 \hypertarget{tidyverse}{%
-\chapter{La colección de paquetes tidyverse}\label{tidyverse}}
+\chapter{El ecosistema tidyverse}\label{tidyverse}}
 
 \textbf{\emph{En preparación\ldots{}}}
 
@@ -912,7 +922,7 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 \item
   \href{https://readr.tidyverse.org}{\texttt{readr}}: importación de datos.
 \item
-  \href{https://tibble.tidyverse.org}{\texttt{tibble}}: tablas de datos (modificación de \texttt{data.frame}).
+  \href{https://tibble.tidyverse.org}{\texttt{tibble}}: tablas de datos (extensión de \texttt{data.frame}).
 \item
   \href{https://purrr.tidyverse.org}{\texttt{purrr}}: programación funcional.
 \item
@@ -928,17 +938,17 @@ y un conjunto de paquetes recomendados (\href{https://github.com/wesm/feather}{\
 \begin{itemize}
 \tightlist
 \item
-  \href{https://github.com/tidyverse/readxl}{\texttt{readxl}}: ficheros excel.
+  \href{https://github.com/tidyverse/readxl}{\texttt{readxl}}: archivos excel.
 \item
-  \href{https://github.com/tidyverse/hms}{\texttt{hms}}: manipulación de valores temporales.
+  \href{https://github.com/tidyverse/hms}{\texttt{hms}}: manipulación de medidas de tiempo.
 \item
   \href{https://github.com/r-lib/httr}{\texttt{httr}}: web APIs.
 \item
-  \href{https://github.com/jeroen/jsonlite}{\texttt{jsonlite}}: JSON.
+  \href{https://github.com/jeroen/jsonlite}{\texttt{jsonlite}}: archivos JSON.
 \item
   \href{https://github.com/tidyverse/rvest}{\texttt{rvest}}: web scraping.
 \item
-  \href{https://github.com/r-lib/xml2}{\texttt{xml2}}: XML.
+  \href{https://github.com/r-lib/xml2}{\texttt{xml2}}: archivos XML.
 \end{itemize}
 
 También hay paquetes ``asociados'':
@@ -946,18 +956,37 @@ También hay paquetes ``asociados'':
 \begin{itemize}
 \tightlist
 \item
+  \href{https://rlang.r-lib.org}{\texttt{rlang}}
+\item
+  \href{https://tidyselect.r-lib.org}{\texttt{tidyselect}}
+\item
   \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}
 \end{itemize}
 
 Muchos otros paquetes están adaptando este estilo (ver e.g.~\href{https://tidyverts.org/}{tidyverts}): \href{https://fable.tidyverts.org}{\texttt{fable}}, \href{https://r-spatial.github.io/sf/}{\texttt{sf}}\ldots{}
 
-Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R\ldots{} para mi ya lo es\ldots{} todo lo que resulte de utilidad es bien venido\ldots{}
+Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R\ldots{} para mi ya lo es\ldots{} todo lo que resulte de utilidad es bien venido\ldots{} Recomiendo evitar estos paquetes en las primeras etapas de formación en R\ldots{}
+
+El estilo de programación tiene como origen la gramática de \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} para crear gráficos de forma declarativa, basado a su vez en:
+
+Wilkinson, L. (2005). \emph{The Grammar of Graphics}. \href{https://www.google.es/books/edition/The_Grammar_of_Graphics/YGgUswEACAAJ?hl=es}{Springer}.
+
+Yo empleo este paquete como sustituto de los gráficos \href{http://lattice.r-forge.r-project.org/}{\texttt{lattice}}, en algunos informes finales o aplicaciones para empresas, o para gráficos muy especializados.
+En condiciones normales \textbf{prefiero emplear los gráficos estándar} de R (mucho más rápidos de generar y programar).
+
+Para iniciarse en este paquete lo recomendado es consultar los capítulos \href{https://r4ds.had.co.nz/data-visualisation.html}{Data Visualización} y \href{https://r4ds.had.co.nz/graphics-for-communication.html}{Graphics for communication} de \href{https://r4ds.had.co.nz}{R for Data Science}.
+También puede resultar de interés la \href{https://github.com/rstudio/cheatsheets/blob/master/data-visualization.pdf}{chuleta}).
+La referencia que cubre con mayor profundidad este paquete es:
+
+Wickham, H. (2016). \emph{\href{https://ggplot2-book.org}{ggplot2: Elegant graphics for Data Analysis}} (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). \href{https://www.amazon.com/gp/product/331924275X}{Springer}.
+
+En \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} se emplea el operador \texttt{+} para añadir componentes de los gráficos (ver , en \emph{Tidyverse} se emplea un operador de redirección para añadir operaciones.
 
 \hypertarget{pipe}{%
-\section{\texorpdfstring{Operador \emph{pipe} (tubería, redirección)}{Operador pipe (tubería, redirección)}}\label{pipe}}
+\section{\texorpdfstring{Operador \emph{pipe} (redirección)}{Operador pipe (redirección)}}\label{pipe}}
 
 El operador \texttt{\%\textgreater{}\%} (paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra.
-Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones (funciones) al escribirlas de izquierda a derecha.
+Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
 Desde la versión 4.X de R \texttt{\textbar{}\textgreater{}}, yo sigo prefiriendo \texttt{\%\textgreater{}\%}\ldots{}
 
@@ -965,13 +994,18 @@ Ejemplos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# El fichero \textquotesingle{}empleados.RData\textquotesingle{} contiene datos de empleados de un banco.}
+\CommentTok{\# Supongamos por ejemplo que estamos interesados en estudiar si hay}
+\CommentTok{\# discriminación por cuestión de sexo o raza.}
+
 \FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
 \CommentTok{\# Listamos las etiquetas}
-\CommentTok{\# data.frame(Etiquetas = attr(empleados, "variable.labels"))  }
+\CommentTok{\# data.frame(Etiquetas = attr(empleados, "variable.labels"))}
 \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
 \CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
+\CommentTok{\# NOTA: Cuidado con la codificación latin1 (no declarada) en R \textgreater{}= 4.2 }
 
-\NormalTok{empleados }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
+\NormalTok{empleados }\SpecialCharTok{|\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -983,12 +1017,12 @@ Ejemplos:
 ##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
 ##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
 ##                      Max.   :135000   Max.   :79980   Max.   :98.00  
-##     expprev       minoria          sexoraza 
-##  Min.   :  3.00   No:80   Blanca varón :70  
-##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
-##  Median : 52.00           Blanca mujer :10  
-##  Mean   : 77.62           Minoría mujer: 0  
-##  3rd Qu.:125.25                             
+##     expprev        minoria   sexoraza                
+##  Min.   :  3.00   No   :80   Blanca var\xf3n    :70  
+##  1st Qu.: 19.75   S\xed: 4   Minor\xeda var\xf3n: 4  
+##  Median : 52.00              Blanca mujer       :10  
+##  Mean   : 77.62              Minor\xeda mujer   : 0  
+##  3rd Qu.:125.25                                      
 ##  Max.   :285.00
 \end{verbatim}
 
@@ -1069,6 +1103,27 @@ Para referencias adicionales recomiendo consultar:
   Wickham, H. (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organize, test, document, and share your code}} (actualmente 2ª edición en desarrollo con H. Bryan), \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly, 1ª edición}.
 \end{itemize}
 
+\hypertarget{rmarkdown}{%
+\subsection*{Rmarkdown}\label{rmarkdown}}
+\addcontentsline{toc}{subsection}{Rmarkdown}
+
+\begin{itemize}
+\tightlist
+\item
+  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
+\end{itemize}
+
+\hypertarget{gruxe1ficos}{%
+\subsection*{Gráficos}\label{gruxe1ficos}}
+\addcontentsline{toc}{subsection}{Gráficos}
+
+\begin{itemize}
+\item
+  Chang, W. (2023). \emph{\href{https://r-graphics.org}{The R Graphics Cookbook}}. \href{https://www.amazon.com/dp/1491978600}{O'Reilly}.
+\item
+  Wickham, H. (2016). \emph{\href{https://ggplot2-book.org}{ggplot2: Elegant graphics for Data Analysis}} (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). \href{https://www.amazon.com/gp/product/331924275X}{Springer}.
+\end{itemize}
+
 \hypertarget{regresiuxf3n-y-aprendizaje-estaduxedstico}{%
 \subsection*{Regresión y aprendizaje estadístico}\label{regresiuxf3n-y-aprendizaje-estaduxedstico}}
 \addcontentsline{toc}{subsection}{Regresión y aprendizaje estadístico}
@@ -1107,16 +1162,6 @@ Para referencias adicionales recomiendo consultar:
 \tightlist
 \item
   Buuren, S. (2018). \emph{\href{https://stefvanbuuren.name/fimd}{Flexible Imputation of Missing Data}}, \href{}{Chapman \& Hall}.
-\end{itemize}
-
-\hypertarget{rmarkdown}{%
-\subsection*{Rmarkdown}\label{rmarkdown}}
-\addcontentsline{toc}{subsection}{Rmarkdown}
-
-\begin{itemize}
-\tightlist
-\item
-  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
 \end{itemize}
 
 \hypertarget{manuales-oficiales}{%

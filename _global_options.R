@@ -94,7 +94,7 @@ cite_pkg <- function(pkg, ...) {
 
 cite_fun_ <- function(fun, pkg, url, full = FALSE) {
     fun_full <- if (!missing(pkg))
-      paste(pkg, fun, sep = "::") else fun
+        paste(pkg, fun, sep = "::") else fun
     if (missing(url)) url <- downlit::autolink_url(fun_full)
     if (full) fun <- fun_full
     paste0("[`", fun, "`](", url, ")", collapse = ", ")
@@ -123,7 +123,8 @@ cite_fun <- function(fun, pkg, ...) {
 
 # PENDENTE:
 # ················································
-# rmd.lines <- function(l = 1) paste0("<br> \vspace{0.5cm}") #cat(rep("<br>", l)) # 0.5*l
+# rmd.lines <- function(l = 1) paste0("<br> \vspace{0.5cm}\n")
+#     cat(rep("<br>", l), "\n") # 0.5*l
 
 
 

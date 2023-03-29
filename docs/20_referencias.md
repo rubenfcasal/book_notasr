@@ -47,6 +47,19 @@ Para referencias adicionales recomiendo consultar:
 
 - Wickham, H. (2015). *[R packages: organize, test, document, and share your code](http://r-pkgs.had.co.nz/)* (actualmente 2ª edición en desarrollo con H. Bryan), [O'Reilly, 1ª edición](http://shop.oreilly.com/product/0636920034421.do).
 
+
+### Rmarkdown {-}
+
+- Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). *[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro)*,   [github](https://github.com/rubenfcasal/bookdown_intro). Incluye un apéndice con una [Introducción a RMarkdown](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html). 
+
+
+### Gráficos {-}
+
+- Chang, W. (2023). *[The R Graphics Cookbook](https://r-graphics.org)*. [O’Reilly](https://www.amazon.com/dp/1491978600). 
+
+- Wickham, H. (2016). *[ggplot2: Elegant graphics for Data Analysis](https://ggplot2-book.org)* (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). [Springer](https://www.amazon.com/gp/product/331924275X).
+
+
 ### Regresión y aprendizaje estadístico {-}
 
 - Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). *[Aprendizaje Estadístico](https://rubenfcasal.github.io/aprendizaje_estadistico)*. [github](https://github.com/rubenfcasal/aprendizaje_estadistico).
@@ -73,9 +86,8 @@ Para referencias adicionales recomiendo consultar:
 
 - Buuren, S. (2018). *[Flexible Imputation of Missing Data](https://stefvanbuuren.name/fimd)*, [Chapman & Hall](). 
     
-### Rmarkdown {-}
+    
 
-- Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). *[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro)*,   [github](https://github.com/rubenfcasal/bookdown_intro). Incluye un apéndice con una [Introducción a RMarkdown](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html). 
 
 ### Manuales oficiales {-}
 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Desarrollo de funciones y paquetes | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Desarrollo de funciones y paquetes | Notas de Programación en R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="oop.html"/>
 <link rel="next" href="tidyverse.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,8 +48,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -145,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.2" data-path="organizacion.html"><a href="organizacion.html#datos"><i class="fa fa-check"></i><b>1.1.2</b> Datos</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>I R</b></span></li>
+<li class="part"><span><b>I El entorno estadístico R</b></span></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> El lenguaje R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="paquetes.html"><a href="paquetes.html"><i class="fa fa-check"></i><b>2.1</b> Paquetes</a></li>
@@ -154,9 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
 <li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> La colección de paquetes tidyverse</a>
+<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> El ecosistema tidyverse</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (tubería, redirección)</a></li>
+<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
@@ -164,10 +163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
@@ -192,42 +192,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="desarrollo" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Desarrollo de funciones y paquetes</h2>
+<div id="desarrollo" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Desarrollo de funciones y paquetes<a href="desarrollo.html#desarrollo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <!-- 
 Pendiente: nociones básicas de creación de funciones
 -->
-<p>La recomendación es documentar todas las funciones que se crean y preferiblemente empleando el formato <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a>.
+<p>Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si resulta que ya está implementado (o hay algo que podemos tomar como base; es lo bueno de GNU!): en la descripción de los paquetes en <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>, en los buscadores especializados (<a href="https://rdrr.io/">rdrr.io</a>, <a href="https://www.rdocumentation.org/">RDocumentation</a> o <a href="http://rseek.org/">RSeek</a>), en foros de programación (<a href="http://stackoverflow.com/questions/tagged/r">StackOverflow</a>, <a href="https://es.stackoverflow.com/questions/tagged/r">StackOverflow.es</a>, <a href="https://stats.stackexchange.com">Cross Validated</a>), en listas de correo (<a href="https://stat.ethz.ch/mailman/listinfo">r-project.org</a>, <a href="https://r-help-es.r-project.narkive.com">r-help-es</a>) o directamente en <a href="https://www.google.com/search?q=r-project">Google</a> (añadiendo “r-project” o similar en la búsqueda).</p>
+<p>El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).</p>
+<p>Al finalizar, la recomendación es <strong>documentar la función</strong>, preferiblemente empleando el formato <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="desarrollo.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel_list(path, pattern, ...) </span></span>
-<span id="cb42-2"><a href="desarrollo.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
-<span id="cb42-3"><a href="desarrollo.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Lee los ficheros xls y xlsx de un directorio</span></span>
-<span id="cb42-4"><a href="desarrollo.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb42-5"><a href="desarrollo.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param path Ruta al directorio con los ficheros excel </span></span>
-<span id="cb42-6"><a href="desarrollo.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (por defecto el directorio de trabajo).</span></span>
-<span id="cb42-7"><a href="desarrollo.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param pattern Expresión regular empleada en la selección de ficheros </span></span>
-<span id="cb42-8"><a href="desarrollo.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (ver `list.files()`).</span></span>
-<span id="cb42-9"><a href="desarrollo.html#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ... Parámetros adicionales de `readxl::read_excel()`.</span></span>
-<span id="cb42-10"><a href="desarrollo.html#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return Una lista cuyas componentes son las correspondientes tablas de datos </span></span>
-<span id="cb42-11"><a href="desarrollo.html#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (`tibble`) y con nombres los nombres de los archivos sin extensión.</span></span>
-<span id="cb42-12"><a href="desarrollo.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples \dontrun{</span></span>
-<span id="cb42-13"><a href="desarrollo.html#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_list &lt;- read_excel_list(&quot;datos&quot;) # &quot;./datos&quot;</span></span>
-<span id="cb42-14"><a href="desarrollo.html#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_all &lt;- dplyr::bind_rows(data_list)</span></span>
-<span id="cb42-15"><a href="desarrollo.html#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
-<span id="cb42-16"><a href="desarrollo.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendiente:</span></span>
-<span id="cb42-17"><a href="desarrollo.html#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Controlar posible error al leer</span></span>
-<span id="cb42-18"><a href="desarrollo.html#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
-<span id="cb42-19"><a href="desarrollo.html#cb42-19" aria-hidden="true" tabindex="-1"></a>read_excel_list <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">&quot;.&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.(xls|xlsx)$&quot;</span>, ...) {</span>
-<span id="cb42-20"><a href="desarrollo.html#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(readxl))  <span class="fu">stop</span>(<span class="st">&quot;&#39;readxl&#39; package required&quot;</span>)</span>
-<span id="cb42-21"><a href="desarrollo.html#cb42-21" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern =</span> pattern, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="co"># ?list.files</span></span>
-<span id="cb42-22"><a href="desarrollo.html#cb42-22" aria-hidden="true" tabindex="-1"></a>  data_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="fu">length</span>(files), <span class="at">mode =</span> <span class="st">&#39;list&#39;</span>)</span>
-<span id="cb42-23"><a href="desarrollo.html#cb42-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) </span>
-<span id="cb42-24"><a href="desarrollo.html#cb42-24" aria-hidden="true" tabindex="-1"></a>      data_list[[i]] <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(files[i], ...)</span>
-<span id="cb42-25"><a href="desarrollo.html#cb42-25" aria-hidden="true" tabindex="-1"></a>  data_names <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&#39;</span><span class="sc">\\</span><span class="st">.xlsx$&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">basename</span>(files)) </span>
-<span id="cb42-26"><a href="desarrollo.html#cb42-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data_list) <span class="ot">&lt;-</span> data_names</span>
-<span id="cb42-27"><a href="desarrollo.html#cb42-27" aria-hidden="true" tabindex="-1"></a>  data_list</span>
-<span id="cb42-28"><a href="desarrollo.html#cb42-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>En muchas ocasiones se emplea como punto de partida una función implementada en R.
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="desarrollo.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_excel_list(path, pattern, ...) </span></span>
+<span id="cb31-2"><a href="desarrollo.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
+<span id="cb31-3"><a href="desarrollo.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Lee los ficheros xls y xlsx de un directorio</span></span>
+<span id="cb31-4"><a href="desarrollo.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb31-5"><a href="desarrollo.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param path Ruta al directorio con los ficheros excel </span></span>
+<span id="cb31-6"><a href="desarrollo.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (por defecto el directorio de trabajo).</span></span>
+<span id="cb31-7"><a href="desarrollo.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param pattern Expresión regular empleada en la selección de ficheros </span></span>
+<span id="cb31-8"><a href="desarrollo.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (ver `list.files()`).</span></span>
+<span id="cb31-9"><a href="desarrollo.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param ... Parámetros adicionales de `readxl::read_excel()`.</span></span>
+<span id="cb31-10"><a href="desarrollo.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return Una lista cuyas componentes son las correspondientes tablas de datos </span></span>
+<span id="cb31-11"><a href="desarrollo.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; (`tibble`) y con nombres los nombres de los archivos sin extensión.</span></span>
+<span id="cb31-12"><a href="desarrollo.html#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @examples \dontrun{</span></span>
+<span id="cb31-13"><a href="desarrollo.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_list &lt;- read_excel_list(&quot;datos&quot;) # &quot;./datos&quot;</span></span>
+<span id="cb31-14"><a href="desarrollo.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; data_all &lt;- dplyr::bind_rows(data_list)</span></span>
+<span id="cb31-15"><a href="desarrollo.html#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb31-16"><a href="desarrollo.html#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
+<span id="cb31-17"><a href="desarrollo.html#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Pruebas: </span></span>
+<span id="cb31-18"><a href="desarrollo.html#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   readxl::readxl_example(&quot;geometry.xls&quot;)</span></span>
+<span id="cb31-19"><a href="desarrollo.html#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co">#   path = &quot;C:/Program Files/R/R-4.2.2/library/readxl/extdata&quot;</span></span>
+<span id="cb31-20"><a href="desarrollo.html#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co">#   pattern = &quot;\\.(xls|xlsx)$&quot;</span></span>
+<span id="cb31-21"><a href="desarrollo.html#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendiente:</span></span>
+<span id="cb31-22"><a href="desarrollo.html#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Controlar posible error al leer</span></span>
+<span id="cb31-23"><a href="desarrollo.html#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ·············································</span></span>
+<span id="cb31-24"><a href="desarrollo.html#cb31-24" aria-hidden="true" tabindex="-1"></a>read_excel_list <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="st">&quot;.&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.(xls|xlsx)$&quot;</span>, ...) {</span>
+<span id="cb31-25"><a href="desarrollo.html#cb31-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(readxl))  <span class="fu">stop</span>(<span class="st">&quot;&#39;readxl&#39; package required&quot;</span>)</span>
+<span id="cb31-26"><a href="desarrollo.html#cb31-26" aria-hidden="true" tabindex="-1"></a>  files <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern =</span> pattern, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="co"># ?list.files</span></span>
+<span id="cb31-27"><a href="desarrollo.html#cb31-27" aria-hidden="true" tabindex="-1"></a>  data_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="fu">length</span>(files), <span class="at">mode =</span> <span class="st">&#39;list&#39;</span>)</span>
+<span id="cb31-28"><a href="desarrollo.html#cb31-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(files)) </span>
+<span id="cb31-29"><a href="desarrollo.html#cb31-29" aria-hidden="true" tabindex="-1"></a>      data_list[[i]] <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(files[i], ...)</span>
+<span id="cb31-30"><a href="desarrollo.html#cb31-30" aria-hidden="true" tabindex="-1"></a>  data_names <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&#39;</span><span class="sc">\\</span><span class="st">.xlsx$&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">basename</span>(files)) </span>
+<span id="cb31-31"><a href="desarrollo.html#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data_list) <span class="ot">&lt;-</span> data_names</span>
+<span id="cb31-32"><a href="desarrollo.html#cb31-32" aria-hidden="true" tabindex="-1"></a>  data_list</span>
+<span id="cb31-33"><a href="desarrollo.html#cb31-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Como ya se comentó, en ocasiones se emplea como punto de partida una función ya implementada en algún paquete de R.
 En RStudio la forma más sencilla de obtener el código de la función es emplear <code>View(funcion)</code> (si la función es visible, en caso contrario <code>View(paquete:::funcion)</code>).
 Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos para llamarlas, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma <code>paquete_x.y.z.tar.gz</code> que se puede descargar en la sección <em>Downloads</em> de la web del paquete <em><a href="https://CRAN.R-project.org/package=paquete" class="uri">https://CRAN.R-project.org/package=paquete</a></em>).</p>
 <p>La mejor forma de organizar funciones es crear un paquete.

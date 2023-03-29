@@ -12,9 +12,20 @@ github-repo: rubenfcasal/notasr
 description: "Libro con notas personales sobre programación en R"
 ---
 
-
-
 # Prólogo {-}
+
+
+
+<!-- 
+Pendiente: 
+- Añadir nombres a todos los chunks (para purl)
+- Sección objetos, comentarios objetos básicos de R
+- Capítulo RMarkdown/Informes
+- Revisar libros en abierto en bibliografías
+- Agradecimientos:
+  Manuel Oviedo, Julián Costa
+-->
+
 
 Este es un libro, ***en proceso de elaboración***,  con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R). 
 El contenido está sesgado por la experiencia personal (es mi forma de programar en R) pero puede resultar útil para otras personas.
@@ -29,7 +40,7 @@ Se puede acceder a la versión en línea a través del siguiente enlace:
 
 donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/book_notasr/Notas_R.pdf).
 
-Para seguir los ejemplos mostrados en el libro se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
+Para seguir los ejemplos mostrados en el libro (en la carpeta [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos) se incluyen algunos ejemplos adicionales) se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
 [`Rcmdr`](https://www.r-project.org), [`caret`](https://github.com/topepo/caret/), [`tidymodels`](https://tidymodels.tidymodels.org), [`tidyverse`](https://tidyverse.tidyverse.org), [`openxlsx`](https://ycphs.github.io/openxlsx/index.html), [`DT`](https://github.com/rstudio/DT), [`rmarkdown`](https://github.com/rstudio/rmarkdown), [`knitr`](https://yihui.org/knitr/), [`remotes`](https://remotes.r-lib.org), [`devtools`](https://devtools.r-lib.org/).
 Por ejemplo mediante los siguientes comandos:
 

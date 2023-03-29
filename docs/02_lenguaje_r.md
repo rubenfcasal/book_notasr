@@ -1,4 +1,4 @@
-# (PART) R {-}
+# (PART) El entorno estadístico R {-}
 
 # El lenguaje R {#r}
 
@@ -69,7 +69,7 @@ names(which(pkgs[ ,"Priority"] == "recommended"))
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 ```
 
-Para instalar paquetes adicionales se puede emplear `install.packages()`.
+Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-29, están disponibles 19328 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
 Por ejemplo:
 
 ```r
@@ -263,6 +263,11 @@ x
 ```
 
 
+<!-- 
+Pendiente: sección objetos, comentarios objetos básicos de R
+-->
+
+
 ## Programación orientada a objetos (funciones genéricas) {#oop}
 
 > "Everything that exists in R is an object".
@@ -306,7 +311,7 @@ plot
 ```
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x0000000015fc4318>
+## <bytecode: 0x00000269678a3b80>
 ## <environment: namespace:base>
 ```
 
@@ -325,9 +330,9 @@ methods(plot)
 ## [13] plot.HoltWinters*   plot.isoreg*        plot.lm*           
 ## [16] plot.medpolish*     plot.mlm*           plot.ppr*          
 ## [19] plot.prcomp*        plot.princomp*      plot.profile.nls*  
-## [22] plot.raster*        plot.spec*          plot.stepfun       
-## [25] plot.stl*           plot.table*         plot.ts            
-## [28] plot.tskernel*      plot.TukeyHSD*     
+## [22] plot.R6*            plot.raster*        plot.spec*         
+## [25] plot.stepfun        plot.stl*           plot.table*        
+## [28] plot.ts             plot.tskernel*      plot.TukeyHSD*     
 ## see '?methods' for accessing help and source code
 ```
 Podemos acceder a la ayuda del correspondiente método de la forma habitual (e.g. `?plot.lm`), pero puede que algunos métodos no sean objetos definidos como exportables en el *namespace* del paquete que los implementa (los marcados con un `*`) y por tanto no son en principio accesibles para el usuario.
@@ -361,7 +366,11 @@ Para una programación orientada a objetos más formal la recomendación es empl
 Pendiente: nociones básicas de creación de funciones
 -->
 
-La recomendación es documentar todas las funciones que se crean y preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org).
+Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si resulta que ya está implementado (o hay algo que podemos tomar como base; es lo bueno de GNU!): en la descripción de los paquetes en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), en los buscadores especializados ([rdrr.io](https://rdrr.io/), [RDocumentation](https://www.rdocumentation.org/) o [RSeek](http://rseek.org/)), en foros de programación ([StackOverflow](http://stackoverflow.com/questions/tagged/r), [StackOverflow.es](https://es.stackoverflow.com/questions/tagged/r), [Cross Validated](https://stats.stackexchange.com)), en listas de correo ([r-project.org](https://stat.ethz.ch/mailman/listinfo), [r-help-es](https://r-help-es.r-project.narkive.com)) o directamente en [Google](https://www.google.com/search?q=r-project) (añadiendo "r-project" o similar en la búsqueda).
+
+El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
+
+Al finalizar, la recomendación es **documentar la función**, preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org).
 Por ejemplo:
 
 
@@ -381,6 +390,11 @@ Por ejemplo:
 #' data_list <- read_excel_list("datos") # "./datos"
 #' data_all <- dplyr::bind_rows(data_list)
 #' }
+# ·············································
+# Pruebas: 
+#   readxl::readxl_example("geometry.xls")
+#   path = "C:/Program Files/R/R-4.2.2/library/readxl/extdata"
+#   pattern = "\\.(xls|xlsx)$"
 # Pendiente:
 #   - Controlar posible error al leer
 # ·············································
@@ -396,7 +410,7 @@ read_excel_list <- function(path = ".", pattern = "\\.(xls|xlsx)$", ...) {
 }
 ```
 
-En muchas ocasiones se emplea como punto de partida una función implementada en R.
+Como ya se comentó, en ocasiones se emplea como punto de partida una función ya implementada en algún paquete de R.
 En RStudio la forma más sencilla de obtener el código de la función es emplear `View(funcion)` (si la función es visible, en caso contrario `View(paquete:::funcion)`).
 Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos para llamarlas, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma `paquete_x.y.z.tar.gz` que se puede descargar en la sección *Downloads* de la web del paquete *https://CRAN.R-project.org/package=paquete*).
 

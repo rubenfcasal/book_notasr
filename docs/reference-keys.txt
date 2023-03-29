@@ -1,0 +1,11 @@
+intro
+organizacion
+codigo
+datos
+r
+paquetes
+funciones
+oop
+desarrollo
+tidyverse
+pipe

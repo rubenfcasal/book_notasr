@@ -1,6 +1,6 @@
 # (PART) Tidyverse {-}
 
-# La colección de paquetes tidyverse {#tidyverse}
+# El ecosistema tidyverse {#tidyverse}
 
 
 
@@ -44,38 +44,57 @@ Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transfo
 El paquete [`tidyverse`](https://tidyverse.tidyverse.org) está diseñado para facilitar la instalación y carga de los paquetes principales de la colección tidyverse con un solo comando.
 Al instalar este paquete se instalan paquetes que forman el denominado núcleo de tidyverse (se cargan con `library(tidyverse)`):
 
-* [`ggplot2`](https://ggplot2.tidyverse.org): visualización de datos.
-* [`dplyr`](https://dplyr.tidyverse.org): manipulación de datos.
-* [`tidyr`](https://tidyr.tidyverse.org): reorganización (limpieza) de datos.
-* [`readr`](https://readr.tidyverse.org): importación de datos.
-* [`tibble`](https://tibble.tidyverse.org): tablas de datos (modificación de `data.frame`).
-* [`purrr`](https://purrr.tidyverse.org): programación funcional.
-* [`stringr`](https://github.com/tidyverse/stringr): manipulación de cadenas de texto.
-* [`forcats`](https://github.com/tidyverse/forcats): manipulación de factores.
-* [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
+- [`ggplot2`](https://ggplot2.tidyverse.org): visualización de datos.
+- [`dplyr`](https://dplyr.tidyverse.org): manipulación de datos.
+- [`tidyr`](https://tidyr.tidyverse.org): reorganización (limpieza) de datos.
+- [`readr`](https://readr.tidyverse.org): importación de datos.
+- [`tibble`](https://tibble.tidyverse.org): tablas de datos (extensión de `data.frame`).
+- [`purrr`](https://purrr.tidyverse.org): programación funcional.
+- [`stringr`](https://github.com/tidyverse/stringr): manipulación de cadenas de texto.
+- [`forcats`](https://github.com/tidyverse/forcats): manipulación de factores.
+- [`lubridate`](https://github.com/tidyverse/lubridate): manipulación de fechas y horas.
 
 y un conjunto de paquetes recomendados ([`feather`](https://github.com/wesm/feather), [`haven`](https://github.com/tidyverse/haven), [`modelr`](https://github.com/tidyverse/modelr), [`broom`](https://github.com/tidymodels/broom)...), entre los que destacaría: 
 
-* [`readxl`](https://github.com/tidyverse/readxl): ficheros excel.
-* [`hms`](https://github.com/tidyverse/hms): manipulación de valores temporales.
-* [`httr`](https://github.com/r-lib/httr): web APIs.
-* [`jsonlite`](https://github.com/jeroen/jsonlite): JSON.
-* [`rvest`](https://github.com/tidyverse/rvest): web scraping.
-* [`xml2`](https://github.com/r-lib/xml2): XML.
+- [`readxl`](https://github.com/tidyverse/readxl): archivos excel.
+- [`hms`](https://github.com/tidyverse/hms): manipulación de medidas de tiempo.
+- [`httr`](https://github.com/r-lib/httr): web APIs.
+- [`jsonlite`](https://github.com/jeroen/jsonlite): archivos JSON.
+- [`rvest`](https://github.com/tidyverse/rvest): web scraping.
+- [`xml2`](https://github.com/r-lib/xml2): archivos XML.
 
 También hay paquetes "asociados":
 
-* [`tidymodels`](https://tidymodels.tidymodels.org)
+- [`rlang`](https://rlang.r-lib.org)
+- [`tidyselect`](https://tidyselect.r-lib.org)
+- [`tidymodels`](https://tidymodels.tidymodels.org)
 
 Muchos otros paquetes están adaptando este estilo (ver e.g. [tidyverts](https://tidyverts.org/)): [`fable`](https://fable.tidyverts.org), [`sf`](https://r-spatial.github.io/sf/)...
 
-Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R... para mi ya lo es... todo lo que resulte de utilidad es bien venido...
+Resumiendo, está muy de moda y puede terminar convirtiéndose en un dialecto del lenguaje R... para mi ya lo es... todo lo que resulte de utilidad es bien venido... Recomiendo evitar estos paquetes en las primeras etapas de formación en R...
+
+El estilo de programación tiene como origen la gramática de [`ggplot2`](https://ggplot2.tidyverse.org) para crear gráficos de forma declarativa, basado a su vez en:
+
+Wilkinson, L. (2005). *The Grammar of Graphics*. [Springer](https://www.google.es/books/edition/The_Grammar_of_Graphics/YGgUswEACAAJ?hl=es).
+
+Yo empleo este paquete como sustituto de los gráficos [`lattice`](http://lattice.r-forge.r-project.org/), en algunos informes finales o aplicaciones para empresas, o para gráficos muy especializados. 
+En condiciones normales **prefiero emplear los gráficos estándar** de R (mucho más rápidos de generar y programar).
+
+<!-- Referencias / capítulo ggplot2? -->
+
+Para iniciarse en este paquete lo recomendado es consultar los capítulos [Data     Visualización](https://r4ds.had.co.nz/data-visualisation.html) y [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html) de [R for Data Science](https://r4ds.had.co.nz). 
+También puede resultar de interés la [chuleta](https://github.com/rstudio/cheatsheets/blob/master/data-visualization.pdf)).
+La referencia que cubre con mayor profundidad este paquete es:
+
+Wickham, H. (2016). *[ggplot2: Elegant graphics for Data Analysis](https://ggplot2-book.org)* (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). [Springer](https://www.amazon.com/gp/product/331924275X).
+
+En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos (ver , en *Tidyverse* se emplea un operador de redirección para añadir operaciones.
 
 
-## Operador *pipe* (tubería, redirección) {#pipe}
+## Operador *pipe* (redirección) {#pipe}
 
 El operador `%>%` (paquete [`magrittr`](https://magrittr.tidyverse.org)) permite canalizar la salida de una función a la entrada de otra. 
-Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`, lo que facilita la lectura de operaciones (funciones) al escribirlas de izquierda a derecha.
+Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
 Desde la versión 4.X de R `|>`, yo sigo prefiriendo `%>%`...
 
@@ -83,11 +102,16 @@ Ejemplos:
 
 
 ```r
+# El fichero 'empleados.RData' contiene datos de empleados de un banco.
+# Supongamos por ejemplo que estamos interesados en estudiar si hay
+# discriminación por cuestión de sexo o raza.
+
 load("datos/empleados.RData")
 # Listamos las etiquetas
-# data.frame(Etiquetas = attr(empleados, "variable.labels"))  
+# data.frame(Etiquetas = attr(empleados, "variable.labels"))
 # Eliminamos las etiquetas para que no molesten...
 # attr(empleados, "variable.labels") <- NULL  
+# NOTA: Cuidado con la codificación latin1 (no declarada) en R >= 4.2 
 
 empleados |>  subset(catlab == "Directivo", catlab:sexoraza) |>  summary()
 ```
@@ -100,12 +124,12 @@ empleados |>  subset(catlab == "Directivo", catlab:sexoraza) |>  summary()
 ##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
 ##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
 ##                      Max.   :135000   Max.   :79980   Max.   :98.00  
-##     expprev       minoria          sexoraza 
-##  Min.   :  3.00   No:80   Blanca varón :70  
-##  1st Qu.: 19.75   Sí: 4   Minoría varón: 4  
-##  Median : 52.00           Blanca mujer :10  
-##  Mean   : 77.62           Minoría mujer: 0  
-##  3rd Qu.:125.25                             
+##     expprev        minoria   sexoraza                
+##  Min.   :  3.00   No   :80   Blanca var\xf3n    :70  
+##  1st Qu.: 19.75   S\xed: 4   Minor\xeda var\xf3n: 4  
+##  Median : 52.00              Blanca mujer       :10  
+##  Mean   : 77.62              Minor\xeda mujer   : 0  
+##  3rd Qu.:125.25                                      
 ##  Max.   :285.00
 ```
 
