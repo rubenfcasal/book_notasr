@@ -197,15 +197,15 @@ Yo recomiendo añadir un atributo `variable.labels` que contenga un vector de et
 ```{r}
 data(cars)
 # dput(names(cars))
-variable.labels <- c(speed = "Speed (mph)", dist = "Stopping distance (ft)")
-attr(cars, "variable.labels") <- variable.labels
+var.lab <- c(speed = "Speed (mph)", dist = "Stopping distance (ft)")
+attr(cars, "variable.labels") <- var.lab
 str(cars)
 # View(cars)
-# with(cars, plot(speed, dist, xlab = variable.labels["speed"], 
-#                 ylab = variable.labels["dist"]))
+# with(cars, plot(speed, dist, xlab = var.lab["speed"], 
+#                 ylab = var.lab["dist"]))
 ```
 
-Para leer ficheros de Excel acostumbro a utilizar los paquetes  [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html) (solo para archivos con extensión *.xlsx*) o [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)).
+Para leer ficheros de Excel acostumbro a utilizar los paquetes  [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html) (solo para archivos con extensión *.xlsx*) o [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/); Sección \@ref(tidyverse)).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
 Ver [top500.R](ejemplos/top500/top500.R) en [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos).
