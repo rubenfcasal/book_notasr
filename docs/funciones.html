@@ -157,6 +157,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -206,43 +218,43 @@ Los parámetros pueden tener valores por defecto y solo sería necesario especif
 <p>Podemos llamar a una función de un paquete sin necesidad de cargarlo (añadirlo a la ruta de búsqueda) empleando <code>paquete::funcion</code>.
 Esto es especialmente recomendable al desarrollar nuevas funciones (es un requisito para subir paquetes a CRAN), ya que de esta forma se evitan conflictos entre funciones con el mismo nombre en paquetes distintos.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="funciones.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(knitr)) <span class="fu">stop</span>(<span class="st">&quot;&#39;knitr&#39; package required&quot;</span>)</span>
-<span id="cb14-2"><a href="funciones.html#cb14-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">spin</span>(<span class="st">&quot;01-Introduccion.R&quot;</span>, <span class="at">knit =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="funciones.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(knitr)) <span class="fu">stop</span>(<span class="st">&quot;&#39;knitr&#39; package required&quot;</span>)</span>
+<span id="cb25-2"><a href="funciones.html#cb25-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">spin</span>(<span class="st">&quot;01-Introduccion.R&quot;</span>, <span class="at">knit =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Hay que tener en cuenta que R emplea <a href="https://adv-r.hadley.nz/functions.html#lazy-evaluation">Lazy evaluation</a>, los argumentos no se evalúan hasta que se necesitan (lo cual puede producir mensajes de error inesperados, pero también permite añadir funcionalidades adicionales empleando la denominada <a href="http://adv-r.had.co.nz/Computing-on-the-language.html">evaluación no estándar</a> o <a href="https://adv-r.hadley.nz/metaprogramming.html">metaprogramación</a>).</p>
 <p>R es un lenguaje interpretado y podemos evaluar expresiones empleando código.
 Por ejemplo, podemos reproducir el proceso de introducir un comando en la consola con las funciones <code>eval()</code> y <code>parse()</code> (aunque esta forma de proceder no es la más eficiente):</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="funciones.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="st">&quot;1:10&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="funciones.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="st">&quot;1:10&quot;</span>))</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="funciones.html#cb17-1" aria-hidden="true" tabindex="-1"></a>distr <span class="ot">&lt;-</span> <span class="st">&quot;norm&quot;</span>  <span class="co"># &quot;unif&quot;, &quot;exp&quot;, &quot;t&quot;</span></span>
-<span id="cb17-2"><a href="funciones.html#cb17-2" aria-hidden="true" tabindex="-1"></a>ddistr <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">&quot;d&quot;</span>, distr)))</span>
-<span id="cb17-3"><a href="funciones.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># str(ddistr)</span></span>
-<span id="cb17-4"><a href="funciones.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># curve(ddistr(x, 0, 0.5), -3, 3)</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="funciones.html#cb28-1" aria-hidden="true" tabindex="-1"></a>distr <span class="ot">&lt;-</span> <span class="st">&quot;norm&quot;</span>  <span class="co"># &quot;unif&quot;, &quot;exp&quot;, &quot;t&quot;</span></span>
+<span id="cb28-2"><a href="funciones.html#cb28-2" aria-hidden="true" tabindex="-1"></a>ddistr <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">&quot;d&quot;</span>, distr)))</span>
+<span id="cb28-3"><a href="funciones.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># str(ddistr)</span></span>
+<span id="cb28-4"><a href="funciones.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># curve(ddistr(x, 0, 0.5), -3, 3)</span></span></code></pre></div>
 <p>Para llamar a una función especificando los parámetros de forma dinámica (empleando una lista) podemos emplear <code>do.call()</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="funciones.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar ficheros csv </span></span>
-<span id="cb18-2"><a href="funciones.html#cb18-2" aria-hidden="true" tabindex="-1"></a>files.csv <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> <span class="st">&quot;datos&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;*.csv&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb18-3"><a href="funciones.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer datos a una lista</span></span>
-<span id="cb18-4"><a href="funciones.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (suponemos variante local con ; para separar valores)</span></span>
-<span id="cb18-5"><a href="funciones.html#cb18-5" aria-hidden="true" tabindex="-1"></a>data.list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(files.csv, read.csv2)</span>
-<span id="cb18-6"><a href="funciones.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar </span></span>
-<span id="cb18-7"><a href="funciones.html#cb18-7" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, data.list)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="funciones.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar ficheros csv </span></span>
+<span id="cb29-2"><a href="funciones.html#cb29-2" aria-hidden="true" tabindex="-1"></a>files.csv <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> <span class="st">&quot;datos&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;*.csv&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-3"><a href="funciones.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer datos a una lista</span></span>
+<span id="cb29-4"><a href="funciones.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (suponemos variante local con ; para separar valores)</span></span>
+<span id="cb29-5"><a href="funciones.html#cb29-5" aria-hidden="true" tabindex="-1"></a>data.list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(files.csv, read.csv2)</span>
+<span id="cb29-6"><a href="funciones.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar </span></span>
+<span id="cb29-7"><a href="funciones.html#cb29-7" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, data.list)</span></code></pre></div>
 <p>R dispone además de otras herramientas que permiten la programación dinámica.
 Por ejemplo <a href="https://rdrr.io/r/stats/delete.response.html"><code>reformulate()</code></a> permite construir formulas para ajuste de modelos o análisis descriptivos.</p>
 <p>Hay que tener en cuenta que las funciones tienen su propio entorno y su propia ruta de búsqueda, determinada por el entorno donde se crearon (el <em>namespace</em> en el caso de las funciones de un paquete).
 Esto es lo que se conoce como <a href="https://adv-r.hadley.nz/functions.html#lexical-scoping">Lexical scoping</a>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="funciones.html#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb19-2"><a href="funciones.html#cb19-2" aria-hidden="true" tabindex="-1"></a>addx <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
-<span id="cb19-3"><a href="funciones.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
-<span id="cb19-4"><a href="funciones.html#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-5"><a href="funciones.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addx</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="funciones.html#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb30-2"><a href="funciones.html#cb30-2" aria-hidden="true" tabindex="-1"></a>addx <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb30-3"><a href="funciones.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb30-4"><a href="funciones.html#cb30-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-5"><a href="funciones.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addx</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="funciones.html#cb21-1" aria-hidden="true" tabindex="-1"></a>addx10 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb21-2"><a href="funciones.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># x &lt;&lt;- 10   # assign(&quot;x&quot;, 10, envir = .GlobalEnv)</span></span>
-<span id="cb21-3"><a href="funciones.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addx</span>(x)</span>
-<span id="cb21-4"><a href="funciones.html#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-5"><a href="funciones.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addx10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="funciones.html#cb32-1" aria-hidden="true" tabindex="-1"></a>addx10 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb32-2"><a href="funciones.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># x &lt;&lt;- 10   # assign(&quot;x&quot;, 10, envir = .GlobalEnv)</span></span>
+<span id="cb32-3"><a href="funciones.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addx</span>(x)</span>
+<span id="cb32-4"><a href="funciones.html#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-5"><a href="funciones.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addx10</span>()</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="funciones.html#cb23-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="funciones.html#cb34-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <!-- 
 Pendiente: sección objetos, comentarios objetos básicos de R

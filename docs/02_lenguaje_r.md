@@ -69,7 +69,7 @@ names(which(pkgs[ ,"Priority"] == "recommended"))
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 ```
 
-Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-29, están disponibles 19328 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
+Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-30, están disponibles 19331 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
 Por ejemplo:
 
 ```r
@@ -118,10 +118,13 @@ search()
 ```
 
 ```
-##  [1] ".GlobalEnv"        "package:magrittr"  "package:stats"    
-##  [4] "package:graphics"  "package:grDevices" "package:utils"    
-##  [7] "package:datasets"  "package:methods"   "Autoloads"        
-## [10] "package:base"
+##  [1] ".GlobalEnv"        "package:dbplyr"    "package:forcats"  
+##  [4] "package:stringr"   "package:dplyr"     "package:purrr"    
+##  [7] "package:readr"     "package:tidyr"     "package:tibble"   
+## [10] "package:ggplot2"   "package:tidyverse" "package:magrittr" 
+## [13] "package:stats"     "package:graphics"  "package:grDevices"
+## [16] "package:utils"     "package:datasets"  "package:methods"  
+## [19] "Autoloads"         "package:base"
 ```
 Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado ***namespace*** del paquete.
 Esta ruta determina los objetos visibles en el entorno global y el orden en se buscan (para más detalles ver [7.2 Environment basics](https://adv-r.hadley.nz/environments.html#env-basics) y [7.4 Special environments](https://adv-r.hadley.nz/environments.html#special-environments) de [Advanced R](https://adv-r.hadley.nz/index.html)).
@@ -311,7 +314,7 @@ plot
 ```
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x00000269678a3b80>
+## <bytecode: 0x000001d98ee953d8>
 ## <environment: namespace:base>
 ```
 
@@ -323,16 +326,18 @@ methods(plot)
 ```
 
 ```
-##  [1] plot.acf*           plot.data.frame*    plot.decomposed.ts*
-##  [4] plot.default        plot.dendrogram*    plot.density*      
-##  [7] plot.ecdf           plot.factor*        plot.formula*      
-## [10] plot.function       plot.hclust*        plot.histogram*    
-## [13] plot.HoltWinters*   plot.isoreg*        plot.lm*           
-## [16] plot.medpolish*     plot.mlm*           plot.ppr*          
-## [19] plot.prcomp*        plot.princomp*      plot.profile.nls*  
-## [22] plot.R6*            plot.raster*        plot.spec*         
-## [25] plot.stepfun        plot.stl*           plot.table*        
-## [28] plot.ts             plot.tskernel*      plot.TukeyHSD*     
+##  [1] plot,ANY-method     plot,color-method   plot.acf*          
+##  [4] plot.data.frame*    plot.decomposed.ts* plot.default       
+##  [7] plot.dendrogram*    plot.density*       plot.ecdf          
+## [10] plot.factor*        plot.formula*       plot.function      
+## [13] plot.ggplot*        plot.gtable*        plot.hcl_palettes* 
+## [16] plot.hclust*        plot.histogram*     plot.HoltWinters*  
+## [19] plot.isoreg*        plot.lm*            plot.medpolish*    
+## [22] plot.mlm*           plot.ppr*           plot.prcomp*       
+## [25] plot.princomp*      plot.profile.nls*   plot.R6*           
+## [28] plot.raster*        plot.spec*          plot.stepfun       
+## [31] plot.stl*           plot.table*         plot.trans*        
+## [34] plot.ts             plot.tskernel*      plot.TukeyHSD*     
 ## see '?methods' for accessing help and source code
 ```
 Podemos acceder a la ayuda del correspondiente método de la forma habitual (e.g. `?plot.lm`), pero puede que algunos métodos no sean objetos definidos como exportables en el *namespace* del paquete que los implementa (los marcados con un `*`) y por tanto no son en principio accesibles para el usuario.
@@ -349,11 +354,11 @@ methods(class = "lm")
 ##  [1] add1           alias          anova          case.names     coerce        
 ##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
 ## [11] drop1          dummy.coef     effects        extractAIC     family        
-## [16] formula        hatvalues      influence      initialize     kappa         
-## [21] labels         logLik         model.frame    model.matrix   nobs          
-## [26] plot           predict        print          proj           qr            
-## [31] residuals      rstandard      rstudent       show           simulate      
-## [36] slotsFromS3    summary        variable.names vcov          
+## [16] formula        fortify        hatvalues      influence      initialize    
+## [21] kappa          labels         logLik         model.frame    model.matrix  
+## [26] nobs           plot           predict        print          proj          
+## [31] qr             residuals      rstandard      rstudent       show          
+## [36] simulate       slotsFromS3    summary        variable.names vcov          
 ## see '?methods' for accessing help and source code
 ```
 

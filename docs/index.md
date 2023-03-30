@@ -1,7 +1,7 @@
 --- 
 title: "Notas de Programación en R"
 author: "Rubén Fernández Casal (rubenfcasal@gmail.com)"  
-date: "Edición: Marzo de 2023. Impresión: 2023-03-29"
+date: "Edición: Marzo de 2023. Impresión: 2023-03-30"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book

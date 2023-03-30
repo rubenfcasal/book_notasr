@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 El lenguaje R | Notas de Programación en R</title>
+  <title>4.1 El paquete dplyr | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta property="og:title" content="4.1 El paquete dplyr | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta name="twitter:title" content="4.1 El paquete dplyr | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="organizacion.html"/>
-<link rel="next" href="paquetes.html"/>
+<link rel="prev" href="dplyr.html"/>
+<link rel="next" href="dplyr-variables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -204,54 +204,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> El lenguaje R<a href="r.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<!-- 
----
-title: "El lenguaje R"
-author: "Notas de Programación en R"
-date: "Rubén Fernández-Casal (rubenfcasal@gmail.com)"
-output:
-  bookdown::html_document2:
-    toc: yes
-    # toc_float: yes
-    # mathjax: local            # copia local de MathJax, hay que establecer:
-    # self_contained: false     # las dependencias se guardan en ficheros externos
-    pandoc_args: ["--number-offset", "1,0"]
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    # keep_tex: yes
-    toc: yes 
-    pandoc_args: ["--number-offset", "1,0"]
-header-includes:
-- \usepackage[spanish]{babel}
-- \setcounter{section}{1} 
----
-
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
--->
-<p>Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (<em>useR</em>).
-Sin embargo, para desarrollar nuevas herramientas de forma efectiva (<em>programeR</em>) es necesario tener una idea del funcionamiento interno de R.
-La referencia recomendada para usuarios de R que deseen mejorar sus conocimientos de programación y comprensión del lenguaje es:</p>
-<p>Wickham, Hadley (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición</a>.</p>
-<p>También puede ser de utilidad el manual <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R Language Definition</a>
-para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Los manuales oficiales también están disponibles en formato bookdown en este <a href="https://colinfay.me/r-manuals">post</a>.<a href="r.html#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="dplyr-pkg" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> El paquete dplyr<a href="dplyr-pkg.html#dplyr-pkg" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dplyr-pkg.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<p>La principal ventaja de <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> es que permite trabajar (de la misma forma) con datos en distintos formatos:</p>
+<ul>
+<li><p><code>data.frame</code>, <a href="https://tibble.tidyverse.org/"><code>tibble</code></a>.</p></li>
+<li><p><a href="https://rdatatable.gitlab.io/data.table"><code>data.table</code></a>: extensión (paquete <em>backend</em>) <a href="https://dtplyr.tidyverse.org"><code>dtplyr</code></a>.</p></li>
+<li><p>conjuntos de datos más grandes que la memoria disponible: extensiones <a href="https://duckdb.org/docs/api/r"><code>duckdb</code></a> y <a href="https://arrow.apache.org/docs/r/"><code>arrow</code></a> (incluyendo almacenamiento en la nube, e.g. <a href="https://aws.amazon.com/es/s3">AWS</a>).</p></li>
+<li><p>bases de datos relacionales (lenguaje SQL, locales o remotas); extensión <a href="https://dbplyr.tidyverse.org"><code>dbplyr</code></a>.</p></li>
+<li><p>grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema <a href="http://hadoop.apache.org/">Hadoop</a>/<a href="https://spark.apache.org/">Spark</a>): extensión <a href="https://spark.rstudio.com"><code>sparklyr</code></a>.</p></li>
+</ul>
+<p>El paquete dplyr permite sustituir operaciones con funciones base de R (como <a href="NA"><code>subset</code></a>, <a href="NA"><code>split</code></a>, <a href="NA"><code>apply</code></a>, <a href="NA"><code>sapply</code></a>, <a href="NA"><code>lapply</code></a>, <a href="NA"><code>tapply</code></a>, <a href="NA"><code>aggregate</code></a>…) por una “gramática” más sencilla para la manipulación de datos.
+En lugar de operar sobre vectores como la mayoría de las funciones base,
+opera sobre conjuntos de datos (de forma que es compatible con el operador <code>%&gt;%</code>).
+Los principales “verbos” (funciones) son:</p>
+<ul>
+<li><p><a href="https://dplyr.tidyverse.org/reference/select.html"><code>select()</code></a>: seleccionar variables (ver también <a href="https://dplyr.tidyverse.org/reference/rename.html"><code>rename</code></a>, <a href="https://dplyr.tidyverse.org/reference/rename.html"><code>relocate</code></a>, <a href="https://dplyr.tidyverse.org/reference/rename.html"><code>pull</code></a>).</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a>: crear variables (ver también <code>transmute()</code>).</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a>: seleccionar casos/filas (ver también <code>slice()</code>).</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a>: ordenar casos/filas.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>summarise()</code></a>: resumir valores.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/group_by.html"><code>group_by()</code></a>: permite operaciones por grupo empleando el concepto “dividir-aplicar-combinar” (<code>ungroup()</code> elimina el agrupamiento).</p></li>
+</ul>
+<p>NOTA: Para entender el funcionamiento de ciertas funciones (como <a href="https://dplyr.tidyverse.org/reference/rowwise.html"><code>rowwise()</code></a>) y las posibilidades en el manejo de datos, hay que tener en cuenta que un <code>data.frame</code> no es más que una lista cuyas componentes (variables) tienen la misma longitud.
+Realmente las componentes también pueden ser listas de la misma longitud y, por tanto, podemos almacenar casi cualquier estructura de datos en un <code>data.frame</code>.</p>
+<p>En la primera parte de este capítulo consideraremos solo <code>data.frame</code> por comodidad.
+Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero <em>empleados.RData</em> (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dplyr-pkg.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb49-2"><a href="dplyr-pkg.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># En R &lt; 4.2: load(&quot;datos/empleados.latin1.RData&quot;)</span></span>
+<span id="cb49-3"><a href="dplyr-pkg.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
+<span id="cb49-4"><a href="dplyr-pkg.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span>                  </span></code></pre></div>
+<p>En la Sección <a href="dbplyr.html#dbplyr">4.6</a> final emplearemos una base de datos relacional como ejemplo.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="organizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paquetes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dplyr-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -282,7 +274,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/11_dplyr_tidyr.Rmd",
 "text": "Edit"
 },
 "history": {

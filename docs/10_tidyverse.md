@@ -30,10 +30,10 @@ header-includes:
 bookdown::preview_chapter("01-Introduccion.Rmd")
 knitr::purl("01-Introduccion.Rmd", documentation = 2)
 knitr::spin("01-Introduccion.R", knit = FALSE)
--->
-
 
 ***En preparación...***
+-->
+
 
 En los capítulos de esta parte se pretende realizar una breve introducción al *ecosistema* [**Tidyverse**](https://dplyr.tidyverse.org), una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
 
@@ -62,6 +62,11 @@ y un conjunto de paquetes recomendados ([`feather`](https://github.com/wesm/feat
 - [`jsonlite`](https://github.com/jeroen/jsonlite): archivos JSON.
 - [`rvest`](https://github.com/tidyverse/rvest): web scraping.
 - [`xml2`](https://github.com/r-lib/xml2): archivos XML.
+
+
+```r
+library(tidyverse)
+```
 
 También hay paquetes "asociados":
 
@@ -96,9 +101,8 @@ En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añ
 El operador `%>%` (paquete [`magrittr`](https://magrittr.tidyverse.org)) permite canalizar la salida de una función a la entrada de otra. 
 Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
-Desde la versión 4.X de R `|>`, yo sigo prefiriendo `%>%`...
-
-Ejemplos:
+Desde la versión 4.1 de R está disponible un operador interno `|>` (aunque yo sigo prefiriendo `%>%`).
+Por ejemplo:
 
 
 ```r
@@ -107,11 +111,46 @@ Ejemplos:
 # discriminación por cuestión de sexo o raza.
 
 load("datos/empleados.RData")
+# NOTA: Cuidado con la codificación utf-8 (no declarada) en R < 4.2 
+# En versiones anteriores de R < 4.2: 
+# load("datos/empleados.latin1.RData")
+
 # Listamos las etiquetas
-# data.frame(Etiquetas = attr(empleados, "variable.labels"))
+knitr::kable(attr(empleados, "variable.labels"), col.names = "Etiqueta")
+```
+
+
+\begin{tabular}{l|l}
+\hline
+  & Etiqueta\\
+\hline
+id & Código de empleado\\
+\hline
+sexo & Sexo\\
+\hline
+fechnac & Fecha de nacimiento\\
+\hline
+educ & Nivel educativo  (años)\\
+\hline
+catlab & Categoría laboral\\
+\hline
+salario & Salario actual\\
+\hline
+salini & Salario inicial\\
+\hline
+tiempemp & Meses desde el contrato\\
+\hline
+expprev & Experiencia previa (meses)\\
+\hline
+minoria & Clasificación étnica\\
+\hline
+sexoraza & Clasificación por sexo y raza\\
+\hline
+\end{tabular}
+
+```r
 # Eliminamos las etiquetas para que no molesten...
 # attr(empleados, "variable.labels") <- NULL  
-# NOTA: Cuidado con la codificación latin1 (no declarada) en R >= 4.2 
 
 empleados |>  subset(catlab == "Directivo", catlab:sexoraza) |>  summary()
 ```
@@ -124,19 +163,24 @@ empleados |>  subset(catlab == "Directivo", catlab:sexoraza) |>  summary()
 ##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
 ##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
 ##                      Max.   :135000   Max.   :79980   Max.   :98.00  
-##     expprev        minoria   sexoraza                
-##  Min.   :  3.00   No   :80   Blanca var\xf3n    :70  
-##  1st Qu.: 19.75   S\xed: 4   Minor\xeda var\xf3n: 4  
-##  Median : 52.00              Blanca mujer       :10  
-##  Mean   : 77.62              Minor\xeda mujer   : 0  
-##  3rd Qu.:125.25                                      
+##     expprev       minoria          sexoraza 
+##  Min.   :  3.00   No:80   Blanca varón :70  
+##  1st Qu.: 19.75   Sí: 4   Blanca mujer : 4  
+##  Median : 52.00           Minoría varón:10  
+##  Mean   : 77.62           Minoría mujer: 0  
+##  3rd Qu.:125.25                             
 ##  Max.   :285.00
 ```
 
+Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
+Sin embargo, el operador `%>%` permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un `.`.
+Por ejemplo:
+
+
 ```r
 # ?"|>"
-# empleados |> subset(catlab != "Seguridad") |> droplevels() |> 
-#     boxplot(salario ~ sexo*catlab, data = .)
+# empleados |> subset(catlab != "Seguridad") |> droplevels |> 
+#     boxplot(salario ~ sexo*catlab, data = .) # ERROR
 
 library(magrittr)
 empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
@@ -145,7 +189,11 @@ empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
 
 
 
-\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-1-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+
+
+
 
 
 

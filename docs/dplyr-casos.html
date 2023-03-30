@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 El lenguaje R | Notas de Programación en R</title>
+  <title>4.3 Operaciones con casos (filas) | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta property="og:title" content="4.3 Operaciones con casos (filas) | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta name="twitter:title" content="4.3 Operaciones con casos (filas) | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="organizacion.html"/>
-<link rel="next" href="paquetes.html"/>
+<link rel="prev" href="dplyr-variables.html"/>
+<link rel="next" href="herramientas-tidyr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -204,54 +204,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> El lenguaje R<a href="r.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<!-- 
----
-title: "El lenguaje R"
-author: "Notas de Programación en R"
-date: "Rubén Fernández-Casal (rubenfcasal@gmail.com)"
-output:
-  bookdown::html_document2:
-    toc: yes
-    # toc_float: yes
-    # mathjax: local            # copia local de MathJax, hay que establecer:
-    # self_contained: false     # las dependencias se guardan en ficheros externos
-    pandoc_args: ["--number-offset", "1,0"]
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    # keep_tex: yes
-    toc: yes 
-    pandoc_args: ["--number-offset", "1,0"]
-header-includes:
-- \usepackage[spanish]{babel}
-- \setcounter{section}{1} 
----
-
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
--->
-<p>Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (<em>useR</em>).
-Sin embargo, para desarrollar nuevas herramientas de forma efectiva (<em>programeR</em>) es necesario tener una idea del funcionamiento interno de R.
-La referencia recomendada para usuarios de R que deseen mejorar sus conocimientos de programación y comprensión del lenguaje es:</p>
-<p>Wickham, Hadley (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición</a>.</p>
-<p>También puede ser de utilidad el manual <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R Language Definition</a>
-para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Los manuales oficiales también están disponibles en formato bookdown en este <a href="https://colinfay.me/r-manuals">post</a>.<a href="r.html#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="dplyr-casos" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Operaciones con casos (filas)<a href="dplyr-casos.html#dplyr-casos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Podemos <strong>seleccionar casos con <a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></strong>:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="dplyr-casos.html#cb62-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">&quot;Mujer&quot;</span>, minoria <span class="sc">==</span> <span class="st">&quot;Sí&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   id  sexo minoria tiempemp salini salario
+## 1 14 Mujer      Sí       98  16800   35100
+## 2 23 Mujer      Sí       97  11100   24000
+## 3 24 Mujer      Sí       97   9000   16950
+## 4 25 Mujer      Sí       97   9000   21150
+## 5 40 Mujer      Sí       96   9000   19200
+## 6 41 Mujer      Sí       96  11550   23550</code></pre>
+<p>Podemos <strong>reordenar casos con <a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></strong>:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="dplyr-casos.html#cb64-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##    id  sexo minoria tiempemp salini salario
+## 1 378 Mujer      No       70  10200   15750
+## 2 338 Mujer      No       74  10200   15900
+## 3  90 Mujer      No       92   9750   16200
+## 4 224 Mujer      No       82  10200   16200
+## 5 411 Mujer      No       68  10200   16200
+## 6 448 Mujer      Sí       66  10200   16350</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="dplyr-casos.html#cb66-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(salini), salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##    id   sexo minoria tiempemp salini salario
+## 1  29 Hombre      No       96  79980  135000
+## 2 343 Hombre      No       73  60000  103500
+## 3 205 Hombre      No       83  52500   66750
+## 4 160 Hombre      No       86  47490   66000
+## 5 431 Hombre      No       66  45000   86250
+## 6  32 Hombre      No       96  45000  110625</code></pre>
+<p>Podemos <strong>resumir valores con <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>summarise()</code></a></strong>:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="dplyr-casos.html#cb68-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>##    sal.med   n
+## 1 34419.57 474</code></pre>
+<p>Para realizar <strong>operaciones con múltiples variables podemos emplear <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a></strong> (admite selección de variables <a href="https://tidyselect.r-lib.org"><code>tidyselect</code></a>):</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="dplyr-casos.html#cb70-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>##      id     educ  salario   salini tiempemp  expprev   n
+## 1 237.5 13.49156 34419.57 17016.09  81.1097 95.86076 474</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="dplyr-casos.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados %&gt;% summarise(across(where(is.numeric) &amp; !id, mean), n = n())</span></span>
+<span id="cb72-2"><a href="dplyr-casos.html#cb72-2" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">if_any</span>(is.numeric, mean), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>##   if_any(is.numeric, mean)   n
+## 1                     TRUE 474</code></pre>
+<p>NOTA: Esta función sustituye a las “variantes de ámbito” <code>_at()</code>, <code>_if()</code> y <code>_all()</code> de versiones anteriores de dplyr (como <code>summarise_at()</code>, <code>summarise_if()</code>, <code>summarise_all()</code>, <code>mutate_at()</code>, <code>mutate_if()</code>…) y también el uso de <code>vars()</code>.
+En el caso de <code>filter()</code> se puede emplear <a href="https://dplyr.tidyverse.org/reference/across.html"><code>if_any()</code></a> e <a href="https://dplyr.tidyverse.org/reference/across.html"><code>if_all()</code></a>.</p>
+<p>Podemos <strong>agrupar casos con <a href="https://dplyr.tidyverse.org/reference/group_by.html"><code>group_by()</code></a></strong>:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="dplyr-casos.html#cb74-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sexo, minoria) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="dplyr-casos.html#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="dplyr-casos.html#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   sexo   minoria sal.med     n
+##   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="dplyr-casos.html#cb76-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sexo, minoria) <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="dplyr-casos.html#cb76-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   sexo   minoria sal.med     n
+##   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="dplyr-casos.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr &gt;= 1.1.0 # packageVersion(&quot;dplyr&quot;)</span></span>
+<span id="cb78-2"><a href="dplyr-casos.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados %&gt;% summarise(sal.med = mean(salario), n = n(), </span></span>
+<span id="cb78-3"><a href="dplyr-casos.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                         .by = c(sexo, minoria))</span></span></code></pre></div>
+<p>Por defecto la agrupación se mantiene para el resto de operaciones, habría que emplear <code>ungroup()</code> (o el argumento <code>.groups = "drop"</code>) para eliminarla (se puede emplear <code>group_vars()</code> o <code>str()</code> para ver la agrupación).
+Desde dplyr 1.1.0 (2023-01-29) está disponible un parámetro <code>.by/by</code> en <code>mutate()</code>, <code>summarise()</code>, <code>filter()</code> y <code>slice()</code> como alternativa a agrupar y desagrupar posteriormente.
+Para más detalles ver <a href="https://dplyr.tidyverse.org/reference/dplyr_by.html">Per-operation grouping with .by/by</a>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="organizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paquetes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dplyr-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="herramientas-tidyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -282,7 +310,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/11_dplyr_tidyr.Rmd",
 "text": "Edit"
 },
 "history": {

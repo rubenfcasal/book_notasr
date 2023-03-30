@@ -178,7 +178,7 @@
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
-\date{Edición: Marzo de 2023. Impresión: 2023-03-29}
+\date{Edición: Marzo de 2023. Impresión: 2023-03-30}
 
 \begin{document}
 \maketitle
@@ -514,7 +514,7 @@ Podemos acceder a la lista de paquetes instalados:
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 \end{verbatim}
 
-Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-29, están disponibles 19325 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
+Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-30, están disponibles 19331 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -562,10 +562,13 @@ Al iniciar el programa \texttt{R} se cargan por defecto en memoria los principal
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] ".GlobalEnv"        "package:magrittr"  "package:stats"    
-##  [4] "package:graphics"  "package:grDevices" "package:utils"    
-##  [7] "package:datasets"  "package:methods"   "Autoloads"        
-## [10] "package:base"
+##  [1] ".GlobalEnv"        "package:dbplyr"    "package:forcats"  
+##  [4] "package:stringr"   "package:dplyr"     "package:purrr"    
+##  [7] "package:readr"     "package:tidyr"     "package:tibble"   
+## [10] "package:ggplot2"   "package:tidyverse" "package:magrittr" 
+## [13] "package:stats"     "package:graphics"  "package:grDevices"
+## [16] "package:utils"     "package:datasets"  "package:methods"  
+## [19] "Autoloads"         "package:base"
 \end{verbatim}
 
 Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado \textbf{\emph{namespace}} del paquete.
@@ -781,7 +784,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000002a7cc083368>
+## <bytecode: 0x000001d98ee953d8>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -795,16 +798,18 @@ Por ejemplo:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] plot.acf*           plot.data.frame*    plot.decomposed.ts*
-##  [4] plot.default        plot.dendrogram*    plot.density*      
-##  [7] plot.ecdf           plot.factor*        plot.formula*      
-## [10] plot.function       plot.hclust*        plot.histogram*    
-## [13] plot.HoltWinters*   plot.isoreg*        plot.lm*           
-## [16] plot.medpolish*     plot.mlm*           plot.ppr*          
-## [19] plot.prcomp*        plot.princomp*      plot.profile.nls*  
-## [22] plot.raster*        plot.spec*          plot.stepfun       
-## [25] plot.stl*           plot.table*         plot.ts            
-## [28] plot.tskernel*      plot.TukeyHSD*     
+##  [1] plot,ANY-method     plot,color-method   plot.acf*          
+##  [4] plot.data.frame*    plot.decomposed.ts* plot.default       
+##  [7] plot.dendrogram*    plot.density*       plot.ecdf          
+## [10] plot.factor*        plot.formula*       plot.function      
+## [13] plot.ggplot*        plot.gtable*        plot.hcl_palettes* 
+## [16] plot.hclust*        plot.histogram*     plot.HoltWinters*  
+## [19] plot.isoreg*        plot.lm*            plot.medpolish*    
+## [22] plot.mlm*           plot.ppr*           plot.prcomp*       
+## [25] plot.princomp*      plot.profile.nls*   plot.R6*           
+## [28] plot.raster*        plot.spec*          plot.stepfun       
+## [31] plot.stl*           plot.table*         plot.trans*        
+## [34] plot.ts             plot.tskernel*      plot.TukeyHSD*     
 ## see '?methods' for accessing help and source code
 \end{verbatim}
 
@@ -824,11 +829,11 @@ Por ejemplo:
 ##  [1] add1           alias          anova          case.names     coerce        
 ##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
 ## [11] drop1          dummy.coef     effects        extractAIC     family        
-## [16] formula        hatvalues      influence      initialize     kappa         
-## [21] labels         logLik         model.frame    model.matrix   nobs          
-## [26] plot           predict        print          proj           qr            
-## [31] residuals      rstandard      rstudent       show           simulate      
-## [36] slotsFromS3    summary        variable.names vcov          
+## [16] formula        fortify        hatvalues      influence      initialize    
+## [21] kappa          labels         logLik         model.frame    model.matrix  
+## [26] nobs           plot           predict        print          proj          
+## [31] qr             residuals      rstandard      rstudent       show          
+## [36] simulate       slotsFromS3    summary        variable.names vcov          
 ## see '?methods' for accessing help and source code
 \end{verbatim}
 
@@ -837,11 +842,11 @@ Para una programación orientada a objetos más formal la recomendación es empl
 \hypertarget{desarrollo}{%
 \section{Desarrollo de funciones y paquetes}\label{desarrollo}}
 
-Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si ya está implementado (o hay algo que podemos tomar como base, es lo bueno de GNU!): en la descripción de los paquetes en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, en los buscadores especializados (\href{https://rdrr.io/}{rdrr.io}, \href{https://www.rdocumentation.org/}{RDocumentation} o \href{http://rseek.org/}{RSeek}), en foros de programación (\href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}, \href{https://es.stackoverflow.com/questions/tagged/r}{es.StackOverflow}, \href{https://stats.stackexchange.com}{Cross Validated}), en listas de correo (\href{https://stat.ethz.ch/mailman/listinfo}{r-project.org}, \href{https://r-help-es.r-project.narkive.com}{r-help-es}) o directamente en \href{https://www.google.com/search?q=r-project}{Google} (añadiendo \emph{r-project} o similar en la búsqueda)).
+Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si resulta que ya está implementado (o hay algo que podemos tomar como base; es lo bueno de GNU!): en la descripción de los paquetes en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, en los buscadores especializados (\href{https://rdrr.io/}{rdrr.io}, \href{https://www.rdocumentation.org/}{RDocumentation} o \href{http://rseek.org/}{RSeek}), en foros de programación (\href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}, \href{https://es.stackoverflow.com/questions/tagged/r}{StackOverflow.es}, \href{https://stats.stackexchange.com}{Cross Validated}), en listas de correo (\href{https://stat.ethz.ch/mailman/listinfo}{r-project.org}, \href{https://r-help-es.r-project.narkive.com}{r-help-es}) o directamente en \href{https://www.google.com/search?q=r-project}{Google} (añadiendo ``r-project'' o similar en la búsqueda).
 
 El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
 
-La recomendación es documentar todas las funciones que se crean y preferiblemente empleando el formato \href{https://roxygen2.r-lib.org}{\texttt{roxygen2}}.
+Al finalizar, la recomendación es \textbf{documentar la función}, preferiblemente empleando el formato \href{https://roxygen2.r-lib.org}{\texttt{roxygen2}}.
 Por ejemplo:
 
 \begin{Shaded}
@@ -870,7 +875,6 @@ Por ejemplo:
 \CommentTok{\#   {-} Controlar posible error al leer}
 \CommentTok{\# ·············································}
 \NormalTok{read\_excel\_list }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{path =} \StringTok{"."}\NormalTok{, }\AttributeTok{pattern =} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(xls|xlsx)$"}\NormalTok{, ...) \{}
-  
   \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(readxl))  }\FunctionTok{stop}\NormalTok{(}\StringTok{"\textquotesingle{}readxl\textquotesingle{} package required"}\NormalTok{)}
 \NormalTok{  files }\OtherTok{\textless{}{-}} \FunctionTok{dir}\NormalTok{(path, }\AttributeTok{pattern =}\NormalTok{ pattern, }\AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# ?list.files}
 \NormalTok{  data\_list }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\FunctionTok{length}\NormalTok{(files), }\AttributeTok{mode =} \StringTok{\textquotesingle{}list\textquotesingle{}}\NormalTok{)}
@@ -883,7 +887,7 @@ Por ejemplo:
 \end{Highlighting}
 \end{Shaded}
 
-En muchas ocasiones se emplea como punto de partida una función ya implementada en algún paquete de R.
+Como ya se comentó, en ocasiones se emplea como punto de partida una función ya implementada en algún paquete de R.
 En RStudio la forma más sencilla de obtener el código de la función es emplear \texttt{View(funcion)} (si la función es visible, en caso contrario \texttt{View(paquete:::funcion)}).
 Si la función llama a funciones internas (que no se exportan en el namespace) del paquete que la implementa, podríamos emplear también los tres dobles puntos para llamarlas, pero la recomendación sería descargar el código del paquete (si está en CRAN, un fichero comprimido de la forma \texttt{paquete\_x.y.z.tar.gz} que se puede descargar en la sección \emph{Downloads} de la web del paquete \emph{\url{https://CRAN.R-project.org/package=paquete}}).
 
@@ -899,8 +903,6 @@ También puede ser de utilidad el manual \href{http://colinfay.me/writing-r-exte
 
 \hypertarget{tidyverse}{%
 \chapter{El ecosistema tidyverse}\label{tidyverse}}
-
-\textbf{\emph{En preparación\ldots{}}}
 
 En los capítulos de esta parte se pretende realizar una breve introducción al \emph{ecosistema} \href{https://dplyr.tidyverse.org}{\textbf{Tidyverse}}, una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
 
@@ -951,6 +953,12 @@ y un conjunto de paquetes recomendados (\href{https://github.com/wesm/feather}{\
   \href{https://github.com/r-lib/xml2}{\texttt{xml2}}: archivos XML.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
 También hay paquetes ``asociados'':
 
 \begin{itemize}
@@ -988,9 +996,8 @@ En \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} se emplea el operador 
 El operador \texttt{\%\textgreater{}\%} (paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra.
 Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
-Desde la versión 4.X de R \texttt{\textbar{}\textgreater{}}, yo sigo prefiriendo \texttt{\%\textgreater{}\%}\ldots{}
-
-Ejemplos:
+Desde la versión 4.1 de R está disponible un operador interno \texttt{\textbar{}\textgreater{}} (aunque yo sigo prefiriendo \texttt{\%\textgreater{}\%}).
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -999,11 +1006,47 @@ Ejemplos:
 \CommentTok{\# discriminación por cuestión de sexo o raza.}
 
 \FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
+\CommentTok{\# NOTA: Cuidado con la codificación utf{-}8 (no declarada) en R \textless{} 4.2 }
+\CommentTok{\# En versiones anteriores de R \textless{} 4.2: }
+\CommentTok{\# load("datos/empleados.latin1.RData")}
+
 \CommentTok{\# Listamos las etiquetas}
-\CommentTok{\# data.frame(Etiquetas = attr(empleados, "variable.labels"))}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{), }\AttributeTok{col.names =} \StringTok{"Etiqueta"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l}
+\hline
+  & Etiqueta\\
+\hline
+id & Código de empleado\\
+\hline
+sexo & Sexo\\
+\hline
+fechnac & Fecha de nacimiento\\
+\hline
+educ & Nivel educativo  (años)\\
+\hline
+catlab & Categoría laboral\\
+\hline
+salario & Salario actual\\
+\hline
+salini & Salario inicial\\
+\hline
+tiempemp & Meses desde el contrato\\
+\hline
+expprev & Experiencia previa (meses)\\
+\hline
+minoria & Clasificación étnica\\
+\hline
+sexoraza & Clasificación por sexo y raza\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
 \CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
-\CommentTok{\# NOTA: Cuidado con la codificación latin1 (no declarada) en R \textgreater{}= 4.2 }
 
 \NormalTok{empleados }\SpecialCharTok{|\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
@@ -1017,20 +1060,24 @@ Ejemplos:
 ##                      Mean   : 63978   Mean   :30258   Mean   :81.15  
 ##                      3rd Qu.: 71281   3rd Qu.:34058   3rd Qu.:91.00  
 ##                      Max.   :135000   Max.   :79980   Max.   :98.00  
-##     expprev        minoria   sexoraza                
-##  Min.   :  3.00   No   :80   Blanca var\xf3n    :70  
-##  1st Qu.: 19.75   S\xed: 4   Minor\xeda var\xf3n: 4  
-##  Median : 52.00              Blanca mujer       :10  
-##  Mean   : 77.62              Minor\xeda mujer   : 0  
-##  3rd Qu.:125.25                                      
+##     expprev       minoria          sexoraza 
+##  Min.   :  3.00   No:80   Blanca varón :70  
+##  1st Qu.: 19.75   Sí: 4   Blanca mujer : 4  
+##  Median : 52.00           Minoría varón:10  
+##  Mean   : 77.62           Minoría mujer: 0  
+##  3rd Qu.:125.25                             
 ##  Max.   :285.00
 \end{verbatim}
+
+Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
+Sin embargo, el operador \texttt{\%\textgreater{}\%} permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un \texttt{.}.
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# ?"|\textgreater{}"}
-\CommentTok{\# empleados |\textgreater{} subset(catlab != "Seguridad") |\textgreater{} droplevels() |\textgreater{} }
-\CommentTok{\#     boxplot(salario \textasciitilde{} sexo*catlab, data = .)}
+\CommentTok{\# empleados |\textgreater{} subset(catlab != "Seguridad") |\textgreater{} droplevels |\textgreater{} }
+\CommentTok{\#     boxplot(salario \textasciitilde{} sexo*catlab, data = .) \# ERROR}
 
 \FunctionTok{library}\NormalTok{(magrittr)}
 \NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{!=} \StringTok{"Seguridad"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{droplevels}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
@@ -1038,7 +1085,730 @@ Ejemplos:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-1-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+\hypertarget{dplyr}{%
+\chapter{Manipulación de datos con dplyr y tidyr}\label{dplyr}}
+
+En este capítulo se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}} y se comentan algunas de las utilidades del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de interés\footnote{Otra alternativa (más rápida) es \href{https://rdatatable.gitlab.io/data.table}{\texttt{data.table}} pero en versiones recientes ya se puede emplear desde \texttt{dplyr}, como se comenta más adelante.}.
+
+La referencia recomendada para iniciarse en esta herramienta es el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data transformation} de
+\href{http://r4ds.had.co.nz}{R for Data Science}.
+También puede resultar de utilidad la viñeta del paquete \href{https://dplyr.tidyverse.org/articles/dplyr.html}{Introduction to dplyr} o la \href{https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf}{chuleta}.
+
+\hypertarget{dplyr-pkg}{%
+\section{El paquete dplyr}\label{dplyr-pkg}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+La principal ventaja de \href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}} es que permite trabajar (de la misma forma) con datos en distintos formatos:
+
+\begin{itemize}
+\item
+  \texttt{data.frame}, \href{https://tibble.tidyverse.org/}{\texttt{tibble}}.
+\item
+  \href{https://rdatatable.gitlab.io/data.table}{\texttt{data.table}}: extensión (paquete \emph{backend}) \href{https://dtplyr.tidyverse.org}{\texttt{dtplyr}}.
+\item
+  conjuntos de datos más grandes que la memoria disponible: extensiones \href{https://duckdb.org/docs/api/r}{\texttt{duckdb}} y \href{https://arrow.apache.org/docs/r/}{\texttt{arrow}} (incluyendo almacenamiento en la nube, e.g.~\href{https://aws.amazon.com/es/s3}{AWS}).
+\item
+  bases de datos relacionales (lenguaje SQL, locales o remotas); extensión \href{https://dbplyr.tidyverse.org}{\texttt{dbplyr}}.
+\item
+  grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema \href{http://hadoop.apache.org/}{Hadoop}/\href{https://spark.apache.org/}{Spark}): extensión \href{https://spark.rstudio.com}{\texttt{sparklyr}}.
+\end{itemize}
+
+El paquete dplyr permite sustituir operaciones con funciones base de R (como \href{NA}{\texttt{subset}}, \href{NA}{\texttt{split}}, \href{NA}{\texttt{apply}}, \href{NA}{\texttt{sapply}}, \href{NA}{\texttt{lapply}}, \href{NA}{\texttt{tapply}}, \href{NA}{\texttt{aggregate}}\ldots) por una ``gramática'' más sencilla para la manipulación de datos.
+En lugar de operar sobre vectores como la mayoría de las funciones base,
+opera sobre conjuntos de datos (de forma que es compatible con el operador \texttt{\%\textgreater{}\%}).
+Los principales ``verbos'' (funciones) son:
+
+\begin{itemize}
+\item
+  \href{https://dplyr.tidyverse.org/reference/select.html}{\texttt{select()}}: seleccionar variables (ver también \href{https://dplyr.tidyverse.org/reference/rename.html}{\texttt{rename}}, \href{https://dplyr.tidyverse.org/reference/rename.html}{\texttt{relocate}}, \href{https://dplyr.tidyverse.org/reference/rename.html}{\texttt{pull}}).
+\item
+  \href{https://dplyr.tidyverse.org/reference/mutate.html}{\texttt{mutate()}}: crear variables (ver también \texttt{transmute()}).
+\item
+  \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{filter()}}: seleccionar casos/filas (ver también \texttt{slice()}).
+\item
+  \href{https://dplyr.tidyverse.org/reference/arrange.html}{\texttt{arrange()}}: ordenar casos/filas.
+\item
+  \href{https://dplyr.tidyverse.org/reference/summarise.html}{\texttt{summarise()}}: resumir valores.
+\item
+  \href{https://dplyr.tidyverse.org/reference/group_by.html}{\texttt{group\_by()}}: permite operaciones por grupo empleando el concepto ``dividir-aplicar-combinar'' (\texttt{ungroup()} elimina el agrupamiento).
+\end{itemize}
+
+NOTA: Para entender el funcionamiento de ciertas funciones (como \href{https://dplyr.tidyverse.org/reference/rowwise.html}{\texttt{rowwise()}}) y las posibilidades en el manejo de datos, hay que tener en cuenta que un \texttt{data.frame} no es más que una lista cuyas componentes (variables) tienen la misma longitud.
+Realmente las componentes también pueden ser listas de la misma longitud y, por tanto, podemos almacenar casi cualquier estructura de datos en un \texttt{data.frame}.
+
+En la primera parte de este capítulo consideraremos solo \texttt{data.frame} por comodidad.
+Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero \emph{empleados.RData} (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
+\CommentTok{\# En R \textless{} 4.2: load("datos/empleados.latin1.RData")}
+\CommentTok{\# Eliminamos las etiquetas para que no molesten...}
+\FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}} \ConstantTok{NULL}                  
+\end{Highlighting}
+\end{Shaded}
+
+En la Sección \ref{dbplyr} final emplearemos una base de datos relacional como ejemplo.
+
+\hypertarget{dplyr-variables}{%
+\section{Operaciones con variables (columnas)}\label{dplyr-variables}}
+
+Podemos \textbf{seleccionar variables con \href{https://dplyr.tidyverse.org/reference/select.html}{\texttt{select()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 }\OtherTok{\textless{}{-}}\NormalTok{ empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(id, sexo, minoria, tiempemp, salini, salario)}
+\FunctionTok{head}\NormalTok{(emplea2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id   sexo minoria tiempemp salini salario
+## 1  1 Hombre      No       98  27000   57000
+## 2  2 Hombre      No       98  18750   40200
+## 3  3  Mujer      No       98  12000   21450
+## 4  4  Mujer      No       98  13200   21900
+## 5  5 Hombre      No       98  21000   45000
+## 6  6 Hombre      No       98  13500   32100
+\end{verbatim}
+
+Se puede cambiar el nombre (ver también \href{https://dplyr.tidyverse.org/reference/rename.html}{\texttt{rename()}}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sexo, }\AttributeTok{noblanca =}\NormalTok{ minoria, salario) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo noblanca salario
+## 1 Hombre       No   57000
+## 2 Hombre       No   40200
+## 3  Mujer       No   21450
+## 4  Mujer       No   21900
+## 5 Hombre       No   45000
+## 6 Hombre       No   32100
+\end{verbatim}
+
+Se pueden emplear los nombres de variables como índices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(sexo}\SpecialCharTok{:}\NormalTok{salario) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo    fechnac educ         catlab salario
+## 1 Hombre 1952-02-03   15      Directivo   57000
+## 2 Hombre 1958-05-23   16 Administrativo   40200
+## 3  Mujer 1929-07-26   12 Administrativo   21450
+## 4  Mujer 1947-04-15    8 Administrativo   21900
+## 5 Hombre 1955-02-09   15 Administrativo   45000
+## 6 Hombre 1958-08-22   15 Administrativo   32100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# empleados \%\textgreater{}\% select({-}(sexo:salario)) \%\textgreater{}\% head()}
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(sexo}\SpecialCharTok{:}\NormalTok{salario)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id salini tiempemp expprev minoria      sexoraza
+## 1  1  27000       98     144      No  Blanca varón
+## 2  2  18750       98      36      No  Blanca varón
+## 3  3  12000       98     381      No Minoría varón
+## 4  4  13200       98     190      No Minoría varón
+## 5  5  21000       98     138      No  Blanca varón
+## 6  6  13500       98      67      No  Blanca varón
+\end{verbatim}
+
+Se pueden emplear distintas herramientas (\emph{\href{https://tidyselect.r-lib.org/reference/language.html}{selection helpers}}) para seleccionar variables (ver paquete \href{https://tidyselect.r-lib.org}{\texttt{tidyselect}}):
+
+\begin{itemize}
+\item
+  \href{https://tidyselect.r-lib.org/reference/starts_with.html}{\texttt{starts\_with}}, \href{https://tidyselect.r-lib.org/reference/starts_with.html}{\texttt{ends\_with}}, \href{https://tidyselect.r-lib.org/reference/starts_with.html}{\texttt{contains}}, \href{https://tidyselect.r-lib.org/reference/starts_with.html}{\texttt{matches}}, \href{https://tidyselect.r-lib.org/reference/starts_with.html}{\texttt{num\_range}}: variables que coincidan con un patrón.
+\item
+  \href{https://tidyselect.r-lib.org/reference/all_of.html}{\texttt{all\_of}}, \href{https://tidyselect.r-lib.org/reference/all_of.html}{\texttt{any\_of}}: variables de un vectores de caracteres.
+\item
+  \href{https://tidyselect.r-lib.org/reference/everything.html}{\texttt{everything}}, \href{https://tidyselect.r-lib.org/reference/everything.html}{\texttt{last\_col}}: todas las variables o la última variable.
+\item
+  \href{https://tidyselect.r-lib.org/reference/where.html}{\texttt{where()}}: a partir de una función (e.g.~\texttt{where(is.numeric)})
+\end{itemize}
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"s"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     sexo salario salini      sexoraza
+## 1 Hombre   57000  27000  Blanca varón
+## 2 Hombre   40200  18750  Blanca varón
+## 3  Mujer   21450  12000 Minoría varón
+## 4  Mujer   21900  13200 Minoría varón
+## 5 Hombre   45000  21000  Blanca varón
+## 6 Hombre   32100  13500  Blanca varón
+\end{verbatim}
+
+Podemos \textbf{crear variables con \href{https://dplyr.tidyverse.org/reference/mutate.html}{\texttt{mutate()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{incsal =}\NormalTok{ salario }\SpecialCharTok{{-}}\NormalTok{ salini, }\AttributeTok{tsal =}\NormalTok{ incsal}\SpecialCharTok{/}\NormalTok{tiempemp) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id   sexo minoria tiempemp salini salario incsal      tsal
+## 1  1 Hombre      No       98  27000   57000  30000 306.12245
+## 2  2 Hombre      No       98  18750   40200  21450 218.87755
+## 3  3  Mujer      No       98  12000   21450   9450  96.42857
+## 4  4  Mujer      No       98  13200   21900   8700  88.77551
+## 5  5 Hombre      No       98  21000   45000  24000 244.89796
+## 6  6 Hombre      No       98  13500   32100  18600 189.79592
+\end{verbatim}
+
+\hypertarget{dplyr-casos}{%
+\section{Operaciones con casos (filas)}\label{dplyr-casos}}
+
+Podemos \textbf{seleccionar casos con \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{filter()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(sexo }\SpecialCharTok{==} \StringTok{"Mujer"}\NormalTok{, minoria }\SpecialCharTok{==} \StringTok{"Sí"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id  sexo minoria tiempemp salini salario
+## 1 14 Mujer      Sí       98  16800   35100
+## 2 23 Mujer      Sí       97  11100   24000
+## 3 24 Mujer      Sí       97   9000   16950
+## 4 25 Mujer      Sí       97   9000   21150
+## 5 40 Mujer      Sí       96   9000   19200
+## 6 41 Mujer      Sí       96  11550   23550
+\end{verbatim}
+
+Podemos \textbf{reordenar casos con \href{https://dplyr.tidyverse.org/reference/arrange.html}{\texttt{arrange()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(salario) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id  sexo minoria tiempemp salini salario
+## 1 378 Mujer      No       70  10200   15750
+## 2 338 Mujer      No       74  10200   15900
+## 3  90 Mujer      No       92   9750   16200
+## 4 224 Mujer      No       82  10200   16200
+## 5 411 Mujer      No       68  10200   16200
+## 6 448 Mujer      Sí       66  10200   16350
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{emplea2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(salini), salario) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id   sexo minoria tiempemp salini salario
+## 1  29 Hombre      No       96  79980  135000
+## 2 343 Hombre      No       73  60000  103500
+## 3 205 Hombre      No       83  52500   66750
+## 4 160 Hombre      No       86  47490   66000
+## 5 431 Hombre      No       66  45000   86250
+## 6  32 Hombre      No       96  45000  110625
+\end{verbatim}
+
+Podemos \textbf{resumir valores con \href{https://dplyr.tidyverse.org/reference/summarise.html}{\texttt{summarise()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sal.med =} \FunctionTok{mean}\NormalTok{(salario), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    sal.med   n
+## 1 34419.57 474
+\end{verbatim}
+
+Para realizar \textbf{operaciones con múltiples variables podemos emplear \href{https://dplyr.tidyverse.org/reference/across.html}{\texttt{across()}}} (admite selección de variables \href{https://tidyselect.r-lib.org}{\texttt{tidyselect}}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric), mean), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id     educ  salario   salini tiempemp  expprev   n
+## 1 237.5 13.49156 34419.57 17016.09  81.1097 95.86076 474
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# empleados \%\textgreater{}\% summarise(across(where(is.numeric) \& !id, mean), n = n())}
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\FunctionTok{if\_any}\NormalTok{(is.numeric, mean), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   if_any(is.numeric, mean)   n
+## 1                     TRUE 474
+\end{verbatim}
+
+NOTA: Esta función sustituye a las ``variantes de ámbito'' \texttt{\_at()}, \texttt{\_if()} y \texttt{\_all()} de versiones anteriores de dplyr (como \texttt{summarise\_at()}, \texttt{summarise\_if()}, \texttt{summarise\_all()}, \texttt{mutate\_at()}, \texttt{mutate\_if()}\ldots) y también el uso de \texttt{vars()}.
+En el caso de \texttt{filter()} se puede emplear \href{https://dplyr.tidyverse.org/reference/across.html}{\texttt{if\_any()}} e \href{https://dplyr.tidyverse.org/reference/across.html}{\texttt{if\_all()}}.
+
+Podemos \textbf{agrupar casos con \href{https://dplyr.tidyverse.org/reference/group_by.html}{\texttt{group\_by()}}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(sexo, minoria) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sal.med =} \FunctionTok{mean}\NormalTok{(salario), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   sexo   minoria sal.med     n
+##   <fct>  <fct>     <dbl> <int>
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(sexo, minoria) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sal.med =} \FunctionTok{mean}\NormalTok{(salario), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{.groups =} \StringTok{"drop"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   sexo   minoria sal.med     n
+##   <fct>  <fct>     <dbl> <int>
+## 1 Hombre No       44475.   194
+## 2 Hombre Sí       32246.    64
+## 3 Mujer  No       26707.   176
+## 4 Mujer  Sí       23062.    40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dplyr \textgreater{}= 1.1.0 \# packageVersion("dplyr")}
+\CommentTok{\# empleados \%\textgreater{}\% summarise(sal.med = mean(salario), n = n(), }
+\CommentTok{\#                         .by = c(sexo, minoria))}
+\end{Highlighting}
+\end{Shaded}
+
+Por defecto la agrupación se mantiene para el resto de operaciones, habría que emplear \texttt{ungroup()} (o el argumento \texttt{.groups\ =\ "drop"}) para eliminarla (se puede emplear \texttt{group\_vars()} o \texttt{str()} para ver la agrupación).
+Desde dplyr 1.1.0 (2023-01-29) está disponible un parámetro \texttt{.by/by} en \texttt{mutate()}, \texttt{summarise()}, \texttt{filter()} y \texttt{slice()} como alternativa a agrupar y desagrupar posteriormente.
+Para más detalles ver \href{https://dplyr.tidyverse.org/reference/dplyr_by.html}{Per-operation grouping with .by/by}.
+
+\hypertarget{herramientas-tidyr}{%
+\section{Herramientas tidyr}\label{herramientas-tidyr}}
+
+Algunas funciones del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de especial interés son:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://tidyr.tidyverse.org/reference/pivot_wider.html}{\texttt{pivot\_wider()}}: permite transformar valores de grupos de casos a nuevas variables.
+\item
+  \href{https://tidyr.tidyverse.org/reference/pivot_longer.html}{\texttt{pivot\_longer()}}: realiza la transformación inversa, colapsar varias columnas en una.
+\end{itemize}
+
+Ver la viñeta \href{https://tidyr.tidyverse.org/articles/pivot.html}{Pivoting} para más detalles.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://tidyr.tidyverse.org/reference/separate.html}{\texttt{separate()}}: permite separar una columna de texto en varias (ver también \href{https://tidyr.tidyverse.org/reference/extract.html}{\texttt{extract()}}).
+\end{itemize}
+
+Ver \href{ejemplos/mortalidad/mortalidad.R}{mortalidad.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
+
+\hypertarget{dplyr-join}{%
+\section{Operaciones con tablas de datos}\label{dplyr-join}}
+
+Se emplean funciones \texttt{xxx\_join()} (ver la documentación del paquete
+\href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls together},
+o la vignette \href{https://dplyr.tidyverse.org/articles/two-table.html}{Two-table verbs}):
+
+\begin{itemize}
+\item
+  \texttt{inner\_join()}: devuelve las filas de \texttt{x} que tienen valores coincidentes en \texttt{y},
+  y todas las columnas de \texttt{x} e \texttt{y}. Si hay varias coincidencias entre \texttt{x} e \texttt{y},
+  se devuelven todas las combinaciones.
+\item
+  \texttt{left\_join()}: devuelve todas las filas de \texttt{x} y todas las columnas de \texttt{x} e \texttt{y}.
+  Las filas de \texttt{x} sin correspondencia en \texttt{y} contendrán \texttt{NA} en las nuevas columnas.
+  Si hay varias coincidencias entre \texttt{x} e \texttt{y}, se devuelven todas las combinaciones
+  (duplicando las filas).
+
+  \texttt{right\_join()} hace lo contrario, devuelve todas las filas de \texttt{y}.
+
+  \texttt{full\_join()} devuelve todas las filas de \texttt{x} e \texttt{y} (duplicando o asignando \texttt{NA} si es necesario).
+\item
+  \texttt{semi\_join()}: devuelve las filas de \texttt{x} que tienen valores coincidentes en \texttt{y},
+  manteniendo sólo las columnas de \texttt{x} (al contrario que \texttt{inner\_join()} no duplica filas).
+
+  \texttt{anti\_join()} hace lo contrario, devuelve las filas sin correspondencia.
+\end{itemize}
+
+El parámetro \texttt{by} determina las variables clave para las correspondencias.
+Si no se establece se considerarán todas las que tengan el mismo nombre en ambas tablas.
+Se puede establecer a un vector de nombres coincidentes y en caso de que los nombres sean distintos a un vector con nombres de la forma \texttt{c("clave\_x"\ =\ "clave\_y")}.
+
+Adicionalmente, si las tablas \texttt{x} e \texttt{y} tienen las mismas variables, se pueden combinar las observaciones con operaciones de conjuntos:
+
+\begin{itemize}
+\item
+  \texttt{intersect(x,\ y)}: observaciones en \texttt{x} y en \texttt{y}.
+\item
+  \texttt{union(x,\ y)}: observaciones en \texttt{x} o \texttt{y} no duplicadas.
+\item
+  \texttt{setdiff(x,\ y)}: observaciones en \texttt{x} pero no en \texttt{y}.
+\end{itemize}
+
+\hypertarget{dbplyr}{%
+\section{Bases de datos con dplyr}\label{dbplyr}}
+
+Para poder usar tablas en bases de datos relacionales con \texttt{dplyr} hay que emplear el paquete \href{https://dbplyr.tidyverse.org}{dbplyr} (convierte automáticamente el código de dplyr en consultas SQL).
+
+Algunos enlaces:
+
+\begin{itemize}
+\item
+  \href{https://solutions.posit.co/connections/db}{Best Practices in Working with Databases}
+\item
+  \href{https://dbplyr.tidyverse.org/articles/dbplyr.html}{Introduction to dbplyr}
+\item
+  \href{https://datacarpentry.org/R-ecology-lesson/index.html}{Data Carpentry}:
+  \href{https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html}{SQL databases and R},
+\item
+  \href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R and Data -- When Should we Use Relational Databases?}
+\end{itemize}
+
+\hypertarget{ejemplos}{%
+\subsection{Ejemplos}\label{ejemplos}}
+
+Como ejemplo emplearemos la base de datos de \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{SQLite Sample Database Tutorial}, almacenada en el archivo \href{datos/chinook.db}{\emph{chinook.db}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages(\textquotesingle{}dbplyr\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(dbplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+En primer lugar hay que conectar la base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chinook }\OtherTok{\textless{}{-}}\NormalTok{ DBI}\SpecialCharTok{::}\FunctionTok{dbConnect}\NormalTok{(RSQLite}\SpecialCharTok{::}\FunctionTok{SQLite}\NormalTok{(), }\StringTok{"datos/chinook.db"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos listar las tablas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{src\_dbi}\NormalTok{(chinook)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## src:  sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
+##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
+\end{verbatim}
+
+Para enlazar una tabla:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"invoices"}\NormalTok{)}
+\NormalTok{invoices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   table<invoices> [?? x 9]
+## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
+##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
+##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
+##  2         2          4 2009-01-0~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
+##  3         3          8 2009-01-0~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
+##  4         4         14 2009-01-0~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
+##  5         5         23 2009-01-1~ 69 Sal~ Boston  MA      USA     2113    13.9 
+##  6         6         37 2009-01-1~ Berger~ Frankf~ <NA>    Germany 60316    0.99
+##  7         7         38 2009-02-0~ Barbar~ Berlin  <NA>    Germany 10779    1.98
+##  8         8         40 2009-02-0~ 8, Rue~ Paris   <NA>    France  75002    1.98
+##  9         9         42 2009-02-0~ 9, Pla~ Bordea~ <NA>    France  33000    3.96
+## 10        10         46 2009-02-0~ 3 Chat~ Dublin  Dublin  Ireland <NA>     5.94
+## # ... with more rows, and abbreviated variable names 1: InvoiceDate,
+## #   2: BillingAddress, 3: BillingCity, 4: BillingState, 5: BillingCountry,
+## #   6: BillingPostalCode
+\end{verbatim}
+
+Ojo \texttt{{[}??\ x\ 9{]}}: de momento no conoce el número de filas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(invoices)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+Podemos mostrar la consulta SQL correspondiente a una operación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{show\_query}\NormalTok{(}\FunctionTok{head}\NormalTok{(invoices))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT *
+## FROM `invoices`
+## LIMIT 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# str(head(invoices))}
+\end{Highlighting}
+\end{Shaded}
+
+Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
+
+\begin{itemize}
+\item
+  No exporta datos a R a menos que se pida explícitamente (\texttt{colect()}).
+\item
+  Retrasa cualquier operación lo máximo posible:
+  agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ head }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 9
+##   InvoiceId CustomerId InvoiceDate Billi~1 Billi~2 Billi~3 Billi~4 Billi~5 Total
+##       <int>      <int> <chr>       <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
+## 1         1          2 2009-01-01~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
+## 2         2          4 2009-01-02~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
+## 3         3          8 2009-01-03~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
+## 4         4         14 2009-01-06~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
+## 5         5         23 2009-01-11~ 69 Sal~ Boston  MA      USA     2113    13.9 
+## 6         6         37 2009-01-19~ Berger~ Frankf~ <NA>    Germany 60316    0.99
+## # ... with abbreviated variable names 1: BillingAddress, 2: BillingCity,
+## #   3: BillingState, 4: BillingCountry, 5: BillingPostalCode
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ count }\CommentTok{\# número de filas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   SQL [1 x 1]
+## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+##       n
+##   <int>
+## 1   412
+\end{verbatim}
+
+Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+                        \AttributeTok{max =} \FunctionTok{max}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\AttributeTok{med =} \FunctionTok{mean}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\CommentTok{\# show\_query(res)}
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##     min   max   med
+##   <dbl> <dbl> <dbl>
+## 1  0.99  25.9  5.65
+\end{verbatim}
+
+Para obtener el total de las facturas de cada uno de los países:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(BillingCountry) }\SpecialCharTok{\%\textgreater{}\%} 
+          \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\CommentTok{\# show\_query(res)}
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 3
+##    BillingCountry     n total
+##    <chr>          <int> <dbl>
+##  1 Argentina          7  37.6
+##  2 Australia          7  37.6
+##  3 Austria            7  42.6
+##  4 Belgium            7  37.6
+##  5 Brazil            35 190. 
+##  6 Canada            56 304. 
+##  7 Chile              7  46.6
+##  8 Czech Republic    14  90.2
+##  9 Denmark            7  37.6
+## 10 Finland            7  41.6
+## # ... with 14 more rows
+\end{verbatim}
+
+Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{customers }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"customers"}\NormalTok{)}
+\FunctionTok{tbl\_vars}\NormalTok{(customers) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <dplyr:::vars>
+##  [1] "CustomerId"   "FirstName"    "LastName"     "Company"      "Address"     
+##  [6] "City"         "State"        "Country"      "PostalCode"   "Phone"       
+## [11] "Fax"          "Email"        "SupportRepId"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ customers }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(invoices, }\AttributeTok{by =} \StringTok{"CustomerId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(FirstName, LastName, Country, Total) }
+\FunctionTok{show\_query}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT `FirstName`, `LastName`, `Country`, `Total`
+## FROM (
+##   SELECT
+##     `LHS`.`CustomerId` AS `CustomerId`,
+##     `FirstName`,
+##     `LastName`,
+##     `Company`,
+##     `Address`,
+##     `City`,
+##     `State`,
+##     `Country`,
+##     `PostalCode`,
+##     `Phone`,
+##     `Fax`,
+##     `Email`,
+##     `SupportRepId`,
+##     `InvoiceId`,
+##     `InvoiceDate`,
+##     `BillingAddress`,
+##     `BillingCity`,
+##     `BillingState`,
+##     `BillingCountry`,
+##     `BillingPostalCode`,
+##     `Total`
+##   FROM `customers` AS `LHS`
+##   INNER JOIN `invoices` AS `RHS`
+##     ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 412 x 4
+##    FirstName LastName  Country Total
+##    <chr>     <chr>     <chr>   <dbl>
+##  1 Luís      Gonçalves Brazil   3.98
+##  2 Luís      Gonçalves Brazil   3.96
+##  3 Luís      Gonçalves Brazil   5.94
+##  4 Luís      Gonçalves Brazil   0.99
+##  5 Luís      Gonçalves Brazil   1.98
+##  6 Luís      Gonçalves Brazil  13.9 
+##  7 Luís      Gonçalves Brazil   8.91
+##  8 Leonie    Köhler    Germany  1.98
+##  9 Leonie    Köhler    Germany 13.9 
+## 10 Leonie    Köhler    Germany  8.91
+## # ... with 402 more rows
+\end{verbatim}
+
+Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{customers }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(invoices, }\AttributeTok{by =} \StringTok{"CustomerId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(CustomerId) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(FirstName, LastName, country, }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(total)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 5
+##    CustomerId FirstName LastName   Country        total
+##         <int> <chr>     <chr>      <chr>          <dbl>
+##  1          6 Helena    Holý       Czech Republic  49.6
+##  2         26 Richard   Cunningham USA             47.6
+##  3         57 Luis      Rojas      Chile           46.6
+##  4         45 Ladislav  Kovács     Hungary         45.6
+##  5         46 Hugh      O'Reilly   Ireland         45.6
+##  6         28 Julia     Barnett    USA             43.6
+##  7         24 Frank     Ralston    USA             43.6
+##  8         37 Fynn      Zimmermann Germany         43.6
+##  9          7 Astrid    Gruber     Austria         42.6
+## 10         25 Victor    Stevens    USA             42.6
+\end{verbatim}
+
+Al finalizar hay que desconectar la base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DBI}\SpecialCharTok{::}\FunctionTok{dbDisconnect}\NormalTok{(chinook)            }
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{referencias}{%
 \chapter*{Referencias}\label{referencias}}

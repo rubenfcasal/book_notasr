@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 El lenguaje R | Notas de Programación en R</title>
+  <title>Capítulo 4 Manipulación de datos con dplyr y tidyr | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta property="og:title" content="Capítulo 4 Manipulación de datos con dplyr y tidyr | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta name="twitter:title" content="Capítulo 4 Manipulación de datos con dplyr y tidyr | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="organizacion.html"/>
-<link rel="next" href="paquetes.html"/>
+<link rel="prev" href="pipe.html"/>
+<link rel="next" href="dplyr-pkg.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -204,17 +204,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> El lenguaje R<a href="r.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="dplyr" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Manipulación de datos con dplyr y tidyr<a href="dplyr.html#dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- 
 ---
-title: "El lenguaje R"
+title: "Manipulación de datos con dplyr y tidyr"
 author: "Notas de Programación en R"
 date: "Rubén Fernández-Casal (rubenfcasal@gmail.com)"
 output:
   bookdown::html_document2:
     toc: yes
-    # toc_float: yes
+    toc_float: yes
     # mathjax: local            # copia local de MathJax, hay que establecer:
     # self_contained: false     # las dependencias se guardan en ficheros externos
     pandoc_args: ["--number-offset", "1,0"]
@@ -227,22 +227,16 @@ header-includes:
 - \usepackage[spanish]{babel}
 - \setcounter{section}{1} 
 ---
-
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
 -->
-<p>Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (<em>useR</em>).
-Sin embargo, para desarrollar nuevas herramientas de forma efectiva (<em>programeR</em>) es necesario tener una idea del funcionamiento interno de R.
-La referencia recomendada para usuarios de R que deseen mejorar sus conocimientos de programación y comprensión del lenguaje es:</p>
-<p>Wickham, Hadley (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición</a>.</p>
-<p>También puede ser de utilidad el manual <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R Language Definition</a>
-para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>En este capítulo se realiza una breve introducción al paquete <a href="https://dplyr.tidyverse.org"><code>dplyr</code></a> y se comentan algunas de las utilidades del paquete <a href="https://tidyr.tidyverse.org"><code>tidyr</code></a> que pueden resultar de interés<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<p>La referencia recomendada para iniciarse en esta herramienta es el Capítulo <a href="http://r4ds.had.co.nz/transform.html">5 Data transformation</a> de
+<a href="http://r4ds.had.co.nz">R for Data Science</a>.
+También puede resultar de utilidad la viñeta del paquete <a href="https://dplyr.tidyverse.org/articles/dplyr.html">Introduction to dplyr</a> o la <a href="https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf">chuleta</a>.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="4">
-<li id="fn4"><p>Los manuales oficiales también están disponibles en formato bookdown en este <a href="https://colinfay.me/r-manuals">post</a>.<a href="r.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<ol start="5">
+<li id="fn5"><p>Otra alternativa (más rápida) es <a href="https://rdatatable.gitlab.io/data.table"><code>data.table</code></a> pero en versiones recientes ya se puede emplear desde <code>dplyr</code>, como se comenta más adelante.<a href="dplyr.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -250,8 +244,8 @@ para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4
           </div>
         </div>
       </div>
-<a href="organizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paquetes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pipe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dplyr-pkg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -282,7 +276,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/11_dplyr_tidyr.Rmd",
 "text": "Edit"
 },
 "history": {

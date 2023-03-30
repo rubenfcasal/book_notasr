@@ -157,6 +157,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -220,38 +232,40 @@ En S3 el despacho de métodos (<em>method dispatch</em>) es muy simple, si la fu
 Si la clase del objeto es heredada (un vector de cadenas), se van buscando los métodos por orden de parentesco y si no se encuentra ninguno, se llama al método por defecto <code>generica.default()</code> (se llama a la primera función de <code>paste0("generica.", c(class(x), "default"))</code> que se encuentre en la ruta de búsqueda; podríamos reemplazarla…).</p>
 <p>La función genérica suele ser muy sencilla, básicamente incluye una llamada a <code>UseMethod("generica")</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="oop.html#cb25-1" aria-hidden="true" tabindex="-1"></a>plot</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="oop.html#cb36-1" aria-hidden="true" tabindex="-1"></a>plot</span></code></pre></div>
 <pre><code>## function (x, y, ...) 
 ## UseMethod(&quot;plot&quot;)
-## &lt;bytecode: 0x00000269678a3b80&gt;
+## &lt;bytecode: 0x0000015c88131898&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Podemos obtener los métodos asociados a una función genérica con <code>methods(genérica)</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="oop.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(plot)</span></code></pre></div>
-<pre><code>##  [1] plot.acf*           plot.data.frame*    plot.decomposed.ts*
-##  [4] plot.default        plot.dendrogram*    plot.density*      
-##  [7] plot.ecdf           plot.factor*        plot.formula*      
-## [10] plot.function       plot.hclust*        plot.histogram*    
-## [13] plot.HoltWinters*   plot.isoreg*        plot.lm*           
-## [16] plot.medpolish*     plot.mlm*           plot.ppr*          
-## [19] plot.prcomp*        plot.princomp*      plot.profile.nls*  
-## [22] plot.R6*            plot.raster*        plot.spec*         
-## [25] plot.stepfun        plot.stl*           plot.table*        
-## [28] plot.ts             plot.tskernel*      plot.TukeyHSD*     
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="oop.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(plot)</span></code></pre></div>
+<pre><code>##  [1] plot,ANY-method     plot,color-method   plot.acf*          
+##  [4] plot.data.frame*    plot.decomposed.ts* plot.default       
+##  [7] plot.dendrogram*    plot.density*       plot.ecdf          
+## [10] plot.factor*        plot.formula*       plot.function      
+## [13] plot.ggplot*        plot.gtable*        plot.hcl_palettes* 
+## [16] plot.hclust*        plot.histogram*     plot.HoltWinters*  
+## [19] plot.isoreg*        plot.lm*            plot.medpolish*    
+## [22] plot.mlm*           plot.ppr*           plot.prcomp*       
+## [25] plot.princomp*      plot.profile.nls*   plot.R6*           
+## [28] plot.raster*        plot.spec*          plot.stepfun       
+## [31] plot.stl*           plot.table*         plot.trans*        
+## [34] plot.ts             plot.tskernel*      plot.TukeyHSD*     
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <p>Podemos acceder a la ayuda del correspondiente método de la forma habitual (e.g. <code>?plot.lm</code>), pero puede que algunos métodos no sean objetos definidos como exportables en el <em>namespace</em> del paquete que los implementa (los marcados con un <code>*</code>) y por tanto no son en principio accesibles para el usuario.
 Siempre podemos acceder a ellos empleando <code>paquete:::metodo</code> o <code>getAnywhere(metodo)</code> (e.g. <code>stats:::plot.lm</code> o <code>getAnywhere(plot.lm)</code>).</p>
 <p>Para listar los métodos disponibles para una clase, podemos emplear el parámetro <code>class</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="oop.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="oop.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] add1           alias          anova          case.names     coerce        
 ##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
 ## [11] drop1          dummy.coef     effects        extractAIC     family        
-## [16] formula        hatvalues      influence      initialize     kappa         
-## [21] labels         logLik         model.frame    model.matrix   nobs          
-## [26] plot           predict        print          proj           qr            
-## [31] residuals      rstandard      rstudent       show           simulate      
-## [36] slotsFromS3    summary        variable.names vcov          
+## [16] formula        fortify        hatvalues      influence      initialize    
+## [21] kappa          labels         logLik         model.frame    model.matrix  
+## [26] nobs           plot           predict        print          proj          
+## [31] qr             residuals      rstandard      rstudent       show          
+## [36] simulate       slotsFromS3    summary        variable.names vcov          
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <p>Para una programación orientada a objetos más formal la recomendación es emplear el sistema R6.</p>
 </div>

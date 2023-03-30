@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 El lenguaje R | Notas de Programación en R</title>
+  <title>4.5 Operaciones con tablas de datos | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta property="og:title" content="4.5 Operaciones con tablas de datos | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 El lenguaje R | Notas de Programación en R" />
+  <meta name="twitter:title" content="4.5 Operaciones con tablas de datos | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="organizacion.html"/>
-<link rel="next" href="paquetes.html"/>
+<link rel="prev" href="herramientas-tidyr.html"/>
+<link rel="next" href="dbplyr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -204,54 +204,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> El lenguaje R<a href="r.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<!-- 
----
-title: "El lenguaje R"
-author: "Notas de Programación en R"
-date: "Rubén Fernández-Casal (rubenfcasal@gmail.com)"
-output:
-  bookdown::html_document2:
-    toc: yes
-    # toc_float: yes
-    # mathjax: local            # copia local de MathJax, hay que establecer:
-    # self_contained: false     # las dependencias se guardan en ficheros externos
-    pandoc_args: ["--number-offset", "1,0"]
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    # keep_tex: yes
-    toc: yes 
-    pandoc_args: ["--number-offset", "1,0"]
-header-includes:
-- \usepackage[spanish]{babel}
-- \setcounter{section}{1} 
----
-
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
--->
-<p>Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (<em>useR</em>).
-Sin embargo, para desarrollar nuevas herramientas de forma efectiva (<em>programeR</em>) es necesario tener una idea del funcionamiento interno de R.
-La referencia recomendada para usuarios de R que deseen mejorar sus conocimientos de programación y comprensión del lenguaje es:</p>
-<p>Wickham, Hadley (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición</a>.</p>
-<p>También puede ser de utilidad el manual <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R Language Definition</a>
-para consultas adicionales<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Los manuales oficiales también están disponibles en formato bookdown en este <a href="https://colinfay.me/r-manuals">post</a>.<a href="r.html#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="dplyr-join" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Operaciones con tablas de datos<a href="dplyr-join.html#dplyr-join" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se emplean funciones <code>xxx_join()</code> (ver la documentación del paquete
+<a href="https://dplyr.tidyverse.org/reference/join.html">Join two tbls together</a>,
+o la vignette <a href="https://dplyr.tidyverse.org/articles/two-table.html">Two-table verbs</a>):</p>
+<ul>
+<li><p><code>inner_join()</code>: devuelve las filas de <code>x</code> que tienen valores coincidentes en <code>y</code>,
+y todas las columnas de <code>x</code> e <code>y</code>. Si hay varias coincidencias entre <code>x</code> e <code>y</code>,
+se devuelven todas las combinaciones.</p></li>
+<li><p><code>left_join()</code>: devuelve todas las filas de <code>x</code> y todas las columnas de <code>x</code> e <code>y</code>.
+Las filas de <code>x</code> sin correspondencia en <code>y</code> contendrán <code>NA</code> en las nuevas columnas.
+Si hay varias coincidencias entre <code>x</code> e <code>y</code>, se devuelven todas las combinaciones
+(duplicando las filas).</p>
+<p><code>right_join()</code> hace lo contrario, devuelve todas las filas de <code>y</code>.</p>
+<p><code>full_join()</code> devuelve todas las filas de <code>x</code> e <code>y</code> (duplicando o asignando <code>NA</code> si es necesario).</p></li>
+<li><p><code>semi_join()</code>: devuelve las filas de <code>x</code> que tienen valores coincidentes en <code>y</code>,
+manteniendo sólo las columnas de <code>x</code> (al contrario que <code>inner_join()</code> no duplica filas).</p>
+<p><code>anti_join()</code> hace lo contrario, devuelve las filas sin correspondencia.</p></li>
+</ul>
+<p>El parámetro <code>by</code> determina las variables clave para las correspondencias.
+Si no se establece se considerarán todas las que tengan el mismo nombre en ambas tablas.
+Se puede establecer a un vector de nombres coincidentes y en caso de que los nombres sean distintos a un vector con nombres de la forma <code>c("clave_x" = "clave_y")</code>.</p>
+<p>Adicionalmente, si las tablas <code>x</code> e <code>y</code> tienen las mismas variables, se pueden combinar las observaciones con operaciones de conjuntos:</p>
+<ul>
+<li><p><code>intersect(x, y)</code>: observaciones en <code>x</code> y en <code>y</code>.</p></li>
+<li><p><code>union(x, y)</code>: observaciones en <code>x</code> o <code>y</code> no duplicadas.</p></li>
+<li><p><code>setdiff(x, y)</code>: observaciones en <code>x</code> pero no en <code>y</code>.</p></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="organizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paquetes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="herramientas-tidyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dbplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -282,7 +270,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/02_lenguaje_r.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/11_dplyr_tidyr.Rmd",
 "text": "Edit"
 },
 "history": {

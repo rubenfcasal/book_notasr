@@ -157,6 +157,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
@@ -219,8 +231,9 @@ header-includes:
 bookdown::preview_chapter("01-Introduccion.Rmd")
 knitr::purl("01-Introduccion.Rmd", documentation = 2)
 knitr::spin("01-Introduccion.R", knit = FALSE)
+
+***En preparación...***
 -->
-<p><strong><em>En preparación…</em></strong></p>
 <p>En los capítulos de esta parte se pretende realizar una breve introducción al <em>ecosistema</em> <a href="https://dplyr.tidyverse.org"><strong>Tidyverse</strong></a>, una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.</p>
 <p>La referencia recomendada para usuarios de R que deseen iniciarse en el uso de estos paquetes es:</p>
 <p>Wickham, H., y Grolemund, G. (2016). <em><a href="http://r4ds.had.co.nz">R for data science: import, tidy, transform, visualize, and model data</a></em>, <a href="https://es.r4ds.hadley.nz">online-castellano</a>, <a href="http://shop.oreilly.com/product/0636920034407.do">O’Reilly</a>.</p>
@@ -246,6 +259,7 @@ Al instalar este paquete se instalan paquetes que forman el denominado núcleo d
 <li><a href="https://github.com/tidyverse/rvest"><code>rvest</code></a>: web scraping.</li>
 <li><a href="https://github.com/r-lib/xml2"><code>xml2</code></a>: archivos XML.</li>
 </ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tidyverse.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>También hay paquetes “asociados”:</p>
 <ul>
 <li><a href="https://rlang.r-lib.org"><code>rlang</code></a></li>
