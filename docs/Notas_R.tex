@@ -264,9 +264,9 @@ También puede resultar de interés consultar:
 
 \begin{itemize}
 \item
-  \href{https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf}{RStudio cheatsheet}
+  \href{https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf}{RStudio IDE Cheat Sheet} (menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} RStudio IDE Cheat Sheet}).
 \item
-  \href{https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE}{Using the RStudio IDE}
+  \href{https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE}{Using the RStudio IDE}.
 \end{itemize}
 
 Sin embargo, en ciertos casos puede ser recomendable ejecutar el código R directamente desde una ventana de comandos (por ejemplo para ejecutar varios programas de forma simultánea en distintos directorios de trabajo o si los requerimientos computacionales son grandes).
@@ -307,7 +307,7 @@ Se puede configurar RStudio para emplear Git (ver el libro \href{https://happygi
 Mi recomendación a la hora de escribir código es seguir un \textbf{proceso iterativo}.
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).
 
-En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html\#spin}{spin} (ver e.g.~\href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html\#spin}{Apéndice}), en el que el texto RMarkdown se incluye como un comentario de código empleando \texttt{\#\textquotesingle{}}. Por ejemplo:
+En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato \href{https://yihui.org/knitr/demo/stitch/\#spin-comment-out-texts}{spin} (ver Sección \ref{spin}), en el que el texto RMarkdown se incluye como un comentario de código empleando \texttt{\#\textquotesingle{}}. Por ejemplo:
 
 \begin{verbatim}
 #' # Sección
@@ -784,7 +784,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000000001a08e0a0>
+## <bytecode: 0x000000001e09ef38>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -902,10 +902,10 @@ También puede ser de utilidad el manual \href{http://colinfay.me/writing-r-exte
 \chapter{Generación de informes}\label{informes}}
 
 Este documento se ha generado empleando RMarkdown, una extensión de \href{https://es.wikipedia.org/wiki/Markdown}{Markdown} que permite incorporar código y resultados de R.
-RMarkdown es recomendable para difundir análisis realizados con \texttt{R} en formato HTML, PDF y DOCX (Word), entre otros.
+RMarkdown es recomendable para difundir análisis realizados con R en formato HTML, PDF y DOCX (Word), entre otros.
 
-\hypertarget{r-markdown}{%
-\section{R Markdown}\label{r-markdown}}
+\hypertarget{rmarkdown}{%
+\section{RMarkdown}\label{rmarkdown}}
 
 El paquete \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}} permite combinar Markdown con R para la generación de documentos. \href{http://daringfireball.net/projects/markdown/}{Markdown} se diseñó inicialmente para la creación de páginas web a partir de documentos de texto de forma muy sencilla y rápida (tiene unas reglas sintácticas muy simples).
 Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintácticas muy simples y se busca principalmente la facilidad de lectura.
@@ -915,7 +915,7 @@ pero actualmente están disponibles múltiples dialectos (sobre todo para public
 RMarkdown utiliza las extensiones de la sintaxis proporcionada por \emph{Pandoc} (ver Apéndice \ref{pandoc}), y adicionalmente permite la inclusión de código R.
 
 Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento\footnote{Se llama al paquete \texttt{knitr} para ``tejer'' el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con \emph{pandoc}}.
-En \emph{RStudio} basta con hacer clic en el botón \emph{Knit}.
+En RStudio basta con hacer clic en el botón \emph{Knit}.
 En R se puede emplear la funcion \texttt{render} del paquete \texttt{rmarkdown} (por ejemplo \texttt{render("Informe.Rmd")}).
 También se puede abrir directamente el informe generado:
 
@@ -927,7 +927,7 @@ browseURL(url = render("Informe.Rmd"))
 A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, \ldots).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial \url{http://rmarkdown.rstudio.com/}.
 
-También se dispone de información en la ayuda de \emph{RStudio}:
+También se dispone de información en la ayuda de RStudio:
 
 \begin{itemize}
 \item
@@ -1197,7 +1197,7 @@ produce:
 ##  Max.   :33.90   Max.   :8.000   Max.   :472.0
 \end{verbatim}
 
-En \emph{RStudio} pulsando ``Ctrl + Alt + I'' o en el icono correspondiente se incluye un trozo de código.
+En RStudio pulsando \emph{Ctrl + Alt + I} o en el icono correspondiente se incluye un trozo de código.
 
 También se puede incluir código en línea empleando \texttt{\textasciigrave{}r\ código\textasciigrave{}},
 por ejemplo \texttt{\textasciigrave{}r\ 2\ +\ 2\textasciigrave{}} produce 4.
@@ -1228,10 +1228,8 @@ aunque no se mostró previamente el código al haber establecido la opción \tex
 Los trozos de código pueden tener nombre y opciones, se establecen en la cabecera de la forma
 \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ nombre,\ op1,\ op2\}}.
 Para un listado de las opciones disponibles ver \url{http://yihui.name/knitr/options}
-(en la \href{https://bookdown.org/yihui/rmarkdown/r-code.html}{Sección 2.6} del libro de RMarkdown
-se incluye un resumen).
-En \emph{RStudio} se puede pulsar en los iconos en la parte superior derecha del bloque de código
-para establecer opciones, ejecutar todo el código anterior o sólo el correspondiente trozo.
+(en la \href{https://bookdown.org/yihui/rmarkdown/r-code.html}{Sección 2.6} del libro de RMarkdown se incluye un resumen).
+En RStudio se puede pulsar en los iconos en la parte superior derecha del bloque de código para establecer opciones, ejecutar todo el código anterior o sólo el correspondiente trozo.
 
 Algunas opciones sobre evaluación y resultados:
 
@@ -1288,16 +1286,36 @@ se suele incluir uno de configuración al principio del documento, por ejemplo:
 \hypertarget{tablas}{%
 \section{Tablas}\label{tablas}}
 
-Las tablas en Markdown son de la forma:
+En Markdown se pueden escribir tablas en varios formatos (ver \href{https://pandoc.org/MANUAL.html\#tables}{Pandoc Tables}).
+Por ejemplo:
 
 \begin{verbatim}
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Row1 Cell1    | Row1 Cell2    |
-| Row2 Cell1    | Row2 Cell2    |
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1   
 \end{verbatim}
 
-Por ejemplo:
+También:
+
+\begin{verbatim}
+Variable   | Descripción
+---------  | -----------------------------------------------------------
+mpg   |  Millas / galón (EE.UU.) 
+cyl   |  Número de cilindros
+disp  |  Desplazamiento (pulgadas cúbicas)
+hp    |  Caballos de fuerza bruta
+drat  |  Relación del eje trasero
+wt    |  Peso (miles de libras)
+qsec  |  Tiempo de 1/4 de milla
+vs    |  Cilindros en V/Straight (0 = cilindros en V, 1 = cilindros en línea)
+am    |  Tipo de transmisión (0 = automático, 1 = manual)
+gear  |  Número de marchas (hacia adelante)
+carb  |  Número de carburadores 
+\end{verbatim}
+
+que resulta en:
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
@@ -1318,7 +1336,7 @@ carb & Número de carburadores \\
 \bottomrule
 \end{longtable}
 
-Para convertir resultados de R en tablas de una forma simple se puede emplear la función \texttt{ktable} del paquete \emph{knitr}. Por ejemplo la Tabla \ref{tab:kable} se obtuvo mediante el siguiente código:
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función \href{NA}{\texttt{ktable()}} del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}}. Por ejemplo la Tabla \ref{tab:kable} se obtuvo mediante el siguiente código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1352,7 +1370,7 @@ Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
 \end{tabular}
 \end{table}
 
-Otros paquetes proporcionan opciones adicionales: \emph{xtable}, \emph{stargazer}, \emph{pander}, \emph{tables} y \emph{ascii}.
+Otros paquetes proporcionan opciones adicionales: \href{http://xtable.r-forge.r-project.org/}{\texttt{xtable}}, \href{https://CRAN.R-project.org/package=stargazer}{\texttt{stargazer}}, \href{https://rapporter.github.io/pander/}{\texttt{pander}}, \href{https://r-forge.r-project.org/projects/tables/}{\texttt{tables}} y \href{https://github.com/mclements/ascii}{\texttt{ascii}}.
 
 \hypertarget{yaml}{%
 \section{Cabecera YAML}\label{yaml}}
@@ -1418,11 +1436,9 @@ El campo \texttt{output} permite especificar el formato y las opciones de salida
 \end{Highlighting}
 \end{Shaded}
 
-La mayoría de los campos YAML son opciones que el paquete \texttt{rmarkdown} le pasa a Pandoc
-(ver documentación en el Apéndice \ref{pandoc}).
+La mayoría de los campos YAML son opciones que el paquete \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}} le pasa a Pandoc (ver documentación en el Apéndice \ref{pandoc}).
 
-Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdown::html\_document())}
-  para ver un listado de todas las opciones disponibles de \texttt{html\_document}}:
+Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdown::html\_document())} para ver un listado de todas las opciones disponibles de \texttt{html\_document}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1449,7 +1465,6 @@ Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdo
 \AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}
 \AttributeTok{    }\FunctionTok{toc\_depth}\KeywordTok{:}\AttributeTok{ }\DecValTok{2}
 \AttributeTok{    }\FunctionTok{keep\_tex}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\CommentTok{             \# conservar fichero latex}
-\AttributeTok{    }
 \PreprocessorTok{{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
@@ -1457,21 +1472,19 @@ Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdo
 Como se puede deducir del ejemplo anterior, en el formato YAML podemos incluir comentarios con el carácter \texttt{\#}
 (por ejemplo para no emplear alguna de las opciones sin borrarla del encabezado).
 
-En el \href{https://bookdown.org/yihui/rmarkdown/documents.html}{Capítulo 3} del libro de RMarkdown
-se tiene información detallada sobre las opciones de los distintos formatos de salida
-(sobre ficheros HTML \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{aquí}
-y sobre PDF/LaTeX \href{https://bookdown.org/yihui/rmarkdown/pdf-document.html}{aquí}).
+En el \href{https://bookdown.org/yihui/rmarkdown/documents.html}{Capítulo 3} del libro de RMarkdown se tiene información detallada sobre las opciones de los distintos formatos de salida (sobre ficheros HTML en la sección \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{HTML document} y sobre PDF/LaTeX en \href{https://bookdown.org/yihui/rmarkdown/pdf-document.html}{PDF document}).
 
 \hypertarget{extracciuxf3n-del-cuxf3digo-r}{%
 \section{Extracción del código R}\label{extracciuxf3n-del-cuxf3digo-r}}
 
-Para generar un fichero con el código R se puede emplear la función \texttt{purl} del paquete \emph{knitr}. Por ejemplo:
+Para generar un fichero con el código R se puede emplear la función \href{NA}{\texttt{knitr::ktable()}}.
+Por ejemplo:
 
 \begin{verbatim}
 purl("Informe.Rmd")
 \end{verbatim}
 
-Si se quiere además el texto RMarkdown como comentarios tipo \texttt{spin}, se puede emplear:
+Si se quiere además el texto RMarkdown como comentarios tipo \href{https://rdrr.io/pkg/knitr/man/spin.html}{\texttt{spin()}}, se puede emplear:
 
 \begin{verbatim}
 purl("Informe.Rmd", documentation = 2)
@@ -1480,22 +1493,33 @@ purl("Informe.Rmd", documentation = 2)
 \hypertarget{spin}{%
 \section{Spin}\label{spin}}
 
-Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la funcion
-\texttt{spin} del paquete \emph{knitr} (ver p.e. \url{http://yihui.name/knitr/demo/stitch}).
+Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la función \href{https://rdrr.io/pkg/knitr/man/spin.html}{\texttt{spin()}} del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}} (ver p.e. \url{https://yihui.org/knitr/demo/stitch/\#spin-comment-out-texts}).
 
 Para ello se debe comentar todo lo que no sea código R de una forma especial:
 
 \begin{itemize}
-\tightlist
 \item
-  El texto RMarkdown se comenta con \texttt{\#\textquotesingle{}}. Por ejemplo:
-  \texttt{\#\textquotesingle{}\ \#\ Este\ es\ un\ título\ de\ primer\ nivel\ \ \ \ \ \#\textquotesingle{}\ \#\#\ Este\ es\ un\ título\ de\ segundo\ nivel}
+  El texto RMarkdown se comenta con \texttt{\#\textquotesingle{}}.
+
+  Por ejemplo:
+
+\begin{verbatim}
+#' # Este es un título de primer nivel
+#' ## Este es un título de segundo nivel
+\end{verbatim}
 \item
-  Las opciones de un trozo de código se comentan con \texttt{\#+}. Por ejemplo:
-  \texttt{\#+\ setup,\ include=FALSE\ \ \ \ \ opts\_chunk\$set(comment=NA,\ prompt=TRUE,\ dev=\textquotesingle{}svg\textquotesingle{},\ fig.height=6,\ fig.width=6)}
+  Las opciones de un trozo de código se comentan con \texttt{\#+}.
+
+  Por ejemplo:
+
+\begin{verbatim}
+#+ setup, include=FALSE
+opts_chunk$set(comment=NA, prompt=TRUE, dev='svg', fig.height=6, fig.width=6)
+\end{verbatim}
 \end{itemize}
 
-Para generar el informe se puede emplear la funcion \texttt{spin} del paquete \emph{knitr}. Por ejemplo: \texttt{spin("Ridge\_Lasso.R")}.
+Para generar el informe se puede emplear la función \href{https://rdrr.io/pkg/knitr/man/knit.html}{\texttt{knitr::purl()}}.
+Por ejemplo: \texttt{spin("Ridge\_Lasso.R")}.
 También se podría abrir directamente el informe generado:
 
 \begin{verbatim}
@@ -1509,7 +1533,7 @@ library(rmarkdown)
 browseURL(url = render(knitr::spin("Ridge_Lasso.R", knit = FALSE)))
 \end{verbatim}
 
-En \emph{RStudio} basta con pulsar ``Ctrl + Shift + K'' o seleccionar \emph{File \textgreater{} Knit Document} (en las últimas versiones también \emph{File \textgreater{} Compile Notebook} o hacer clic en el icono correspondiente).
+En RStudio basta con pulsar \emph{Ctrl + Shift + K}, el icono correspondiente en la barra superior, o seleccionar \emph{File \textgreater{} Compile Report\ldots{}}.
 
 Por ejemplo, si se quiere convertir la salidas de un fichero de código de R a formato LaTeX
 (para añadirlas fácilmente a un documento en este formato), bastaría con incluir una cabecera de
@@ -1551,9 +1575,8 @@ Podemos incluir expresiones matemáticas en formato LateX:
   \end{pmatrix}\]
 \end{itemize}
 
-También admite bibliografía, ver p.e. \url{https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html}.
-Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX,
-lo que se describe con detalle \href{https://bookdown.org/yihui/bookdown/citations.html}{aquí}.
+También admite bibliografía, ver p.e. \href{https://pandoc.org/MANUAL.html\#citations}{Pandoc Citations}.
+Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX, lo que se describe con detalle en \href{https://bookdown.org/yihui/bookdown/citations.html}{Citations}.
 Será necesario añadir un campo \texttt{bibliography} en la cabezera YAML, por ejemplo:
 
 \begin{Shaded}
@@ -1575,9 +1598,7 @@ En RStudio se puede instalar el ``\href{https://rstudio.github.io/rstudioaddins/
 \href{https://github.com/crsh/citr}{\texttt{citr}} para insertar
 citas a referencias bibliográficas en formato BibTeX.
 
-Para más detalles de las extensiones de Pandoc ver por ejemplo
-\url{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}
-o el manual de Pandoc \url{https://pandoc.org/MANUAL.html}.
+Para más detalles de las extensiones de Pandoc ver por ejemplo \href{https://pandoc.org/MANUAL.html\#pandocs-markdown}{Pandoc's Markdown}.
 
 \hypertarget{part-tidyverse}{%
 \part{Tidyverse}\label{part-tidyverse}}
@@ -1775,7 +1796,7 @@ En este capítulo se realiza una breve introducción al paquete \href{https://dp
 
 La referencia recomendada para iniciarse en esta herramienta es el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data transformation} de
 \href{http://r4ds.had.co.nz}{R for Data Science}.
-También puede resultar de utilidad la viñeta del paquete \href{https://dplyr.tidyverse.org/articles/dplyr.html}{Introduction to dplyr} o la \href{https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf}{chuleta}.
+También puede resultar de utilidad la viñeta del paquete \href{https://dplyr.tidyverse.org/articles/dplyr.html}{Introduction to dplyr} o la \href{https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf}{chuleta} (menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Data Transformation with dplyr}).
 
 \hypertarget{dplyr-pkg}{%
 \section{El paquete dplyr}\label{dplyr-pkg}}
@@ -1798,7 +1819,7 @@ La principal ventaja de \href{https://dplyr.tidyverse.org/index.html}{\texttt{dp
 \item
   bases de datos relacionales (lenguaje SQL, locales o remotas); extensión \href{https://dbplyr.tidyverse.org}{\texttt{dbplyr}}.
 \item
-  grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema \href{http://hadoop.apache.org/}{Hadoop}/\href{https://spark.apache.org/}{Spark}): extensión \href{https://spark.rstudio.com}{\texttt{sparklyr}}.
+  grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema \href{http://hadoop.apache.org/}{Hadoop}/\href{https://spark.apache.org/}{Spark}): extensión \href{https://spark.rstudio.com}{\texttt{sparklyr}} (ver menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Interfacing Spark with sparklyr}).
 \end{itemize}
 
 El paquete dplyr permite sustituir operaciones con funciones base de R (como \href{NA}{\texttt{subset}}, \href{NA}{\texttt{split}}, \href{NA}{\texttt{apply}}, \href{NA}{\texttt{sapply}}, \href{NA}{\texttt{lapply}}, \href{NA}{\texttt{tapply}}, \href{NA}{\texttt{aggregate}}\ldots) por una ``gramática'' más sencilla para la manipulación de datos.
@@ -2526,8 +2547,8 @@ Para referencias adicionales recomiendo consultar:
   Wickham, H. (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organize, test, document, and share your code}} (actualmente 2ª edición en desarrollo con H. Bryan), \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly, 1ª edición}.
 \end{itemize}
 
-\hypertarget{rmarkdown}{%
-\subsection*{Rmarkdown}\label{rmarkdown}}
+\hypertarget{rmarkdown-1}{%
+\subsection*{Rmarkdown}\label{rmarkdown-1}}
 \addcontentsline{toc}{subsection}{Rmarkdown}
 
 \begin{itemize}
@@ -2666,9 +2687,6 @@ Para referencias adicionales recomiendo consultar:
 \hypertarget{pandoc}{%
 \chapter{Pandoc}\label{pandoc}}
 
-\hypertarget{introducciuxf3n}{%
-\section{Introducción}\label{introducciuxf3n}}
-
 Pandoc es un conversor de documentos libre y de código abierto,
 Pandoc puede leer archivos en distintos formatos, incluyendo:
 
@@ -2720,6 +2738,7 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
 \item
   Una web a markdown
   \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ http://url.org\ -f\ html\ -t\ markdown\ \ \ \ \ \ -o\ fichero.Rmd}
+
   Ver \href{ejemplos/rmarkdown/web2md.bat}{web2md.bat} (o \href{ejemplos/rmarkdown/web2md2.bat}{web2md2.bat} si RStudio/quarto).
 \end{itemize}
 

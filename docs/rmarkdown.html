@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referencias | Notas de Programación en R</title>
+  <title>3.1 RMarkdown | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referencias | Notas de Programación en R" />
+  <meta property="og:title" content="3.1 RMarkdown | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referencias | Notas de Programación en R" />
+  <meta name="twitter:title" content="3.1 RMarkdown | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dbplyr.html"/>
-<link rel="next" href="bibliografía-por-temas.html"/>
+<link rel="prev" href="informes.html"/>
+<link rel="next" href="markdown.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -248,25 +248,58 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referencias" class="section level1 unnumbered">
-<h1>Referencias</h1>
-<p>Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). <em><a href="https://rubenfcasal.github.io/aprendizaje_estadistico">Aprendizaje Estadístico</a></em>. <a href="https://github.com/rubenfcasal/aprendizaje_estadistico">github</a>.</p>
-<p>Fernández-Casal R., Roca-Pardiñas J., Costa J. y Oviedo-de la Fuente M. (2023). <em><a href="https://rubenfcasal.github.io/intror">Introducción al Análisis de Datos con R</a></em>. ISBN: 978-84-09-41823-7. <a href="https://github.com/rubenfcasal/intror">github</a>.</p>
-<p>Grolemund, G. (2014). <em><a href="https://rstudio-education.github.io/hopr">Hands-on programming with R: Write your own functions and simulations</a></em>, <a href="http://shop.oreilly.com/product/0636920028574.do">O’Reilly</a>.</p>
-<p>Kuhn, M. y Silge, J. (2022). <em><a href="https://www.tmwr.org">Tidy Modeling with R</a></em>. <a href="https://amzn.to/35Hn96s">O’Reill</a>.</p>
-<p>Matloff, N. (2011). <em>The art of R programming: A tour of statistical software design</em>, <a href="https://www.nostarch.com/artofr.htm">No Starch Press</a>.</p>
-<p>Wickham, H. (2015). <em><a href="http://r-pkgs.had.co.nz/">R packages: organize, test, document, and share your code</a></em> (actualmente 2ª edición en desarrollo con H. Bryan), <a href="http://shop.oreilly.com/product/0636920034421.do">O’Reilly, 1ª edición</a>.</p>
-<p>Wickham, H. (2019). <em><a href="https://adv-r.hadley.nz/">Advanced R, 2ª edición</a></em>, <a href="https://www.amazon.com/dp/0815384572">Chapman &amp; Hall</a>, <a href="http://adv-r.had.co.nz/">1ª edición.</a>.</p>
-<p>Wickham, H., y Grolemund, G. (2016). <em><a href="http://r4ds.had.co.nz">R for data science: import, tidy, transform, visualize, and model data</a></em>, <a href="https://es.r4ds.hadley.nz">online-castellano</a>, <a href="http://shop.oreilly.com/product/0636920034407.do">O’Reilly</a>.</p>
-<p>NOTA: En la bibliografía complementaria se incluyen algunas de estas referencias, y una selección de libros en abierto, organizados por temas.</p>
+<div id="rmarkdown" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> RMarkdown</h2>
+<p>El paquete <a href="https://github.com/rstudio/rmarkdown"><code>rmarkdown</code></a> permite combinar Markdown con R para la generación de documentos. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> se diseñó inicialmente para la creación de páginas web a partir de documentos de texto de forma muy sencilla y rápida (tiene unas reglas sintácticas muy simples).
+Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintácticas muy simples y se busca principalmente la facilidad de lectura.
+Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
+La implementación original de Markdown es de <a href="http://daringfireball.net/projects/markdown/">John Gruber</a>,
+pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por <em>Pandoc</em> (ver Apéndice <a href="pandoc.html#pandoc">A</a>), y adicionalmente permite la inclusión de código R.</p>
+<p>Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.
+En RStudio basta con hacer clic en el botón <em>Knit</em>.
+En R se puede emplear la funcion <code>render</code> del paquete <code>rmarkdown</code> (por ejemplo <code>render("Informe.Rmd")</code>).
+También se puede abrir directamente el informe generado:</p>
+<pre><code>library(rmarkdown)
+browseURL(url = render(&quot;Informe.Rmd&quot;))</code></pre>
+<p>A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, …).
+Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.</p>
+<p>También se dispone de información en la ayuda de RStudio:</p>
+<ul>
+<li><p><em>Help &gt; Markdown Quick Reference</em></p></li>
+<li><p><em>Help &gt; Cheatsheets &gt; <a href="https://www.rstudio.org/links/r_markdown_cheat_sheet">R Markdown Cheat Sheet</a></em></p></li>
+<li><p><em>Help &gt; Cheatsheets &gt; <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a></em></p></li>
+</ul>
+<p>Otras fuentes permiten obtener documentación más detallada, como por ejemplo:</p>
+<ul>
+<li><p>Web del paquete <code>knitr</code> <span class="citation">(<a href="#ref-R-knitr" role="doc-biblioref">Xie 2021</a>)</span>: <a href="https://yihui.name/knitr" class="uri">https://yihui.name/knitr</a>.</p></li>
+<li><p><span class="citation"><a href="#ref-xie2018r" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="#ref-xie2018r" role="doc-biblioref">2018</a>)</span> : R Markdown: The Definitive Guide,
+<a href="https://bookdown.org/yihui/rmarkdown/" class="uri">https://bookdown.org/yihui/rmarkdown/</a>.</p></li>
+<li><p>Extensiones RMarkdown de Pandoc: <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex" class="uri">https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex</a>.</p></li>
+</ul>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-knitr" class="csl-entry">
+Xie, Yihui. 2021. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+</div>
+<div id="ref-xie2018r" class="csl-entry">
+Xie, Yihui, JJ Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. CRC Press. <a href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>Se llama al paquete <code>knitr</code> para “tejer” el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con <em>pandoc</em><a href="rmarkdown.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="dbplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bibliografía-por-temas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="informes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -297,7 +330,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/20_referencias.Rmd",
+"link": "https://github.com/rubenfcasal/book_notasr/edit/master/08_rmarkdown.Rmd",
 "text": "Edit"
 },
 "history": {

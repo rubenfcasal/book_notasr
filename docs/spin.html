@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -250,33 +250,37 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="spin" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Spin</h2>
-<p>Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la funcion
-<code>spin</code> del paquete <em>knitr</em> (ver p.e. <a href="http://yihui.name/knitr/demo/stitch" class="uri">http://yihui.name/knitr/demo/stitch</a>).</p>
+<p>Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la función <a href="https://rdrr.io/pkg/knitr/man/spin.html"><code>spin()</code></a> del paquete <a href="https://yihui.org/knitr/"><code>knitr</code></a> (ver p.e. <a href="https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts" class="uri">https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts</a>).</p>
 <p>Para ello se debe comentar todo lo que no sea código R de una forma especial:</p>
 <ul>
-<li>El texto RMarkdown se comenta con <code>#'</code>. Por ejemplo:
-<code>#' # Este es un título de primer nivel     #' ## Este es un título de segundo nivel</code></li>
-<li>Las opciones de un trozo de código se comentan con <code>#+</code>. Por ejemplo:
-<code>#+ setup, include=FALSE     opts_chunk$set(comment=NA, prompt=TRUE, dev='svg', fig.height=6, fig.width=6)</code></li>
+<li><p>El texto RMarkdown se comenta con <code>#'</code>.</p>
+<p>Por ejemplo:</p>
+<pre><code>#&#39; # Este es un título de primer nivel
+#&#39; ## Este es un título de segundo nivel</code></pre></li>
+<li><p>Las opciones de un trozo de código se comentan con <code>#+</code>.</p>
+<p>Por ejemplo:</p>
+<pre><code>#+ setup, include=FALSE
+opts_chunk$set(comment=NA, prompt=TRUE, dev=&#39;svg&#39;, fig.height=6, fig.width=6)</code></pre></li>
 </ul>
-<p>Para generar el informe se puede emplear la funcion <code>spin</code> del paquete <em>knitr</em>. Por ejemplo: <code>spin("Ridge_Lasso.R")</code>.
+<p>Para generar el informe se puede emplear la función <a href="https://rdrr.io/pkg/knitr/man/knit.html"><code>knitr::purl()</code></a>.
+Por ejemplo: <code>spin("Ridge_Lasso.R")</code>.
 También se podría abrir directamente el informe generado:</p>
 <pre><code>browseURL(url = knitr::spin(&quot;Ridge_Lasso.R&quot;))</code></pre>
 <p>Pero puede ser recomendable renderizarlo con rmarkdown:</p>
 <pre><code>library(rmarkdown)
 browseURL(url = render(knitr::spin(&quot;Ridge_Lasso.R&quot;, knit = FALSE)))</code></pre>
-<p>En <em>RStudio</em> basta con pulsar “Ctrl + Shift + K” o seleccionar <em>File &gt; Knit Document</em> (en las últimas versiones también <em>File &gt; Compile Notebook</em> o hacer clic en el icono correspondiente).</p>
+<p>En RStudio basta con pulsar <em>Ctrl + Shift + K</em>, el icono correspondiente en la barra superior, o seleccionar <em>File &gt; Compile Report…</em>.</p>
 <p>Por ejemplo, si se quiere convertir la salidas de un fichero de código de R a formato LaTeX
 (para añadirlas fácilmente a un documento en este formato), bastaría con incluir una cabecera de
 la forma:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb84-1"><a href="spin.html#cb84-1" aria-hidden="true" tabindex="-1"></a>#&#39; ---</span>
-<span id="cb84-2"><a href="spin.html#cb84-2" aria-hidden="true" tabindex="-1"></a>#&#39; title: &quot;Título&quot;</span>
-<span id="cb84-3"><a href="spin.html#cb84-3" aria-hidden="true" tabindex="-1"></a>#&#39; author: &quot;Autor&quot;</span>
-<span id="cb84-4"><a href="spin.html#cb84-4" aria-hidden="true" tabindex="-1"></a>#&#39; date: &quot;Fecha&quot;</span>
-<span id="cb84-5"><a href="spin.html#cb84-5" aria-hidden="true" tabindex="-1"></a>#&#39; output:</span>
-<span id="cb84-6"><a href="spin.html#cb84-6" aria-hidden="true" tabindex="-1"></a>#&#39;   pdf_document:</span>
-<span id="cb84-7"><a href="spin.html#cb84-7" aria-hidden="true" tabindex="-1"></a>#&#39;      keep_tex: true</span>
-<span id="cb84-8"><a href="spin.html#cb84-8" aria-hidden="true" tabindex="-1"></a>#&#39; ---</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb87-1"><a href="spin.html#cb87-1" aria-hidden="true" tabindex="-1"></a>#&#39; ---</span>
+<span id="cb87-2"><a href="spin.html#cb87-2" aria-hidden="true" tabindex="-1"></a>#&#39; title: &quot;Título&quot;</span>
+<span id="cb87-3"><a href="spin.html#cb87-3" aria-hidden="true" tabindex="-1"></a>#&#39; author: &quot;Autor&quot;</span>
+<span id="cb87-4"><a href="spin.html#cb87-4" aria-hidden="true" tabindex="-1"></a>#&#39; date: &quot;Fecha&quot;</span>
+<span id="cb87-5"><a href="spin.html#cb87-5" aria-hidden="true" tabindex="-1"></a>#&#39; output:</span>
+<span id="cb87-6"><a href="spin.html#cb87-6" aria-hidden="true" tabindex="-1"></a>#&#39;   pdf_document:</span>
+<span id="cb87-7"><a href="spin.html#cb87-7" aria-hidden="true" tabindex="-1"></a>#&#39;      keep_tex: true</span>
+<span id="cb87-8"><a href="spin.html#cb87-8" aria-hidden="true" tabindex="-1"></a>#&#39; ---</span></code></pre></div>
 </div>
             </section>
 

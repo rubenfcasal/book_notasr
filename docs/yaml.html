@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -256,71 +256,65 @@ comenzando y terminando con tres guiones <code>---</code>.
 Los metadatos de YAML son típicamente opciones de renderizado consitentes en
 pares de etiquetas y valores separados por dos puntos.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb74-1"><a href="yaml.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb74-2"><a href="yaml.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Creación de contenidos con RMarkdown&quot;</span></span>
-<span id="cb74-3"><a href="yaml.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Fernández-Casal, R. y Cotos-Yáñez, T.R.&quot;</span></span>
-<span id="cb74-4"><a href="yaml.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;`r Sys.Date()`&quot;</span></span>
-<span id="cb74-5"><a href="yaml.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
-<span id="cb74-6"><a href="yaml.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb75-1"><a href="yaml.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb75-2"><a href="yaml.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Creación de contenidos con RMarkdown&quot;</span></span>
+<span id="cb75-3"><a href="yaml.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Fernández-Casal, R. y Cotos-Yáñez, T.R.&quot;</span></span>
+<span id="cb75-4"><a href="yaml.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;`r Sys.Date()`&quot;</span></span>
+<span id="cb75-5"><a href="yaml.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
+<span id="cb75-6"><a href="yaml.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>Aunque no siempre es necesario, se recomienda que los valores de texto se introduzcan entre comillas (se puede incluir código R en línea, como por ejemplo <code>`r Sys.Date()`</code> para obtener la fecha actual). Para valores lógicos se puede emplear <code>yes/true</code> y <code>no/false</code> para verdadero y falso, respectivamente.</p>
 <p>Los valores pueden ser vectores, por ejemplo las siguientes opciones son equivalentes:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb75-1"><a href="yaml.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">book.bib</span><span class="kw">,</span><span class="at"> packages.bib</span><span class="kw">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb76"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb76-1"><a href="yaml.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span></span>
-<span id="cb76-2"><a href="yaml.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> book.bib</span></span>
-<span id="cb76-3"><a href="yaml.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> packages.bib</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb76-1"><a href="yaml.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">book.bib</span><span class="kw">,</span><span class="at"> packages.bib</span><span class="kw">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb77-1"><a href="yaml.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span></span>
+<span id="cb77-2"><a href="yaml.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> book.bib</span></span>
+<span id="cb77-3"><a href="yaml.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> packages.bib</span></span></code></pre></div>
 <p>También pueden ser listas, añadiendo una sangría de dos espacios (importante):</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb77-1"><a href="yaml.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb77-2"><a href="yaml.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
-<span id="cb77-3"><a href="yaml.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb77-4"><a href="yaml.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb77-5"><a href="yaml.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
-<span id="cb77-6"><a href="yaml.html#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span></code></pre></div>
-<p>El campo <code>output</code> permite especificar el formato y las opciones de salida (por defecto se empleará la primera). Empleando este campo también se pueden especificar opciones gráficas para los bloques de código, por ejemplo:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb78-1"><a href="yaml.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
 <span id="cb78-2"><a href="yaml.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
-<span id="cb78-3"><a href="yaml.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
-<span id="cb78-4"><a href="yaml.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_height</span><span class="kw">:</span><span class="at"> </span><span class="dv">6</span></span>
-<span id="cb78-5"><a href="yaml.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_caption</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
-<p>La mayoría de los campos YAML son opciones que el paquete <code>rmarkdown</code> le pasa a Pandoc
-(ver documentación en el Apéndice <a href="pandoc.html#pandoc">A</a>).</p>
+<span id="cb78-3"><a href="yaml.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb78-4"><a href="yaml.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb78-5"><a href="yaml.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
+<span id="cb78-6"><a href="yaml.html#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span></code></pre></div>
+<p>El campo <code>output</code> permite especificar el formato y las opciones de salida (por defecto se empleará la primera). Empleando este campo también se pueden especificar opciones gráficas para los bloques de código, por ejemplo:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb79-1"><a href="yaml.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb79-2"><a href="yaml.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb79-3"><a href="yaml.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
+<span id="cb79-4"><a href="yaml.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_height</span><span class="kw">:</span><span class="at"> </span><span class="dv">6</span></span>
+<span id="cb79-5"><a href="yaml.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_caption</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<p>La mayoría de los campos YAML son opciones que el paquete <a href="https://github.com/rstudio/rmarkdown"><code>rmarkdown</code></a> le pasa a Pandoc (ver documentación en el Apéndice <a href="pandoc.html#pandoc">A</a>).</p>
 <p>Un ejemplo adicional<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb79-1"><a href="yaml.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb79-2"><a href="yaml.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Creación de contenidos con RMarkdown&quot;</span></span>
-<span id="cb79-3"><a href="yaml.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Curso de introducción a R&quot;</span></span>
-<span id="cb79-4"><a href="yaml.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb79-5"><a href="yaml.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Rubén Fernández Casal (ruben.fcasal@udc.es)&quot;</span></span>
-<span id="cb79-6"><a href="yaml.html#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Universidade da Coruña&quot;</span></span>
-<span id="cb79-7"><a href="yaml.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Tomás R. Cotos Yáñez (tcotos@uvigo.es)&quot;</span></span>
-<span id="cb79-8"><a href="yaml.html#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Universidade de Vigo&quot;</span></span>
-<span id="cb79-9"><a href="yaml.html#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;2023-03-31&quot;</span></span>
-<span id="cb79-10"><a href="yaml.html#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="fu">logo</span><span class="kw">:</span><span class="at"> rmarkdown.png</span></span>
-<span id="cb79-11"><a href="yaml.html#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb79-12"><a href="yaml.html#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
-<span id="cb79-13"><a href="yaml.html#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">                  # incluir tabla de contenido</span></span>
-<span id="cb79-14"><a href="yaml.html#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">            # toc flotante a la izquierda</span></span>
-<span id="cb79-15"><a href="yaml.html#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">      # numerar secciones y subsecciones</span></span>
-<span id="cb79-16"><a href="yaml.html#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code_folding</span><span class="kw">:</span><span class="at"> hide</span><span class="co">        # por defecto el código aparecerá oculto</span></span>
-<span id="cb79-17"><a href="yaml.html#cb79-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">mathjax</span><span class="kw">:</span><span class="at"> local</span><span class="co">            # emplea una copia local de MathJax, hay que establecer:</span></span>
-<span id="cb79-18"><a href="yaml.html#cb79-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self_contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">     # las dependencias se guardan en ficheros externos</span></span>
-<span id="cb79-19"><a href="yaml.html#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">lib_dir</span><span class="kw">:</span><span class="at"> libs</span><span class="co">             # directorio para librerías (Bootstrap, MathJax, ...)</span></span>
-<span id="cb79-20"><a href="yaml.html#cb79-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
-<span id="cb79-21"><a href="yaml.html#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb79-22"><a href="yaml.html#cb79-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb79-23"><a href="yaml.html#cb79-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">keep_tex</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">             # conservar fichero latex</span></span>
-<span id="cb79-24"><a href="yaml.html#cb79-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
-<span id="cb79-25"><a href="yaml.html#cb79-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb80-1"><a href="yaml.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb80-2"><a href="yaml.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Creación de contenidos con RMarkdown&quot;</span></span>
+<span id="cb80-3"><a href="yaml.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Curso de introducción a R&quot;</span></span>
+<span id="cb80-4"><a href="yaml.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb80-5"><a href="yaml.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Rubén Fernández Casal (ruben.fcasal@udc.es)&quot;</span></span>
+<span id="cb80-6"><a href="yaml.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Universidade da Coruña&quot;</span></span>
+<span id="cb80-7"><a href="yaml.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Tomás R. Cotos Yáñez (tcotos@uvigo.es)&quot;</span></span>
+<span id="cb80-8"><a href="yaml.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Universidade de Vigo&quot;</span></span>
+<span id="cb80-9"><a href="yaml.html#cb80-9" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;2023-03-31&quot;</span></span>
+<span id="cb80-10"><a href="yaml.html#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="fu">logo</span><span class="kw">:</span><span class="at"> rmarkdown.png</span></span>
+<span id="cb80-11"><a href="yaml.html#cb80-11" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb80-12"><a href="yaml.html#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb80-13"><a href="yaml.html#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">                  # incluir tabla de contenido</span></span>
+<span id="cb80-14"><a href="yaml.html#cb80-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">            # toc flotante a la izquierda</span></span>
+<span id="cb80-15"><a href="yaml.html#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">      # numerar secciones y subsecciones</span></span>
+<span id="cb80-16"><a href="yaml.html#cb80-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code_folding</span><span class="kw">:</span><span class="at"> hide</span><span class="co">        # por defecto el código aparecerá oculto</span></span>
+<span id="cb80-17"><a href="yaml.html#cb80-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">mathjax</span><span class="kw">:</span><span class="at"> local</span><span class="co">            # emplea una copia local de MathJax, hay que establecer:</span></span>
+<span id="cb80-18"><a href="yaml.html#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self_contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">     # las dependencias se guardan en ficheros externos</span></span>
+<span id="cb80-19"><a href="yaml.html#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">lib_dir</span><span class="kw">:</span><span class="at"> libs</span><span class="co">             # directorio para librerías (Bootstrap, MathJax, ...)</span></span>
+<span id="cb80-20"><a href="yaml.html#cb80-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
+<span id="cb80-21"><a href="yaml.html#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb80-22"><a href="yaml.html#cb80-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb80-23"><a href="yaml.html#cb80-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">keep_tex</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="co">             # conservar fichero latex</span></span>
+<span id="cb80-24"><a href="yaml.html#cb80-24" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>Como se puede deducir del ejemplo anterior, en el formato YAML podemos incluir comentarios con el carácter <code>#</code>
 (por ejemplo para no emplear alguna de las opciones sin borrarla del encabezado).</p>
-<p>En el <a href="https://bookdown.org/yihui/rmarkdown/documents.html">Capítulo 3</a> del libro de RMarkdown
-se tiene información detallada sobre las opciones de los distintos formatos de salida
-(sobre ficheros HTML <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">aquí</a>
-y sobre PDF/LaTeX <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">aquí</a>).</p>
+<p>En el <a href="https://bookdown.org/yihui/rmarkdown/documents.html">Capítulo 3</a> del libro de RMarkdown se tiene información detallada sobre las opciones de los distintos formatos de salida (sobre ficheros HTML en la sección <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">HTML document</a> y sobre PDF/LaTeX en <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">PDF document</a>).</p>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="7">
-<li id="fn7"><p>Puede ser interesante ejecutar <code>str(rmarkdown::html_document())</code>
-para ver un listado de todas las opciones disponibles de <code>html_document</code><a href="yaml.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Puede ser interesante ejecutar <code>str(rmarkdown::html_document())</code> para ver un listado de todas las opciones disponibles de <code>html_document</code><a href="yaml.html#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -250,7 +250,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dplyr-pkg" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> El paquete dplyr</h2>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="dplyr-pkg.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dplyr-pkg.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <p>La principal ventaja de <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> es que permite trabajar (de la misma forma) con datos en distintos formatos:</p>
 <ul>
 <li><p><code>data.frame</code>, <a href="https://tibble.tidyverse.org/"><code>tibble</code></a>.</p></li>
@@ -275,8 +275,8 @@ Los principales “verbos” (funciones) son:</p>
 Realmente las componentes también pueden ser listas de la misma longitud y, por tanto, podemos almacenar casi cualquier estructura de datos en un <code>data.frame</code>.</p>
 <p>En la primera parte de este capítulo consideraremos solo <code>data.frame</code> por comodidad.
 Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero <em>empleados.RData</em> (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="dplyr-pkg.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb92-2"><a href="dplyr-pkg.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span>                  </span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="dplyr-pkg.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb95-2"><a href="dplyr-pkg.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span>                  </span></code></pre></div>
 <p>En la Sección <a href="dbplyr.html#dbplyr">5.6</a> final emplearemos una base de datos relacional como ejemplo.</p>
 </div>
             </section>

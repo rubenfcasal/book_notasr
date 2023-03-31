@@ -32,9 +32,9 @@ knitr::spin("01-Introduccion.R", knit = FALSE)
 
 
 Este documento se ha generado empleando RMarkdown, una extensión de [Markdown](https://es.wikipedia.org/wiki/Markdown) que permite incorporar código y resultados de R. 
-RMarkdown es recomendable para difundir análisis realizados con `R` en formato HTML, PDF y DOCX (Word), entre otros. 
+RMarkdown es recomendable para difundir análisis realizados con R en formato HTML, PDF y DOCX (Word), entre otros. 
 
-## R Markdown
+## RMarkdown
 
 El paquete [`rmarkdown`](https://github.com/rstudio/rmarkdown) permite combinar Markdown con R para la generación de documentos.  [Markdown](http://daringfireball.net/projects/markdown/) se diseñó inicialmente para la creación de páginas web a partir de documentos de texto de forma muy sencilla y rápida (tiene unas reglas sintácticas muy simples). 
 Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintácticas muy simples y se busca principalmente la facilidad de lectura.
@@ -44,7 +44,7 @@ pero actualmente están disponibles múltiples dialectos (sobre todo para public
 RMarkdown utiliza las extensiones de la sintaxis proporcionada por *Pandoc* (ver Apéndice \@ref(pandoc)), y adicionalmente permite la inclusión de código R.
 
 Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento^[Se llama al paquete `knitr` para "tejer" el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con *pandoc*]. 
-En *RStudio* basta con hacer clic en el botón *Knit*. 
+En RStudio basta con hacer clic en el botón *Knit*. 
 En R se puede emplear la funcion `render` del paquete `rmarkdown` (por ejemplo `render("Informe.Rmd")`).
 También se puede abrir directamente el informe generado:
 ```
@@ -55,7 +55,7 @@ browseURL(url = render("Informe.Rmd"))
 A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, ...).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial  <http://rmarkdown.rstudio.com/>.
 
-También se dispone de información en la ayuda de *RStudio*:
+También se dispone de información en la ayuda de RStudio:
 
 -   *Help > Markdown Quick Reference*
 
@@ -194,7 +194,7 @@ summary(mtcars[1:3])
 ##  Max.   :33.90   Max.   :8.000   Max.   :472.0
 ```
 
-En *RStudio* pulsando "Ctrl + Alt + I" o en el icono correspondiente se incluye un trozo de código.
+En RStudio pulsando *Ctrl + Alt + I* o en el icono correspondiente se incluye un trozo de código.
 
 También se puede incluir código en línea empleando `` `r código` ``, 
 por ejemplo `` `r 2 + 2` `` produce 4.
@@ -205,7 +205,8 @@ por ejemplo `` `r 2 + 2` `` produce 4.
 Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado 
 (por defecto). Por ejemplo el siguiente gráfico:
 
-<img src="08_rmarkdown_files/figure-html/figura1-1.png" width="80%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.8\linewidth]{08_rmarkdown_files/figure-latex/figura1-1} \end{center}
 
 se generó empleando:
 ````markdown
@@ -221,10 +222,8 @@ aunque no se mostró previamente el código al haber establecido la opción ` ``
 Los trozos de código pueden tener nombre y opciones, se establecen en la cabecera de la forma 
 ` ```{r nombre, op1, op2} `. 
 Para un listado de las opciones disponibles ver <http://yihui.name/knitr/options>
-(en la [Sección 2.6](https://bookdown.org/yihui/rmarkdown/r-code.html) del libro de RMarkdown
-se incluye un resumen).
-En *RStudio* se puede pulsar en los iconos en la parte superior derecha del bloque de código 
-para establecer opciones, ejecutar todo el código anterior o sólo el correspondiente trozo.
+(en la [Sección 2.6](https://bookdown.org/yihui/rmarkdown/r-code.html) del libro de RMarkdown se incluye un resumen).
+En RStudio se puede pulsar en los iconos en la parte superior derecha del bloque de código para establecer opciones, ejecutar todo el código anterior o sólo el correspondiente trozo.
 
 Algunas opciones sobre evaluación y resultados:
 
@@ -262,17 +261,36 @@ knitr::opts_chunk$set(comment=NA, prompt=TRUE, dev='svg', fig.dim=c(5, 7), colla
 
 ## Tablas {#tablas}
 
-Las tablas en Markdown son de la forma:
-```
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Row1 Cell1    | Row1 Cell2    |
-| Row2 Cell1    | Row2 Cell2    |
-```
+En Markdown se pueden escribir tablas en varios formatos (ver [Pandoc Tables](https://pandoc.org/MANUAL.html#tables)).
 Por ejemplo:
+```
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1   
+```
 
-Variable  | Descripción
---------  | -----------------------------------------------------------
+También:
+```
+Variable   | Descripción
+---------  | -----------------------------------------------------------
+mpg	  |  Millas / galón (EE.UU.) 
+cyl	  |  Número de cilindros
+disp  |	 Desplazamiento (pulgadas cúbicas)
+hp	  |  Caballos de fuerza bruta
+drat  |  Relación del eje trasero
+wt    |  Peso (miles de libras)
+qsec  |  Tiempo de 1/4 de milla
+vs    |  Cilindros en V/Straight (0 = cilindros en V, 1 = cilindros en línea)
+am    |  Tipo de transmisión (0 = automático, 1 = manual)
+gear  |  Número de marchas (hacia adelante)
+carb  |  Número de carburadores 
+```
+que resulta en:
+
+Variable   | Descripción
+---------  | -----------------------------------------------------------
 mpg	  |  Millas / galón (EE.UU.) 
 cyl	  |  Número de cilindros
 disp  |	 Desplazamiento (pulgadas cúbicas)
@@ -286,7 +304,7 @@ gear  |  Número de marchas (hacia adelante)
 carb  |  Número de carburadores
 
 
-Para convertir resultados de R en tablas de una forma simple se puede emplear la función `ktable` del paquete *knitr*. Por ejemplo la Tabla \@ref(tab:kable) se obtuvo mediante el siguiente código:
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función [`ktable()`](NA) del paquete [`knitr`](https://yihui.org/knitr/). Por ejemplo la Tabla \@ref(tab:kable) se obtuvo mediante el siguiente código:
 
 ```r
 knitr::kable(
@@ -295,22 +313,34 @@ knitr::kable(
 )
 ```
 
+\begin{table}
 
+\caption{(\#tab:kable)Una kable knitr}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.620 & 16.46 & 0 & 1 & 4 & 4\\
+\hline
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.875 & 17.02 & 0 & 1 & 4 & 4\\
+\hline
+Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.320 & 18.61 & 1 & 1 & 4 & 1\\
+\hline
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.215 & 19.44 & 1 & 0 & 3 & 1\\
+\hline
+Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.440 & 17.02 & 0 & 0 & 3 & 2\\
+\hline
+Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
+\hline
+\end{tabular}
+\end{table}
 
-Table: (\#tab:kable)Una kable knitr
+Otros paquetes proporcionan opciones adicionales: [`xtable`](http://xtable.r-forge.r-project.org/), [`stargazer`](https://CRAN.R-project.org/package=stargazer), [`pander`](https://rapporter.github.io/pander/), [`tables`](https://r-forge.r-project.org/projects/tables/) y [`ascii`](https://github.com/mclements/ascii).
 
-|                  |  mpg| cyl| disp|  hp| drat|    wt|  qsec| vs| am| gear| carb|
-|:-----------------|----:|---:|----:|---:|----:|-----:|-----:|--:|--:|----:|----:|
-|Mazda RX4         | 21.0|   6|  160| 110| 3.90| 2.620| 16.46|  0|  1|    4|    4|
-|Mazda RX4 Wag     | 21.0|   6|  160| 110| 3.90| 2.875| 17.02|  0|  1|    4|    4|
-|Datsun 710        | 22.8|   4|  108|  93| 3.85| 2.320| 18.61|  1|  1|    4|    1|
-|Hornet 4 Drive    | 21.4|   6|  258| 110| 3.08| 3.215| 19.44|  1|  0|    3|    1|
-|Hornet Sportabout | 18.7|   8|  360| 175| 3.15| 3.440| 17.02|  0|  0|    3|    2|
-|Valiant           | 18.1|   6|  225| 105| 2.76| 3.460| 20.22|  1|  0|    3|    1|
-
-Otros paquetes proporcionan opciones adicionales: *xtable*, *stargazer*, *pander*, *tables* y *ascii*.
 
 ## Cabecera YAML {#yaml}
+
 En un fichero RMarkdown se puede incluir metadatos en una cabecera en formato YAML 
 (YAML Ain’t Markup Language, https://en.wikipedia.org/wiki/YAML), 
 comenzando y terminando con tres guiones `---`. 
@@ -326,6 +356,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 ```
+
 Aunque no siempre es necesario, se recomienda que los valores de texto se introduzcan entre comillas (se puede incluir código R en línea, como por ejemplo `` `r Sys.Date()` `` para obtener la fecha actual). Para valores lógicos se puede emplear `yes/true` y `no/false` para verdadero y falso, respectivamente.
 
 Los valores pueden ser vectores, por ejemplo las siguientes opciones son equivalentes:
@@ -355,11 +386,9 @@ output:
     fig_caption: true
 ```
 
-La mayoría de los campos YAML son opciones que el paquete `rmarkdown` le pasa a Pandoc
-(ver documentación en el Apéndice \@ref(pandoc)).
+La mayoría de los campos YAML son opciones que el paquete [`rmarkdown`](https://github.com/rstudio/rmarkdown) le pasa a Pandoc (ver documentación en el Apéndice \@ref(pandoc)).
 
-Un ejemplo adicional^[Puede ser interesante ejecutar `str(rmarkdown::html_document())` 
-para ver un listado de todas las opciones disponibles de `html_document`]:
+Un ejemplo adicional^[Puede ser interesante ejecutar `str(rmarkdown::html_document())` para ver un listado de todas las opciones disponibles de `html_document`]:
 
 ```yaml
 ---
@@ -385,48 +414,52 @@ output:
     toc: yes
     toc_depth: 2
     keep_tex: yes             # conservar fichero latex
-    
 ---
 ```
 Como se puede deducir del ejemplo anterior, en el formato YAML podemos incluir comentarios con el carácter `#` 
 (por ejemplo para no emplear alguna de las opciones sin borrarla del encabezado).
 
-En el [Capítulo 3](https://bookdown.org/yihui/rmarkdown/documents.html) del libro de RMarkdown
-se tiene información detallada sobre las opciones de los distintos formatos de salida 
-(sobre ficheros HTML [aquí](https://bookdown.org/yihui/rmarkdown/html-document.html) 
-y sobre PDF/LaTeX [aquí](https://bookdown.org/yihui/rmarkdown/pdf-document.html)).
+En el [Capítulo 3](https://bookdown.org/yihui/rmarkdown/documents.html) del libro de RMarkdown se tiene información detallada sobre las opciones de los distintos formatos de salida (sobre ficheros HTML en la sección [HTML document](https://bookdown.org/yihui/rmarkdown/html-document.html) y sobre PDF/LaTeX en [PDF document](https://bookdown.org/yihui/rmarkdown/pdf-document.html)).
 
 
 ## Extracción del código R
 
-Para generar un fichero con el código R se puede emplear la función `purl` del paquete *knitr*. Por ejemplo:
+Para generar un fichero con el código R se puede emplear la función [`knitr::ktable()`](NA). 
+Por ejemplo:
 ```
 purl("Informe.Rmd")
 ```
-Si se quiere además el texto RMarkdown como comentarios tipo `spin`, se puede emplear:
+
+Si se quiere además el texto RMarkdown como comentarios tipo [`spin()`](https://rdrr.io/pkg/knitr/man/spin.html), se puede emplear:
 ```
 purl("Informe.Rmd", documentation = 2)
 ```
 
 ## Spin
 
-Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la funcion 
-`spin` del paquete *knitr* (ver p.e. <http://yihui.name/knitr/demo/stitch>).
+Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la función [`spin()`](https://rdrr.io/pkg/knitr/man/spin.html) del paquete [`knitr`](https://yihui.org/knitr/) (ver p.e. <https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts>).
 
 Para ello se debe comentar todo lo que no sea código R de una forma especial:
 
--   El texto RMarkdown se comenta con `#' `. Por ejemplo:
+-   El texto RMarkdown se comenta con `#' `. 
+
+
+    Por ejemplo:
     ```
     #' # Este es un título de primer nivel
     #' ## Este es un título de segundo nivel
     ```
--   Las opciones de un trozo de código se comentan con `#+`. Por ejemplo:
+-   Las opciones de un trozo de código se comentan con `#+`. 
+
+
+    Por ejemplo:
     ```
     #+ setup, include=FALSE
     opts_chunk$set(comment=NA, prompt=TRUE, dev='svg', fig.height=6, fig.width=6)
     ```
 
-Para generar el informe se puede emplear la funcion `spin` del paquete *knitr*. Por ejemplo: `spin("Ridge_Lasso.R")`.
+Para generar el informe se puede emplear la función [`knitr::purl()`](https://rdrr.io/pkg/knitr/man/knit.html). 
+Por ejemplo: `spin("Ridge_Lasso.R")`.
 También se podría abrir directamente el informe generado:
 ```
 browseURL(url = knitr::spin("Ridge_Lasso.R"))
@@ -436,7 +469,7 @@ Pero puede ser recomendable renderizarlo con rmarkdown:
 library(rmarkdown)
 browseURL(url = render(knitr::spin("Ridge_Lasso.R", knit = FALSE)))
 ```
-En *RStudio* basta con pulsar "Ctrl + Shift + K" o seleccionar *File > Knit Document* (en las últimas versiones también *File > Compile Notebook* o hacer clic en el icono correspondiente).
+En RStudio basta con pulsar *Ctrl + Shift + K*, el icono correspondiente en la barra superior, o seleccionar *File > Compile Report...*.
 
 Por ejemplo, si se quiere convertir la salidas de un fichero de código de R a formato LaTeX 
 (para añadirlas fácilmente a un documento en este formato), bastaría con incluir una cabecera de
@@ -476,9 +509,8 @@ Podemos incluir expresiones matemáticas en formato LateX:
     \gamma & \delta
     \end{pmatrix}$$
 
-También admite bibliografía, ver p.e. <https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>.
-Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX,
-lo que se describe con detalle [aquí](https://bookdown.org/yihui/bookdown/citations.html).
+También admite bibliografía, ver p.e. [Pandoc Citations](https://pandoc.org/MANUAL.html#citations).
+Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX, lo que se describe con detalle en [Citations](https://bookdown.org/yihui/bookdown/citations.html).
 Será necesario añadir un campo `bibliography` en la cabezera YAML, por ejemplo:
 ```yaml
 bibliography: bibliografia.bib
@@ -496,9 +528,7 @@ En RStudio se puede instalar el "[Addin](https://rstudio.github.io/rstudioaddins
 [`citr`](https://github.com/crsh/citr) para insertar
 citas a referencias bibliográficas en formato BibTeX.
 
-Para más detalles de las extensiones de Pandoc ver por ejemplo 
-<https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex>
-o el manual de Pandoc <https://pandoc.org/MANUAL.html>.
+Para más detalles de las extensiones de Pandoc ver por ejemplo [Pandoc’s Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
 
 
 

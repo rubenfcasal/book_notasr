@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -262,19 +262,19 @@ div.csl-indent {
 <div id="ejemplos" class="section level3" number="5.6.1">
 <h3><span class="header-section-number">5.6.1</span> Ejemplos</h3>
 <p>Como ejemplo emplearemos la base de datos de <a href="https://www.sqlitetutorial.net/sqlite-sample-database/">SQLite Sample Database Tutorial</a>, almacenada en el archivo <a href="datos/chinook.db"><em>chinook.db</em></a>.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="dbplyr.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&#39;dbplyr&#39;)</span></span>
-<span id="cb121-2"><a href="dbplyr.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb121-3"><a href="dbplyr.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dbplyr.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&#39;dbplyr&#39;)</span></span>
+<span id="cb124-2"><a href="dbplyr.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb124-3"><a href="dbplyr.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span></code></pre></div>
 <p>En primer lugar hay que conectar la base de datos:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dbplyr.html#cb122-1" aria-hidden="true" tabindex="-1"></a>chinook <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">&quot;datos/chinook.db&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dbplyr.html#cb125-1" aria-hidden="true" tabindex="-1"></a>chinook <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">&quot;datos/chinook.db&quot;</span>)</span></code></pre></div>
 <p>Podemos listar las tablas:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dbplyr.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">src_dbi</span>(chinook)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dbplyr.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">src_dbi</span>(chinook)</span></code></pre></div>
 <pre><code>## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks</code></pre>
 <p>Para enlazar una tabla:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dbplyr.html#cb125-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="ot">&lt;-</span> <span class="fu">tbl</span>(chinook, <span class="st">&quot;invoices&quot;</span>)</span>
-<span id="cb125-2"><a href="dbplyr.html#cb125-2" aria-hidden="true" tabindex="-1"></a>invoices</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dbplyr.html#cb128-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="ot">&lt;-</span> <span class="fu">tbl</span>(chinook, <span class="st">&quot;invoices&quot;</span>)</span>
+<span id="cb128-2"><a href="dbplyr.html#cb128-2" aria-hidden="true" tabindex="-1"></a>invoices</span></code></pre></div>
 <pre><code>## # Source:   table&lt;invoices&gt; [?? x 9]
 ## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
 ## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
@@ -294,22 +294,22 @@ div.csl-indent {
 ## #   2: BillingAddress, 3: BillingCity, 4: BillingState, 5: BillingCountry,
 ## #   6: BillingPostalCode</code></pre>
 <p>Ojo <code>[?? x 9]</code>: de momento no conoce el número de filas.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dbplyr.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(invoices)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dbplyr.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(invoices)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Podemos mostrar la consulta SQL correspondiente a una operación:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dbplyr.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(<span class="fu">head</span>(invoices))</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dbplyr.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(<span class="fu">head</span>(invoices))</span></code></pre></div>
 <pre><code>## &lt;SQL&gt;
 ## SELECT *
 ## FROM `invoices`
 ## LIMIT 6</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dbplyr.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str(head(invoices))</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dbplyr.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str(head(invoices))</span></span></code></pre></div>
 <p>Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:</p>
 <ul>
 <li><p>No exporta datos a R a menos que se pida explícitamente (<code>colect()</code>).</p></li>
 <li><p>Retrasa cualquier operación lo máximo posible:
 agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.</p></li>
 </ul>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dbplyr.html#cb132-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="sc">%&gt;%</span> head <span class="sc">%&gt;%</span> collect</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="dbplyr.html#cb135-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="sc">%&gt;%</span> head <span class="sc">%&gt;%</span> collect</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 9
 ##   InvoiceId CustomerId InvoiceDate Billi~1 Billi~2 Billi~3 Billi~4 Billi~5 Total
 ##       &lt;int&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
@@ -321,7 +321,7 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ## 6         6         37 2009-01-19~ Berger~ Frankf~ &lt;NA&gt;    Germany 60316    0.99
 ## # ... with abbreviated variable names 1: BillingAddress, 2: BillingCity,
 ## #   3: BillingState, 4: BillingCountry, 5: BillingPostalCode</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dbplyr.html#cb134-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="sc">%&gt;%</span> count <span class="co"># número de filas</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dbplyr.html#cb137-1" aria-hidden="true" tabindex="-1"></a>invoices <span class="sc">%&gt;%</span> count <span class="co"># número de filas</span></span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 1]
 ## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
 ## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
@@ -329,19 +329,19 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ##   &lt;int&gt;
 ## 1   412</code></pre>
 <p>Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dbplyr.html#cb136-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> invoices <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb136-2"><a href="dbplyr.html#cb136-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="fu">max</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med =</span> <span class="fu">mean</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb136-3"><a href="dbplyr.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show_query(res)</span></span>
-<span id="cb136-4"><a href="dbplyr.html#cb136-4" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dbplyr.html#cb139-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> invoices <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb139-2"><a href="dbplyr.html#cb139-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="fu">max</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med =</span> <span class="fu">mean</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb139-3"><a href="dbplyr.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show_query(res)</span></span>
+<span id="cb139-4"><a href="dbplyr.html#cb139-4" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##     min   max   med
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1  0.99  25.9  5.65</code></pre>
 <p>Para obtener el total de las facturas de cada uno de los países:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dbplyr.html#cb138-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> invoices <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(BillingCountry) <span class="sc">%&gt;%</span> </span>
-<span id="cb138-2"><a href="dbplyr.html#cb138-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">total =</span> <span class="fu">sum</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb138-3"><a href="dbplyr.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show_query(res)</span></span>
-<span id="cb138-4"><a href="dbplyr.html#cb138-4" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dbplyr.html#cb141-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> invoices <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(BillingCountry) <span class="sc">%&gt;%</span> </span>
+<span id="cb141-2"><a href="dbplyr.html#cb141-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">total =</span> <span class="fu">sum</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb141-3"><a href="dbplyr.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show_query(res)</span></span>
+<span id="cb141-4"><a href="dbplyr.html#cb141-4" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 3
 ##    BillingCountry     n total
 ##    &lt;chr&gt;          &lt;int&gt; &lt;dbl&gt;
@@ -357,14 +357,14 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ## 10 Finland            7  41.6
 ## # ... with 14 more rows</code></pre>
 <p>Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dbplyr.html#cb140-1" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(chinook, <span class="st">&quot;customers&quot;</span>)</span>
-<span id="cb140-2"><a href="dbplyr.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_vars</span>(customers) </span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dbplyr.html#cb143-1" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(chinook, <span class="st">&quot;customers&quot;</span>)</span>
+<span id="cb143-2"><a href="dbplyr.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_vars</span>(customers) </span></code></pre></div>
 <pre><code>## &lt;dplyr:::vars&gt;
 ##  [1] &quot;CustomerId&quot;   &quot;FirstName&quot;    &quot;LastName&quot;     &quot;Company&quot;      &quot;Address&quot;     
 ##  [6] &quot;City&quot;         &quot;State&quot;        &quot;Country&quot;      &quot;PostalCode&quot;   &quot;Phone&quot;       
 ## [11] &quot;Fax&quot;          &quot;Email&quot;        &quot;SupportRepId&quot;</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="dbplyr.html#cb142-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> customers <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(invoices, <span class="at">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(FirstName, LastName, Country, Total) </span>
-<span id="cb142-2"><a href="dbplyr.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dbplyr.html#cb145-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> customers <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(invoices, <span class="at">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(FirstName, LastName, Country, Total) </span>
+<span id="cb145-2"><a href="dbplyr.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(res)</span></code></pre></div>
 <pre><code>## &lt;SQL&gt;
 ## SELECT `FirstName`, `LastName`, `Country`, `Total`
 ## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
@@ -372,7 +372,7 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ## INNER JOIN `invoices` AS `RHS`
 ## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
 ## )</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dbplyr.html#cb144-1" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="dbplyr.html#cb147-1" aria-hidden="true" tabindex="-1"></a>res  <span class="sc">%&gt;%</span> collect</span></code></pre></div>
 <pre><code>## # A tibble: 412 x 4
 ##    FirstName LastName  Country Total
 ##    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;
@@ -388,9 +388,9 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ## 10 Leonie    Köhler    Germany  8.91
 ## # ... with 402 more rows</code></pre>
 <p>Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dbplyr.html#cb146-1" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(invoices, <span class="at">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(CustomerId) <span class="sc">%&gt;%</span> </span>
-<span id="cb146-2"><a href="dbplyr.html#cb146-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(FirstName, LastName, country, <span class="at">total =</span> <span class="fu">sum</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb146-3"><a href="dbplyr.html#cb146-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> collect</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dbplyr.html#cb149-1" aria-hidden="true" tabindex="-1"></a>customers <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(invoices, <span class="at">by =</span> <span class="st">&quot;CustomerId&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(CustomerId) <span class="sc">%&gt;%</span> </span>
+<span id="cb149-2"><a href="dbplyr.html#cb149-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(FirstName, LastName, country, <span class="at">total =</span> <span class="fu">sum</span>(Total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb149-3"><a href="dbplyr.html#cb149-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> collect</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 5
 ##    CustomerId FirstName LastName   Country        total
 ##         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
@@ -405,7 +405,7 @@ agrupa todo lo que se desea hacer y luego hace una única petición a la base de
 ##  9          7 Astrid    Gruber     Austria         42.6
 ## 10         25 Victor    Stevens    USA             42.6</code></pre>
 <p>Al finalizar hay que desconectar la base de datos:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dbplyr.html#cb148-1" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbDisconnect</span>(chinook)            </span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dbplyr.html#cb151-1" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbDisconnect</span>(chinook)            </span></code></pre></div>
 
 </div>
 </div>

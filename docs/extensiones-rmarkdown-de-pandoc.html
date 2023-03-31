@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -265,12 +265,11 @@ resultaría en:
 \gamma &amp; \delta
 \end{pmatrix}\]</span></p></li>
 </ul>
-<p>También admite bibliografía, ver p.e. <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html" class="uri">https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html</a>.
-Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX,
-lo que se describe con detalle <a href="https://bookdown.org/yihui/bookdown/citations.html">aquí</a>.
+<p>También admite bibliografía, ver p.e. <a href="https://pandoc.org/MANUAL.html#citations">Pandoc Citations</a>.
+Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX, lo que se describe con detalle en <a href="https://bookdown.org/yihui/bookdown/citations.html">Citations</a>.
 Será necesario añadir un campo <code>bibliography</code> en la cabezera YAML, por ejemplo:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb85-1"><a href="extensiones-rmarkdown-de-pandoc.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> bibliografia.bib</span></span>
-<span id="cb85-2"><a href="extensiones-rmarkdown-de-pandoc.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span><span class="co">  # opcional</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb88-1"><a href="extensiones-rmarkdown-de-pandoc.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> bibliografia.bib</span></span>
+<span id="cb88-2"><a href="extensiones-rmarkdown-de-pandoc.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> apa.csl</span><span class="co">  # opcional</span></span></code></pre></div>
 <p>Suponiendo que en el directorio de trabajo están los ficheros de bibliografía <em>bibliografia.bib</em>
 y de estilo <em>apa.csl</em> (ver <a href="http://citationstyles.org/" class="uri">http://citationstyles.org/</a>, desde donde se pueden descargar
 distintos archivos de estilo).</p>
@@ -281,9 +280,7 @@ al generar documentos HTML (en PDF se hará automáticamente al emplear LaTeX).
 En RStudio se puede instalar el “<a href="https://rstudio.github.io/rstudioaddins/">Addin</a>”
 <a href="https://github.com/crsh/citr"><code>citr</code></a> para insertar
 citas a referencias bibliográficas en formato BibTeX.</p>
-<p>Para más detalles de las extensiones de Pandoc ver por ejemplo
-<a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex" class="uri">https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex</a>
-o el manual de Pandoc <a href="https://pandoc.org/MANUAL.html" class="uri">https://pandoc.org/MANUAL.html</a>.</p>
+<p>Para más detalles de las extensiones de Pandoc ver por ejemplo <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc’s Markdown</a>.</p>
 
 </div>
 <!-- </div> -->

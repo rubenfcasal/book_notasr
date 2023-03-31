@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -254,17 +254,17 @@ div.csl-indent {
 Por ejemplo, <code>segundo(primero(datos))</code> se traduce en <code>datos %&gt;% primero %&gt;% segundo</code>, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.</p>
 <p>Desde la versión 4.1 de R está disponible un operador interno <code>|&gt;</code> (aunque yo sigo prefiriendo <code>%&gt;%</code>).
 Por ejemplo:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="pipe.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El fichero &#39;empleados.RData&#39; contiene datos de empleados de un banco.</span></span>
-<span id="cb87-2"><a href="pipe.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos por ejemplo que estamos interesados en estudiar si hay</span></span>
-<span id="cb87-3"><a href="pipe.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co"># discriminación por cuestión de sexo o raza.</span></span>
-<span id="cb87-4"><a href="pipe.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="pipe.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb87-6"><a href="pipe.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA: Cuidado con la codificación latin1 (no declarada) </span></span>
-<span id="cb87-7"><a href="pipe.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co"># al abrir archivos creados en versiones anteriores de R &lt; 4.2: </span></span>
-<span id="cb87-8"><a href="pipe.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load(&quot;datos/empleados.latin1.RData&quot;)</span></span>
-<span id="cb87-9"><a href="pipe.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-10"><a href="pipe.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Listamos las etiquetas</span></span>
-<span id="cb87-11"><a href="pipe.html#cb87-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>), <span class="at">col.names =</span> <span class="st">&quot;Etiqueta&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="pipe.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El fichero &#39;empleados.RData&#39; contiene datos de empleados de un banco.</span></span>
+<span id="cb90-2"><a href="pipe.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos por ejemplo que estamos interesados en estudiar si hay</span></span>
+<span id="cb90-3"><a href="pipe.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co"># discriminación por cuestión de sexo o raza.</span></span>
+<span id="cb90-4"><a href="pipe.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="pipe.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb90-6"><a href="pipe.html#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA: Cuidado con la codificación latin1 (no declarada) </span></span>
+<span id="cb90-7"><a href="pipe.html#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="co"># al abrir archivos creados en versiones anteriores de R &lt; 4.2: </span></span>
+<span id="cb90-8"><a href="pipe.html#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load(&quot;datos/empleados.latin1.RData&quot;)</span></span>
+<span id="cb90-9"><a href="pipe.html#cb90-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-10"><a href="pipe.html#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Listamos las etiquetas</span></span>
+<span id="cb90-11"><a href="pipe.html#cb90-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>), <span class="at">col.names =</span> <span class="st">&quot;Etiqueta&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -319,10 +319,10 @@ Por ejemplo:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="pipe.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
-<span id="cb88-2"><a href="pipe.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(empleados, &quot;variable.labels&quot;) &lt;- NULL  </span></span>
-<span id="cb88-3"><a href="pipe.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-4"><a href="pipe.html#cb88-4" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">|&gt;</span>  <span class="fu">subset</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>, catlab<span class="sc">:</span>sexoraza) <span class="sc">|&gt;</span>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="pipe.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
+<span id="cb91-2"><a href="pipe.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(empleados, &quot;variable.labels&quot;) &lt;- NULL  </span></span>
+<span id="cb91-3"><a href="pipe.html#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="pipe.html#cb91-4" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">|&gt;</span>  <span class="fu">subset</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>, catlab<span class="sc">:</span>sexoraza) <span class="sc">|&gt;</span>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##             catlab      salario           salini         tiempemp    
 ##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
 ##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
@@ -340,13 +340,13 @@ Por ejemplo:</p>
 <p>Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
 Sin embargo, el operador <code>%&gt;%</code> permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un <code>.</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="pipe.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?&quot;|&gt;&quot;</span></span>
-<span id="cb90-2"><a href="pipe.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados |&gt; subset(catlab != &quot;Seguridad&quot;) |&gt; droplevels |&gt; </span></span>
-<span id="cb90-3"><a href="pipe.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     boxplot(salario ~ sexo*catlab, data = .) # ERROR</span></span>
-<span id="cb90-4"><a href="pipe.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-5"><a href="pipe.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb90-6"><a href="pipe.html#cb90-6" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">subset</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb90-7"><a href="pipe.html#cb90-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">boxplot</span>(salario <span class="sc">~</span> sexo<span class="sc">*</span>catlab, <span class="at">data =</span> .)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="pipe.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?&quot;|&gt;&quot;</span></span>
+<span id="cb93-2"><a href="pipe.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados |&gt; subset(catlab != &quot;Seguridad&quot;) |&gt; droplevels |&gt; </span></span>
+<span id="cb93-3"><a href="pipe.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     boxplot(salario ~ sexo*catlab, data = .) # ERROR</span></span>
+<span id="cb93-4"><a href="pipe.html#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-5"><a href="pipe.html#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb93-6"><a href="pipe.html#cb93-6" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">subset</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb93-7"><a href="pipe.html#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">boxplot</span>(salario <span class="sc">~</span> sexo<span class="sc">*</span>catlab, <span class="at">data =</span> .)</span></code></pre></div>
 <p><img src="10_tidyverse_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>

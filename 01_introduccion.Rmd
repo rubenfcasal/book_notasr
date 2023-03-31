@@ -90,7 +90,7 @@ Se puede configurar RStudio para emplear Git (ver el libro [Happy Git and GitHub
 Mi recomendación a la hora de escribir código es seguir un **proceso iterativo**. 
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).
 
-En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato [spin](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin) (ver e.g. [Apéndice](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin)), en el que el texto RMarkdown se incluye como un comentario de código empleando `#' `. Por ejemplo:
+En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato [spin](https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts) (ver Sección  \@ref(spin)), en el que el texto RMarkdown se incluye como un comentario de código empleando `#' `. Por ejemplo:
 ```
 #' # Sección
 #'

@@ -120,20 +120,33 @@ knitr::kable(attr(empleados, "variable.labels"), col.names = "Etiqueta")
 ```
 
 
-
-|         |Etiqueta                      |
-|:--------|:-----------------------------|
-|id       |Código de empleado            |
-|sexo     |Sexo                          |
-|fechnac  |Fecha de nacimiento           |
-|educ     |Nivel educativo  (años)       |
-|catlab   |Categoría laboral             |
-|salario  |Salario actual                |
-|salini   |Salario inicial               |
-|tiempemp |Meses desde el contrato       |
-|expprev  |Experiencia previa (meses)    |
-|minoria  |Clasificación étnica          |
-|sexoraza |Clasificación por sexo y raza |
+\begin{tabular}{l|l}
+\hline
+  & Etiqueta\\
+\hline
+id & Código de empleado\\
+\hline
+sexo & Sexo\\
+\hline
+fechnac & Fecha de nacimiento\\
+\hline
+educ & Nivel educativo  (años)\\
+\hline
+catlab & Categoría laboral\\
+\hline
+salario & Salario actual\\
+\hline
+salini & Salario inicial\\
+\hline
+tiempemp & Meses desde el contrato\\
+\hline
+expprev & Experiencia previa (meses)\\
+\hline
+minoria & Clasificación étnica\\
+\hline
+sexoraza & Clasificación por sexo y raza\\
+\hline
+\end{tabular}
 
 ```r
 # Eliminamos las etiquetas para que no molesten...
@@ -174,7 +187,9 @@ empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
     boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-<img src="10_tidyverse_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 
 

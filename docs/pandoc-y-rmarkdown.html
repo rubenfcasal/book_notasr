@@ -119,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -155,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -191,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -229,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pandoc-y-rmarkdown" class="section level2" number="6.2">
 <h2><span class="header-section-number">A.2</span> Pandoc y RMarkdown</h2>
 <p>Como ya se comentó, el paquete <code>rmarkdown</code> llama a <em>pandoc</em> para renderizar un documento
-RMarkdown<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, y esta llamada se muestra en la consola
+RMarkdown<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>, y esta llamada se muestra en la consola
 (o en la correspondiente pestaña de RStudio):</p>
 <pre><code>&quot;C:/Program Files/RStudio/bin/pandoc/pandoc&quot; +RTS -K512m -RTS Informes.utf8.md --to html4 
 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash 
@@ -244,22 +266,30 @@ RMarkdown<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, y est
 Output created: Informes.html</code></pre>
 <p>La mayoría de los campos de la cabecera YAML de un fichero RMarkdown se traducen en las opciones de Pandoc.
 Por ejemplo, la cabezera:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="pandoc-y-rmarkdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="pandoc-y-rmarkdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="pandoc-y-rmarkdown.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="pandoc-y-rmarkdown.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="at">      </span></span>
-<span id="cb2-5"><a href="pandoc-y-rmarkdown.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb153-1"><a href="pandoc-y-rmarkdown.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb153-2"><a href="pandoc-y-rmarkdown.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb153-3"><a href="pandoc-y-rmarkdown.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb153-4"><a href="pandoc-y-rmarkdown.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span><span class="at">      </span></span>
+<span id="cb153-5"><a href="pandoc-y-rmarkdown.html#cb153-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>(que produce la numeración de secciones y subsecciones),
 se corresponde con la opción <code>--number-sections</code> de <em>pandoc</em>.
 También se puede establecer cualquier opción de Pandoc en la cabecera YAML
 mediante el campo <code>pandoc_args</code>, por ejemplo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="pandoc-y-rmarkdown.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href="pandoc-y-rmarkdown.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="pandoc-y-rmarkdown.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb3-4"><a href="pandoc-y-rmarkdown.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pandoc_args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">&quot;--number-offset&quot;</span><span class="kw">,</span><span class="at"> </span><span class="st">&quot;4,0&quot;</span><span class="kw">,</span><span class="at"> </span><span class="st">&quot;--number-sections&quot;</span><span class="kw">]</span><span class="at">      </span></span>
-<span id="cb3-5"><a href="pandoc-y-rmarkdown.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb154-1"><a href="pandoc-y-rmarkdown.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb154-2"><a href="pandoc-y-rmarkdown.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb154-3"><a href="pandoc-y-rmarkdown.html#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb154-4"><a href="pandoc-y-rmarkdown.html#cb154-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pandoc_args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">&quot;--number-offset&quot;</span><span class="kw">,</span><span class="at"> </span><span class="st">&quot;4,0&quot;</span><span class="kw">,</span><span class="at"> </span><span class="st">&quot;--number-sections&quot;</span><span class="kw">]</span><span class="at">      </span></span>
+<span id="cb154-5"><a href="pandoc-y-rmarkdown.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>(en este caso la numeración comenzaría en 4).</p>
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Xie, Yihui. 2021. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+</div>
+<div class="csl-entry">
+Xie, Yihui, JJ Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. CRC Press. <a href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a>.
+</div>
+</div>
 </div>
 <!-- </div> -->
 
@@ -269,11 +299,21 @@ mediante el campo <code>pandoc_args</code>, por ejemplo:</p>
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Desde la <a href="https://blog.rstudio.org/2014/06/18/r-markdown-v2/">versión 2</a>,
-antes se utilizaba <code>knitr</code> y <code>markdown</code>.<a href="pandoc-y-rmarkdown.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="9">
+<li id="fn9"><p>Desde la <a href="https://blog.rstudio.org/2014/06/18/r-markdown-v2/">versión 2</a>,
+antes se utilizaba <code>knitr</code> y <code>markdown</code>.<a href="pandoc-y-rmarkdown.html#fnref9" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -336,6 +376,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

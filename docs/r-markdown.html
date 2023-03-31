@@ -222,11 +222,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
-<li class="appendix"><span><b>Apéndices</b></span></li>
-<li class="chapter" data-level="A" data-path="pandoc.html"><a href="pandoc.html"><i class="fa fa-check"></i><b>A</b> Pandoc</a>
+<li class="chapter" data-level="" data-path=""><a href="#appendix-apéndices"><i class="fa fa-check"></i>(APPENDIX) Apéndices</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="conversion.html"><a href="conversion.html"><i class="fa fa-check"></i><b>A.1</b> Conversión de documentos con Pandoc</a></li>
-<li class="chapter" data-level="A.2" data-path="pandoc-y-rmarkdown.html"><a href="pandoc-y-rmarkdown.html"><i class="fa fa-check"></i><b>A.2</b> Pandoc y RMarkdown</a></li>
+<li class="chapter" data-level="5.7" data-path="conversion.html"><a href="conversion.html"><i class="fa fa-check"></i><b>5.7</b> Conversión de documentos con Pandoc</a></li>
+<li class="chapter" data-level="5.8" data-path="pandoc-y-rmarkdown.html"><a href="pandoc-y-rmarkdown.html"><i class="fa fa-check"></i><b>5.8</b> Pandoc y RMarkdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -255,16 +254,16 @@ Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintá
 Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
 La implementación original de Markdown es de <a href="http://daringfireball.net/projects/markdown/">John Gruber</a>,
 pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
-RMarkdown utiliza las extensiones de la sintaxis proporcionada por <em>Pandoc</em> (ver Apéndice <a href="pandoc.html#pandoc">A</a>), y adicionalmente permite la inclusión de código R.</p>
-<p>Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.
-En <em>RStudio</em> basta con hacer clic en el botón <em>Knit</em>.
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por <em>Pandoc</em> (ver Apéndice <a href="#pandoc"><strong>??</strong></a>), y adicionalmente permite la inclusión de código R.</p>
+<p>Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.
+En RStudio basta con hacer clic en el botón <em>Knit</em>.
 En R se puede emplear la funcion <code>render</code> del paquete <code>rmarkdown</code> (por ejemplo <code>render("Informe.Rmd")</code>).
 También se puede abrir directamente el informe generado:</p>
 <pre><code>library(rmarkdown)
 browseURL(url = render(&quot;Informe.Rmd&quot;))</code></pre>
 <p>A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, …).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.</p>
-<p>También se dispone de información en la ayuda de <em>RStudio</em>:</p>
+<p>También se dispone de información en la ayuda de RStudio:</p>
 <ul>
 <li><p><em>Help &gt; Markdown Quick Reference</em></p></li>
 <li><p><em>Help &gt; Cheatsheets &gt; <a href="https://www.rstudio.org/links/r_markdown_cheat_sheet">R Markdown Cheat Sheet</a></em></p></li>
@@ -289,8 +288,8 @@ Xie, Yihui, JJ Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definit
 </div>
 <div class="footnotes">
 <hr />
-<ol start="5">
-<li id="fn5"><p>Se llama al paquete <code>knitr</code> para “tejer” el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con <em>pandoc</em><a href="r-markdown.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Se llama al paquete <code>knitr</code> para “tejer” el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con <em>pandoc</em><a href="r-markdown.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

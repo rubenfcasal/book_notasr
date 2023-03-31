@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3.1</b> RMarkdown</a></li>
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
@@ -213,7 +213,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
@@ -250,12 +250,28 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="tablas" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Tablas</h2>
-<p>Las tablas en Markdown son de la forma:</p>
-<pre><code>| First Header  | Second Header |
-| ------------- | ------------- |
-| Row1 Cell1    | Row1 Cell2    |
-| Row2 Cell1    | Row2 Cell2    |</code></pre>
-<p>Por ejemplo:</p>
+<p>En Markdown se pueden escribir tablas en varios formatos (ver <a href="https://pandoc.org/MANUAL.html#tables">Pandoc Tables</a>).
+Por ejemplo:</p>
+<pre><code>  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1   </code></pre>
+<p>También:</p>
+<pre><code>Variable   | Descripción
+---------  | -----------------------------------------------------------
+mpg   |  Millas / galón (EE.UU.) 
+cyl   |  Número de cilindros
+disp  |  Desplazamiento (pulgadas cúbicas)
+hp    |  Caballos de fuerza bruta
+drat  |  Relación del eje trasero
+wt    |  Peso (miles de libras)
+qsec  |  Tiempo de 1/4 de milla
+vs    |  Cilindros en V/Straight (0 = cilindros en V, 1 = cilindros en línea)
+am    |  Tipo de transmisión (0 = automático, 1 = manual)
+gear  |  Número de marchas (hacia adelante)
+carb  |  Número de carburadores </code></pre>
+<p>que resulta en:</p>
 <table>
 <thead>
 <tr class="header">
@@ -310,11 +326,11 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>Para convertir resultados de R en tablas de una forma simple se puede emplear la función <code>ktable</code> del paquete <em>knitr</em>. Por ejemplo la Tabla <a href="tablas.html#tab:kable">3.1</a> se obtuvo mediante el siguiente código:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tablas.html#cb73-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb73-2"><a href="tablas.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
-<span id="cb73-3"><a href="tablas.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
-<span id="cb73-4"><a href="tablas.html#cb73-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Para convertir resultados de R en tablas de una forma simple se puede emplear la función <a href="NA"><code>ktable()</code></a> del paquete <a href="https://yihui.org/knitr/"><code>knitr</code></a>. Por ejemplo la Tabla <a href="tablas.html#tab:kable">3.1</a> se obtuvo mediante el siguiente código:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tablas.html#cb74-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb74-2"><a href="tablas.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
+<span id="cb74-3"><a href="tablas.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
+<span id="cb74-4"><a href="tablas.html#cb74-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <caption><span id="tab:kable">Tabla 3.1: </span>Una kable knitr</caption>
 <thead>
@@ -420,7 +436,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>Otros paquetes proporcionan opciones adicionales: <em>xtable</em>, <em>stargazer</em>, <em>pander</em>, <em>tables</em> y <em>ascii</em>.</p>
+<p>Otros paquetes proporcionan opciones adicionales: <a href="http://xtable.r-forge.r-project.org/"><code>xtable</code></a>, <a href="https://CRAN.R-project.org/package=stargazer"><code>stargazer</code></a>, <a href="https://rapporter.github.io/pander/"><code>pander</code></a>, <a href="https://r-forge.r-project.org/projects/tables/"><code>tables</code></a> y <a href="https://github.com/mclements/ascii"><code>ascii</code></a>.</p>
 </div>
             </section>
 
