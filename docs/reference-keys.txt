@@ -10,7 +10,7 @@ funciones
 oop
 desarrollo
 informes
-r-markdown
+rmarkdown
 markdown
 codigormd
 gráficos

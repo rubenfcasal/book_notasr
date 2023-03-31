@@ -41,7 +41,7 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
     --extract-media . -o fichero.Rmd 
     ```
     
-    Ver [docx2md.bat](ejemplos/rmarkdown/docx2md.bat) y [alldocx2md.bat](ejemplos/rmarkdown/alldocx2md.bat) (o [alldocx2md2.bat](ejemplos/rmarkdown/alldocx2md2.bat) si RStudio/quarto).
+    Ver [docx2md.bat](ejemplos/rmarkdown/docx2md.bat) y [alldocx2md.bat](ejemplos/rmarkdown/alldocx2md.bat) (o [alldocx2md2.bat](ejemplos/rmarkdown/alldocx2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
 *   Un fichero LaTeX a markdown
     ```
@@ -49,7 +49,7 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
     -o fichero.Rmd 
     ```
     
-    Ver [tex2md.bat](ejemplos/rmarkdown/tex2md.bat) y [alltex2md.bat](ejemplos/rmarkdown/alltex2md.bat) (o [alltex2md2.bat](ejemplos/rmarkdown/alltex2md2.bat) si RStudio/quarto).
+    Ver [tex2md.bat](ejemplos/rmarkdown/tex2md.bat) y [alltex2md.bat](ejemplos/rmarkdown/alltex2md.bat) (o [alltex2md2.bat](ejemplos/rmarkdown/alltex2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
 *   Una web a markdown
     ```
@@ -57,7 +57,7 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
     -o fichero.Rmd
     ```
 
-     Ver [web2md.bat](ejemplos/rmarkdown/web2md.bat) (o [web2md2.bat](ejemplos/rmarkdown/web2md2.bat) si RStudio/quarto).
+     Ver [web2md.bat](ejemplos/rmarkdown/web2md.bat) (o [web2md2.bat](ejemplos/rmarkdown/web2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
 Por defecto *pandoc* produce en algunos casos un fragmento de documento 
 (cuando el formato de salida no es markdown). 

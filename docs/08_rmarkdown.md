@@ -205,8 +205,7 @@ por ejemplo `` `r 2 + 2` `` produce 4.
 Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado 
 (por defecto). Por ejemplo el siguiente gráfico:
 
-
-\begin{center}\includegraphics[width=0.8\linewidth]{08_rmarkdown_files/figure-latex/figura1-1} \end{center}
+<img src="08_rmarkdown_files/figure-html/figura1-1.png" width="80%" style="display: block; margin: auto;" />
 
 se generó empleando:
 ````markdown
@@ -313,28 +312,18 @@ knitr::kable(
 )
 ```
 
-\begin{table}
 
-\caption{(\#tab:kable)Una kable knitr}
-\centering
-\begin{tabular}[t]{l|r|r|r|r|r|r|r|r|r|r|r}
-\hline
-  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
-\hline
-Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.620 & 16.46 & 0 & 1 & 4 & 4\\
-\hline
-Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.875 & 17.02 & 0 & 1 & 4 & 4\\
-\hline
-Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.320 & 18.61 & 1 & 1 & 4 & 1\\
-\hline
-Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.215 & 19.44 & 1 & 0 & 3 & 1\\
-\hline
-Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.440 & 17.02 & 0 & 0 & 3 & 2\\
-\hline
-Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
-\hline
-\end{tabular}
-\end{table}
+
+Table: (\#tab:kable)Una kable knitr
+
+|                  |  mpg| cyl| disp|  hp| drat|    wt|  qsec| vs| am| gear| carb|
+|:-----------------|----:|---:|----:|---:|----:|-----:|-----:|--:|--:|----:|----:|
+|Mazda RX4         | 21.0|   6|  160| 110| 3.90| 2.620| 16.46|  0|  1|    4|    4|
+|Mazda RX4 Wag     | 21.0|   6|  160| 110| 3.90| 2.875| 17.02|  0|  1|    4|    4|
+|Datsun 710        | 22.8|   4|  108|  93| 3.85| 2.320| 18.61|  1|  1|    4|    1|
+|Hornet 4 Drive    | 21.4|   6|  258| 110| 3.08| 3.215| 19.44|  1|  0|    3|    1|
+|Hornet Sportabout | 18.7|   8|  360| 175| 3.15| 3.440| 17.02|  0|  0|    3|    2|
+|Valiant           | 18.1|   6|  225| 105| 2.76| 3.460| 20.22|  1|  0|    3|    1|
 
 Otros paquetes proporcionan opciones adicionales: [`xtable`](http://xtable.r-forge.r-project.org/), [`stargazer`](https://CRAN.R-project.org/package=stargazer), [`pander`](https://rapporter.github.io/pander/), [`tables`](https://r-forge.r-project.org/projects/tables/) y [`ascii`](https://github.com/mclements/ascii).
 

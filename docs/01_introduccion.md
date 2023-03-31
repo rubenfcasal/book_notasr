@@ -35,14 +35,10 @@ Se tratará de mostrar una forma de llevar a cabo las distintas tareas que puede
 En estas notas ***se asumen unos conocimientos básicos de R***, un lenguaje de programación (interpretado) y un entorno estadístico desarrollado específicamente para el análisis estadístico.
 Puede ser una herramienta de gran utilidad a lo largo de todo el proceso de obtención de información a partir de datos (ver Figura \@ref(fig:esquema)). 
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.8\linewidth]{figuras/esquema2} 
-
-}
-
-\caption{Etapas del proceso}(\#fig:esquema)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="figuras/esquema2.png" alt="Etapas del proceso" width="80%" />
+<p class="caption">(\#fig:esquema)Etapas del proceso</p>
+</div>
 
 Para una introducción a la programación en R se puede consultar el libro:
 
