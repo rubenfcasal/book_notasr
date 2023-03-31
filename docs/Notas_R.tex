@@ -178,7 +178,7 @@
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
-\date{Edición: Marzo de 2023. Impresión: 2023-03-31}
+\date{Edición: Marzo de 2023. Impresión: 2023-04-01}
 
 \begin{document}
 \maketitle
@@ -307,7 +307,8 @@ Se puede configurar RStudio para emplear Git (ver el libro \href{https://happygi
 Mi recomendación a la hora de escribir código es seguir un \textbf{proceso iterativo}.
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).
 
-En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato \href{https://yihui.org/knitr/demo/stitch/\#spin-comment-out-texts}{spin} (ver Sección \ref{spin}), en el que el texto RMarkdown se incluye como un comentario de código empleando \texttt{\#\textquotesingle{}}. Por ejemplo:
+En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato \href{https://yihui.org/knitr/demo/stitch/\#spin-comment-out-texts}{spin} (ver Sección \ref{spin}), en el que el texto RMarkdown se incluye como un comentario de código empleando \texttt{\#\textquotesingle{}}.
+Por ejemplo:
 
 \begin{verbatim}
 #' # Sección
@@ -514,7 +515,7 @@ Podemos acceder a la lista de paquetes instalados:
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 \end{verbatim}
 
-Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-31, están disponibles 19214 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
+Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-04-01, están disponibles 19217 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -540,7 +541,7 @@ Por ejemplo:
 También se pueden instalar paquetes directamente a partir del código fuente con \texttt{type\ =\ "source"} (por defecto en Linux), pero en ciertos casos es necesario tener instaladas herramientas adicionales (por ejemplo \href{https://cran.r-project.org/bin/windows/Rtools}{Rtools} en Windows si el paquete contiene código en C, C++ o Fortran).
 Esto permitiría incluso instalar paquetes retirados de CRAN (e.g.~actualmente \href{https://CRAN.R-project.org/package=kedd}{\texttt{kedd}}), ya que siempre se mantiene el código (en un archivo comprimido de la forma \texttt{paquete\_x.y.z.tar.gz}).
 
-Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket, \ldots), puede ser recomendable instalar \href{https://remotes.r-lib.org/}{\texttt{remotes}}.
+Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket\ldots), puede ser recomendable instalar \href{https://remotes.r-lib.org/}{\texttt{remotes}}.
 Por ejemplo:
 
 \begin{Shaded}
@@ -784,7 +785,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000000001e09ef38>
+## <bytecode: 0x000000001d8a0168>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -912,7 +913,7 @@ Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintá
 Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
 La implementación original de Markdown es de \href{http://daringfireball.net/projects/markdown/}{John Gruber},
 pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
-RMarkdown utiliza las extensiones de la sintaxis proporcionada por \emph{Pandoc} (ver Apéndice \ref{pandoc}), y adicionalmente permite la inclusión de código R.
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por \emph{\href{https://pandoc.org}{Pandoc}} (ver Apéndice \ref{pandoc}), y adicionalmente permite la inclusión de código R.
 
 Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento\footnote{Se llama al paquete \texttt{knitr} para ``tejer'' el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con \emph{pandoc}}.
 En RStudio basta con hacer clic en el botón \emph{Knit}.
@@ -924,7 +925,7 @@ library(rmarkdown)
 browseURL(url = render("Informe.Rmd"))
 \end{verbatim}
 
-A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, \ldots).
+A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX\ldots).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial \url{http://rmarkdown.rstudio.com/}.
 
 También se dispone de información en la ayuda de RStudio:
@@ -942,12 +943,11 @@ Otras fuentes permiten obtener documentación más detallada, como por ejemplo:
 
 \begin{itemize}
 \item
-  Web del paquete \texttt{knitr} \citep{R-knitr}: \url{https://yihui.name/knitr}.
+  Web original del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}} \citep{R-knitr}: \href{https://yihui.name/knitr}{knitr; Elegant, flexible, and fast dynamic report generation with R}.
 \item
-  \citet{xie2018r} : R Markdown: The Definitive Guide,
-  \url{https://bookdown.org/yihui/rmarkdown/}.
+  \citet{xie2018r} : \href{https://bookdown.org/yihui/rmarkdown}{R Markdown: The Definitive Guide}.
 \item
-  Extensiones RMarkdown de Pandoc: \url{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}.
+  Extensiones RMarkdown de Pandoc: \href{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}{Pandoc's Markdown}.
 \end{itemize}
 
 \hypertarget{markdown}{%
@@ -1450,7 +1450,7 @@ Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdo
 \AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade da Coruña"}
 \KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ }\StringTok{"Tomás R. Cotos Yáñez (tcotos@uvigo.es)"}
 \AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade de Vigo"}
-\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2023{-}03{-}31"}
+\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2023{-}04{-}01"}
 \FunctionTok{logo}\KeywordTok{:}\AttributeTok{ rmarkdown.png}
 \FunctionTok{output}\KeywordTok{:}
 \AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
@@ -1559,7 +1559,7 @@ Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por P
 Por ejemplo, se pueden añadir sub\textsubscript{índices} y super\textsuperscript{índices} con \texttt{sub\textasciitilde{}índices\textasciitilde{}} y \texttt{super\^{}índices\^{}},\\
 y notas al pie con \texttt{\^{}{[}texto{]}}.
 
-Podemos incluir expresiones matemáticas en formato LateX:
+Podemos incluir expresiones matemáticas en formato LateX (ver e.g.~\href{https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1)}{Free online introduction to LaTeX}):
 
 \begin{itemize}
 \item
@@ -1689,6 +1689,10 @@ También puede resultar de interés la \href{https://github.com/rstudio/cheatshe
 La referencia que cubre con mayor profundidad este paquete es:
 
 Wickham, H. (2016). \emph{\href{https://ggplot2-book.org}{ggplot2: Elegant graphics for Data Analysis}} (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). \href{https://www.amazon.com/gp/product/331924275X}{Springer}.
+
+Aunque yo recomendaría:
+
+Chang, W. (2023). \emph{\href{https://r-graphics.org}{The R Graphics Cookbook}}. \href{https://www.amazon.com/dp/1491978600}{O'Reilly}.
 
 En \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} se emplea el operador \texttt{+} para añadir componentes de los gráficos (ver , en \emph{Tidyverse} se emplea un operador de redirección para añadir operaciones.
 
@@ -2512,7 +2516,7 @@ NOTA: En la bibliografía complementaria se incluyen algunas de estas referencia
 
 \textbf{\emph{En preparación\ldots{}}}
 
-A continuación se muestra una selección de \textbf{\emph{libros en abierto}} que considero que pueden resultar de utilidad.
+A continuación se muestra una selección de \textbf{\emph{libros en abierto}} (y algún manual) que considero que pueden resultar de utilidad.
 Para referencias adicionales recomiendo consultar:
 
 \begin{itemize}
@@ -2531,7 +2535,7 @@ Para referencias adicionales recomiendo consultar:
 \item
   Grolemund, G. (2014). \emph{\href{https://rstudio-education.github.io/hopr}{Hands-on programming with R: Write your own functions and simulations}}, \href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly}.
 \item
-  Fernández-Casal R., Roca-Pardiñas J., Costa J., y Oviedo de la Fuente, M. (2022). \emph{\href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}}. \href{https://github.com/rubenfcasal/intror}{github}.
+  Fernández-Casal, R., Roca-Pardiñas, J., Costa, J. y Oviedo de la Fuente, M. (2022). \emph{\href{https://rubenfcasal.github.io/intror}{Introducción al Análisis de Datos con R}}. \href{https://github.com/rubenfcasal/intror}{github}.
 \item
   Peng, R.D. (2022). \emph{\href{https://bookdown.org/rdpeng/rprogdatascience}{R Programming for Data Science}}, \href{https://leanpub.com/rprogramming}{Leanpub}.
 \end{itemize}
@@ -2542,19 +2546,36 @@ Para referencias adicionales recomiendo consultar:
 
 \begin{itemize}
 \item
-  Wickham, H. (2019). \emph{\href{https://adv-r.hadley.nz/}{Advanced R, 2ª edición}}, \href{https://www.amazon.com/dp/0815384572}{Chapman \& Hall}, \href{http://adv-r.had.co.nz/}{1ª edición.}.
+  Wickham, H. (2019). \emph{\href{https://adv-r.hadley.nz/}{Advanced R, 2ª edición}}, \href{https://www.amazon.com/dp/0815384572}{Chapman \& Hall}, \href{http://adv-r.had.co.nz/}{1ª edición}.
+\item
+  Grosser, M., Bumann, H., Wickham, H. (2021). \emph{\href{https://advanced-r-solutions.rbind.io/}{Advanced R Solutions}}. \href{https://www.routledge.com/p/book/9781032007496}{Chapman \& Hall/CRC}.
 \item
   Wickham, H. (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organize, test, document, and share your code}} (actualmente 2ª edición en desarrollo con H. Bryan), \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly, 1ª edición}.
+\item
+  Gillespie, C. y Lovelace, R. (2016). \emph{\href{https://bookdown.org/csgillespie/efficientR/}{Efficient R programming}}. \href{https://www.oreilly.com/library/view/efficient-r-programming/9781491950777/}{O'Reilly}.
 \end{itemize}
 
-\hypertarget{rmarkdown-1}{%
-\subsection*{Rmarkdown}\label{rmarkdown-1}}
-\addcontentsline{toc}{subsection}{Rmarkdown}
+\hypertarget{rmarkdown-y-shiny}{%
+\subsection*{Rmarkdown y Shiny}\label{rmarkdown-y-shiny}}
+\addcontentsline{toc}{subsection}{Rmarkdown y Shiny}
 
 \begin{itemize}
-\tightlist
 \item
-  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
+  Xie, Y., Allaire, J.J. y Grolemund, G. (2022): \emph{\href{https://bookdown.org/yihui/rmarkdown/}{R Markdown: The Definitive Guide}}. \href{https://www.crcpress.com/p/book/9781138359338}{Chapman \& Hall/CRC}.
+\item
+  Xie, Y., Dervieux, C., Riederer, E. (2021). \emph{\href{https://bookdown.org/yihui/rmarkdown-cookbook/}{R Markdown Cookbook}}. \href{https://www.routledge.com/p/book/9780367563837}{Chapman \& Hall/CRC}.
+\item
+  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}.
+\item
+  Xie, Y. (2016): \emph{\href{https://bookdown.org/yihui/bookdown/}{Authoring Books and Technical Documents with R Markdown}}. \href{https://www.routledge.com/p/book/9781138700109}{Chapman \& Hall/CRC}.
+\item
+  Wickham, H. (2021). \emph{\href{https://mastering-shiny.org/}{Mastering Shiny}}. \href{https://www.oreilly.com/library/view/mastering-shiny/9781492047377}{O'Reilly}.
+\item
+  Sievert, C. (2020). \emph{\href{https://plotly-r.com/}{Interactive Web-based Data Visualization with R, Plotly, and Shiny}}. \href{https://www.routledge.com/p/book/9781138331457}{Chapman \& Hall/CRC}.
+\item
+  Granjon, D. (2022). \emph{\href{https://unleash-shiny.rinterface.com/}{Outstanding User Interfaces with Shiny}}. \href{https://www.routledge.com/p/book/9780367643652}{Chapman \& Hall/CRC}.
+\item
+  Rochette, S., Fay, C., Girard, C., Guyader, V. (2021). \emph{\href{https://engineering-shiny.org/}{Engineering Production-Grade Shiny Apps}}. \href{https://www.routledge.com/p/book/9780367466022}{Chapman \& Hall/CRC}.
 \end{itemize}
 
 \hypertarget{gruxe1ficos-1}{%
@@ -2566,6 +2587,8 @@ Para referencias adicionales recomiendo consultar:
   Chang, W. (2023). \emph{\href{https://r-graphics.org}{The R Graphics Cookbook}}. \href{https://www.amazon.com/dp/1491978600}{O'Reilly}.
 \item
   Wickham, H. (2016). \emph{\href{https://ggplot2-book.org}{ggplot2: Elegant graphics for Data Analysis}} (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). \href{https://www.amazon.com/gp/product/331924275X}{Springer}.
+\item
+  Wilke, C. (2019). \emph{\href{https://clauswilke.com/dataviz/}{Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures}}. \href{https://www.oreilly.com/library/view/fundamentals-of-data/9781492031079}{O'Reilly}.
 \end{itemize}
 
 \hypertarget{regresiuxf3n-y-aprendizaje-estaduxedstico}{%
@@ -2574,11 +2597,36 @@ Para referencias adicionales recomiendo consultar:
 
 \begin{itemize}
 \item
-  Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). \emph{\href{https://rubenfcasal.github.io/aprendizaje_estadistico}{Aprendizaje Estadístico}}. \href{https://github.com/rubenfcasal/aprendizaje_estadistico}{github}.
+  Fernández-Casal, R., Costa, J. y Oviedo de la Fuente, M. (2021). \emph{\href{https://rubenfcasal.github.io/aprendizaje_estadistico}{Aprendizaje Estadístico}}. \href{https://github.com/rubenfcasal/aprendizaje_estadistico}{github}.
 \item
   Kuhn, M., y Silge, J. (2022). \emph{\href{https://www.tmwr.org}{Tidy Modeling with R}}, \href{https://www.oreilly.com/library/view/tidy-modeling-with/9781492096474}{O'Reilly}.
 \item
-  Fernández-Casal R., Cao R. y Costa J. (2023). \emph{\href{https://rubenfcasal.github.io/simbook}{Técnicas de Simulación y Remuestreo}} (\href{https://github.com/rubenfcasal/simbook}{github}). La anterior edición (Fernández-Casal R. y Cao R., 2022, \emph{Simulación Estadística}) está disponible en la rama \emph{\href{https://github.com/rubenfcasal/simbook/tree/primera_edicion}{primera\_edicion}}.
+  Luraschi, J., Kuo, K. y Ruiz, E. (2019). \emph{\href{https://therinspark.com/}{Mastering Spark with R}}. \href{https://www.oreilly.com/library/view/mastering-spark-with/9781492046363/}{O'Reilly}.
+\item
+  Irizarry, R.A. (2020). \emph{\href{http://rafalab.dfci.harvard.edu/dsbook/}{Introduction to Data Science: Data Analysis and Prediction Algorithms with R}}. \href{https://www.routledge.com/p/book/9780367357986}{Chapman \& Hall/CRC}.
+\item
+  Roback, P. y Legler, J. (2021). \emph{\href{https://bookdown.org/roback/bookdown-BeyondMLR/}{Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R}}. \href{https://www.routledge.com/p/book/9781439885383}{Chapman \& Hall/CRC}.
+\item
+  Greenwell, B.M. y Boehmke, B. (2019). \emph{\href{https://bradleyboehmke.github.io/HOML/}{Hands-On Machine Learning with R}}. \href{https://www.crcpress.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685}{Chapman \& Hall/CRC}.
+\item
+  Ismay, C. y Kim, A. Y. (2019). \emph{\href{https://moderndive.com/}{Statistical Inference Via Data Science: A ModernDive Into R and the Tidyverse}}. \href{https://www.routledge.com/p/book/9780367409821}{Chapman \& Hall/CRC}.
+\item
+  Silge, J. y Robinson, D. (2017). \emph{\href{https://www.tidytextmining.com/}{Text Mining with R}}. \href{https://www.oreilly.com/library/view/text-mining-with/9781491981641}{O'Reilly}.
+\item
+  Voigt, S., Scheuch, C. y Weiss, P. (2023). \emph{\href{https://www.tidy-finance.org/}{Tidy Finance with R}}. \href{https://www.routledge.com/p/book/9781032389349}{Chapman \& Hall/CRC}.
+\end{itemize}
+
+\begin{itemize}
+\item
+  Fernández-Casal, R., Cao, R. y Costa, J. (2023). \emph{\href{https://rubenfcasal.github.io/simbook}{Técnicas de Simulación y Remuestreo}} (\href{https://github.com/rubenfcasal/simbook}{github}). La anterior edición (Fernández-Casal R. y Cao R., 2022, \emph{Simulación Estadística}) está disponible en la rama \emph{\href{https://github.com/rubenfcasal/simbook/tree/primera_edicion}{primera\_edicion}}.
+\item
+  García-Portugués, E. (2023). \emph{\href{https://bookdown.org/egarpor/PM-UC3M/}{Notes for Predictive Modeling}}.
+\item
+  García-Portugués, E. (2023). \emph{\href{https://bookdown.org/egarpor/NP-UC3M/}{Notes for Nonparametric Statistics}}.
+\item
+  Hanck, c., Arnold, M., Gerber, A. y Schmelzer, M. (2023). \emph{\href{https://www.econometrics-with-r.org/}{Introduction to Econometrics with R}}.
+\item
+  Fieberg, J. (2022). \emph{\href{https://fw8051statistics4ecologists.netlify.app/}{Statistics for Ecologists: A Frequentist and Bayesian Treatment of Modern Regression Models}}.
 \end{itemize}
 
 \hypertarget{datos-temporales-y-espaciales}{%
@@ -2587,7 +2635,7 @@ Para referencias adicionales recomiendo consultar:
 
 \begin{itemize}
 \item
-  Fernández-Casal R. y Cotos-Yáñez T.R. (2021). \emph{\href{https://rubenfcasal.github.io/estadistica_espacial}{Estadística Espacial con R}}. \href{https://github.com/rubenfcasal/estadistica_espacial}{github}.
+  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2021). \emph{\href{https://rubenfcasal.github.io/estadistica_espacial}{Estadística Espacial con R}}. \href{https://github.com/rubenfcasal/estadistica_espacial}{github}.
 \item
   Hyndman, R.J., y Athanasopoulos, G. (2021). \emph{\href{https://otexts.com/fpp3}{Forecasting: principles and practice}}. \href{https://www.amazon.es/dp/0987507133}{OTexts}.
 \item
@@ -2595,7 +2643,22 @@ Para referencias adicionales recomiendo consultar:
 \item
   Moraga, P. (2019). \emph{\href{https://www.paulamoraga.com/book-geospatial}{Geospatial health data: Modeling and visualization with R-INLA and shiny}}, \href{https://www.routledge.com/9780367357955}{CRC}.
 \item
-  Pebesma, E., y Bivand, R. (2021). \emph{\href{https://keen-swartz-3146c4.netlify.app}{Spatial Data Science}}.
+  Pebesma, E., y Bivand, R. (2023). \emph{\href{https://keen-swartz-3146c4.netlify.app}{Spatial Data Science: with applications in R}}. \href{https://www.routledge.com/p/book/9781138311183}{Chapman \& Hall/CRC}.
+\item
+  Wikle, C.K., Zammit-Mangion, A. y Cressie, N. (2019). \emph{\href{https://spacetimewithr.org}{Spatio-temporal Statistics with R}}. \href{}{Chapman \& Hall/CRC}.
+\item
+  Gomez-Rubio, V. (2020). \emph{\href{https://becarioprecario.bitbucket.io/inla-gitbook/}{Bayesian inference with INLA}}. \href{https://www.routledge.com/p/book/9781138039872}{Chapman \& Hall/CRC}.
+\item
+  Haddon, M. (2020). \emph{\href{https://haddonm.github.io/URMQMF/}{Using R for Modelling and Quantitative Methods in Fisheries}}. \href{https://www.routledge.com/p/book/9780367469887}{Chapman \& Hall/CRC}.
+\item
+  J. Brus, D.J. (2023). \emph{\href{https://dickbrus.github.io/SpatialSamplingwithR/}{Spatial sampling with R}}. \href{https://www.routledge.com/p/book/9781032193854}{Chapman \& Hall/CRC}.
+\end{itemize}
+
+\begin{itemize}
+\item
+  Holmes, E.E., Scheuerell, M.D.~y Ward, E.J. (2021).\emph{\href{https://atsa-es.github.io/atsa-labs/}{Applied Time Series Analysis for Fisheries and Environmental Sciences}}.
+\item
+  \emph{\href{https://rspatial.org/}{Spatial Data Science with R and ``terra''}}.
 \end{itemize}
 
 \hypertarget{datos-faltantes}{%
@@ -2608,9 +2671,9 @@ Para referencias adicionales recomiendo consultar:
   Buuren, S. (2018). \emph{\href{https://stefvanbuuren.name/fimd}{Flexible Imputation of Missing Data}}, \href{}{Chapman \& Hall}.
 \end{itemize}
 
-\hypertarget{manuales-oficiales}{%
-\subsection*{Manuales oficiales}\label{manuales-oficiales}}
-\addcontentsline{toc}{subsection}{Manuales oficiales}
+\hypertarget{manuales-oficiales-r}{%
+\subsection*{Manuales oficiales R}\label{manuales-oficiales-r}}
+\addcontentsline{toc}{subsection}{Manuales oficiales R}
 
 \url{https://cran.r-project.org/manuals.html}
 
@@ -2720,40 +2783,47 @@ en la ventana de comandos o en la pestaña \emph{Terminal} de RStudio, se obtien
 También se puede consultar el manual de Pandoc \url{https://pandoc.org/MANUAL.html}.
 
 Si Pandoc no está configurado en la ruta de búsqueda, habrá que reemplazar \texttt{pandoc} por la ruta completa al ejecutable.
-Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"}.
+Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"} si la versión de RStudio es anterior a \emph{v2022.07} y \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}quarto\textbackslash{}bin\textbackslash{}tools\textbackslash{}pandoc.exe"} en caso contrario (ver \href{https://quarto.org/docs/get-started/hello/rstudio.html}{Hello, Quarto}).
 
 Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Markdown, por ejemplo:
 
 \begin{itemize}
 \item
-  Un fichero word a markdown
-  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ fichero.docx\ -f\ docx\ -t\ markdown\ \ \ \ \ \ -\/-extract-media\ .\ -o\ fichero.Rmd}
+  Un fichero word a markdown:
 
-  Ver \href{ejemplos/rmarkdown/docx2md.bat}{docx2md.bat} y \href{ejemplos/rmarkdown/alldocx2md.bat}{alldocx2md.bat} (o \href{ejemplos/rmarkdown/alldocx2md2.bat}{alldocx2md2.bat} si RStudio/quarto).
+\begin{verbatim}
+"C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.docx -f docx -t markdown 
+--extract-media . -o fichero.Rmd 
+\end{verbatim}
+
+  Ver \href{ejemplos/rmarkdown/docx2md.bat}{docx2md.bat} y \href{ejemplos/rmarkdown/alldocx2md.bat}{alldocx2md.bat} (o \href{ejemplos/rmarkdown/alldocx2md2.bat}{alldocx2md2.bat} para RStudio \textgreater= v2022.07 - \emph{Quarto}).
 \item
-  Un fichero LaTeX a markdown
-  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ fichero.tex\ -f\ latex\ -t\ markdown\ \ \ \ \ \ -o\ fichero.Rmd}
+  Un fichero LaTeX a markdown:
 
-  Ver \href{ejemplos/rmarkdown/tex2md.bat}{tex2md.bat} y \href{ejemplos/rmarkdown/alltex2md.bat}{alltex2md.bat} (o \href{ejemplos/rmarkdown/alltex2md2.bat}{alltex2md2.bat} si RStudio/quarto).
+\begin{verbatim}
+"C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.tex -f latex -t markdown 
+-o fichero.Rmd 
+\end{verbatim}
+
+  Ver \href{ejemplos/rmarkdown/tex2md.bat}{tex2md.bat} y \href{ejemplos/rmarkdown/alltex2md.bat}{alltex2md.bat} (o \href{ejemplos/rmarkdown/alltex2md2.bat}{alltex2md2.bat} para RStudio \textgreater= v2022.07 - \emph{Quarto}).
 \item
-  Una web a markdown
-  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ http://url.org\ -f\ html\ -t\ markdown\ \ \ \ \ \ -o\ fichero.Rmd}
+  Una web a markdown:
 
-  Ver \href{ejemplos/rmarkdown/web2md.bat}{web2md.bat} (o \href{ejemplos/rmarkdown/web2md2.bat}{web2md2.bat} si RStudio/quarto).
+\begin{verbatim}
+"C:\Program Files\RStudio\bin\pandoc\pandoc" http://url.org -f html -t markdown 
+-o fichero.Rmd
+\end{verbatim}
+
+  Ver \href{ejemplos/rmarkdown/web2md.bat}{web2md.bat} (o \href{ejemplos/rmarkdown/web2md2.bat}{web2md2.bat} para RStudio \textgreater= v2022.07 - \emph{Quarto}).
 \end{itemize}
 
-Por defecto \emph{pandoc} produce en algunos casos un fragmento de documento
-(cuando el formato de salida no es markdown).
-Para obtener un documento independiente (e.g.~un fichero HTML válido incluyendo \texttt{\textless{}head\textgreater{}} y \texttt{\textless{}body\textgreater{}}),
-habrá que emplear la opción \texttt{-s} o \texttt{-\/-standalone}.
+Por defecto \emph{pandoc} produce en algunos casos un fragmento de documento (cuando el formato de salida no es markdown).
+Para obtener un documento independiente (e.g.~un fichero HTML válido incluyendo \texttt{\textless{}head\textgreater{}} y \texttt{\textless{}body\textgreater{}}), habrá que emplear la opción \texttt{-s} o \texttt{-\/-standalone}.
 
 \hypertarget{pandoc-y-rmarkdown}{%
 \section{Pandoc y RMarkdown}\label{pandoc-y-rmarkdown}}
 
-Como ya se comentó, el paquete \texttt{rmarkdown} llama a \emph{pandoc} para renderizar un documento
-RMarkdown\footnote{Desde la \href{https://blog.rstudio.org/2014/06/18/r-markdown-v2/}{versión 2},
-  antes se utilizaba \texttt{knitr} y \texttt{markdown}.}, y esta llamada se muestra en la consola
-(o en la correspondiente pestaña de RStudio):
+Como ya se comentó, el paquete \texttt{rmarkdown} llama a \emph{pandoc} para renderizar un documento RMarkdown\footnote{Desde la \href{https://blog.rstudio.org/2014/06/18/r-markdown-v2/}{versión 2}, antes se utilizaba \texttt{knitr} y \texttt{markdown}.}, y esta llamada se muestra en la consola (o en la correspondiente pestaña de RStudio):
 
 \begin{verbatim}
 "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS Informes.utf8.md --to html4 

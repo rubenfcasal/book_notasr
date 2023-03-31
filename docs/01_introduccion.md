@@ -35,10 +35,14 @@ Se tratará de mostrar una forma de llevar a cabo las distintas tareas que puede
 En estas notas ***se asumen unos conocimientos básicos de R***, un lenguaje de programación (interpretado) y un entorno estadístico desarrollado específicamente para el análisis estadístico.
 Puede ser una herramienta de gran utilidad a lo largo de todo el proceso de obtención de información a partir de datos (ver Figura \@ref(fig:esquema)). 
 
-<div class="figure" style="text-align: center">
-<img src="figuras/esquema2.png" alt="Etapas del proceso" width="80%" />
-<p class="caption">(\#fig:esquema)Etapas del proceso</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/esquema2} 
+
+}
+
+\caption{Etapas del proceso}(\#fig:esquema)
+\end{figure}
 
 Para una introducción a la programación en R se puede consultar el libro:
 
@@ -90,7 +94,8 @@ Se puede configurar RStudio para emplear Git (ver el libro [Happy Git and GitHub
 Mi recomendación a la hora de escribir código es seguir un **proceso iterativo**. 
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).
 
-En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato [spin](https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts) (ver Sección  \@ref(spin)), en el que el texto RMarkdown se incluye como un comentario de código empleando `#' `. Por ejemplo:
+En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato [spin](https://yihui.org/knitr/demo/stitch/#spin-comment-out-texts) (ver Sección  \@ref(spin)), en el que el texto RMarkdown se incluye como un comentario de código empleando `#' `. 
+Por ejemplo:
 ```
 #' # Sección
 #'

@@ -213,12 +213,12 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-y-shiny"><i class="fa fa-check"></i>Rmarkdown y Shiny</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales-r"><i class="fa fa-check"></i>Manuales oficiales R</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -255,14 +255,14 @@ Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintá
 Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
 La implementación original de Markdown es de <a href="http://daringfireball.net/projects/markdown/">John Gruber</a>,
 pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
-RMarkdown utiliza las extensiones de la sintaxis proporcionada por <em>Pandoc</em> (ver Apéndice <a href="pandoc.html#pandoc">A</a>), y adicionalmente permite la inclusión de código R.</p>
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por <em><a href="https://pandoc.org">Pandoc</a></em> (ver Apéndice <a href="pandoc.html#pandoc">A</a>), y adicionalmente permite la inclusión de código R.</p>
 <p>Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.
 En RStudio basta con hacer clic en el botón <em>Knit</em>.
 En R se puede emplear la funcion <code>render</code> del paquete <code>rmarkdown</code> (por ejemplo <code>render("Informe.Rmd")</code>).
 También se puede abrir directamente el informe generado:</p>
 <pre><code>library(rmarkdown)
 browseURL(url = render(&quot;Informe.Rmd&quot;))</code></pre>
-<p>A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, …).
+<p>A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX…).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.</p>
 <p>También se dispone de información en la ayuda de RStudio:</p>
 <ul>
@@ -272,10 +272,9 @@ Para más información (incluyendo introducciones a Markdown y RMarkdown), se re
 </ul>
 <p>Otras fuentes permiten obtener documentación más detallada, como por ejemplo:</p>
 <ul>
-<li><p>Web del paquete <code>knitr</code> <span class="citation">(<a href="#ref-R-knitr" role="doc-biblioref">Xie 2021</a>)</span>: <a href="https://yihui.name/knitr" class="uri">https://yihui.name/knitr</a>.</p></li>
-<li><p><span class="citation"><a href="#ref-xie2018r" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="#ref-xie2018r" role="doc-biblioref">2018</a>)</span> : R Markdown: The Definitive Guide,
-<a href="https://bookdown.org/yihui/rmarkdown/" class="uri">https://bookdown.org/yihui/rmarkdown/</a>.</p></li>
-<li><p>Extensiones RMarkdown de Pandoc: <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex" class="uri">https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex</a>.</p></li>
+<li><p>Web original del paquete <a href="https://yihui.org/knitr/"><code>knitr</code></a> <span class="citation">(<a href="#ref-R-knitr" role="doc-biblioref">Xie 2021</a>)</span>: <a href="https://yihui.name/knitr">knitr; Elegant, flexible, and fast dynamic report generation with R</a>.</p></li>
+<li><p><span class="citation"><a href="#ref-xie2018r" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="#ref-xie2018r" role="doc-biblioref">2018</a>)</span> : <a href="https://bookdown.org/yihui/rmarkdown">R Markdown: The Definitive Guide</a>.</p></li>
+<li><p>Extensiones RMarkdown de Pandoc: <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex">Pandoc’s Markdown</a>.</p></li>
 </ul>
 </div>
 <h3>References</h3>

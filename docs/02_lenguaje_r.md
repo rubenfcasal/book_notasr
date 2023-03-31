@@ -69,7 +69,7 @@ names(which(pkgs[ ,"Priority"] == "recommended"))
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 ```
 
-Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-31, están disponibles 19214 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
+Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-04-01, están disponibles 19217 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
 Por ejemplo:
 
 ```r
@@ -97,7 +97,7 @@ install.packages(url, repos = NULL)
 También se pueden instalar paquetes directamente a partir del código fuente con `type = "source"` (por defecto en Linux), pero en ciertos casos es necesario tener instaladas herramientas adicionales (por ejemplo [Rtools](https://cran.r-project.org/bin/windows/Rtools) en Windows si el paquete contiene código en C, C++ o Fortran).
 Esto permitiría incluso instalar paquetes retirados de CRAN (e.g. actualmente [`kedd`](https://CRAN.R-project.org/package=kedd)), ya que siempre se mantiene el código (en un archivo comprimido de la forma `paquete_x.y.z.tar.gz`).
 
-Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket, ...), puede ser recomendable instalar [`remotes`](https://remotes.r-lib.org/). 
+Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket...), puede ser recomendable instalar [`remotes`](https://remotes.r-lib.org/). 
 Por ejemplo:
 
 ```r
@@ -314,7 +314,7 @@ plot
 ```
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000000001cb68b28>
+## <bytecode: 0x000000001d8a0168>
 ## <environment: namespace:base>
 ```
 

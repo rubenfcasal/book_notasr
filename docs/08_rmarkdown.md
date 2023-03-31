@@ -41,7 +41,7 @@ Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintá
 Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
 La implementación original de Markdown es de [John Gruber](http://daringfireball.net/projects/markdown/), 
 pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
-RMarkdown utiliza las extensiones de la sintaxis proporcionada por *Pandoc* (ver Apéndice \@ref(pandoc)), y adicionalmente permite la inclusión de código R.
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por *[Pandoc](https://pandoc.org)* (ver Apéndice \@ref(pandoc)), y adicionalmente permite la inclusión de código R.
 
 Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento^[Se llama al paquete `knitr` para "tejer" el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con *pandoc*]. 
 En RStudio basta con hacer clic en el botón *Knit*. 
@@ -52,7 +52,7 @@ library(rmarkdown)
 browseURL(url = render("Informe.Rmd"))
 ```
 
-A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, ...).
+A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX...).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial  <http://rmarkdown.rstudio.com/>.
 
 También se dispone de información en la ayuda de RStudio:
@@ -66,12 +66,11 @@ También se dispone de información en la ayuda de RStudio:
 
 Otras fuentes permiten obtener documentación más detallada, como por ejemplo:
 
-- Web del paquete `knitr` [@R-knitr]: <https://yihui.name/knitr>.
+- Web original del paquete [`knitr`](https://yihui.org/knitr/) [@R-knitr]: [knitr; Elegant, flexible, and fast dynamic report generation with R](https://yihui.name/knitr).
 
-- @xie2018r : R Markdown: The Definitive Guide, 
-  <https://bookdown.org/yihui/rmarkdown/>.
+- @xie2018r : [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown).
 
-- Extensiones RMarkdown de Pandoc: <https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex>.
+- Extensiones RMarkdown de Pandoc: [Pandoc’s Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex).
 
 
 ## Sintaxis de Markdown {#markdown}
@@ -205,7 +204,8 @@ por ejemplo `` `r 2 + 2` `` produce 4.
 Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado 
 (por defecto). Por ejemplo el siguiente gráfico:
 
-<img src="08_rmarkdown_files/figure-html/figura1-1.png" width="80%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.8\linewidth]{08_rmarkdown_files/figure-latex/figura1-1} \end{center}
 
 se generó empleando:
 ````markdown
@@ -312,18 +312,28 @@ knitr::kable(
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:kable)Una kable knitr
-
-|                  |  mpg| cyl| disp|  hp| drat|    wt|  qsec| vs| am| gear| carb|
-|:-----------------|----:|---:|----:|---:|----:|-----:|-----:|--:|--:|----:|----:|
-|Mazda RX4         | 21.0|   6|  160| 110| 3.90| 2.620| 16.46|  0|  1|    4|    4|
-|Mazda RX4 Wag     | 21.0|   6|  160| 110| 3.90| 2.875| 17.02|  0|  1|    4|    4|
-|Datsun 710        | 22.8|   4|  108|  93| 3.85| 2.320| 18.61|  1|  1|    4|    1|
-|Hornet 4 Drive    | 21.4|   6|  258| 110| 3.08| 3.215| 19.44|  1|  0|    3|    1|
-|Hornet Sportabout | 18.7|   8|  360| 175| 3.15| 3.440| 17.02|  0|  0|    3|    2|
-|Valiant           | 18.1|   6|  225| 105| 2.76| 3.460| 20.22|  1|  0|    3|    1|
+\caption{(\#tab:kable)Una kable knitr}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.620 & 16.46 & 0 & 1 & 4 & 4\\
+\hline
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.875 & 17.02 & 0 & 1 & 4 & 4\\
+\hline
+Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.320 & 18.61 & 1 & 1 & 4 & 1\\
+\hline
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.215 & 19.44 & 1 & 0 & 3 & 1\\
+\hline
+Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.440 & 17.02 & 0 & 0 & 3 & 2\\
+\hline
+Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
+\hline
+\end{tabular}
+\end{table}
 
 Otros paquetes proporcionan opciones adicionales: [`xtable`](http://xtable.r-forge.r-project.org/), [`stargazer`](https://CRAN.R-project.org/package=stargazer), [`pander`](https://rapporter.github.io/pander/), [`tables`](https://r-forge.r-project.org/projects/tables/) y [`ascii`](https://github.com/mclements/ascii).
 
@@ -388,7 +398,7 @@ author:
   affiliation: "Universidade da Coruña"
 - name: "Tomás R. Cotos Yáñez (tcotos@uvigo.es)"
   affiliation: "Universidade de Vigo"
-date: "2023-03-31"
+date: "2023-04-01"
 logo: rmarkdown.png
 output:
   html_document:
@@ -481,7 +491,7 @@ Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por P
 Por ejemplo, se pueden añadir sub~índices~ y super^índices^ con `sub~índices~` y `super^índices^`,  
 y notas al pie con `^[texto]`.
 
-Podemos incluir expresiones matemáticas en formato LateX:
+Podemos incluir expresiones matemáticas en formato LateX (ver e.g. [Free online introduction to LaTeX](https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1))):
 
 *   En linea escribiendo la expresión latex entre dos símbolos de dolar, 
     por ejemplo ``$\alpha, \beta, \gamma, \delta$ ``

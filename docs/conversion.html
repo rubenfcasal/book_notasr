@@ -213,12 +213,12 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-y-shiny"><i class="fa fa-check"></i>Rmarkdown y Shiny</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales-r"><i class="fa fa-check"></i>Manuales oficiales R</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -254,23 +254,24 @@ div.csl-indent {
 en la ventana de comandos o en la pestaña <em>Terminal</em> de RStudio, se obtiene un listado detallado de las opciones.
 También se puede consultar el manual de Pandoc <a href="https://pandoc.org/MANUAL.html" class="uri">https://pandoc.org/MANUAL.html</a>.</p>
 <p>Si Pandoc no está configurado en la ruta de búsqueda, habrá que reemplazar <code>pandoc</code> por la ruta completa al ejecutable.
-Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir <code>"C:\Program Files\RStudio\bin\pandoc\pandoc"</code>.</p>
+Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir <code>"C:\Program Files\RStudio\bin\pandoc\pandoc"</code> si la versión de RStudio es anterior a <em>v2022.07</em> y <code>"C:\Program Files\RStudio\bin\quarto\bin\tools\pandoc.exe"</code> en caso contrario (ver <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Hello, Quarto</a>).</p>
 <p>Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Markdown, por ejemplo:</p>
 <ul>
-<li><p>Un fichero word a markdown
-<code>"C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.docx -f docx -t markdown      --extract-media . -o fichero.Rmd</code></p>
+<li><p>Un fichero word a markdown:</p>
+<pre><code>&quot;C:\Program Files\RStudio\bin\pandoc\pandoc&quot; fichero.docx -f docx -t markdown 
+--extract-media . -o fichero.Rmd </code></pre>
 <p>Ver <a href="ejemplos/rmarkdown/docx2md.bat">docx2md.bat</a> y <a href="ejemplos/rmarkdown/alldocx2md.bat">alldocx2md.bat</a> (o <a href="ejemplos/rmarkdown/alldocx2md2.bat">alldocx2md2.bat</a> para RStudio &gt;= v2022.07 - <em>Quarto</em>).</p></li>
-<li><p>Un fichero LaTeX a markdown
-<code>"C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.tex -f latex -t markdown      -o fichero.Rmd</code></p>
+<li><p>Un fichero LaTeX a markdown:</p>
+<pre><code>&quot;C:\Program Files\RStudio\bin\pandoc\pandoc&quot; fichero.tex -f latex -t markdown 
+-o fichero.Rmd </code></pre>
 <p>Ver <a href="ejemplos/rmarkdown/tex2md.bat">tex2md.bat</a> y <a href="ejemplos/rmarkdown/alltex2md.bat">alltex2md.bat</a> (o <a href="ejemplos/rmarkdown/alltex2md2.bat">alltex2md2.bat</a> para RStudio &gt;= v2022.07 - <em>Quarto</em>).</p></li>
-<li><p>Una web a markdown
-<code>"C:\Program Files\RStudio\bin\pandoc\pandoc" http://url.org -f html -t markdown      -o fichero.Rmd</code></p>
+<li><p>Una web a markdown:</p>
+<pre><code>&quot;C:\Program Files\RStudio\bin\pandoc\pandoc&quot; http://url.org -f html -t markdown 
+-o fichero.Rmd</code></pre>
 <p>Ver <a href="ejemplos/rmarkdown/web2md.bat">web2md.bat</a> (o <a href="ejemplos/rmarkdown/web2md2.bat">web2md2.bat</a> para RStudio &gt;= v2022.07 - <em>Quarto</em>).</p></li>
 </ul>
-<p>Por defecto <em>pandoc</em> produce en algunos casos un fragmento de documento
-(cuando el formato de salida no es markdown).
-Para obtener un documento independiente (e.g. un fichero HTML válido incluyendo <code>&lt;head&gt;</code> y <code>&lt;body&gt;</code>),
-habrá que emplear la opción <code>-s</code> o <code>--standalone</code>.</p>
+<p>Por defecto <em>pandoc</em> produce en algunos casos un fragmento de documento (cuando el formato de salida no es markdown).
+Para obtener un documento independiente (e.g. un fichero HTML válido incluyendo <code>&lt;head&gt;</code> y <code>&lt;body&gt;</code>), habrá que emplear la opción <code>-s</code> o <code>--standalone</code>.</p>
 </div>
             </section>
 

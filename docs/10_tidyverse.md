@@ -85,13 +85,17 @@ Wilkinson, L. (2005). *The Grammar of Graphics*. [Springer](https://www.google.e
 Yo empleo este paquete como sustituto de los gráficos [`lattice`](http://lattice.r-forge.r-project.org/), en algunos informes finales o aplicaciones para empresas, o para gráficos muy especializados. 
 En condiciones normales **prefiero emplear los gráficos estándar** de R (mucho más rápidos de generar y programar).
 
-<!-- Referencias / capítulo ggplot2? -->
+<!-- capítulo ggplot2? -->
 
 Para iniciarse en este paquete lo recomendado es consultar los capítulos [Data     Visualización](https://r4ds.had.co.nz/data-visualisation.html) y [Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html) de [R for Data Science](https://r4ds.had.co.nz). 
 También puede resultar de interés la [chuleta](https://github.com/rstudio/cheatsheets/blob/master/data-visualization.pdf)).
 La referencia que cubre con mayor profundidad este paquete es:
 
 Wickham, H. (2016). *[ggplot2: Elegant graphics for Data Analysis](https://ggplot2-book.org)* (3ª edición, en desarrollo junto a Navarro, D. y Pedersen, T.L.). [Springer](https://www.amazon.com/gp/product/331924275X).
+
+Aunque yo recomendaría:
+
+Chang, W. (2023). *[The R Graphics Cookbook](https://r-graphics.org)*. [O’Reilly](https://www.amazon.com/dp/1491978600). 
 
 En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añadir componentes de los gráficos (ver , en *Tidyverse* se emplea un operador de redirección para añadir operaciones.
 
@@ -120,20 +124,33 @@ knitr::kable(attr(empleados, "variable.labels"), col.names = "Etiqueta")
 ```
 
 
-
-|         |Etiqueta                      |
-|:--------|:-----------------------------|
-|id       |Código de empleado            |
-|sexo     |Sexo                          |
-|fechnac  |Fecha de nacimiento           |
-|educ     |Nivel educativo  (años)       |
-|catlab   |Categoría laboral             |
-|salario  |Salario actual                |
-|salini   |Salario inicial               |
-|tiempemp |Meses desde el contrato       |
-|expprev  |Experiencia previa (meses)    |
-|minoria  |Clasificación étnica          |
-|sexoraza |Clasificación por sexo y raza |
+\begin{tabular}{l|l}
+\hline
+  & Etiqueta\\
+\hline
+id & Código de empleado\\
+\hline
+sexo & Sexo\\
+\hline
+fechnac & Fecha de nacimiento\\
+\hline
+educ & Nivel educativo  (años)\\
+\hline
+catlab & Categoría laboral\\
+\hline
+salario & Salario actual\\
+\hline
+salini & Salario inicial\\
+\hline
+tiempemp & Meses desde el contrato\\
+\hline
+expprev & Experiencia previa (meses)\\
+\hline
+minoria & Clasificación étnica\\
+\hline
+sexoraza & Clasificación por sexo y raza\\
+\hline
+\end{tabular}
 
 ```r
 # Eliminamos las etiquetas para que no molesten...
@@ -174,7 +191,9 @@ empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
     boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-<img src="10_tidyverse_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 
 

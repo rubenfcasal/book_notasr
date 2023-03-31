@@ -213,12 +213,12 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-1"><i class="fa fa-check"></i>Rmarkdown</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-y-shiny"><i class="fa fa-check"></i>Rmarkdown y Shiny</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales-r"><i class="fa fa-check"></i>Manuales oficiales R</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
 </ul></li>
@@ -261,7 +261,7 @@ Podemos acceder a la lista de paquetes instalados:</p>
 <pre><code>##  [1] &quot;boot&quot;       &quot;class&quot;      &quot;cluster&quot;    &quot;codetools&quot;  &quot;foreign&quot;   
 ##  [6] &quot;KernSmooth&quot; &quot;lattice&quot;    &quot;MASS&quot;       &quot;Matrix&quot;     &quot;mgcv&quot;      
 ## [11] &quot;nlme&quot;       &quot;nnet&quot;       &quot;rpart&quot;      &quot;spatial&quot;    &quot;survival&quot;</code></pre>
-<p>Para instalar paquetes adicionales se puede emplear <code>install.packages()</code> (actualmente, 2023-03-31, están disponibles 19214 en <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>, incluso para interactuar con ChatGPT como <a href="https://michelnivard.github.io/gptstudio"><code>gptstudio</code></a>).
+<p>Para instalar paquetes adicionales se puede emplear <code>install.packages()</code> (actualmente, 2023-04-01, están disponibles 19217 en <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>, incluso para interactuar con ChatGPT como <a href="https://michelnivard.github.io/gptstudio"><code>gptstudio</code></a>).
 Por ejemplo:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="paquetes.html#cb16-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rcmdr&quot;</span>, <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;tidymodels&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;remotes&quot;</span>, <span class="st">&quot;devtools&quot;</span>,</span>
 <span id="cb16-2"><a href="paquetes.html#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;gstat&quot;</span>, <span class="st">&quot;geoR&quot;</span>, <span class="st">&quot;quadprog&quot;</span>, <span class="st">&quot;DEoptim&quot;</span>, <span class="st">&quot;spam&quot;</span>, <span class="st">&quot;openxlsx&quot;</span>,</span>
@@ -279,7 +279,7 @@ Por ejemplo:</p>
 <span id="cb17-2"><a href="paquetes.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(url, <span class="at">repos =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <p>También se pueden instalar paquetes directamente a partir del código fuente con <code>type = "source"</code> (por defecto en Linux), pero en ciertos casos es necesario tener instaladas herramientas adicionales (por ejemplo <a href="https://cran.r-project.org/bin/windows/Rtools">Rtools</a> en Windows si el paquete contiene código en C, C++ o Fortran).
 Esto permitiría incluso instalar paquetes retirados de CRAN (e.g. actualmente <a href="https://CRAN.R-project.org/package=kedd"><code>kedd</code></a>), ya que siempre se mantiene el código (en un archivo comprimido de la forma <code>paquete_x.y.z.tar.gz</code>).</p>
-<p>Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket, …), puede ser recomendable instalar <a href="https://remotes.r-lib.org/"><code>remotes</code></a>.
+<p>Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket…), puede ser recomendable instalar <a href="https://remotes.r-lib.org/"><code>remotes</code></a>.
 Por ejemplo:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="paquetes.html#cb18-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;rubenfcasal/simres&quot;</span>, <span class="at">INSTALL_opts =</span> <span class="st">&quot;--with-keep.source&quot;</span>)</span></code></pre></div>
 <p>Además puede ser de utilidad mantener los comentarios originales del paquete para entender mejor el código (por ejemplo si se quiere modificar).</p>
