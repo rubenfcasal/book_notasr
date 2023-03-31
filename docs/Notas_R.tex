@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,6 +33,14 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Notas de Programación en R},
+  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -162,23 +170,15 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Notas de Programación en R},
-  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
-\date{Edición: Marzo de 2023. Impresión: 2023-03-30}
+\date{Edición: Marzo de 2023. Impresión: 2023-03-31}
 
 \begin{document}
 \maketitle
@@ -514,7 +514,7 @@ Podemos acceder a la lista de paquetes instalados:
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 \end{verbatim}
 
-Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-30, están disponibles 19331 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
+Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-03-31, están disponibles 19214 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -645,7 +645,7 @@ Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(knitr)) }\FunctionTok{stop}\NormalTok{(}\StringTok{"\textquotesingle{}knitr\textquotesingle{} package required"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)) }\FunctionTok{stop}\NormalTok{(}\StringTok{"\textquotesingle{}knitr\textquotesingle{} package required"}\NormalTok{)}
 \NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{spin}\NormalTok{(}\StringTok{"01{-}Introduccion.R"}\NormalTok{, }\AttributeTok{knit =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -784,7 +784,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000001d98ee953d8>
+## <bytecode: 0x000000001a08e0a0>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -846,7 +846,7 @@ Antes de ponerse a programar, sobre todo si puede terminar siendo un código com
 
 El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
 
-Al finalizar, la recomendación es \textbf{documentar la función}, preferiblemente empleando el formato \href{https://roxygen2.r-lib.org}{\texttt{roxygen2}}.
+Al finalizar, la recomendación es \textbf{documentar la función}, preferiblemente empleando el formato \href{https://roxygen2.r-lib.org}{\texttt{roxygen2}} (ver el menú de RStudio \emph{Help \textgreater{} Roxygen Quick Reference}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -897,6 +897,687 @@ Para ello se recomienda seguir:
 Wickham, Hadley (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organize, test, document, and share your code}} (actualmente 2ª edición en desarrollo con H. Bryan), \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly, 1ª edición}.
 
 También puede ser de utilidad el manual \href{http://colinfay.me/writing-r-extensions}{Writing R Extensions} para información adicional.
+
+\hypertarget{informes}{%
+\chapter{Generación de informes}\label{informes}}
+
+Este documento se ha generado empleando RMarkdown, una extensión de \href{https://es.wikipedia.org/wiki/Markdown}{Markdown} que permite incorporar código y resultados de R.
+RMarkdown es recomendable para difundir análisis realizados con \texttt{R} en formato HTML, PDF y DOCX (Word), entre otros.
+
+\hypertarget{r-markdown}{%
+\section{R Markdown}\label{r-markdown}}
+
+El paquete \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}} permite combinar Markdown con R para la generación de documentos. \href{http://daringfireball.net/projects/markdown/}{Markdown} se diseñó inicialmente para la creación de páginas web a partir de documentos de texto de forma muy sencilla y rápida (tiene unas reglas sintácticas muy simples).
+Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintácticas muy simples y se busca principalmente la facilidad de lectura.
+Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
+La implementación original de Markdown es de \href{http://daringfireball.net/projects/markdown/}{John Gruber},
+pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por \emph{Pandoc} (ver Apéndice \ref{pandoc}), y adicionalmente permite la inclusión de código R.
+
+Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento\footnote{Se llama al paquete \texttt{knitr} para ``tejer'' el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con \emph{pandoc}}.
+En \emph{RStudio} basta con hacer clic en el botón \emph{Knit}.
+En R se puede emplear la funcion \texttt{render} del paquete \texttt{rmarkdown} (por ejemplo \texttt{render("Informe.Rmd")}).
+También se puede abrir directamente el informe generado:
+
+\begin{verbatim}
+library(rmarkdown)
+browseURL(url = render("Informe.Rmd"))
+\end{verbatim}
+
+A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, \ldots).
+Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial \url{http://rmarkdown.rstudio.com/}.
+
+También se dispone de información en la ayuda de \emph{RStudio}:
+
+\begin{itemize}
+\item
+  \emph{Help \textgreater{} Markdown Quick Reference}
+\item
+  \emph{Help \textgreater{} Cheatsheets \textgreater{} \href{https://www.rstudio.org/links/r_markdown_cheat_sheet}{R Markdown Cheat Sheet}}
+\item
+  \emph{Help \textgreater{} Cheatsheets \textgreater{} \href{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}{R Markdown Reference Guide}}
+\end{itemize}
+
+Otras fuentes permiten obtener documentación más detallada, como por ejemplo:
+
+\begin{itemize}
+\item
+  Web del paquete \texttt{knitr} \citep{R-knitr}: \url{https://yihui.name/knitr}.
+\item
+  \citet{xie2018r} : R Markdown: The Definitive Guide,
+  \url{https://bookdown.org/yihui/rmarkdown/}.
+\item
+  Extensiones RMarkdown de Pandoc: \url{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}.
+\end{itemize}
+
+\hypertarget{markdown}{%
+\section{Sintaxis de Markdown}\label{markdown}}
+
+Como ya se comentó la sintaxis de Markdown es muy secilla.
+El texto no marcado se renderiza como texto normal aunque es necesario dejar una línea en blanco para insertar un salto de línea.
+Las principales reglas de Markdown se sumarizan en la siguiente tabla:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.32}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.36}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.32}}@{}}
+\toprule
+Escribir & o alternativamente & para obtener \ldots{} \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+# Título 1
+ 
+## Título 2
+ 
+### Título 3
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+Título 1
+========
+Título 2
+--------
+### Título 3
+\end{verbatim}
+\end{minipage} & Los distintos
+niveles de encabezados \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+*Cursiva*
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+_Cursiva_
+\end{verbatim}
+\end{minipage} & \emph{Cursiva} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+**Negrita**
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+__Negrita__
+\end{verbatim}
+\end{minipage} & \textbf{Negrita} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+[Enlace](http://url.gz)
+ 
+ 
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+[Enlace][1]
+Más adelante...
+[1]: http://url.gz
+\end{verbatim}
+\end{minipage} & \href{http://rmark\%20down.rstudio.com}{Enlace} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+![Imagen](rmarkdown.png)
+ 
+ 
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+![Imagen][1]
+Más adelante...
+[1]:http://url/b.jpg
+\end{verbatim}
+\end{minipage} & \includegraphics{figuras/rmd.png} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+> Blockquote
+>
+> --- El Autor
+\end{verbatim}
+\end{minipage} & & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Blockquote
+
+--- El Autor
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+* Lista
+* Lista
+   + Sub-lista
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+-  Lista
+-  Lista
+   - Sub-lista
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  Lista
+\item
+  Lista
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sub-lista
+  \end{itemize}
+\end{itemize}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+1. Uno
+2. Dos
+   a. A
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+1) Uno
+2) Dos
+   a) A
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Uno
+\item
+  Dos
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    A
+  \end{enumerate}
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+Regla horizontal
+
+---
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+Regla horizontal
+
+***
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+Regla horizontal
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+`código en línea` entre
+comillas invertidas
+\end{verbatim}
+\end{minipage} & & \texttt{código\ en\ línea} entre
+comillas invertidas \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+```
+# bloque de código
+3 comillas invertidas
+o sangría de 4 espacios
+```
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+[····]# bloque de código
+[····]3 comillas invertidas
+[····]o sangría de 4 espaci
+os
+\end{verbatim}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{verbatim}
+# bloque de código
+3 comillas invertidas
+o sangría de 4 espacios
+\end{verbatim}
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+Es muy recomendable dejar siempre una linea de separación entre elementos distintos consecutivos.
+
+\hypertarget{codigormd}{%
+\section{Inclusión de código R}\label{codigormd}}
+
+Se puede incluir código R entre los delimitadores \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}} y \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}.
+Por defecto, se mostrará el código, se evaluará y se mostrarán los resultados justo a continuación.
+Por ejemplo el siguiente código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}
+\InformationTok{head(mtcars[1:3])}
+\InformationTok{summary(mtcars[1:3])}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+produce:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(mtcars[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp
+## Mazda RX4         21.0   6  160
+## Mazda RX4 Wag     21.0   6  160
+## Datsun 710        22.8   4  108
+## Hornet 4 Drive    21.4   6  258
+## Hornet Sportabout 18.7   8  360
+## Valiant           18.1   6  225
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mtcars[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       mpg             cyl             disp      
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8  
+##  Median :19.20   Median :6.000   Median :196.3  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0
+\end{verbatim}
+
+En \emph{RStudio} pulsando ``Ctrl + Alt + I'' o en el icono correspondiente se incluye un trozo de código.
+
+También se puede incluir código en línea empleando \texttt{\textasciigrave{}r\ código\textasciigrave{}},
+por ejemplo \texttt{\textasciigrave{}r\ 2\ +\ 2\textasciigrave{}} produce 4.
+
+\hypertarget{gruxe1ficos}{%
+\subsection{Gráficos}\label{gruxe1ficos}}
+
+Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado
+(por defecto). Por ejemplo el siguiente gráfico:
+
+\begin{center}\includegraphics[width=0.8\linewidth]{08_rmarkdown_files/figure-latex/figura1-1} \end{center}
+
+se generó empleando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r figura1, echo=FALSE\}}
+\InformationTok{hist(mtcars$mpg)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+aunque no se mostró previamente el código al haber establecido la opción \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r,\ echo=FALSE\}}.
+
+\hypertarget{opcodigo}{%
+\subsection{Opciones de bloques de código}\label{opcodigo}}
+
+Los trozos de código pueden tener nombre y opciones, se establecen en la cabecera de la forma
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ nombre,\ op1,\ op2\}}.
+Para un listado de las opciones disponibles ver \url{http://yihui.name/knitr/options}
+(en la \href{https://bookdown.org/yihui/rmarkdown/r-code.html}{Sección 2.6} del libro de RMarkdown
+se incluye un resumen).
+En \emph{RStudio} se puede pulsar en los iconos en la parte superior derecha del bloque de código
+para establecer opciones, ejecutar todo el código anterior o sólo el correspondiente trozo.
+
+Algunas opciones sobre evaluación y resultados:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{eval}: si \texttt{=FALSE} no se evalúa el código.
+\item
+  \texttt{echo}: si \texttt{=FALSE} no se muestra el código.
+\item
+  \texttt{include}: si \texttt{=FALSE} no se muestra el código ni ningún resultado.
+\item
+  \texttt{message,\ warning,\ error}: oculta el correspondiente tipo de mensaje de R
+  (los errores o warnings se mostrarán en la consola).
+\item
+  \texttt{cache}: si se activa, guarda los resultados de la última evaluación
+  y se reutilizan si no cambió el bloque de código
+  (más detalles \href{https://yihui.name/knitr/options/\#cache}{aquí}).
+  Puede ser de utilidad durante la redacción del documento para reducir el tiempo de renderizado
+  (usándolo con cuidado y desactivándolo al terminar).
+\end{itemize}
+
+Algunas opciones sobre resultados gráficos:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{fig.width,\ fig.height,\ fig.dim}: dimensiones del dispositivo gráfico de R
+  (no confundir con el tamaño del resultado), e.g.~\texttt{fig.width\ =\ 5}.
+\item
+  \texttt{out.width,\ out.heigh}: tamaño del gráfico, e.g.~\texttt{=\textquotesingle{}80\%\textquotesingle{}}.
+\item
+  \texttt{fig.align}: \texttt{=\textquotesingle{}left\textquotesingle{},\ \textquotesingle{}center\textquotesingle{},\ \textquotesingle{}right\textquotesingle{}}, establece la alineación.
+\item
+  \texttt{fig.cap}: leyenda de la figura\footnote{Si se genera un documento en PDF/LaTeX el gráfico
+    se mostrará en un entorno flotante y se puede ajustar la posición empleando la opción
+    \texttt{fig.pos} (por ejemplo, \texttt{fig.pos\ =\ \textquotesingle{}!htb\textquotesingle{}}).}.
+\item
+  \texttt{dev}: dispositivo gráfico de R, por defecto \texttt{=\textquotesingle{}pdf\textquotesingle{}} para LaTeX y \texttt{\textquotesingle{}png\textquotesingle{}} para HTML.
+  Otras opciones son \texttt{\textquotesingle{}svg\textquotesingle{}} o \texttt{\textquotesingle{}jpeg\textquotesingle{}}.
+\end{itemize}
+
+Para establecer valores por defecto para todos los bloques de código
+se suele incluir uno de configuración al principio del documento, por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r, setup, include=FALSE\}}
+\InformationTok{knitr::opts\_chunk$set(comment=NA, prompt=TRUE, dev=\textquotesingle{}svg\textquotesingle{}, fig.dim=c(5, 7), collapse=TRUE)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tablas}{%
+\section{Tablas}\label{tablas}}
+
+Las tablas en Markdown son de la forma:
+
+\begin{verbatim}
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Row1 Cell1    | Row1 Cell2    |
+| Row2 Cell1    | Row2 Cell2    |
+\end{verbatim}
+
+Por ejemplo:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Descripción \\
+\midrule
+\endhead
+mpg & Millas / galón (EE.UU.) \\
+cyl & Número de cilindros \\
+disp & Desplazamiento (pulgadas cúbicas) \\
+hp & Caballos de fuerza bruta \\
+drat & Relación del eje trasero \\
+wt & Peso (miles de libras) \\
+qsec & Tiempo de 1/4 de milla \\
+vs & Cilindros en V/Straight (0 = cilindros en V, 1 = cilindros en línea) \\
+am & Tipo de transmisión (0 = automático, 1 = manual) \\
+gear & Número de marchas (hacia adelante) \\
+carb & Número de carburadores \\
+\bottomrule
+\end{longtable}
+
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función \texttt{ktable} del paquete \emph{knitr}. Por ejemplo la Tabla \ref{tab:kable} se obtuvo mediante el siguiente código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+  \FunctionTok{head}\NormalTok{(mtcars), }
+  \AttributeTok{caption =} \StringTok{"Una kable knitr"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:kable}Una kable knitr}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.620 & 16.46 & 0 & 1 & 4 & 4\\
+\hline
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.875 & 17.02 & 0 & 1 & 4 & 4\\
+\hline
+Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.320 & 18.61 & 1 & 1 & 4 & 1\\
+\hline
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.215 & 19.44 & 1 & 0 & 3 & 1\\
+\hline
+Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.440 & 17.02 & 0 & 0 & 3 & 2\\
+\hline
+Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
+\hline
+\end{tabular}
+\end{table}
+
+Otros paquetes proporcionan opciones adicionales: \emph{xtable}, \emph{stargazer}, \emph{pander}, \emph{tables} y \emph{ascii}.
+
+\hypertarget{yaml}{%
+\section{Cabecera YAML}\label{yaml}}
+
+En un fichero RMarkdown se puede incluir metadatos en una cabecera en formato YAML
+(YAML Ain't Markup Language, \url{https://en.wikipedia.org/wiki/YAML}),
+comenzando y terminando con tres guiones \texttt{-\/-\/-}.
+Los metadatos de YAML son típicamente opciones de renderizado consitentes en
+pares de etiquetas y valores separados por dos puntos.
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{{-}{-}{-}}
+\FunctionTok{title}\KeywordTok{:}\AttributeTok{ }\StringTok{"Creación de contenidos con RMarkdown"}
+\FunctionTok{author}\KeywordTok{:}\AttributeTok{ }\StringTok{"Fernández{-}Casal, R. y Cotos{-}Yáñez, T.R."}
+\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"\textasciigrave{}r Sys.Date()\textasciigrave{}"}
+\FunctionTok{output}\KeywordTok{:}\AttributeTok{ html\_document}
+\PreprocessorTok{{-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+Aunque no siempre es necesario, se recomienda que los valores de texto se introduzcan entre comillas (se puede incluir código R en línea, como por ejemplo \texttt{\textasciigrave{}r\ Sys.Date()\textasciigrave{}} para obtener la fecha actual). Para valores lógicos se puede emplear \texttt{yes/true} y \texttt{no/false} para verdadero y falso, respectivamente.
+
+Los valores pueden ser vectores, por ejemplo las siguientes opciones son equivalentes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bibliography}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{book.bib}\KeywordTok{,}\AttributeTok{ packages.bib}\KeywordTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bibliography}\KeywordTok{:}
+\KeywordTok{{-}}\AttributeTok{ book.bib}
+\KeywordTok{{-}}\AttributeTok{ packages.bib}
+\end{Highlighting}
+\end{Shaded}
+
+También pueden ser listas, añadiendo una sangría de dos espacios (importante):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{output}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}
+\AttributeTok{    }\FunctionTok{toc\_float}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}
+\AttributeTok{  }\FunctionTok{pdf\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}
+\end{Highlighting}
+\end{Shaded}
+
+El campo \texttt{output} permite especificar el formato y las opciones de salida (por defecto se empleará la primera). Empleando este campo también se pueden especificar opciones gráficas para los bloques de código, por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{output}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{fig\_width}\KeywordTok{:}\AttributeTok{ }\DecValTok{7}
+\AttributeTok{    }\FunctionTok{fig\_height}\KeywordTok{:}\AttributeTok{ }\DecValTok{6}
+\AttributeTok{    }\FunctionTok{fig\_caption}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
+\end{Highlighting}
+\end{Shaded}
+
+La mayoría de los campos YAML son opciones que el paquete \texttt{rmarkdown} le pasa a Pandoc
+(ver documentación en el Apéndice \ref{pandoc}).
+
+Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdown::html\_document())}
+  para ver un listado de todas las opciones disponibles de \texttt{html\_document}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{{-}{-}{-}}
+\FunctionTok{title}\KeywordTok{:}\AttributeTok{ }\StringTok{"Creación de contenidos con RMarkdown"}
+\FunctionTok{subtitle}\KeywordTok{:}\AttributeTok{ }\StringTok{"Curso de introducción a R"}
+\FunctionTok{author}\KeywordTok{:}
+\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ }\StringTok{"Rubén Fernández Casal (ruben.fcasal@udc.es)"}
+\AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade da Coruña"}
+\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ }\StringTok{"Tomás R. Cotos Yáñez (tcotos@uvigo.es)"}
+\AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade de Vigo"}
+\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2023{-}03{-}31"}
+\FunctionTok{logo}\KeywordTok{:}\AttributeTok{ rmarkdown.png}
+\FunctionTok{output}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\CommentTok{                  \# incluir tabla de contenido}
+\AttributeTok{    }\FunctionTok{toc\_float}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\CommentTok{            \# toc flotante a la izquierda}
+\AttributeTok{    }\FunctionTok{number\_sections}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\CommentTok{      \# numerar secciones y subsecciones}
+\AttributeTok{    }\FunctionTok{code\_folding}\KeywordTok{:}\AttributeTok{ hide}\CommentTok{        \# por defecto el código aparecerá oculto}
+\AttributeTok{    }\FunctionTok{mathjax}\KeywordTok{:}\AttributeTok{ local}\CommentTok{            \# emplea una copia local de MathJax, hay que establecer:}
+\AttributeTok{    }\FunctionTok{self\_contained}\KeywordTok{:}\AttributeTok{ }\CharTok{false}\CommentTok{     \# las dependencias se guardan en ficheros externos}
+\AttributeTok{    }\FunctionTok{lib\_dir}\KeywordTok{:}\AttributeTok{ libs}\CommentTok{             \# directorio para librerías (Bootstrap, MathJax, ...)}
+\AttributeTok{  }\FunctionTok{pdf\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}
+\AttributeTok{    }\FunctionTok{toc\_depth}\KeywordTok{:}\AttributeTok{ }\DecValTok{2}
+\AttributeTok{    }\FunctionTok{keep\_tex}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\CommentTok{             \# conservar fichero latex}
+\AttributeTok{    }
+\PreprocessorTok{{-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+Como se puede deducir del ejemplo anterior, en el formato YAML podemos incluir comentarios con el carácter \texttt{\#}
+(por ejemplo para no emplear alguna de las opciones sin borrarla del encabezado).
+
+En el \href{https://bookdown.org/yihui/rmarkdown/documents.html}{Capítulo 3} del libro de RMarkdown
+se tiene información detallada sobre las opciones de los distintos formatos de salida
+(sobre ficheros HTML \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{aquí}
+y sobre PDF/LaTeX \href{https://bookdown.org/yihui/rmarkdown/pdf-document.html}{aquí}).
+
+\hypertarget{extracciuxf3n-del-cuxf3digo-r}{%
+\section{Extracción del código R}\label{extracciuxf3n-del-cuxf3digo-r}}
+
+Para generar un fichero con el código R se puede emplear la función \texttt{purl} del paquete \emph{knitr}. Por ejemplo:
+
+\begin{verbatim}
+purl("Informe.Rmd")
+\end{verbatim}
+
+Si se quiere además el texto RMarkdown como comentarios tipo \texttt{spin}, se puede emplear:
+
+\begin{verbatim}
+purl("Informe.Rmd", documentation = 2)
+\end{verbatim}
+
+\hypertarget{spin}{%
+\section{Spin}\label{spin}}
+
+Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la funcion
+\texttt{spin} del paquete \emph{knitr} (ver p.e. \url{http://yihui.name/knitr/demo/stitch}).
+
+Para ello se debe comentar todo lo que no sea código R de una forma especial:
+
+\begin{itemize}
+\tightlist
+\item
+  El texto RMarkdown se comenta con \texttt{\#\textquotesingle{}}. Por ejemplo:
+  \texttt{\#\textquotesingle{}\ \#\ Este\ es\ un\ título\ de\ primer\ nivel\ \ \ \ \ \#\textquotesingle{}\ \#\#\ Este\ es\ un\ título\ de\ segundo\ nivel}
+\item
+  Las opciones de un trozo de código se comentan con \texttt{\#+}. Por ejemplo:
+  \texttt{\#+\ setup,\ include=FALSE\ \ \ \ \ opts\_chunk\$set(comment=NA,\ prompt=TRUE,\ dev=\textquotesingle{}svg\textquotesingle{},\ fig.height=6,\ fig.width=6)}
+\end{itemize}
+
+Para generar el informe se puede emplear la funcion \texttt{spin} del paquete \emph{knitr}. Por ejemplo: \texttt{spin("Ridge\_Lasso.R")}.
+También se podría abrir directamente el informe generado:
+
+\begin{verbatim}
+browseURL(url = knitr::spin("Ridge_Lasso.R"))
+\end{verbatim}
+
+Pero puede ser recomendable renderizarlo con rmarkdown:
+
+\begin{verbatim}
+library(rmarkdown)
+browseURL(url = render(knitr::spin("Ridge_Lasso.R", knit = FALSE)))
+\end{verbatim}
+
+En \emph{RStudio} basta con pulsar ``Ctrl + Shift + K'' o seleccionar \emph{File \textgreater{} Knit Document} (en las últimas versiones también \emph{File \textgreater{} Compile Notebook} o hacer clic en el icono correspondiente).
+
+Por ejemplo, si se quiere convertir la salidas de un fichero de código de R a formato LaTeX
+(para añadirlas fácilmente a un documento en este formato), bastaría con incluir una cabecera de
+la forma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\textquotesingle{} {-}{-}{-}}
+\NormalTok{\#\textquotesingle{} title: "Título"}
+\NormalTok{\#\textquotesingle{} author: "Autor"}
+\NormalTok{\#\textquotesingle{} date: "Fecha"}
+\NormalTok{\#\textquotesingle{} output:}
+\NormalTok{\#\textquotesingle{}   pdf\_document:}
+\NormalTok{\#\textquotesingle{}      keep\_tex: true}
+\NormalTok{\#\textquotesingle{} {-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{extensiones-rmarkdown-de-pandoc}{%
+\section{Extensiones RMarkdown de pandoc}\label{extensiones-rmarkdown-de-pandoc}}
+
+Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por Pandoc.
+Por ejemplo, se pueden añadir sub\textsubscript{índices} y super\textsuperscript{índices} con \texttt{sub\textasciitilde{}índices\textasciitilde{}} y \texttt{super\^{}índices\^{}},\\
+y notas al pie con \texttt{\^{}{[}texto{]}}.
+
+Podemos incluir expresiones matemáticas en formato LateX:
+
+\begin{itemize}
+\item
+  En linea escribiendo la expresión latex entre dos símbolos de dolar,
+  por ejemplo \texttt{\$\textbackslash{}alpha,\ \textbackslash{}beta,\ \textbackslash{}gamma,\ \textbackslash{}delta\$}
+  resultaría en \(\alpha, \beta, \gamma, \delta\).
+\item
+  En formato ecuación empleando dos pares de símbolos de dolar. Por ejemplo:
+  \texttt{\$\$\textbackslash{}Theta\ =\ \textbackslash{}begin\{pmatrix\}\textbackslash{}alpha\ \&\ \textbackslash{}beta\textbackslash{}\textbackslash{}\ \ \ \ \ \textbackslash{}gamma\ \&\ \textbackslash{}delta\ \ \ \ \ \textbackslash{}end\{pmatrix\}\$\$}
+  resultaría en:
+  \[\Theta = \begin{pmatrix}\alpha & \beta\\
+  \gamma & \delta
+  \end{pmatrix}\]
+\end{itemize}
+
+También admite bibliografía, ver p.e. \url{https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html}.
+Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX,
+lo que se describe con detalle \href{https://bookdown.org/yihui/bookdown/citations.html}{aquí}.
+Será necesario añadir un campo \texttt{bibliography} en la cabezera YAML, por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bibliography}\KeywordTok{:}\AttributeTok{ bibliografia.bib}
+\FunctionTok{csl}\KeywordTok{:}\AttributeTok{ apa.csl}\CommentTok{  \# opcional}
+\end{Highlighting}
+\end{Shaded}
+
+Suponiendo que en el directorio de trabajo están los ficheros de bibliografía \emph{bibliografia.bib}
+y de estilo \emph{apa.csl} (ver \url{http://citationstyles.org/}, desde donde se pueden descargar
+distintos archivos de estilo).
+
+Las referencias en el texto RMarkdown se incluyen con \texttt{@referencia} o \texttt{{[}@referencia{]}}.
+Pandoc generará el listado de referencias al final del documento,
+por lo que nos puede interesar insertar una última sección \texttt{\#\ Bibliografía\ \{-\}}
+al generar documentos HTML (en PDF se hará automáticamente al emplear LaTeX).
+En RStudio se puede instalar el ``\href{https://rstudio.github.io/rstudioaddins/}{Addin}''
+\href{https://github.com/crsh/citr}{\texttt{citr}} para insertar
+citas a referencias bibliográficas en formato BibTeX.
+
+Para más detalles de las extensiones de Pandoc ver por ejemplo
+\url{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}
+o el manual de Pandoc \url{https://pandoc.org/MANUAL.html}.
 
 \hypertarget{part-tidyverse}{%
 \part{Tidyverse}\label{part-tidyverse}}
@@ -1006,8 +1687,8 @@ Por ejemplo:
 \CommentTok{\# discriminación por cuestión de sexo o raza.}
 
 \FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
-\CommentTok{\# NOTA: Cuidado con la codificación utf{-}8 (no declarada) en R \textless{} 4.2 }
-\CommentTok{\# En versiones anteriores de R \textless{} 4.2: }
+\CommentTok{\# NOTA: Cuidado con la codificación latin1 (no declarada) }
+\CommentTok{\# al abrir archivos creados en versiones anteriores de R \textless{} 4.2: }
 \CommentTok{\# load("datos/empleados.latin1.RData")}
 
 \CommentTok{\# Listamos las etiquetas}
@@ -1048,7 +1729,7 @@ sexoraza & Clasificación por sexo y raza\\
 \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
 \CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
 
-\NormalTok{empleados }\SpecialCharTok{|\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
+\NormalTok{empleados }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1149,8 +1830,6 @@ Emplearemos como ejemplo los datos de empleados de banca almacenados en el fiche
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
-\CommentTok{\# En R \textless{} 4.2: load("datos/empleados.latin1.RData")}
-\CommentTok{\# Eliminamos las etiquetas para que no molesten...}
 \FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}} \ConstantTok{NULL}                  
 \end{Highlighting}
 \end{Shaded}
@@ -1365,14 +2044,8 @@ Para realizar \textbf{operaciones con múltiples variables podemos emplear \href
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# empleados \%\textgreater{}\% summarise(across(where(is.numeric) \& !id, mean), n = n())}
-\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\FunctionTok{if\_any}\NormalTok{(is.numeric, mean), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##   if_any(is.numeric, mean)   n
-## 1                     TRUE 474
-\end{verbatim}
 
 NOTA: Esta función sustituye a las ``variantes de ámbito'' \texttt{\_at()}, \texttt{\_if()} y \texttt{\_all()} de versiones anteriores de dplyr (como \texttt{summarise\_at()}, \texttt{summarise\_if()}, \texttt{summarise\_all()}, \texttt{mutate\_at()}, \texttt{mutate\_if()}\ldots) y también el uso de \texttt{vars()}.
 En el caso de \texttt{filter()} se puede emplear \href{https://dplyr.tidyverse.org/reference/across.html}{\texttt{if\_any()}} e \href{https://dplyr.tidyverse.org/reference/across.html}{\texttt{if\_all()}}.
@@ -1541,7 +2214,7 @@ Podemos listar las tablas:
 \end{Shaded}
 
 \begin{verbatim}
-## src:  sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 \end{verbatim}
@@ -1557,7 +2230,8 @@ Para enlazar una tabla:
 
 \begin{verbatim}
 ## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
 ##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
 ##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
@@ -1645,8 +2319,9 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 \end{Shaded}
 
 \begin{verbatim}
-## # Source:   SQL [1 x 1]
-## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # Source:   lazy query [?? x 1]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -1724,32 +2399,10 @@ Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada u
 \begin{verbatim}
 ## <SQL>
 ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-## FROM (
-##   SELECT
-##     `LHS`.`CustomerId` AS `CustomerId`,
-##     `FirstName`,
-##     `LastName`,
-##     `Company`,
-##     `Address`,
-##     `City`,
-##     `State`,
-##     `Country`,
-##     `PostalCode`,
-##     `Phone`,
-##     `Fax`,
-##     `Email`,
-##     `SupportRepId`,
-##     `InvoiceId`,
-##     `InvoiceDate`,
-##     `BillingAddress`,
-##     `BillingCity`,
-##     `BillingState`,
-##     `BillingCountry`,
-##     `BillingPostalCode`,
-##     `Total`
-##   FROM `customers` AS `LHS`
-##   INNER JOIN `invoices` AS `RHS`
-##     ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
+## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
+## FROM `customers` AS `LHS`
+## INNER JOIN `invoices` AS `RHS`
+## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
 ## )
 \end{verbatim}
 
@@ -1883,8 +2536,8 @@ Para referencias adicionales recomiendo consultar:
   Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
 \end{itemize}
 
-\hypertarget{gruxe1ficos}{%
-\subsection*{Gráficos}\label{gruxe1ficos}}
+\hypertarget{gruxe1ficos-1}{%
+\subsection*{Gráficos}\label{gruxe1ficos-1}}
 \addcontentsline{toc}{subsection}{Gráficos}
 
 \begin{itemize}
@@ -2005,6 +2658,127 @@ Para referencias adicionales recomiendo consultar:
 \item
   \href{http://shiny.rstudio.com}{shiny}
 \end{itemize}
+
+\hypertarget{appendix-apuxe9ndices}{%
+\appendix}
+
+
+\hypertarget{pandoc}{%
+\chapter{Pandoc}\label{pandoc}}
+
+\hypertarget{introducciuxf3n}{%
+\section{Introducción}\label{introducciuxf3n}}
+
+Pandoc es un conversor de documentos libre y de código abierto,
+Pandoc puede leer archivos en distintos formatos, incluyendo:
+
+\begin{itemize}
+\item
+  Distintos dialectos de \href{http://daringfireball.net/projects/markdown/}{Markdown}
+\item
+  \href{http://www.w3.org/TR/html40/}{HTML}
+\item
+  \href{http://www.latex-project.org/}{LaTeX}
+\item
+  Microsoft Word \href{https://en.wikipedia.org/wiki/Office_Open_XML}{docx}
+\item
+  LibreOffice \href{http://en.wikipedia.org/wiki/OpenDocument}{ODT}
+\item
+  \href{http://en.wikipedia.org/wiki/EPUB}{EPUB}
+\end{itemize}
+
+Puede convertir los documentos de entrada a muchos otros formatos, incluyendo Office Open XML, OpenDocument, HTML, Wiki markup, InDesign ICML, ebooks, OPML, y varios formatos basados en TeX (desde donde se puede producir un PDF).
+En la web oficial \url{https://pandoc.org} hay un listado completo de los formatos soportados.
+Pandoc también proporciona distintas extensiones de Markdown para que admita resultados más complejos.
+
+Pandoc es una herramienta independiente de línea de comandos (sin interfaz gráfica), que se instala automáticamente con RStudio porque el paquete \texttt{rmarkdown} la emplea para generar los documentos de salida a partir de documentos Markdown
+(por ejemplo, en Windows en \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash bin\textbackslash pandoc\textbackslash pandoc.exe}).
+
+\hypertarget{conversion}{%
+\section{Conversión de documentos con Pandoc}\label{conversion}}
+
+La sintaxis del comando es \texttt{pandoc\ {[}opciones{]}\ {[}ficheros{]}}. Si se ejecuta \texttt{pandoc\ -\/-help},
+en la ventana de comandos o en la pestaña \emph{Terminal} de RStudio, se obtiene un listado detallado de las opciones.
+También se puede consultar el manual de Pandoc \url{https://pandoc.org/MANUAL.html}.
+
+Si Pandoc no está configurado en la ruta de búsqueda, habrá que reemplazar \texttt{pandoc} por la ruta completa al ejecutable.
+Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"}.
+
+Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Markdown, por ejemplo:
+
+\begin{itemize}
+\item
+  Un fichero word a markdown
+  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ fichero.docx\ -f\ docx\ -t\ markdown\ \ \ \ \ \ -\/-extract-media\ .\ -o\ fichero.Rmd}
+
+  Ver \href{ejemplos/rmarkdown/docx2md.bat}{docx2md.bat} y \href{ejemplos/rmarkdown/alldocx2md.bat}{alldocx2md.bat} (o \href{ejemplos/rmarkdown/alldocx2md2.bat}{alldocx2md2.bat} si RStudio/quarto).
+\item
+  Un fichero LaTeX a markdown
+  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ fichero.tex\ -f\ latex\ -t\ markdown\ \ \ \ \ \ -o\ fichero.Rmd}
+
+  Ver \href{ejemplos/rmarkdown/tex2md.bat}{tex2md.bat} y \href{ejemplos/rmarkdown/alltex2md.bat}{alltex2md.bat} (o \href{ejemplos/rmarkdown/alltex2md2.bat}{alltex2md2.bat} si RStudio/quarto).
+\item
+  Una web a markdown
+  \texttt{"C:\textbackslash{}Program\ Files\textbackslash{}RStudio\textbackslash{}bin\textbackslash{}pandoc\textbackslash{}pandoc"\ http://url.org\ -f\ html\ -t\ markdown\ \ \ \ \ \ -o\ fichero.Rmd}
+  Ver \href{ejemplos/rmarkdown/web2md.bat}{web2md.bat} (o \href{ejemplos/rmarkdown/web2md2.bat}{web2md2.bat} si RStudio/quarto).
+\end{itemize}
+
+Por defecto \emph{pandoc} produce en algunos casos un fragmento de documento
+(cuando el formato de salida no es markdown).
+Para obtener un documento independiente (e.g.~un fichero HTML válido incluyendo \texttt{\textless{}head\textgreater{}} y \texttt{\textless{}body\textgreater{}}),
+habrá que emplear la opción \texttt{-s} o \texttt{-\/-standalone}.
+
+\hypertarget{pandoc-y-rmarkdown}{%
+\section{Pandoc y RMarkdown}\label{pandoc-y-rmarkdown}}
+
+Como ya se comentó, el paquete \texttt{rmarkdown} llama a \emph{pandoc} para renderizar un documento
+RMarkdown\footnote{Desde la \href{https://blog.rstudio.org/2014/06/18/r-markdown-v2/}{versión 2},
+  antes se utilizaba \texttt{knitr} y \texttt{markdown}.}, y esta llamada se muestra en la consola
+(o en la correspondiente pestaña de RStudio):
+
+\begin{verbatim}
+"C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS Informes.utf8.md --to html4 
+--from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash 
+--output Informes.html --smart --email-obfuscation none --self-contained --standalone 
+--section-divs --table-of-contents --toc-depth 3 --variable toc_float=1 
+--variable toc_selectors=h1,h2,h3 --variable toc_collapsed=1 --variable toc_smooth_scroll=1 
+--variable toc_print=1 --template "C:\PROGRA~1\R\R-35~1.1\library\RMARKD~1\rmd\h\DEFAUL~1.HTM"
+--no-highlight --variable highlightjs=1 --variable "theme:bootstrap" --include-in-header
+"C:\Users\RUBEN~1.FCA\AppData\Local\Temp\RtmpkntXD8\rmarkdown-str2084caf51da.html" --mathjax 
+--variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+
+Output created: Informes.html
+\end{verbatim}
+
+La mayoría de los campos de la cabecera YAML de un fichero RMarkdown se traducen en las opciones de Pandoc.
+Por ejemplo, la cabezera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{{-}{-}{-}}
+\FunctionTok{output}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{number\_sections}\KeywordTok{:}\AttributeTok{ }\CharTok{yes}\AttributeTok{      }
+\PreprocessorTok{{-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+(que produce la numeración de secciones y subsecciones),
+se corresponde con la opción \texttt{-\/-number-sections} de \emph{pandoc}.
+También se puede establecer cualquier opción de Pandoc en la cabecera YAML
+mediante el campo \texttt{pandoc\_args}, por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{{-}{-}{-}}
+\FunctionTok{output}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}\AttributeTok{ }
+\AttributeTok{    }\FunctionTok{pandoc\_args}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\StringTok{"{-}{-}number{-}offset"}\KeywordTok{,}\AttributeTok{ }\StringTok{"4,0"}\KeywordTok{,}\AttributeTok{ }\StringTok{"{-}{-}number{-}sections"}\KeywordTok{]}\AttributeTok{      }
+\PreprocessorTok{{-}{-}{-}}
+\end{Highlighting}
+\end{Shaded}
+
+(en este caso la numeración comenzaría en 4).
 
   \bibliography{book.bib,packages.bib}
 

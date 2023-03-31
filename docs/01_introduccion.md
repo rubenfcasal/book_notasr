@@ -35,14 +35,10 @@ Se tratará de mostrar una forma de llevar a cabo las distintas tareas que puede
 En estas notas ***se asumen unos conocimientos básicos de R***, un lenguaje de programación (interpretado) y un entorno estadístico desarrollado específicamente para el análisis estadístico.
 Puede ser una herramienta de gran utilidad a lo largo de todo el proceso de obtención de información a partir de datos (ver Figura \@ref(fig:esquema)). 
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.8\linewidth]{figuras/esquema2} 
-
-}
-
-\caption{Etapas del proceso}(\#fig:esquema)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="figuras/esquema2.png" alt="Etapas del proceso" width="80%" />
+<p class="caption">(\#fig:esquema)Etapas del proceso</p>
+</div>
 
 Para una introducción a la programación en R se puede consultar el libro:
 
@@ -55,9 +51,9 @@ El primer paso es la instalación de R, para ello se recomienda seguir los pasos
 Para el desarrollo de código e informes la recomendación es emplear *RStudio Desktop*, que se puede instalar y configurar siguiendo las indicaciones en este [post](https://rubenfcasal.github.io/post/instalacion-de-rstudio).
 También puede resultar de interés consultar:
 
-- [RStudio cheatsheet](https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf)
+- [RStudio IDE Cheat Sheet](https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf) (menú de RStudio *Help > Cheat Sheets > RStudio IDE Cheat Sheet*).
 
-- [Using the RStudio IDE](https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE)
+- [Using the RStudio IDE](https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE).
 
 Sin embargo, en ciertos casos puede ser recomendable ejecutar el código R directamente desde una ventana de comandos (por ejemplo para ejecutar varios programas de forma simultánea en distintos directorios de trabajo o si los requerimientos computacionales son grandes).
 En mi caso, cuando trabajo en Windows, acostumbro a emplear el explorador para situarme en el directorio donde quiero ejecutar código y abrir una ventana de comandos, escribiendo `cmd` en el cuadro superior donde se muestra la ruta.

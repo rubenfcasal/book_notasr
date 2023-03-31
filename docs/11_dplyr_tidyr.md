@@ -29,7 +29,7 @@ En este capítulo se realiza una breve introducción al paquete  [`dplyr`](https
 
 La referencia recomendada para iniciarse en esta herramienta es el Capítulo [5 Data transformation](http://r4ds.had.co.nz/transform.html) de 
 [R for Data Science](http://r4ds.had.co.nz).
-También puede resultar de utilidad la viñeta del paquete [Introduction to dplyr](https://dplyr.tidyverse.org/articles/dplyr.html) o la [chuleta](https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf).
+También puede resultar de utilidad la viñeta del paquete [Introduction to dplyr](https://dplyr.tidyverse.org/articles/dplyr.html) o la [chuleta](https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf) (menú de RStudio *Help > Cheat Sheets > Data Transformation with dplyr*).
 
 
 ## El paquete dplyr {#dplyr-pkg}
@@ -49,7 +49,7 @@ La principal ventaja de [`dplyr`](https://dplyr.tidyverse.org/index.html) es que
 
 - bases de datos relacionales (lenguaje SQL, locales o remotas); extensión [`dbplyr`](https://dbplyr.tidyverse.org).
 
-- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com).
+- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (ver menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
 
 
 El paquete dplyr permite sustituir operaciones con funciones base de R (como [`subset`](NA), [`split`](NA), [`apply`](NA), [`sapply`](NA), [`lapply`](NA), [`tapply`](NA), [`aggregate`](NA)...) por una "gramática" más sencilla para la manipulación de datos.
@@ -78,8 +78,6 @@ Emplearemos como ejemplo los datos de empleados de banca almacenados en el fiche
 
 ```r
 load("datos/empleados.RData")
-# En R < 4.2: load("datos/empleados.latin1.RData")
-# Eliminamos las etiquetas para que no molesten...
 attr(empleados, "variable.labels") <- NULL                  
 ```
 
@@ -267,12 +265,6 @@ empleados %>% summarise(across(where(is.numeric), mean), n = n())
 
 ```r
 # empleados %>% summarise(across(where(is.numeric) & !id, mean), n = n())
-empleados %>% summarise(if_any(is.numeric, mean), n = n())
-```
-
-```
-##   if_any(is.numeric, mean)   n
-## 1                     TRUE 474
 ```
 
 NOTA: Esta función sustituye a las "variantes de ámbito" `_at()`, `_if()` y  `_all()` de versiones anteriores de dplyr (como `summarise_at()`, `summarise_if()`, `summarise_all()`, `mutate_at()`, `mutate_if()`...) y también el uso de `vars()`.
@@ -413,7 +405,7 @@ src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
@@ -427,7 +419,8 @@ invoices
 
 ```
 ## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
 ##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
 ##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
@@ -503,8 +496,9 @@ invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   SQL [1 x 1]
-## # Database: sqlite 3.39.4 [E:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # Source:   lazy query [?? x 1]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -577,32 +571,10 @@ show_query(res)
 ```
 ## <SQL>
 ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-## FROM (
-##   SELECT
-##     `LHS`.`CustomerId` AS `CustomerId`,
-##     `FirstName`,
-##     `LastName`,
-##     `Company`,
-##     `Address`,
-##     `City`,
-##     `State`,
-##     `Country`,
-##     `PostalCode`,
-##     `Phone`,
-##     `Fax`,
-##     `Email`,
-##     `SupportRepId`,
-##     `InvoiceId`,
-##     `InvoiceDate`,
-##     `BillingAddress`,
-##     `BillingCity`,
-##     `BillingState`,
-##     `BillingCountry`,
-##     `BillingPostalCode`,
-##     `Total`
-##   FROM `customers` AS `LHS`
-##   INNER JOIN `invoices` AS `RHS`
-##     ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
+## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
+## FROM `customers` AS `LHS`
+## INNER JOIN `invoices` AS `RHS`
+## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
 ## )
 ```
 

@@ -111,8 +111,8 @@ Por ejemplo:
 # discriminación por cuestión de sexo o raza.
 
 load("datos/empleados.RData")
-# NOTA: Cuidado con la codificación utf-8 (no declarada) en R < 4.2 
-# En versiones anteriores de R < 4.2: 
+# NOTA: Cuidado con la codificación latin1 (no declarada) 
+# al abrir archivos creados en versiones anteriores de R < 4.2: 
 # load("datos/empleados.latin1.RData")
 
 # Listamos las etiquetas
@@ -120,33 +120,20 @@ knitr::kable(attr(empleados, "variable.labels"), col.names = "Etiqueta")
 ```
 
 
-\begin{tabular}{l|l}
-\hline
-  & Etiqueta\\
-\hline
-id & Código de empleado\\
-\hline
-sexo & Sexo\\
-\hline
-fechnac & Fecha de nacimiento\\
-\hline
-educ & Nivel educativo  (años)\\
-\hline
-catlab & Categoría laboral\\
-\hline
-salario & Salario actual\\
-\hline
-salini & Salario inicial\\
-\hline
-tiempemp & Meses desde el contrato\\
-\hline
-expprev & Experiencia previa (meses)\\
-\hline
-minoria & Clasificación étnica\\
-\hline
-sexoraza & Clasificación por sexo y raza\\
-\hline
-\end{tabular}
+
+|         |Etiqueta                      |
+|:--------|:-----------------------------|
+|id       |Código de empleado            |
+|sexo     |Sexo                          |
+|fechnac  |Fecha de nacimiento           |
+|educ     |Nivel educativo  (años)       |
+|catlab   |Categoría laboral             |
+|salario  |Salario actual                |
+|salini   |Salario inicial               |
+|tiempemp |Meses desde el contrato       |
+|expprev  |Experiencia previa (meses)    |
+|minoria  |Clasificación étnica          |
+|sexoraza |Clasificación por sexo y raza |
 
 ```r
 # Eliminamos las etiquetas para que no molesten...
@@ -187,9 +174,7 @@ empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
     boxplot(salario ~ sexo*catlab, data = .)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="10_tidyverse_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
 
 
 

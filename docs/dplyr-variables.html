@@ -4,18 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.2 Operaciones con variables (columnas) | Notas de Programación en R</title>
+  <title>5.2 Operaciones con variables (columnas) | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.2 Operaciones con variables (columnas) | Notas de Programación en R" />
+  <meta property="og:title" content="5.2 Operaciones con variables (columnas) | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.2 Operaciones con variables (columnas) | Notas de Programación en R" />
+  <meta name="twitter:title" content="5.2 Operaciones con variables (columnas) | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="dplyr-pkg.html"/>
 <link rel="next" href="dplyr-casos.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -152,21 +175,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="oop.html"><a href="oop.html"><i class="fa fa-check"></i><b>2.3</b> Programación orientada a objetos (funciones genéricas)</a></li>
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
-<li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> El ecosistema tidyverse</a>
+<li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
+<li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gráficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="codigormd.html"><a href="codigormd.html#opcodigo"><i class="fa fa-check"></i><b>3.3.2</b> Opciones de bloques de código</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<li class="chapter" data-level="3.4" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>3.4</b> Tablas</a></li>
+<li class="chapter" data-level="3.5" data-path="yaml.html"><a href="yaml.html"><i class="fa fa-check"></i><b>3.5</b> Cabecera YAML</a></li>
+<li class="chapter" data-level="3.6" data-path="extracción-del-código-r.html"><a href="extracción-del-código-r.html"><i class="fa fa-check"></i><b>3.6</b> Extracción del código R</a></li>
+<li class="chapter" data-level="3.7" data-path="spin.html"><a href="spin.html"><i class="fa fa-check"></i><b>3.7</b> Spin</a></li>
+<li class="chapter" data-level="3.8" data-path="extensiones-rmarkdown-de-pandoc.html"><a href="extensiones-rmarkdown-de-pandoc.html"><i class="fa fa-check"></i><b>3.8</b> Extensiones RMarkdown de pandoc</a></li>
+</ul></li>
+<li class="part"><span><b>II Tidyverse</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> El ecosistema tidyverse</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
-<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
-<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
-<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
-<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<li class="chapter" data-level="4.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>4.1</b> Operador <em>pipe</em> (redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con dplyr y tidyr</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+<li class="chapter" data-level="5.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>5.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>5.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="5.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>5.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="5.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>5.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="5.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>5.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="5.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>5.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.6.1</b> Ejemplos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
@@ -176,13 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos"><i class="fa fa-check"></i>Gráficos</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apéndices</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc.html"><a href="pandoc.html"><i class="fa fa-check"></i><b>A</b> Pandoc</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="conversion.html"><a href="conversion.html"><i class="fa fa-check"></i><b>A.1</b> Conversión de documentos con Pandoc</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-y-rmarkdown.html"><a href="pandoc-y-rmarkdown.html"><i class="fa fa-check"></i><b>A.2</b> Pandoc y RMarkdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -204,11 +248,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dplyr-variables" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Operaciones con variables (columnas)<a href="dplyr-variables.html#dplyr-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dplyr-variables" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Operaciones con variables (columnas)</h2>
 <p>Podemos <strong>seleccionar variables con <a href="https://dplyr.tidyverse.org/reference/select.html"><code>select()</code></a></strong>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="dplyr-variables.html#cb50-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="ot">&lt;-</span> empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, sexo, minoria, tiempemp, salini, salario)</span>
-<span id="cb50-2"><a href="dplyr-variables.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(emplea2)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="dplyr-variables.html#cb93-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="ot">&lt;-</span> empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, sexo, minoria, tiempemp, salini, salario)</span>
+<span id="cb93-2"><a href="dplyr-variables.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(emplea2)</span></code></pre></div>
 <pre><code>##   id   sexo minoria tiempemp salini salario
 ## 1  1 Hombre      No       98  27000   57000
 ## 2  2 Hombre      No       98  18750   40200
@@ -217,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5  5 Hombre      No       98  21000   45000
 ## 6  6 Hombre      No       98  13500   32100</code></pre>
 <p>Se puede cambiar el nombre (ver también <a href="https://dplyr.tidyverse.org/reference/rename.html"><code>rename()</code></a>):</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="dplyr-variables.html#cb52-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo, <span class="at">noblanca =</span> minoria, salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="dplyr-variables.html#cb95-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo, <span class="at">noblanca =</span> minoria, salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##     sexo noblanca salario
 ## 1 Hombre       No   57000
 ## 2 Hombre       No   40200
@@ -226,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Hombre       No   45000
 ## 6 Hombre       No   32100</code></pre>
 <p>Se pueden emplear los nombres de variables como índices:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="dplyr-variables.html#cb54-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo<span class="sc">:</span>salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dplyr-variables.html#cb97-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo<span class="sc">:</span>salario) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##     sexo    fechnac educ         catlab salario
 ## 1 Hombre 1952-02-03   15      Directivo   57000
 ## 2 Hombre 1958-05-23   16 Administrativo   40200
@@ -234,8 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  Mujer 1947-04-15    8 Administrativo   21900
 ## 5 Hombre 1955-02-09   15 Administrativo   45000
 ## 6 Hombre 1958-08-22   15 Administrativo   32100</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="dplyr-variables.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados %&gt;% select(-(sexo:salario)) %&gt;% head()</span></span>
-<span id="cb56-2"><a href="dplyr-variables.html#cb56-2" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span>(sexo<span class="sc">:</span>salario)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dplyr-variables.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados %&gt;% select(-(sexo:salario)) %&gt;% head()</span></span>
+<span id="cb99-2"><a href="dplyr-variables.html#cb99-2" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span>(sexo<span class="sc">:</span>salario)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##   id salini tiempemp expprev minoria      sexoraza
 ## 1  1  27000       98     144      No  Blanca varón
 ## 2  2  18750       98      36      No  Blanca varón
@@ -251,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="https://tidyselect.r-lib.org/reference/where.html"><code>where()</code></a>: a partir de una función (e.g. <code>where(is.numeric)</code>)</p></li>
 </ul>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="dplyr-variables.html#cb58-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;s&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dplyr-variables.html#cb101-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;s&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##     sexo salario salini      sexoraza
 ## 1 Hombre   57000  27000  Blanca varón
 ## 2 Hombre   40200  18750  Blanca varón
@@ -260,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Hombre   45000  21000  Blanca varón
 ## 6 Hombre   32100  13500  Blanca varón</code></pre>
 <p>Podemos <strong>crear variables con <a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a></strong>:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="dplyr-variables.html#cb60-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">incsal =</span> salario <span class="sc">-</span> salini, <span class="at">tsal =</span> incsal<span class="sc">/</span>tiempemp) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dplyr-variables.html#cb103-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">incsal =</span> salario <span class="sc">-</span> salini, <span class="at">tsal =</span> incsal<span class="sc">/</span>tiempemp) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##   id   sexo minoria tiempemp salini salario incsal      tsal
 ## 1  1 Hombre      No       98  27000   57000  30000 306.12245
 ## 2  2 Hombre      No       98  18750   40200  21450 218.87755
@@ -329,6 +373,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

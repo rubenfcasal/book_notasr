@@ -69,7 +69,7 @@ names(which(pkgs[ ,"Priority"] == "recommended"))
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 ```
 
-Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-30, están disponibles 19331 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
+Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-03-31, están disponibles 19214 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
 Por ejemplo:
 
 ```r
@@ -189,7 +189,7 @@ Esto es especialmente recomendable al desarrollar nuevas funciones (es un requis
 Por ejemplo:
 
 ```r
-if (!requireNamespace(knitr)) stop("'knitr' package required")
+if (!requireNamespace("knitr")) stop("'knitr' package required")
 knitr::spin("01-Introduccion.R", knit = FALSE)
 ```
 
@@ -314,7 +314,7 @@ plot
 ```
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000001d98ee953d8>
+## <bytecode: 0x0000000018b69c90>
 ## <environment: namespace:base>
 ```
 
@@ -375,7 +375,7 @@ Antes de ponerse a programar, sobre todo si puede terminar siendo un código com
 
 El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
 
-Al finalizar, la recomendación es **documentar la función**, preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org).
+Al finalizar, la recomendación es **documentar la función**, preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org) (ver el menú de RStudio *Help > Roxygen Quick Reference*).
 Por ejemplo:
 
 

@@ -1,7 +1,7 @@
 --- 
 title: "Notas de Programación en R"
 author: "Rubén Fernández Casal (rubenfcasal@gmail.com)"  
-date: "Edición: Marzo de 2023. Impresión: 2023-03-30"
+date: "Edición: Marzo de 2023. Impresión: 2023-03-31"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
@@ -64,8 +64,7 @@ para lo que se recomendaría consultar el libro de ["Escritura de libros con boo
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional ](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
 
-
-\includegraphics[width=1.22in]{by-nc-nd-88x31} 
+<img src="by-nc-nd-88x31.png" width="44" />
 
 
 

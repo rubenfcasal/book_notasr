@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 Organización | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 Organización | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="r.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -152,21 +175,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="oop.html"><a href="oop.html"><i class="fa fa-check"></i><b>2.3</b> Programación orientada a objetos (funciones genéricas)</a></li>
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
-<li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> El ecosistema tidyverse</a>
+<li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
+<li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gráficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="codigormd.html"><a href="codigormd.html#opcodigo"><i class="fa fa-check"></i><b>3.3.2</b> Opciones de bloques de código</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<li class="chapter" data-level="3.4" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>3.4</b> Tablas</a></li>
+<li class="chapter" data-level="3.5" data-path="yaml.html"><a href="yaml.html"><i class="fa fa-check"></i><b>3.5</b> Cabecera YAML</a></li>
+<li class="chapter" data-level="3.6" data-path="extracción-del-código-r.html"><a href="extracción-del-código-r.html"><i class="fa fa-check"></i><b>3.6</b> Extracción del código R</a></li>
+<li class="chapter" data-level="3.7" data-path="spin.html"><a href="spin.html"><i class="fa fa-check"></i><b>3.7</b> Spin</a></li>
+<li class="chapter" data-level="3.8" data-path="extensiones-rmarkdown-de-pandoc.html"><a href="extensiones-rmarkdown-de-pandoc.html"><i class="fa fa-check"></i><b>3.8</b> Extensiones RMarkdown de pandoc</a></li>
+</ul></li>
+<li class="part"><span><b>II Tidyverse</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> El ecosistema tidyverse</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
-<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
-<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
-<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
-<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<li class="chapter" data-level="4.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>4.1</b> Operador <em>pipe</em> (redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con dplyr y tidyr</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+<li class="chapter" data-level="5.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>5.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>5.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="5.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>5.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="5.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>5.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="5.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>5.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="5.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>5.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.6.1</b> Ejemplos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
@@ -176,13 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos"><i class="fa fa-check"></i>Gráficos</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apéndices</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc.html"><a href="pandoc.html"><i class="fa fa-check"></i><b>A</b> Pandoc</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="conversion.html"><a href="conversion.html"><i class="fa fa-check"></i><b>A.1</b> Conversión de documentos con Pandoc</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-y-rmarkdown.html"><a href="pandoc-y-rmarkdown.html"><i class="fa fa-check"></i><b>A.2</b> Pandoc y RMarkdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -204,8 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="organizacion" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Organización<a href="organizacion.html#organizacion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="organizacion" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Organización</h2>
 <p>Para la organización de archivos (datos, código, informes…) lo recomendable es emplear un directorio con la estructura adecuada.</p>
 <p>Dependiendo del objetivo puede interesar emplear un proyecto de RStudio (menú <em>File &gt; New project…</em>).
 En mi caso empleo esta opción para paquetes, libros en bookdown, webs con blogdown y aplicaciones shiny.
@@ -220,8 +264,8 @@ Para más detalles ver la ayuda de <code>?Startup</code>, el apéndice <a href="
 <a href="https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf">Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf</a></p>
 <p>Para desarrollar código y proyectos de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
 Se puede configurar RStudio para emplear Git (ver el libro <a href="https://happygitwithr.com/index.html">Happy Git and GitHub for the useR</a> o la sección <a href="https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github">Git and GitHub</a>), sin embargo yo prefiero emplear <a href="https://desktop.github.com/">GitHub Desktop</a>.</p>
-<div id="codigo" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Código e informes<a href="organizacion.html#codigo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="codigo" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Código e informes</h3>
 <p>Mi recomendación a la hora de escribir código es seguir un <strong>proceso iterativo</strong>.
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).</p>
 <p>En el caso de informes el proceso sería similar, empleando como punto de partida un fichero de código en formato <a href="https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin">spin</a> (ver e.g. <a href="https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html#spin">Apéndice</a>), en el que el texto RMarkdown se incluye como un comentario de código empleando <code>#'</code>. Por ejemplo:</p>
@@ -285,8 +329,8 @@ Por ejemplo:</p>
 <span id="cb8-6"><a href="organizacion.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">envir =</span> <span class="fu">new.env</span>(), <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
 <p>La mejor forma de organizar funciones es desarrollar un paquete, como se comenta más adelante en la Sección <a href="desarrollo.html#desarrollo">2.4</a>.</p>
 </div>
-<div id="datos" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Datos<a href="organizacion.html#datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="datos" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Datos</h3>
 <p>La recomendación es emplear ficheros de datos con el formato por defecto de R (datos binarios comprimidos), con extensión <em>.RData</em>.
 Hay que tener en cuenta que lo esperable es que el archivo contenga un conjunto de datos con el mismo nombre, aunque podría no ser el caso e incluso contener varios objetos.</p>
 <p>Uno de los problemas con los ficheros <em>.RData</em> es que, al cargarlos con <a href="https://rdrr.io/r/base/load.html"><code>load()</code></a> de la forma habitual, se añaden al entorno de trabajo los objetos que contienen con los nombres con que se almacenaron (y si ya existe alguno con ese nombre lo sobreescribe)
@@ -312,7 +356,7 @@ Asociado a un mismo conjunto de datos puede haber distintos archivos de código 
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="organizacion.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View(cars)</span></span>
 <span id="cb11-2"><a href="organizacion.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with(cars, plot(speed, dist, xlab = var.lab[&quot;speed&quot;], </span></span>
 <span id="cb11-3"><a href="organizacion.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                 ylab = var.lab[&quot;dist&quot;]))</span></span></code></pre></div>
-<p>Para leer ficheros de Excel acostumbro a utilizar los paquetes <a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a> (solo para archivos con extensión <em>.xlsx</em>) o <a href="https://readxl.tidyverse.org"><code>readxl</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>; Sección <a href="tidyverse.html#tidyverse">3</a>).
+<p>Para leer ficheros de Excel acostumbro a utilizar los paquetes <a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a> (solo para archivos con extensión <em>.xlsx</em>) o <a href="https://readxl.tidyverse.org"><code>readxl</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>; Sección <a href="tidyverse.html#tidyverse">4</a>).
 En estos casos además se puede añadir una nueva hoja de cálculo con los nombres de las variables junto con su etiqueta, que se puede cargar y emplear durante el preprocesado.
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
 Ver <a href="ejemplos/top500/top500.R">top500.R</a> en <a href="https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos">ejemplos</a>.</p>
@@ -390,6 +434,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

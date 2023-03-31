@@ -4,18 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 Operador pipe (redirección) | Notas de Programación en R</title>
+  <title>4.1 Operador pipe (redirección) | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 Operador pipe (redirección) | Notas de Programación en R" />
+  <meta property="og:title" content="4.1 Operador pipe (redirección) | Notas de Programación en R" />
   <meta property="og:type" content="book" />
+  
   
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
   <meta name="github-repo" content="rubenfcasal/notasr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 Operador pipe (redirección) | Notas de Programación en R" />
+  <meta name="twitter:title" content="4.1 Operador pipe (redirección) | Notas de Programación en R" />
   
   <meta name="twitter:description" content="Libro con notas personales sobre programación en R" />
   
@@ -31,6 +32,7 @@
   
 <link rel="prev" href="tidyverse.html"/>
 <link rel="next" href="dplyr.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,9 +50,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -91,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -118,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -152,21 +175,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="oop.html"><a href="oop.html"><i class="fa fa-check"></i><b>2.3</b> Programación orientada a objetos (funciones genéricas)</a></li>
 <li class="chapter" data-level="2.4" data-path="desarrollo.html"><a href="desarrollo.html"><i class="fa fa-check"></i><b>2.4</b> Desarrollo de funciones y paquetes</a></li>
 </ul></li>
-<li class="part"><span><b>II Tidyverse</b></span></li>
-<li class="chapter" data-level="3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>3</b> El ecosistema tidyverse</a>
+<li class="chapter" data-level="3" data-path="informes.html"><a href="informes.html"><i class="fa fa-check"></i><b>3</b> Generación de informes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>3.1</b> Operador <em>pipe</em> (redirección)</a></li>
+<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
+<li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gráficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
+<li class="chapter" data-level="3.3.2" data-path="codigormd.html"><a href="codigormd.html#opcodigo"><i class="fa fa-check"></i><b>3.3.2</b> Opciones de bloques de código</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos con dplyr y tidyr</a>
+<li class="chapter" data-level="3.4" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>3.4</b> Tablas</a></li>
+<li class="chapter" data-level="3.5" data-path="yaml.html"><a href="yaml.html"><i class="fa fa-check"></i><b>3.5</b> Cabecera YAML</a></li>
+<li class="chapter" data-level="3.6" data-path="extracción-del-código-r.html"><a href="extracción-del-código-r.html"><i class="fa fa-check"></i><b>3.6</b> Extracción del código R</a></li>
+<li class="chapter" data-level="3.7" data-path="spin.html"><a href="spin.html"><i class="fa fa-check"></i><b>3.7</b> Spin</a></li>
+<li class="chapter" data-level="3.8" data-path="extensiones-rmarkdown-de-pandoc.html"><a href="extensiones-rmarkdown-de-pandoc.html"><i class="fa fa-check"></i><b>3.8</b> Extensiones RMarkdown de pandoc</a></li>
+</ul></li>
+<li class="part"><span><b>II Tidyverse</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> El ecosistema tidyverse</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>4.1</b> El paquete dplyr</a></li>
-<li class="chapter" data-level="4.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>4.2</b> Operaciones con variables (columnas)</a></li>
-<li class="chapter" data-level="4.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>4.3</b> Operaciones con casos (filas)</a></li>
-<li class="chapter" data-level="4.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Herramientas tidyr</a></li>
-<li class="chapter" data-level="4.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>4.5</b> Operaciones con tablas de datos</a></li>
-<li class="chapter" data-level="4.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>4.6</b> Bases de datos con dplyr</a>
+<li class="chapter" data-level="4.1" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>4.1</b> Operador <em>pipe</em> (redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulación de datos con dplyr y tidyr</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplos</a></li>
+<li class="chapter" data-level="5.1" data-path="dplyr-pkg.html"><a href="dplyr-pkg.html"><i class="fa fa-check"></i><b>5.1</b> El paquete dplyr</a></li>
+<li class="chapter" data-level="5.2" data-path="dplyr-variables.html"><a href="dplyr-variables.html"><i class="fa fa-check"></i><b>5.2</b> Operaciones con variables (columnas)</a></li>
+<li class="chapter" data-level="5.3" data-path="dplyr-casos.html"><a href="dplyr-casos.html"><i class="fa fa-check"></i><b>5.3</b> Operaciones con casos (filas)</a></li>
+<li class="chapter" data-level="5.4" data-path="herramientas-tidyr.html"><a href="herramientas-tidyr.html"><i class="fa fa-check"></i><b>5.4</b> Herramientas tidyr</a></li>
+<li class="chapter" data-level="5.5" data-path="dplyr-join.html"><a href="dplyr-join.html"><i class="fa fa-check"></i><b>5.5</b> Operaciones con tablas de datos</a></li>
+<li class="chapter" data-level="5.6" data-path="dbplyr.html"><a href="dbplyr.html"><i class="fa fa-check"></i><b>5.6</b> Bases de datos con dplyr</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="dbplyr.html"><a href="dbplyr.html#ejemplos"><i class="fa fa-check"></i><b>5.6.1</b> Ejemplos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a>
@@ -176,13 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown"><i class="fa fa-check"></i>Rmarkdown</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos"><i class="fa fa-check"></i>Gráficos</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales"><i class="fa fa-check"></i>Manuales oficiales</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i>Enlaces</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apéndices</b></span></li>
+<li class="chapter" data-level="A" data-path="pandoc.html"><a href="pandoc.html"><i class="fa fa-check"></i><b>A</b> Pandoc</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="conversion.html"><a href="conversion.html"><i class="fa fa-check"></i><b>A.1</b> Conversión de documentos con Pandoc</a></li>
+<li class="chapter" data-level="A.2" data-path="pandoc-y-rmarkdown.html"><a href="pandoc-y-rmarkdown.html"><i class="fa fa-check"></i><b>A.2</b> Pandoc y RMarkdown</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -204,23 +248,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pipe" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Operador <em>pipe</em> (redirección)<a href="pipe.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pipe" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Operador <em>pipe</em> (redirección)</h2>
 <p>El operador <code>%&gt;%</code> (paquete <a href="https://magrittr.tidyverse.org"><code>magrittr</code></a>) permite canalizar la salida de una función a la entrada de otra.
 Por ejemplo, <code>segundo(primero(datos))</code> se traduce en <code>datos %&gt;% primero %&gt;% segundo</code>, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.</p>
 <p>Desde la versión 4.1 de R está disponible un operador interno <code>|&gt;</code> (aunque yo sigo prefiriendo <code>%&gt;%</code>).
 Por ejemplo:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="pipe.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El fichero &#39;empleados.RData&#39; contiene datos de empleados de un banco.</span></span>
-<span id="cb44-2"><a href="pipe.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos por ejemplo que estamos interesados en estudiar si hay</span></span>
-<span id="cb44-3"><a href="pipe.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># discriminación por cuestión de sexo o raza.</span></span>
-<span id="cb44-4"><a href="pipe.html#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="pipe.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb44-6"><a href="pipe.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA: Cuidado con la codificación utf-8 (no declarada) en R &lt; 4.2 </span></span>
-<span id="cb44-7"><a href="pipe.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># En versiones anteriores de R &lt; 4.2: </span></span>
-<span id="cb44-8"><a href="pipe.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load(&quot;datos/empleados.latin1.RData&quot;)</span></span>
-<span id="cb44-9"><a href="pipe.html#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-10"><a href="pipe.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Listamos las etiquetas</span></span>
-<span id="cb44-11"><a href="pipe.html#cb44-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>), <span class="at">col.names =</span> <span class="st">&quot;Etiqueta&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="pipe.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El fichero &#39;empleados.RData&#39; contiene datos de empleados de un banco.</span></span>
+<span id="cb87-2"><a href="pipe.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos por ejemplo que estamos interesados en estudiar si hay</span></span>
+<span id="cb87-3"><a href="pipe.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co"># discriminación por cuestión de sexo o raza.</span></span>
+<span id="cb87-4"><a href="pipe.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="pipe.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb87-6"><a href="pipe.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA: Cuidado con la codificación latin1 (no declarada) </span></span>
+<span id="cb87-7"><a href="pipe.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co"># al abrir archivos creados en versiones anteriores de R &lt; 4.2: </span></span>
+<span id="cb87-8"><a href="pipe.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load(&quot;datos/empleados.latin1.RData&quot;)</span></span>
+<span id="cb87-9"><a href="pipe.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-10"><a href="pipe.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Listamos las etiquetas</span></span>
+<span id="cb87-11"><a href="pipe.html#cb87-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>), <span class="at">col.names =</span> <span class="st">&quot;Etiqueta&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -275,10 +319,10 @@ Por ejemplo:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pipe.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
-<span id="cb45-2"><a href="pipe.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(empleados, &quot;variable.labels&quot;) &lt;- NULL  </span></span>
-<span id="cb45-3"><a href="pipe.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="pipe.html#cb45-4" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">|&gt;</span>  <span class="fu">subset</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>, catlab<span class="sc">:</span>sexoraza) <span class="sc">|&gt;</span>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="pipe.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminamos las etiquetas para que no molesten...</span></span>
+<span id="cb88-2"><a href="pipe.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># attr(empleados, &quot;variable.labels&quot;) &lt;- NULL  </span></span>
+<span id="cb88-3"><a href="pipe.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="pipe.html#cb88-4" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">|&gt;</span>  <span class="fu">subset</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>, catlab<span class="sc">:</span>sexoraza) <span class="sc">|&gt;</span>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##             catlab      salario           salini         tiempemp    
 ##  Administrativo: 0   Min.   : 34410   Min.   :15750   Min.   :64.00  
 ##  Seguridad     : 0   1st Qu.: 51956   1st Qu.:23063   1st Qu.:73.00  
@@ -296,13 +340,13 @@ Por ejemplo:</p>
 <p>Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
 Sin embargo, el operador <code>%&gt;%</code> permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un <code>.</code>.
 Por ejemplo:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pipe.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?&quot;|&gt;&quot;</span></span>
-<span id="cb47-2"><a href="pipe.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados |&gt; subset(catlab != &quot;Seguridad&quot;) |&gt; droplevels |&gt; </span></span>
-<span id="cb47-3"><a href="pipe.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     boxplot(salario ~ sexo*catlab, data = .) # ERROR</span></span>
-<span id="cb47-4"><a href="pipe.html#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="pipe.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb47-6"><a href="pipe.html#cb47-6" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">subset</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb47-7"><a href="pipe.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">boxplot</span>(salario <span class="sc">~</span> sexo<span class="sc">*</span>catlab, <span class="at">data =</span> .)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="pipe.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?&quot;|&gt;&quot;</span></span>
+<span id="cb90-2"><a href="pipe.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># empleados |&gt; subset(catlab != &quot;Seguridad&quot;) |&gt; droplevels |&gt; </span></span>
+<span id="cb90-3"><a href="pipe.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     boxplot(salario ~ sexo*catlab, data = .) # ERROR</span></span>
+<span id="cb90-4"><a href="pipe.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="pipe.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb90-6"><a href="pipe.html#cb90-6" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">subset</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">droplevels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb90-7"><a href="pipe.html#cb90-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">boxplot</span>(salario <span class="sc">~</span> sexo<span class="sc">*</span>catlab, <span class="at">data =</span> .)</span></code></pre></div>
 <p><img src="10_tidyverse_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>
@@ -367,6 +411,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
