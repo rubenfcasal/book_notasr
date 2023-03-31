@@ -31,11 +31,12 @@ en la ventana de comandos o en la pestaña *Terminal* de RStudio, se obtiene un 
 También se puede consultar el manual de Pandoc <https://pandoc.org/MANUAL.html>.
 
 Si Pandoc no está configurado en la ruta de búsqueda, habrá que reemplazar `pandoc` por la ruta completa al ejecutable.
-Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir `"C:\Program Files\RStudio\bin\pandoc\pandoc"`.
+Por ejemplo, para emplear la versión instalada con RStudio en Windows habra que introducir `"C:\Program Files\RStudio\bin\pandoc\pandoc"` si la versión de RStudio es anterior a *v2022.07* y `"C:\Program Files\RStudio\bin\quarto\bin\tools\pandoc.exe"` en caso contrario (ver [Hello, Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)).
 
 Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Markdown, por ejemplo:
 
-*   Un fichero word a markdown
+*   Un fichero word a markdown:
+
     ```
     "C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.docx -f docx -t markdown 
     --extract-media . -o fichero.Rmd 
@@ -43,7 +44,8 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
     
     Ver [docx2md.bat](ejemplos/rmarkdown/docx2md.bat) y [alldocx2md.bat](ejemplos/rmarkdown/alldocx2md.bat) (o [alldocx2md2.bat](ejemplos/rmarkdown/alldocx2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
-*   Un fichero LaTeX a markdown
+*   Un fichero LaTeX a markdown:
+
     ```
     "C:\Program Files\RStudio\bin\pandoc\pandoc" fichero.tex -f latex -t markdown 
     -o fichero.Rmd 
@@ -51,7 +53,8 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
     
     Ver [tex2md.bat](ejemplos/rmarkdown/tex2md.bat) y [alltex2md.bat](ejemplos/rmarkdown/alltex2md.bat) (o [alltex2md2.bat](ejemplos/rmarkdown/alltex2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
-*   Una web a markdown
+*   Una web a markdown:
+
     ```
     "C:\Program Files\RStudio\bin\pandoc\pandoc" http://url.org -f html -t markdown 
     -o fichero.Rmd
@@ -59,17 +62,12 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
 
      Ver [web2md.bat](ejemplos/rmarkdown/web2md.bat) (o [web2md2.bat](ejemplos/rmarkdown/web2md2.bat) para RStudio >= v2022.07 - *Quarto*).
 
-Por defecto *pandoc* produce en algunos casos un fragmento de documento 
-(cuando el formato de salida no es markdown). 
-Para obtener un documento independiente (e.g. un fichero HTML válido incluyendo `<head>` y `<body>`), 
-habrá que emplear la opción `-s` o `--standalone`.
+Por defecto *pandoc* produce en algunos casos un fragmento de documento (cuando el formato de salida no es markdown). 
+Para obtener un documento independiente (e.g. un fichero HTML válido incluyendo `<head>` y `<body>`), habrá que emplear la opción `-s` o `--standalone`.
   
 ## Pandoc y RMarkdown
 
-Como ya se comentó, el paquete `rmarkdown` llama a *pandoc* para renderizar un documento 
-RMarkdown^[Desde la [versión 2](https://blog.rstudio.org/2014/06/18/r-markdown-v2/), 
-antes se utilizaba `knitr` y `markdown`.], y esta llamada se muestra en la consola 
-(o en la correspondiente pestaña de RStudio):
+Como ya se comentó, el paquete `rmarkdown` llama a *pandoc* para renderizar un documento RMarkdown^[Desde la [versión 2](https://blog.rstudio.org/2014/06/18/r-markdown-v2/), antes se utilizaba `knitr` y `markdown`.], y esta llamada se muestra en la consola (o en la correspondiente pestaña de RStudio):
 
 ```
 "C:/Program Files/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS Informes.utf8.md --to html4 
