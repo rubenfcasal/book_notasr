@@ -43,7 +43,7 @@ Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintá
 Posteriormente se fueron añadiendo funcionalidades, por ejemplo para incluir opciones de publicación en muchos otros formatos.
 La implementación original de Markdown es de [John Gruber](http://daringfireball.net/projects/markdown/), 
 pero actualmente están disponibles múltiples dialectos (sobre todo para publicar en gestores de contenido).
-RMarkdown utiliza las extensiones de la sintaxis proporcionada por *Pandoc* (ver Apéndice \@ref(pandoc)), y adicionalmente permite la inclusión de código R.
+RMarkdown utiliza las extensiones de la sintaxis proporcionada por *[Pandoc](https://pandoc.org)* (ver Apéndice \@ref(pandoc)), y adicionalmente permite la inclusión de código R.
 
 Al renderizar un fichero RMarkdown se generará un documento que incluye el código R y los resultados incrustados en el documento^[Se llama al paquete `knitr` para "tejer" el código de R y los resultados en un fichero Markdown, que posteriormente es procesado con *pandoc*]. 
 En RStudio basta con hacer clic en el botón *Knit*. 
@@ -54,7 +54,7 @@ library(rmarkdown)
 browseURL(url = render("Informe.Rmd"))
 ```
 
-A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX, ...).
+A continuación se darán algunos detalles sobre RMarkdown (y las extensiones Markdown de Pandoc que admite: notas al pie de página, tablas, citas, ecuaciones LaTeX...).
 Para más información (incluyendo introducciones a Markdown y RMarkdown), se recomienda consultar alguna de las numerosas fuentes disponibles, comenzando por la web oficial  <http://rmarkdown.rstudio.com/>.
 
 También se dispone de información en la ayuda de RStudio:
@@ -68,12 +68,11 @@ También se dispone de información en la ayuda de RStudio:
 
 Otras fuentes permiten obtener documentación más detallada, como por ejemplo:
 
-- Web del paquete `knitr` [@R-knitr]: <https://yihui.name/knitr>.
+- Web original del paquete `r cite_pkg(knitr)` [@R-knitr]: [knitr; Elegant, flexible, and fast dynamic report generation with R](https://yihui.name/knitr).
 
-- @xie2018r : R Markdown: The Definitive Guide, 
-  <https://bookdown.org/yihui/rmarkdown/>.
+- @xie2018r : [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown).
 
-- Extensiones RMarkdown de Pandoc: <https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex>.
+- Extensiones RMarkdown de Pandoc: [Pandoc’s Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex).
 
 
 ## Sintaxis de Markdown {#markdown}
@@ -447,7 +446,7 @@ Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por P
 Por ejemplo, se pueden añadir sub~índices~ y super^índices^ con `sub~índices~` y `super^índices^`,  
 y notas al pie con `^[texto]`.
 
-Podemos incluir expresiones matemáticas en formato LateX:
+Podemos incluir expresiones matemáticas en formato LateX (ver e.g. [Free online introduction to LaTeX](https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1))):
 
 *   En linea escribiendo la expresión latex entre dos símbolos de dolar, 
     por ejemplo ``$\alpha, \beta, \gamma, \delta$ ``
