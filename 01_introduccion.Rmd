@@ -52,9 +52,9 @@ El primer paso es la instalación de R, para ello se recomienda seguir los pasos
 Para el desarrollo de código e informes la recomendación es emplear *RStudio Desktop*, que se puede instalar y configurar siguiendo las indicaciones en este [post](https://rubenfcasal.github.io/post/instalacion-de-rstudio).
 También puede resultar de interés consultar:
 
-- [RStudio cheatsheet](https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf)
+- [RStudio IDE Cheat Sheet](https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf) (menú de RStudio *Help > Cheat Sheets > RStudio IDE Cheat Sheet*).
 
-- [Using the RStudio IDE](https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE)
+- [Using the RStudio IDE](https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE).
 
 Sin embargo, en ciertos casos puede ser recomendable ejecutar el código R directamente desde una ventana de comandos (por ejemplo para ejecutar varios programas de forma simultánea en distintos directorios de trabajo o si los requerimientos computacionales son grandes).
 En mi caso, cuando trabajo en Windows, acostumbro a emplear el explorador para situarme en el directorio donde quiero ejecutar código y abrir una ventana de comandos, escribiendo `cmd` en el cuadro superior donde se muestra la ruta.

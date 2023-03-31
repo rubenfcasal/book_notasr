@@ -153,7 +153,7 @@ Podemos llamar a una función de un paquete sin necesidad de cargarlo (añadirlo
 Esto es especialmente recomendable al desarrollar nuevas funciones (es un requisito para subir paquetes a CRAN), ya que de esta forma se evitan conflictos entre funciones con el mismo nombre en paquetes distintos.
 Por ejemplo:
 ```{r eval=FALSE}
-if (!requireNamespace(knitr)) stop("'knitr' package required")
+if (!requireNamespace("knitr")) stop("'knitr' package required")
 knitr::spin("01-Introduccion.R", knit = FALSE)
 ```
 
@@ -274,7 +274,7 @@ Antes de ponerse a programar, sobre todo si puede terminar siendo un código com
 
 El primer paso es escribir el código como si fuese un programa, asignando valores de prueba a los parámetros, y cuando nos aseguramos de que funciona, reescribirlo como función (yo suelo mantener unos valores de prueba como comentarios por si quiero ejecutar paso a paso el cuerpo de la función).
 
-Al finalizar, la recomendación es **documentar la función**, preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org).
+Al finalizar, la recomendación es **documentar la función**, preferiblemente empleando el formato [`roxygen2`](https://roxygen2.r-lib.org) (ver el menú de RStudio *Help > Roxygen Quick Reference*).
 Por ejemplo:
 
 ```{r}
