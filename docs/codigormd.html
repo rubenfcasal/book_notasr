@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Inclusión de código R | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Inclusión de código R | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
-  <meta name="github-repo" content="rubenfcasal/notasr" />
+  <meta name="github-repo" content="rubenfcasal/book_notasr" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.3 Inclusión de código R | Notas de Programación en R" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="markdown.html"/>
 <link rel="next" href="tablas.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,11 +48,13 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -181,7 +185,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gráficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
+<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gr%C3%A1ficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
 <li class="chapter" data-level="3.3.2" data-path="codigormd.html"><a href="codigormd.html#opcodigo"><i class="fa fa-check"></i><b>3.3.2</b> Opciones de bloques de código</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>3.4</b> Tablas</a></li>
@@ -211,11 +215,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
 <ul>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciaci%C3%B3n-a-la-programaci%C3%B3n-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programaci%C3%B3n-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-y-shiny"><i class="fa fa-check"></i>Rmarkdown y Shiny</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gr%C3%A1ficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresi%C3%B3n-y-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales-r"><i class="fa fa-check"></i>Manuales oficiales R</a></li>
@@ -248,17 +252,17 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="codigormd" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Inclusión de código R</h2>
+<div id="codigormd" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Inclusión de código R<a href="codigormd.html#codigormd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Se puede incluir código R entre los delimitadores <code>```{r}</code> y <code>```</code>.
 Por defecto, se mostrará el código, se evaluará y se mostrarán los resultados justo a continuación.
 Por ejemplo el siguiente código:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb65-1"><a href="codigormd.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb65-2"><a href="codigormd.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="in">head(mtcars[1:3])</span></span>
-<span id="cb65-3"><a href="codigormd.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mtcars[1:3])</span></span>
-<span id="cb65-4"><a href="codigormd.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb65-1"><a href="codigormd.html#cb65-1" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb65-2"><a href="codigormd.html#cb65-2" tabindex="-1"></a><span class="in">head(mtcars[1:3])</span></span>
+<span id="cb65-3"><a href="codigormd.html#cb65-3" tabindex="-1"></a><span class="in">summary(mtcars[1:3])</span></span>
+<span id="cb65-4"><a href="codigormd.html#cb65-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>produce:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="codigormd.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="codigormd.html#cb66-1" tabindex="-1"></a><span class="fu">head</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
 <pre><code>##                    mpg cyl disp
 ## Mazda RX4         21.0   6  160
 ## Mazda RX4 Wag     21.0   6  160
@@ -266,7 +270,7 @@ Por ejemplo el siguiente código:</p>
 ## Hornet 4 Drive    21.4   6  258
 ## Hornet Sportabout 18.7   8  360
 ## Valiant           18.1   6  225</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="codigormd.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="codigormd.html#cb68-1" tabindex="-1"></a><span class="fu">summary</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
 <pre><code>##       mpg             cyl             disp      
 ##  Min.   :10.40   Min.   :4.000   Min.   : 71.1  
 ##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8  
@@ -277,19 +281,19 @@ Por ejemplo el siguiente código:</p>
 <p>En RStudio pulsando <em>Ctrl + Alt + I</em> o en el icono correspondiente se incluye un trozo de código.</p>
 <p>También se puede incluir código en línea empleando <code>`r código`</code>,
 por ejemplo <code>`r 2 + 2`</code> produce 4.</p>
-<div id="gráficos" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Gráficos</h3>
+<div id="gráficos" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Gráficos<a href="codigormd.html#gr%C3%A1ficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado
 (por defecto). Por ejemplo el siguiente gráfico:</p>
-<p><img src="08_rmarkdown_files/figure-html/figura1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="08_rmarkdown_files/figure-html/figura1-1.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p>se generó empleando:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb70-1"><a href="codigormd.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r figura1, echo=FALSE}</span></span>
-<span id="cb70-2"><a href="codigormd.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="in">hist(mtcars$mpg)</span></span>
-<span id="cb70-3"><a href="codigormd.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb70-1"><a href="codigormd.html#cb70-1" tabindex="-1"></a><span class="in">```{r figura1, echo=FALSE}</span></span>
+<span id="cb70-2"><a href="codigormd.html#cb70-2" tabindex="-1"></a><span class="in">hist(mtcars$mpg)</span></span>
+<span id="cb70-3"><a href="codigormd.html#cb70-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>aunque no se mostró previamente el código al haber establecido la opción <code>```{r, echo=FALSE}</code>.</p>
 </div>
-<div id="opcodigo" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Opciones de bloques de código</h3>
+<div id="opcodigo" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Opciones de bloques de código<a href="codigormd.html#opcodigo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Los trozos de código pueden tener nombre y opciones, se establecen en la cabecera de la forma
 <code>```{r nombre, op1, op2}</code>.
 Para un listado de las opciones disponibles ver <a href="http://yihui.name/knitr/options" class="uri">http://yihui.name/knitr/options</a>
@@ -320,9 +324,9 @@ Otras opciones son <code>'svg'</code> o <code>'jpeg'</code>.</li>
 </ul>
 <p>Para establecer valores por defecto para todos los bloques de código
 se suele incluir uno de configuración al principio del documento, por ejemplo:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb71-1"><a href="codigormd.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, setup, include=FALSE}</span></span>
-<span id="cb71-2"><a href="codigormd.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(comment=NA, prompt=TRUE, dev=&#39;svg&#39;, fig.dim=c(5, 7), collapse=TRUE)</span></span>
-<span id="cb71-3"><a href="codigormd.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb71-1"><a href="codigormd.html#cb71-1" tabindex="-1"></a><span class="in">```{r, setup, include=FALSE}</span></span>
+<span id="cb71-2"><a href="codigormd.html#cb71-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(comment=NA, prompt=TRUE, dev=&#39;svg&#39;, fig.dim=c(5, 7), collapse=TRUE)</span></span>
+<span id="cb71-3"><a href="codigormd.html#cb71-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">
@@ -353,42 +357,42 @@ se mostrará en un entorno flotante y se puede ajustar la posición empleando la
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/08_rmarkdown.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Notas_R.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rubenfcasal/book_notasr/edit/master/08_rmarkdown.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Notas_R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
@@ -399,7 +403,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

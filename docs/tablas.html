@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.4 Tablas | Notas de Programación en R</title>
   <meta name="description" content="Libro con notas personales sobre programación en R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.4 Tablas | Notas de Programación en R" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="Libro con notas personales sobre programación en R" />
-  <meta name="github-repo" content="rubenfcasal/notasr" />
+  <meta name="github-repo" content="rubenfcasal/book_notasr" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.4 Tablas | Notas de Programación en R" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="codigormd.html"/>
 <link rel="next" href="yaml.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,11 +48,13 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -181,7 +185,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3.2</b> Sintaxis de Markdown</a></li>
 <li class="chapter" data-level="3.3" data-path="codigormd.html"><a href="codigormd.html"><i class="fa fa-check"></i><b>3.3</b> Inclusión de código R</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gráficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
+<li class="chapter" data-level="3.3.1" data-path="codigormd.html"><a href="codigormd.html#gr%C3%A1ficos"><i class="fa fa-check"></i><b>3.3.1</b> Gráficos</a></li>
 <li class="chapter" data-level="3.3.2" data-path="codigormd.html"><a href="codigormd.html#opcodigo"><i class="fa fa-check"></i><b>3.3.2</b> Opciones de bloques de código</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>3.4</b> Tablas</a></li>
@@ -211,11 +215,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html"><i class="fa fa-check"></i>Bibliografía por temas</a>
 <ul>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciación-a-la-programación-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programación-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#iniciaci%C3%B3n-a-la-programaci%C3%B3n-en-r"><i class="fa fa-check"></i>Iniciación a la programación en R</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#programaci%C3%B3n-avanzada-en-r"><i class="fa fa-check"></i>Programación avanzada en R</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#rmarkdown-y-shiny"><i class="fa fa-check"></i>Rmarkdown y Shiny</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gráficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
-<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresión-y-aprendizaje-estadístico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#gr%C3%A1ficos-1"><i class="fa fa-check"></i>Gráficos</a></li>
+<li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#regresi%C3%B3n-y-aprendizaje-estad%C3%ADstico"><i class="fa fa-check"></i>Regresión y aprendizaje estadístico</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-temporales-y-espaciales"><i class="fa fa-check"></i>Datos temporales y espaciales</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#datos-faltantes"><i class="fa fa-check"></i>Datos faltantes</a></li>
 <li class="chapter" data-level="" data-path="bibliografía-por-temas.html"><a href="bibliografía-por-temas.html#manuales-oficiales-r"><i class="fa fa-check"></i>Manuales oficiales R</a></li>
@@ -248,8 +252,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tablas" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Tablas</h2>
+<div id="tablas" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Tablas<a href="tablas.html#tablas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En Markdown se pueden escribir tablas en varios formatos (ver <a href="https://pandoc.org/MANUAL.html#tables">Pandoc Tables</a>).
 Por ejemplo:</p>
 <pre><code>  Right     Left     Center     Default
@@ -273,6 +277,10 @@ gear  |  Número de marchas (hacia adelante)
 carb  |  Número de carburadores </code></pre>
 <p>que resulta en:</p>
 <table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -326,13 +334,27 @@ carb  |  Número de carburadores </code></pre>
 </tr>
 </tbody>
 </table>
-<p>Para convertir resultados de R en tablas de una forma simple se puede emplear la función <a href="NA"><code>ktable()</code></a> del paquete <a href="https://yihui.org/knitr/"><code>knitr</code></a>. Por ejemplo la Tabla <a href="tablas.html#tab:kable">3.1</a> se obtuvo mediante el siguiente código:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tablas.html#cb74-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb74-2"><a href="tablas.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
-<span id="cb74-3"><a href="tablas.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
-<span id="cb74-4"><a href="tablas.html#cb74-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table>
+<p>Para convertir resultados de R en tablas de una forma simple se puede emplear la función <a href="https://rdrr.io/pkg/knitr/man/kable.html"><code>kable()</code></a> del paquete <a href="https://yihui.org/knitr/"><code>knitr</code></a>. Por ejemplo la Tabla <a href="tablas.html#tab:kable">3.1</a> se obtuvo mediante el siguiente código:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tablas.html#cb74-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb74-2"><a href="tablas.html#cb74-2" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
+<span id="cb74-3"><a href="tablas.html#cb74-3" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
+<span id="cb74-4"><a href="tablas.html#cb74-4" tabindex="-1"></a>)</span></code></pre></div>
+<table style="width:100%;">
 <caption><span id="tab:kable">Tabla 3.1: </span>Una kable knitr</caption>
+<colgroup>
+<col width="26%" />
+<col width="7%" />
+<col width="5%" />
+<col width="7%" />
+<col width="5%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="4%" />
+<col width="4%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -436,7 +458,7 @@ carb  |  Número de carburadores </code></pre>
 </tr>
 </tbody>
 </table>
-<p>Otros paquetes proporcionan opciones adicionales: <a href="http://xtable.r-forge.r-project.org/"><code>xtable</code></a>, <a href="https://CRAN.R-project.org/package=stargazer"><code>stargazer</code></a>, <a href="https://rapporter.github.io/pander/"><code>pander</code></a>, <a href="https://r-forge.r-project.org/projects/tables/"><code>tables</code></a> y <a href="https://github.com/mclements/ascii"><code>ascii</code></a>.</p>
+<p>Otros paquetes proporcionan opciones adicionales: <a href="http://xtable.r-forge.r-project.org/"><code>xtable</code></a>, <a href="https://CRAN.R-project.org/package=stargazer"><code>stargazer</code></a>, <a href="https://rapporter.github.io/pander/"><code>pander</code></a>, <a href="https://dmurdoch.github.io/tables/"><code>tables</code></a> y <a href="https://github.com/mclements/ascii"><code>ascii</code></a>.</p>
 </div>
             </section>
 
@@ -458,42 +480,42 @@ carb  |  Número de carburadores </code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rubenfcasal/book_notasr/edit/master/08_rmarkdown.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Notas_R.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rubenfcasal/book_notasr/edit/master/08_rmarkdown.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Notas_R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
@@ -504,7 +526,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

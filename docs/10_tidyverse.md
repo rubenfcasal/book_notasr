@@ -64,7 +64,7 @@ y un conjunto de paquetes recomendados ([`feather`](https://github.com/wesm/feat
 - [`xml2`](https://github.com/r-lib/xml2): archivos XML.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -102,14 +102,14 @@ En [`ggplot2`](https://ggplot2.tidyverse.org) se emplea el operador `+` para añ
 
 ## Operador *pipe* (redirección) {#pipe}
 
-El operador `%>%` (paquete [`magrittr`](https://magrittr.tidyverse.org)) permite canalizar la salida de una función a la entrada de otra. 
+El operador `%>%` (del paquete [`magrittr`](https://magrittr.tidyverse.org)) permite canalizar la salida de una función a la entrada de otra. 
 Por ejemplo, `segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
-Desde la versión 4.1 de R está disponible un operador interno `|>` (aunque yo sigo prefiriendo `%>%`).
+Desde la versión 4.1 de R está disponible un operador interno `|>` (más simple; pero yo sigo prefiriendo `%>%`,  porque la combinación de teclas me resulta más cómoda).
 Por ejemplo:
 
 
-```r
+``` r
 # El fichero 'empleados.RData' contiene datos de empleados de un banco.
 # Supongamos por ejemplo que estamos interesados en estudiar si hay
 # discriminación por cuestión de sexo o raza.
@@ -152,7 +152,7 @@ sexoraza & Clasificación por sexo y raza\\
 \hline
 \end{tabular}
 
-```r
+``` r
 # Eliminamos las etiquetas para que no molesten...
 # attr(empleados, "variable.labels") <- NULL  
 
@@ -177,23 +177,28 @@ empleados |>  subset(catlab == "Directivo", catlab:sexoraza) |>  summary()
 ```
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
-Sin embargo, el operador `%>%` permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un `.`.
+No obstante, ambos operadores permiten redirigir el resultado de la operación anterior a un parámetro distinto, mediante un `_` con `|>`, o un `.` con `%>%`.
 Por ejemplo:
 
 
-```r
+``` r
 # ?"|>"
-# empleados |> subset(catlab != "Seguridad") |> droplevels |> 
-#     boxplot(salario ~ sexo*catlab, data = .) # ERROR
-
-library(magrittr)
-empleados %>% subset(catlab != "Seguridad") %>% droplevels() %>%
-    boxplot(salario ~ sexo*catlab, data = .)
+empleados |> subset(catlab != "Seguridad") |> droplevels() |> 
+     boxplot(salario ~ sexo*catlab, data = _)
 ```
 
 
 
 \begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+``` r
+# library(magrittr)
+# No sería necesario incluir paréntesis en droplevels()
+# No sería necesario utilizar el nombre del argumento al redirigir,
+# se puede hacer a múltiples argumentos, ...
+# empleados %>% subset(catlab != "Seguridad") %>% droplevels %>% 
+#     boxplot(salario ~ sexo*catlab, .)
+```
 
 
 

@@ -1,20 +1,24 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -32,15 +36,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Notas de Programación en R},
-  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -66,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -75,13 +70,14 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -93,36 +89,57 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+%\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{fontsetup}
 \usepackage{booktabs}
-\usepackage[a4paper, top=3.25cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
-% \usepackage{fontspec}
-% \setmainfont{Arial}
-% \usepackage{amsthm}
+\usepackage[a4paper, top=3.25cm, bottom=2.5cm, inner=2.5cm, outer=2.5cm]{geometry}
+%\usepackage[papersize={19cm, 24cm}, top=2.5cm, bottom=2cm, inner=2.5cm, outer=2cm]{geometry}
+%\usepackage{animate}
+%\usepackage{lmodern}
+%\usepackage{fontspec}
+% ---------------------------
+% Problemas con negritas en ecuaciones
+% https://tex.stackexchange.com/questions/141656/suddenly-a-problem-with-boldface-greek-symbols-bm-package-doesnt-work
+%\usepackage{bm}
+%\usepackage{unicode-math} % por defecto en bookdown
+% Emplear \symbf \symbfit \symbfup en lugar de \boldsymbol y \mathbf
+% Causa problemas en MathJax
+\renewcommand{\boldsymbol}[1]{\symbf{#1}}
+\renewcommand{\mathbf}[1]{\symbf{#1}}
+% ---------------------------
+\usepackage{emptypage}
+% líneas viudas y huérfanas
+\widowpenalty=500
+\clubpenalty=500
+% ---------------------------
+% Space above/below an [h] float (default 12pt)
+\setlength{\intextsep}{18pt}
+% Leyendas de figuras y tablas
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, margin={.08\textwidth}}
+%\captionsetup{font=small, labelfont=bf, margin={.08\textwidth, .02\textwidth}}
+% ---------------------------
 % Espacio después de teorema
-% Basado en https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
-% \newtheoremstyle{break}
-%   {\topsep}{\topsep}% Space above and below
-%   {\itshape}{}%       Body font, Indent amoun
-%   {\bfseries}{}%      Theorem head font, Punctuation after theorem head
-%   {\newline}%         Space after theorem head
-%   {}%                 Theorem head spec (can be left empty, meaning ‘normal’ )
-% Problemas con listas  https://tex.stackexchange.com/questions/8110/is-it-possible-to-skip-the-first-line-in-a-theorem-environment
-
+% https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+% https://tex.stackexchange.com/questions/8110/is-it-possible-to-skip-the-first-line-in-a-theorem-environment
 \usepackage{ntheorem}
 \theoremstyle{break}
 \theoremheaderfont{\normalfont\bfseries}
@@ -148,37 +165,68 @@
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\normalfont\itshape}
 \theoremseparator{:}
+% \theorempostskip{\bigskipamount} % PENDIENTE
 % \theorempostwork{\hrule}
 \newtheorem{remark}{Nota}
 \newtheorem{solution}{Solución}
 \newtheorem{proof}{Demostración}
-
-
-\ifxetex
-  \usepackage{polyglossia}
-  \setmainlanguage{spanish}
-  % Tabla en lugar de cuadro
-  \gappto\captionsspanish{\renewcommand{\tablename}{Tabla}
-          \renewcommand{\listtablename}{Índice de tablas}}
-
-\else
-  \usepackage[spanish,es-tabla]{babel}
-\fi
-\makeatletter
-\def\thm@space@setup{%
-  \thm@preskip=8pt plus 2pt minus 4pt
-  \thm@postskip=\thm@preskip
-}
-\makeatother
-\ifluatex
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
+% ---------------------------
+% Spanish
+% Ahora se carga previamente babel
+\PassOptionsToPackage{spanish,es-tabla}{babel}
+%\addto\captionsspanish{\renewcommand{\contentsname}{\'Indice}}
+% Añadir bibliografía en el índice
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+% ---------------------------
+% Encabezados
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{13.2pt}
+% ---------------------------
+% Code chunks
+% https://github.com/tidymodels/TMwR/blob/main/latex_extras/preamble.tex
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small, xleftmargin=2mm}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, xleftmargin=2mm}
+\renewcommand{\CommentTok}[1]{\textcolor[rgb]{0.41,0.41,0.41}{\texttt{#1}}}
+% https://tex.stackexchange.com/questions/161678/decreasing-font-size-in-verbatim
+% https://tex.stackexchange.com/questions/56970/how-can-i-set-stretch-of-verbatim-to-be-different-than-global-setting
+\usepackage[nodisplayskipstretch]{setspace} \setstretch{1.2}
+%\usepackage{etoolbox}
+% Interlineado code chunk
+\preto{\Shaded}{\vspace{0.2\baselineskip}\edef\tempstretch{\baselinestretch}\par\setstretch{1}}
+\appto{\endShaded}{\vspace{-\tempstretch\baselineskip}\vspace{1.2\baselineskip}}
+% Interlineado resultados y tamaño
+%\preto{\verbatim}{\edef\tempstretch{\baselinestretch}\par\setstretch{1}\small}
+%\appto{\endverbatim}{\vspace{-\tempstretch\baselineskip}\normalsize\vspace{1.2\baselineskip}}
+\preto{\verbatim}{\edef\tempstretch{\baselinestretch}\par\setstretch{1}}
+\appto{\endverbatim}{\vspace{-\tempstretch\baselineskip}\vspace{1.2\baselineskip}}
+% ---------------------------
+% Notas al pie
+\let\oldfootnote\footnote
+\renewcommand\footnote[1]{\oldfootnote{\hspace{2mm}#1}}
+% ---------------------------
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Notas de Programación en R},
+  pdfauthor={Rubén Fernández Casal (rubenfcasal@gmail.com)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Notas de Programación en R}
 \author{Rubén Fernández Casal (\href{mailto:rubenfcasal@gmail.com}{\nolinkurl{rubenfcasal@gmail.com}})}
-\date{Edición: Marzo de 2023. Impresión: 2023-04-01}
+\date{Edición: Marzo de 2023. Impresión: 2026-10-02}
 
 \begin{document}
 \maketitle
@@ -187,8 +235,7 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{pruxf3logo}{%
-\chapter*{Prólogo}\label{pruxf3logo}}
+\chapter*{Prólogo}\label{pruxf3logo}
 \addcontentsline{toc}{chapter}{Prólogo}
 
 Este es un libro, \textbf{\emph{en proceso de elaboración}}, con notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales (se asumen unos conocimientos básicos de R).
@@ -203,7 +250,7 @@ Se puede acceder a la versión en línea a través del siguiente enlace:
 donde puede descargarse en formato \href{https://rubenfcasal.github.io/book_notasr/Notas_R.pdf}{pdf}.
 
 Para seguir los ejemplos mostrados en el libro (en la carpeta \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos} se incluyen algunos ejemplos adicionales) se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
-\href{https://www.r-project.org}{\texttt{Rcmdr}}, \href{https://github.com/topepo/caret/}{\texttt{caret}}, \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}, \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}}, \href{https://ycphs.github.io/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://github.com/rstudio/DT}{\texttt{DT}}, \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}}, \href{https://yihui.org/knitr/}{\texttt{knitr}}, \href{https://remotes.r-lib.org}{\texttt{remotes}}, \href{https://devtools.r-lib.org/}{\texttt{devtools}}.
+\href{https://github.com/RCmdr-Project/rcmdr}{\texttt{Rcmdr}}, \href{https://github.com/topepo/caret/}{\texttt{caret}}, \href{https://tidymodels.tidymodels.org}{\texttt{tidymodels}}, \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}}, \href{https://ycphs.github.io/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://github.com/rstudio/DT}{\texttt{DT}}, \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}}, \href{https://yihui.org/knitr/}{\texttt{knitr}}, \href{https://remotes.r-lib.org}{\texttt{remotes}}, \href{https://devtools.r-lib.org/}{\texttt{devtools}}.
 Por ejemplo mediante los siguientes comandos:
 
 \begin{Shaded}
@@ -233,8 +280,7 @@ Este obra está bajo una licencia de \href{https://creativecommons.org/licenses/
 
 \includegraphics[width=1.22in]{by-nc-nd-88x31}
 
-\hypertarget{intro}{%
-\chapter{Introducción}\label{intro}}
+\chapter{Introducción}\label{intro}
 
 Como aparece en el prólogo, estos apuntes contienen recomendaciones y notas personales sobre programación en R para el análisis de datos, en el que incluyen referencias a información y recursos adicionales que considero de interés.
 Se tratará de mostrar una forma de llevar a cabo las distintas tareas que pueden surgir en el análisis de datos empleando R, esto no quiere decir que sea la mejor forma de hacerlo o la más cómoda (que dependerá de cada persona).
@@ -271,7 +317,7 @@ También puede resultar de interés consultar:
 
 Sin embargo, en ciertos casos puede ser recomendable ejecutar el código R directamente desde una ventana de comandos (por ejemplo para ejecutar varios programas de forma simultánea en distintos directorios de trabajo o si los requerimientos computacionales son grandes).
 En mi caso, cuando trabajo en Windows, acostumbro a emplear el explorador para situarme en el directorio donde quiero ejecutar código y abrir una ventana de comandos, escribiendo \texttt{cmd} en el cuadro superior donde se muestra la ruta.
-Posteriormente, como añadí en directorio de instalación de R al \emph{path} (ver \href{https://rubenfcasal.github.io/post/instalacion-de-r/\#rtools}{post}), ejecuto\footnote{También se puede ejecutar un script de R de forma no interactiva ejecutando en el intérprete de comandos del sistema operativo: \texttt{R\ CMD\ BATCH\ {[}opciones{]}\ mi\_script.R\ {[}fichero\_salida{]}} (cambiando \texttt{R} por la ruta completa, e.g.~\texttt{"C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-4.2.1\textbackslash{}bin\textbackslash{}R.exe"}, si no se añadió al path. También se puede incluir en un fichero \emph{.bat}, para poder ejecutarlo repetidas veces con mayor facilidad). Ver \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html\#Invoking-R}{Appendix B Invoking R} de \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html}{Introduction to R} para información sobre las distintas opciones.} \texttt{R} y finalmente un comando de la forma:
+Posteriormente, como añadí en directorio de instalación de R al \emph{path} (ver \href{https://rubenfcasal.github.io/post/instalacion-de-r/\#rtools}{post}), ejecuto\footnote{También se puede ejecutar un script de R de forma no interactiva ejecutando en el intérprete de comandos del sistema operativo \texttt{R\ CMD\ BATCH\ {[}opciones{]}\ mi\_script.R\ {[}fichero\_salida{]}} o bien \texttt{Rscript\ mi\_script.R} para salida por pantalla (cambiando \texttt{R} por la ruta completa, e.g.~\texttt{"C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-4.2.1\textbackslash{}bin\textbackslash{}R.exe"}, si no se añadió al path. También se puede incluir en un fichero \emph{.bat}, para poder ejecutarlo repetidas veces con mayor facilidad). Ver \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html\#Invoking-R}{Appendix B Invoking R} de \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html}{Introduction to R} para información sobre las distintas opciones.} \texttt{R} y finalmente un comando de la forma:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -279,8 +325,7 @@ Posteriormente, como añadí en directorio de instalación de R al \emph{path} (
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{organizacion}{%
-\section{Organización}\label{organizacion}}
+\section{Organización}\label{organizacion}
 
 Para la organización de archivos (datos, código, informes\ldots) lo recomendable es emplear un directorio con la estructura adecuada.
 
@@ -301,8 +346,7 @@ Para más detalles ver la ayuda de \texttt{?Startup}, el apéndice \href{https:/
 Para desarrollar código y proyectos de forma colaborativa, la recomendación es emplear un sistema de control de versiones.
 Se puede configurar RStudio para emplear Git (ver el libro \href{https://happygitwithr.com/index.html}{Happy Git and GitHub for the useR} o la sección \href{https://r-pkgs.org/software-development-practices.html\#sec-sw-dev-practices-git-github}{Git and GitHub}), sin embargo yo prefiero emplear \href{https://desktop.github.com/}{GitHub Desktop}.
 
-\hypertarget{codigo}{%
-\subsection{Código e informes}\label{codigo}}
+\subsection{Código e informes}\label{codigo}
 
 Mi recomendación a la hora de escribir código es seguir un \textbf{proceso iterativo}.
 Se comienza realizando pruebas y al finalizar cada etapa se trata de reorganizar el código (adaptándolo al estilo de programación elegido, lo que incluiría añadir comentarios y secciones) de forma que sea más cómodo continuar trabajando en siguientes etapas (y si es posible que resulte más fácil de adaptar para otros casos).
@@ -338,7 +382,7 @@ Lo principal sería el operador de asignación, el espaciado y el estilo de nomb
 \item
   \texttt{estilo\_serpiente} (o \texttt{Estilo\_serpiente}): es el estilo de la colección de paquetes \href{https://tidyverse.tidyverse.org}{\texttt{tidyverse}}.
 \item
-  \texttt{EstiloCamello} (o \texttt{estiloCamello}): es el estilo (casi obligatorio) para las clases \href{https://r6.r-lib.org}{\texttt{R6}} (ver Sección \ref{oop}). El paquete \href{https://shiny.rstudio.com/}{\texttt{shiny}} emplea la variante que comienza por minúsculas.
+  \texttt{EstiloCamello} (o \texttt{estiloCamello}): es el estilo (casi obligatorio) para las clases \href{https://r6.r-lib.org}{\texttt{R6}} (ver Sección \ref{oop}). El paquete \href{https://shiny.posit.co/}{\texttt{shiny}} emplea la variante que comienza por minúsculas.
 \end{itemize}
 
 \textbf{Recomiendo emplear \texttt{\textless{}-}} como operador de asignación y escribir todos los \textbf{nombres en minúsculas}.
@@ -418,8 +462,7 @@ Por ejemplo:
 
 La mejor forma de organizar funciones es desarrollar un paquete, como se comenta más adelante en la Sección \ref{desarrollo}.
 
-\hypertarget{datos}{%
-\subsection{Datos}\label{datos}}
+\subsection{Datos}\label{datos}
 
 La recomendación es emplear ficheros de datos con el formato por defecto de R (datos binarios comprimidos), con extensión \emph{.RData}.
 Hay que tener en cuenta que lo esperable es que el archivo contenga un conjunto de datos con el mismo nombre, aunque podría no ser el caso e incluso contener varios objetos.
@@ -469,11 +512,9 @@ En estos casos además se puede añadir una nueva hoja de cálculo con los nombr
 Adicionalmente esta tabla puede incluir una columna con los nuevos nombres (yo recomiendo no modificar los antiguos en este fichero), otra con un filtro para seleccionar variables (o el orden después del procesado) e incluso una columna con anotaciones o observaciones.
 Ver \href{ejemplos/top500/top500.R}{top500.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
 
-\hypertarget{part-el-entorno-estaduxedstico-r}{%
-\part{El entorno estadístico R}\label{part-el-entorno-estaduxedstico-r}}
+\part{El entorno estadístico R}\label{part-el-entorno-estaduxedstico-r}
 
-\hypertarget{r}{%
-\chapter{El lenguaje R}\label{r}}
+\chapter{El lenguaje R}\label{r}
 
 Cualquier análisis de R requiere programación, aunque normalmente se puede llevar a cabo sin conocimientos profundos del lenguaje (\emph{useR}).
 Sin embargo, para desarrollar nuevas herramientas de forma efectiva (\emph{programeR}) es necesario tener una idea del funcionamiento interno de R.
@@ -484,8 +525,7 @@ Wickham, Hadley (2019). \emph{\href{https://adv-r.hadley.nz/}{Advanced R, 2ª ed
 También puede ser de utilidad el manual \href{https://cran.r-project.org/doc/manuals/R-lang.html}{R Language Definition}
 para consultas adicionales\footnote{Los manuales oficiales también están disponibles en formato bookdown en este \href{https://colinfay.me/r-manuals}{post}.}.
 
-\hypertarget{paquetes}{%
-\section{Paquetes}\label{paquetes}}
+\section{Paquetes}\label{paquetes}
 
 Al instalar R se instalan los denominados \textbf{paquetes base} y (por defecto) los \textbf{paquetes recomendados} por los desarrolladores de R (el \emph{R Core Team}).
 Podemos acceder a la lista de paquetes instalados:
@@ -515,7 +555,7 @@ Podemos acceder a la lista de paquetes instalados:
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 \end{verbatim}
 
-Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2023-04-01, están disponibles 19217 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
+Para instalar paquetes adicionales se puede emplear \texttt{install.packages()} (actualmente, 2026-10-02, están disponibles 25257 en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, incluso para interactuar con ChatGPT como \href{https://michelnivard.github.io/gptstudio}{\texttt{gptstudio}}).
 Por ejemplo:
 
 \begin{Shaded}
@@ -563,13 +603,13 @@ Al iniciar el programa \texttt{R} se cargan por defecto en memoria los principal
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] ".GlobalEnv"        "package:dbplyr"    "package:forcats"  
-##  [4] "package:stringr"   "package:dplyr"     "package:purrr"    
-##  [7] "package:readr"     "package:tidyr"     "package:tibble"   
-## [10] "package:ggplot2"   "package:tidyverse" "package:magrittr" 
-## [13] "package:stats"     "package:graphics"  "package:grDevices"
-## [16] "package:utils"     "package:datasets"  "package:methods"  
-## [19] "Autoloads"         "package:base"
+##  [1] ".GlobalEnv"        "package:dbplyr"    "package:magrittr" 
+##  [4] "package:lubridate" "package:forcats"   "package:stringr"  
+##  [7] "package:dplyr"     "package:purrr"     "package:readr"    
+## [10] "package:tidyr"     "package:tibble"    "package:ggplot2"  
+## [13] "package:tidyverse" "package:stats"     "package:graphics" 
+## [16] "package:grDevices" "package:utils"     "package:datasets" 
+## [19] "package:methods"   "Autoloads"         "package:base"
 \end{verbatim}
 
 Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado \textbf{\emph{namespace}} del paquete.
@@ -601,7 +641,7 @@ Hay que tener cuidado con las versiones instaladas de los paquetes:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] '1.0.10'
+## [1] '1.2.1'
 \end{verbatim}
 
 y con sus dependencias (los paquetes tienen su propia ruta de búsqueda, determinada por el \emph{namespace} del paquete).
@@ -623,8 +663,7 @@ La recomendación para que un proyecto en R (por ejemplo una aplicación shiny) 
 Para más detalles ver \href{https://docs.docker.com/get-started/overview/}{Docker overview} y \href{https://rocker-project.org/}{The Rocker Project}.
 Ver \href{ejemplos/covid19/prediccion_cooperativa/vii_xornadasr.html}{ejemplos/covid19/prediccion\_cooperativa}.
 
-\hypertarget{funciones}{%
-\section{Funciones}\label{funciones}}
+\section{Funciones}\label{funciones}
 
 \begin{quote}
 ``Everything that happens in R is the result of a function call''.
@@ -734,8 +773,7 @@ Esto es lo que se conoce como \href{https://adv-r.hadley.nz/functions.html\#lexi
 ## [1] 1
 \end{verbatim}
 
-\hypertarget{oop}{%
-\section{Programación orientada a objetos (funciones genéricas)}\label{oop}}
+\section{Programación orientada a objetos (funciones genéricas)}\label{oop}
 
 \begin{quote}
 ``Everything that exists in R is an object''.
@@ -785,7 +823,7 @@ Por ejemplo:
 \begin{verbatim}
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000000001d8a0168>
+## <bytecode: 0x000001faeb531238>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -799,18 +837,19 @@ Por ejemplo:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] plot,ANY-method     plot,color-method   plot.acf*          
-##  [4] plot.data.frame*    plot.decomposed.ts* plot.default       
-##  [7] plot.dendrogram*    plot.density*       plot.ecdf          
-## [10] plot.factor*        plot.formula*       plot.function      
-## [13] plot.ggplot*        plot.gtable*        plot.hcl_palettes* 
-## [16] plot.hclust*        plot.histogram*     plot.HoltWinters*  
-## [19] plot.isoreg*        plot.lm*            plot.medpolish*    
-## [22] plot.mlm*           plot.ppr*           plot.prcomp*       
-## [25] plot.princomp*      plot.profile.nls*   plot.R6*           
-## [28] plot.raster*        plot.spec*          plot.stepfun       
-## [31] plot.stl*           plot.table*         plot.trans*        
-## [34] plot.ts             plot.tskernel*      plot.TukeyHSD*     
+##  [1] plot.acf*             plot.data.frame*      plot.decomposed.ts*  
+##  [4] plot.default          plot.dendrogram*      plot.density*        
+##  [7] plot.ecdf             plot.factor*          plot.formula*        
+## [10] plot.free1way*        plot.function         plot.ggplot2::ggplot*
+## [13] plot.gtable*          plot.hclust*          plot.histogram*      
+## [16] plot.HoltWinters*     plot.isoreg*          plot.lm*             
+## [19] plot.medpolish*       plot.mlm*             plot.pal_continuous* 
+## [22] plot.pal_discrete*    plot.ppr*             plot.prcomp*         
+## [25] plot.princomp*        plot.profile*         plot.profile.nls*    
+## [28] plot.R6*              plot.raster*          plot.spec*           
+## [31] plot.stepfun          plot.stl*             plot.table*          
+## [34] plot.transform*       plot.ts               plot.tskernel*       
+## [37] plot.TukeyHSD*       
 ## see '?methods' for accessing help and source code
 \end{verbatim}
 
@@ -829,19 +868,19 @@ Por ejemplo:
 \begin{verbatim}
 ##  [1] add1           alias          anova          case.names     coerce        
 ##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
-## [11] drop1          dummy.coef     effects        extractAIC     family        
-## [16] formula        fortify        hatvalues      influence      initialize    
-## [21] kappa          labels         logLik         model.frame    model.matrix  
-## [26] nobs           plot           predict        print          proj          
-## [31] qr             residuals      rstandard      rstudent       show          
-## [36] simulate       slotsFromS3    summary        variable.names vcov          
+## [11] dffits         drop1          dummy.coef     effects        extractAIC    
+## [16] family         formula        fortify        hatvalues      influence     
+## [21] initialize     kappa          labels         logLik         model.frame   
+## [26] model.matrix   nobs           plot           predict        print         
+## [31] proj           qr             residuals      rstandard      rstudent      
+## [36] show           simulate       slotsFromS3    summary        variable.names
+## [41] vcov          
 ## see '?methods' for accessing help and source code
 \end{verbatim}
 
 Para una programación orientada a objetos más formal la recomendación es emplear el sistema R6.
 
-\hypertarget{desarrollo}{%
-\section{Desarrollo de funciones y paquetes}\label{desarrollo}}
+\section{Desarrollo de funciones y paquetes}\label{desarrollo}
 
 Antes de ponerse a programar, sobre todo si puede terminar siendo un código complejo, la recomendación es hacer una búsqueda por si resulta que ya está implementado (o hay algo que podemos tomar como base; es lo bueno de GNU!): en la descripción de los paquetes en \href{https://cran.r-project.org/web/packages/available_packages_by_date.html}{CRAN}, en los buscadores especializados (\href{https://rdrr.io/}{rdrr.io}, \href{https://www.rdocumentation.org/}{RDocumentation} o \href{http://rseek.org/}{RSeek}), en foros de programación (\href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}, \href{https://es.stackoverflow.com/questions/tagged/r}{StackOverflow.es}, \href{https://stats.stackexchange.com}{Cross Validated}), en listas de correo (\href{https://stat.ethz.ch/mailman/listinfo}{r-project.org}, \href{https://r-help-es.r-project.narkive.com}{r-help-es}) o directamente en \href{https://www.google.com/search?q=r-project}{Google} (añadiendo ``r-project'' o similar en la búsqueda).
 
@@ -899,14 +938,12 @@ Wickham, Hadley (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organi
 
 También puede ser de utilidad el manual \href{http://colinfay.me/writing-r-extensions}{Writing R Extensions} para información adicional.
 
-\hypertarget{informes}{%
-\chapter{Generación de informes}\label{informes}}
+\chapter{Generación de informes}\label{informes}
 
 Este documento se ha generado empleando RMarkdown, una extensión de \href{https://es.wikipedia.org/wiki/Markdown}{Markdown} que permite incorporar código y resultados de R.
 RMarkdown es recomendable para difundir análisis realizados con R en formato HTML, PDF y DOCX (Word), entre otros.
 
-\hypertarget{rmarkdown}{%
-\section{RMarkdown}\label{rmarkdown}}
+\section{RMarkdown}\label{rmarkdown}
 
 El paquete \href{https://github.com/rstudio/rmarkdown}{\texttt{rmarkdown}} permite combinar Markdown con R para la generación de documentos. \href{http://daringfireball.net/projects/markdown/}{Markdown} se diseñó inicialmente para la creación de páginas web a partir de documentos de texto de forma muy sencilla y rápida (tiene unas reglas sintácticas muy simples).
 Es lo que se conoce como un lenguaje de marcado ligero, tiene unas reglas sintácticas muy simples y se busca principalmente la facilidad de lectura.
@@ -950,27 +987,35 @@ Otras fuentes permiten obtener documentación más detallada, como por ejemplo:
   Extensiones RMarkdown de Pandoc: \href{https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html\%23raw-tex}{Pandoc's Markdown}.
 \end{itemize}
 
-\hypertarget{markdown}{%
-\section{Sintaxis de Markdown}\label{markdown}}
+\section{Sintaxis de Markdown}\label{markdown}
 
 Como ya se comentó la sintaxis de Markdown es muy secilla.
 El texto no marcado se renderiza como texto normal aunque es necesario dejar una línea en blanco para insertar un salto de línea.
 Las principales reglas de Markdown se sumarizan en la siguiente tabla:
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.32}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.36}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.32}}@{}}
-\toprule
-Escribir & o alternativamente & para obtener \ldots{} \\
-\midrule
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3529}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3176}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Escribir
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+o alternativamente
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+para obtener
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
 # Título 1
- 
+
 ## Título 2
- 
+
 ### Título 3
 \end{verbatim}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1004,8 +1049,7 @@ __Negrita__
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
 [Enlace](http://url.gz)
- 
- 
+
 \end{verbatim}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
@@ -1017,8 +1061,7 @@ Más adelante...
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
 ![Imagen](rmarkdown.png)
- 
- 
+
 \end{verbatim}
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
@@ -1026,7 +1069,13 @@ Más adelante...
 Más adelante...
 [1]:http://url/b.jpg
 \end{verbatim}
-\end{minipage} & \includegraphics{figuras/rmd.png} \\
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Imagen}]{figuras/rmd.png}}
+
+Imagen
+\end{center}
+\end{minipage} \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{verbatim}
 > Blockquote
@@ -1142,13 +1191,12 @@ os
 o sangría de 4 espacios
 \end{verbatim}
 \end{minipage} \\
-\bottomrule
 \end{longtable}
+}
 
 Es muy recomendable dejar siempre una linea de separación entre elementos distintos consecutivos.
 
-\hypertarget{codigormd}{%
-\section{Inclusión de código R}\label{codigormd}}
+\section{Inclusión de código R}\label{codigormd}
 
 Se puede incluir código R entre los delimitadores \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}} y \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}.
 Por defecto, se mostrará el código, se evaluará y se mostrarán los resultados justo a continuación.
@@ -1202,8 +1250,7 @@ En RStudio pulsando \emph{Ctrl + Alt + I} o en el icono correspondiente se inclu
 También se puede incluir código en línea empleando \texttt{\textasciigrave{}r\ código\textasciigrave{}},
 por ejemplo \texttt{\textasciigrave{}r\ 2\ +\ 2\textasciigrave{}} produce 4.
 
-\hypertarget{gruxe1ficos}{%
-\subsection{Gráficos}\label{gruxe1ficos}}
+\subsection{Gráficos}\label{gruxe1ficos}
 
 Si el código genera un gráfico, este se incluirá en el documento justo después de donde fué generado
 (por defecto). Por ejemplo el siguiente gráfico:
@@ -1222,8 +1269,7 @@ se generó empleando:
 
 aunque no se mostró previamente el código al haber establecido la opción \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r,\ echo=FALSE\}}.
 
-\hypertarget{opcodigo}{%
-\subsection{Opciones de bloques de código}\label{opcodigo}}
+\subsection{Opciones de bloques de código}\label{opcodigo}
 
 Los trozos de código pueden tener nombre y opciones, se establecen en la cabecera de la forma
 \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ nombre,\ op1,\ op2\}}.
@@ -1283,8 +1329,7 @@ se suele incluir uno de configuración al principio del documento, por ejemplo:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{tablas}{%
-\section{Tablas}\label{tablas}}
+\section{Tablas}\label{tablas}
 
 En Markdown se pueden escribir tablas en varios formatos (ver \href{https://pandoc.org/MANUAL.html\#tables}{Pandoc Tables}).
 Por ejemplo:
@@ -1317,11 +1362,20 @@ carb  |  Número de carburadores
 
 que resulta en:
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-Variable & Descripción \\
-\midrule
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8676}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 mpg & Millas / galón (EE.UU.) \\
 cyl & Número de cilindros \\
 disp & Desplazamiento (pulgadas cúbicas) \\
@@ -1333,10 +1387,10 @@ vs & Cilindros en V/Straight (0 = cilindros en V, 1 = cilindros en línea) \\
 am & Tipo de transmisión (0 = automático, 1 = manual) \\
 gear & Número de marchas (hacia adelante) \\
 carb & Número de carburadores \\
-\bottomrule
 \end{longtable}
+}
 
-Para convertir resultados de R en tablas de una forma simple se puede emplear la función \href{NA}{\texttt{ktable()}} del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}}. Por ejemplo la Tabla \ref{tab:kable} se obtuvo mediante el siguiente código:
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función \href{https://rdrr.io/pkg/knitr/man/kable.html}{\texttt{kable()}} del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}}. Por ejemplo la Tabla \ref{tab:kable} se obtuvo mediante el siguiente código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1370,10 +1424,9 @@ Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
 \end{tabular}
 \end{table}
 
-Otros paquetes proporcionan opciones adicionales: \href{http://xtable.r-forge.r-project.org/}{\texttt{xtable}}, \href{https://CRAN.R-project.org/package=stargazer}{\texttt{stargazer}}, \href{https://rapporter.github.io/pander/}{\texttt{pander}}, \href{https://r-forge.r-project.org/projects/tables/}{\texttt{tables}} y \href{https://github.com/mclements/ascii}{\texttt{ascii}}.
+Otros paquetes proporcionan opciones adicionales: \href{http://xtable.r-forge.r-project.org/}{\texttt{xtable}}, \href{https://CRAN.R-project.org/package=stargazer}{\texttt{stargazer}}, \href{https://rapporter.github.io/pander/}{\texttt{pander}}, \href{https://dmurdoch.github.io/tables/}{\texttt{tables}} y \href{https://github.com/mclements/ascii}{\texttt{ascii}}.
 
-\hypertarget{yaml}{%
-\section{Cabecera YAML}\label{yaml}}
+\section{Cabecera YAML}\label{yaml}
 
 En un fichero RMarkdown se puede incluir metadatos en una cabecera en formato YAML
 (YAML Ain't Markup Language, \url{https://en.wikipedia.org/wiki/YAML}),
@@ -1450,7 +1503,7 @@ Un ejemplo adicional\footnote{Puede ser interesante ejecutar \texttt{str(rmarkdo
 \AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade da Coruña"}
 \KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ }\StringTok{"Tomás R. Cotos Yáñez (tcotos@uvigo.es)"}
 \AttributeTok{  }\FunctionTok{affiliation}\KeywordTok{:}\AttributeTok{ }\StringTok{"Universidade de Vigo"}
-\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2023{-}04{-}01"}
+\FunctionTok{date}\KeywordTok{:}\AttributeTok{ }\StringTok{"2026{-}10{-}02"}
 \FunctionTok{logo}\KeywordTok{:}\AttributeTok{ rmarkdown.png}
 \FunctionTok{output}\KeywordTok{:}
 \AttributeTok{  }\FunctionTok{html\_document}\KeywordTok{:}
@@ -1474,10 +1527,9 @@ Como se puede deducir del ejemplo anterior, en el formato YAML podemos incluir c
 
 En el \href{https://bookdown.org/yihui/rmarkdown/documents.html}{Capítulo 3} del libro de RMarkdown se tiene información detallada sobre las opciones de los distintos formatos de salida (sobre ficheros HTML en la sección \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{HTML document} y sobre PDF/LaTeX en \href{https://bookdown.org/yihui/rmarkdown/pdf-document.html}{PDF document}).
 
-\hypertarget{extracciuxf3n-del-cuxf3digo-r}{%
-\section{Extracción del código R}\label{extracciuxf3n-del-cuxf3digo-r}}
+\section{Extracción del código R}\label{extracciuxf3n-del-cuxf3digo-r}
 
-Para generar un fichero con el código R se puede emplear la función \href{NA}{\texttt{knitr::ktable()}}.
+Para generar un fichero con el código R se puede emplear la función \href{https://rdrr.io/pkg/knitr/man/knit.html}{\texttt{knitr::purl()}}.
 Por ejemplo:
 
 \begin{verbatim}
@@ -1490,8 +1542,7 @@ Si se quiere además el texto RMarkdown como comentarios tipo \href{https://rdrr
 purl("Informe.Rmd", documentation = 2)
 \end{verbatim}
 
-\hypertarget{spin}{%
-\section{Spin}\label{spin}}
+\section{Spin}\label{spin}
 
 Una forma rápida de crear este tipo de informes a partir de un fichero de código R es emplear la función \href{https://rdrr.io/pkg/knitr/man/spin.html}{\texttt{spin()}} del paquete \href{https://yihui.org/knitr/}{\texttt{knitr}} (ver p.e. \url{https://yihui.org/knitr/demo/stitch/\#spin-comment-out-texts}).
 
@@ -1552,23 +1603,28 @@ la forma:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{extensiones-rmarkdown-de-pandoc}{%
-\section{Extensiones RMarkdown de pandoc}\label{extensiones-rmarkdown-de-pandoc}}
+\section{Extensiones RMarkdown de pandoc}\label{extensiones-rmarkdown-de-pandoc}
 
 Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por Pandoc.
 Por ejemplo, se pueden añadir sub\textsubscript{índices} y super\textsuperscript{índices} con \texttt{sub\textasciitilde{}índices\textasciitilde{}} y \texttt{super\^{}índices\^{}},\\
-y notas al pie con \texttt{\^{}{[}texto{]}}.
+y notas al pie con\footnote{Otra alternativa es incluir la nota en un enlace de la forma \texttt{{[}\^{}enlace{]}:\ Texto\ de\ la\ nota.} y referenciarlo en el texto con \texttt{{[}\^{}enlace{]}}.} \texttt{\^{}{[}texto{]}}.
 
 Podemos incluir expresiones matemáticas en formato LateX (ver e.g.~\href{https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1)}{Free online introduction to LaTeX}):
 
 \begin{itemize}
 \item
-  En linea escribiendo la expresión latex entre dos símbolos de dolar,
+  En linea escribiendo la expresión latex entre dos símbolos de dolar (o entre \texttt{\textbackslash{}(} y \texttt{\textbackslash{})}),
   por ejemplo \texttt{\$\textbackslash{}alpha,\ \textbackslash{}beta,\ \textbackslash{}gamma,\ \textbackslash{}delta\$}
   resultaría en \(\alpha, \beta, \gamma, \delta\).
 \item
-  En formato ecuación empleando dos pares de símbolos de dolar. Por ejemplo:
-  \texttt{\$\$\textbackslash{}Theta\ =\ \textbackslash{}begin\{pmatrix\}\textbackslash{}alpha\ \&\ \textbackslash{}beta\textbackslash{}\textbackslash{}\ \ \ \ \ \textbackslash{}gamma\ \&\ \textbackslash{}delta\ \ \ \ \ \textbackslash{}end\{pmatrix\}\$\$}
+  En formato ecuación empleando dos pares de símbolos de dolar (o entre \texttt{\textbackslash{}{[}} y \texttt{\textbackslash{}{]}}). Por ejemplo:
+
+\begin{verbatim}
+$$\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}$$
+\end{verbatim}
+
   resultaría en:
   \[\Theta = \begin{pmatrix}\alpha & \beta\\
   \gamma & \delta
@@ -1577,7 +1633,7 @@ Podemos incluir expresiones matemáticas en formato LateX (ver e.g.~\href{https:
 
 También admite bibliografía, ver p.e. \href{https://pandoc.org/MANUAL.html\#citations}{Pandoc Citations}.
 Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX, lo que se describe con detalle en \href{https://bookdown.org/yihui/bookdown/citations.html}{Citations}.
-Será necesario añadir un campo \texttt{bibliography} en la cabezera YAML, por ejemplo:
+Será necesario añadir un campo \texttt{bibliography} en la cabecera YAML, por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1590,7 +1646,9 @@ Suponiendo que en el directorio de trabajo están los ficheros de bibliografía 
 y de estilo \emph{apa.csl} (ver \url{http://citationstyles.org/}, desde donde se pueden descargar
 distintos archivos de estilo).
 
-Las referencias en el texto RMarkdown se incluyen con \texttt{@referencia} o \texttt{{[}@referencia{]}}.
+Las referencias en el texto RMarkdown se incluyen con \texttt{@referencia}, o con \texttt{{[}@referencia{]}} para mostrarlas entre paréntesis\footnote{El resultado dependerá siempre del estilo.
+  Se pueden incluir múltiples referencias (e.g.~\texttt{{[}@ref1;\ @ref2,\ p.\ 10{]}}).
+  Se puede evitar que pandoc automáticamente determine el texto anterior y posterior estableciéndolo a mano entre llaves (e.g.~\texttt{{[}como\ @ref\{\},\ entre\ otros{]}}).}.
 Pandoc generará el listado de referencias al final del documento,
 por lo que nos puede interesar insertar una última sección \texttt{\#\ Bibliografía\ \{-\}}
 al generar documentos HTML (en PDF se hará automáticamente al emplear LaTeX).
@@ -1600,11 +1658,9 @@ citas a referencias bibliográficas en formato BibTeX.
 
 Para más detalles de las extensiones de Pandoc ver por ejemplo \href{https://pandoc.org/MANUAL.html\#pandocs-markdown}{Pandoc's Markdown}.
 
-\hypertarget{part-tidyverse}{%
-\part{Tidyverse}\label{part-tidyverse}}
+\part{Tidyverse}\label{part-tidyverse}
 
-\hypertarget{tidyverse}{%
-\chapter{El ecosistema tidyverse}\label{tidyverse}}
+\chapter{El ecosistema tidyverse}\label{tidyverse}
 
 En los capítulos de esta parte se pretende realizar una breve introducción al \emph{ecosistema} \href{https://dplyr.tidyverse.org}{\textbf{Tidyverse}}, una colección de paquetes diseñados de forma uniforme (con la misma filosofía y estilo) para trabajar conjuntamente.
 
@@ -1696,13 +1752,12 @@ Chang, W. (2023). \emph{\href{https://r-graphics.org}{The R Graphics Cookbook}}.
 
 En \href{https://ggplot2.tidyverse.org}{\texttt{ggplot2}} se emplea el operador \texttt{+} para añadir componentes de los gráficos (ver , en \emph{Tidyverse} se emplea un operador de redirección para añadir operaciones.
 
-\hypertarget{pipe}{%
-\section{\texorpdfstring{Operador \emph{pipe} (redirección)}{Operador pipe (redirección)}}\label{pipe}}
+\section{\texorpdfstring{Operador \emph{pipe} (redirección)}{Operador pipe (redirección)}}\label{pipe}
 
-El operador \texttt{\%\textgreater{}\%} (paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra.
+El operador \texttt{\%\textgreater{}\%} (del paquete \href{https://magrittr.tidyverse.org}{\texttt{magrittr}}) permite canalizar la salida de una función a la entrada de otra.
 Por ejemplo, \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}, lo que facilita la lectura de operaciones al escribir las funciones de izquierda a derecha.
 
-Desde la versión 4.1 de R está disponible un operador interno \texttt{\textbar{}\textgreater{}} (aunque yo sigo prefiriendo \texttt{\%\textgreater{}\%}).
+Desde la versión 4.1 de R está disponible un operador interno \texttt{\textbar{}\textgreater{}} (más simple; pero yo sigo prefiriendo \texttt{\%\textgreater{}\%}, porque la combinación de teclas me resulta más cómoda).
 Por ejemplo:
 
 \begin{Shaded}
@@ -1754,7 +1809,7 @@ sexoraza & Clasificación por sexo y raza\\
 \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
 \CommentTok{\# attr(empleados, "variable.labels") \textless{}{-} NULL  }
 
-\NormalTok{empleados }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
+\NormalTok{empleados }\SpecialCharTok{|\textgreater{}}  \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{==} \StringTok{"Directivo"}\NormalTok{, catlab}\SpecialCharTok{:}\NormalTok{sexoraza) }\SpecialCharTok{|\textgreater{}}  \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1776,25 +1831,31 @@ sexoraza & Clasificación por sexo y raza\\
 \end{verbatim}
 
 Para que una función sea compatible con este tipo de operadores el primer parámetro debería ser siempre los datos.
-Sin embargo, el operador \texttt{\%\textgreater{}\%} permite redirigir el resultado de la operación anterior a un parámetro distinto mediante un \texttt{.}.
+No obstante, ambos operadores permiten redirigir el resultado de la operación anterior a un parámetro distinto, mediante un \texttt{\_} con \texttt{\textbar{}\textgreater{}}, o un \texttt{.} con \texttt{\%\textgreater{}\%}.
 Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# ?"|\textgreater{}"}
-\CommentTok{\# empleados |\textgreater{} subset(catlab != "Seguridad") |\textgreater{} droplevels |\textgreater{} }
-\CommentTok{\#     boxplot(salario \textasciitilde{} sexo*catlab, data = .) \# ERROR}
-
-\FunctionTok{library}\NormalTok{(magrittr)}
-\NormalTok{empleados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{!=} \StringTok{"Seguridad"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{droplevels}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{boxplot}\NormalTok{(salario }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sexo}\SpecialCharTok{*}\NormalTok{catlab, }\AttributeTok{data =}\NormalTok{ .)}
+\NormalTok{empleados }\SpecialCharTok{|\textgreater{}} \FunctionTok{subset}\NormalTok{(catlab }\SpecialCharTok{!=} \StringTok{"Seguridad"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{droplevels}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+     \FunctionTok{boxplot}\NormalTok{(salario }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sexo}\SpecialCharTok{*}\NormalTok{catlab, }\AttributeTok{data =}\NormalTok{ \_)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\includegraphics[width=0.8\linewidth]{10_tidyverse_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
-\hypertarget{dplyr}{%
-\chapter{Manipulación de datos con dplyr y tidyr}\label{dplyr}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# library(magrittr)}
+\CommentTok{\# No sería necesario incluir paréntesis en droplevels()}
+\CommentTok{\# No sería necesario utilizar el nombre del argumento al redirigir,}
+\CommentTok{\# se puede hacer a múltiples argumentos, ...}
+\CommentTok{\# empleados \%\textgreater{}\% subset(catlab != "Seguridad") \%\textgreater{}\% droplevels \%\textgreater{}\% }
+\CommentTok{\#     boxplot(salario \textasciitilde{} sexo*catlab, .)}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Manipulación de datos con dplyr y tidyr}\label{dplyr}
 
 En este capítulo se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org}{\texttt{dplyr}} y se comentan algunas de las utilidades del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de interés\footnote{Otra alternativa (más rápida) es \href{https://rdatatable.gitlab.io/data.table}{\texttt{data.table}} pero en versiones recientes ya se puede emplear desde \texttt{dplyr}, como se comenta más adelante.}.
 
@@ -1802,8 +1863,7 @@ La referencia recomendada para iniciarse en esta herramienta es el Capítulo \hr
 \href{http://r4ds.had.co.nz}{R for Data Science}.
 También puede resultar de utilidad la viñeta del paquete \href{https://dplyr.tidyverse.org/articles/dplyr.html}{Introduction to dplyr} o la \href{https://posit.co/wp-content/uploads/2022/10/data-transformation-1.pdf}{chuleta} (menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Data Transformation with dplyr}).
 
-\hypertarget{dplyr-pkg}{%
-\section{El paquete dplyr}\label{dplyr-pkg}}
+\section{El paquete dplyr}\label{dplyr-pkg}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1823,7 +1883,7 @@ La principal ventaja de \href{https://dplyr.tidyverse.org/index.html}{\texttt{dp
 \item
   bases de datos relacionales (lenguaje SQL, locales o remotas); extensión \href{https://dbplyr.tidyverse.org}{\texttt{dbplyr}}.
 \item
-  grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema \href{http://hadoop.apache.org/}{Hadoop}/\href{https://spark.apache.org/}{Spark}): extensión \href{https://spark.rstudio.com}{\texttt{sparklyr}} (ver menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Interfacing Spark with sparklyr}).
+  grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema \href{http://hadoop.apache.org/}{Hadoop}/\href{https://spark.apache.org/}{Spark}): extensión \href{https://spark.rstudio.com}{\texttt{sparklyr}} (la referencia recomendada es Luraschi et al., 2019, \href{https://therinspark.com/}{Mastering Spark with R}; también se puede acceder a la chuleta a través del menú de RStudio \emph{Help \textgreater{} Cheat Sheets \textgreater{} Interfacing Spark with sparklyr}).
 \end{itemize}
 
 El paquete dplyr permite sustituir operaciones con funciones base de R (como \href{NA}{\texttt{subset}}, \href{NA}{\texttt{split}}, \href{NA}{\texttt{apply}}, \href{NA}{\texttt{sapply}}, \href{NA}{\texttt{lapply}}, \href{NA}{\texttt{tapply}}, \href{NA}{\texttt{aggregate}}\ldots) por una ``gramática'' más sencilla para la manipulación de datos.
@@ -1861,8 +1921,7 @@ Emplearemos como ejemplo los datos de empleados de banca almacenados en el fiche
 
 En la Sección \ref{dbplyr} final emplearemos una base de datos relacional como ejemplo.
 
-\hypertarget{dplyr-variables}{%
-\section{Operaciones con variables (columnas)}\label{dplyr-variables}}
+\section{Operaciones con variables (columnas)}\label{dplyr-variables}
 
 Podemos \textbf{seleccionar variables con \href{https://dplyr.tidyverse.org/reference/select.html}{\texttt{select()}}}:
 
@@ -1985,8 +2044,7 @@ Podemos \textbf{crear variables con \href{https://dplyr.tidyverse.org/reference/
 ## 6  6 Hombre      No       98  13500   32100  18600 189.79592
 \end{verbatim}
 
-\hypertarget{dplyr-casos}{%
-\section{Operaciones con casos (filas)}\label{dplyr-casos}}
+\section{Operaciones con casos (filas)}\label{dplyr-casos}
 
 Podemos \textbf{seleccionar casos con \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{filter()}}}:
 
@@ -2124,8 +2182,7 @@ Por defecto la agrupación se mantiene para el resto de operaciones, habría que
 Desde dplyr 1.1.0 (2023-01-29) está disponible un parámetro \texttt{.by/by} en \texttt{mutate()}, \texttt{summarise()}, \texttt{filter()} y \texttt{slice()} como alternativa a agrupar y desagrupar posteriormente.
 Para más detalles ver \href{https://dplyr.tidyverse.org/reference/dplyr_by.html}{Per-operation grouping with .by/by}.
 
-\hypertarget{herramientas-tidyr}{%
-\section{Herramientas tidyr}\label{herramientas-tidyr}}
+\section{Herramientas tidyr}\label{herramientas-tidyr}
 
 Algunas funciones del paquete \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} que pueden resultar de especial interés son:
 
@@ -2147,8 +2204,7 @@ Ver la viñeta \href{https://tidyr.tidyverse.org/articles/pivot.html}{Pivoting} 
 
 Ver \href{ejemplos/mortalidad/mortalidad.R}{mortalidad.R} en \href{https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos}{ejemplos}.
 
-\hypertarget{dplyr-join}{%
-\section{Operaciones con tablas de datos}\label{dplyr-join}}
+\section{Operaciones con tablas de datos}\label{dplyr-join}
 
 Se emplean funciones \texttt{xxx\_join()} (ver la documentación del paquete
 \href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls together},
@@ -2190,8 +2246,7 @@ Adicionalmente, si las tablas \texttt{x} e \texttt{y} tienen las mismas variable
   \texttt{setdiff(x,\ y)}: observaciones en \texttt{x} pero no en \texttt{y}.
 \end{itemize}
 
-\hypertarget{dbplyr}{%
-\section{Bases de datos con dplyr}\label{dbplyr}}
+\section{Bases de datos con dplyr}\label{dbplyr}
 
 Para poder usar tablas en bases de datos relacionales con \texttt{dplyr} hay que emplear el paquete \href{https://dbplyr.tidyverse.org}{dbplyr} (convierte automáticamente el código de dplyr en consultas SQL).
 
@@ -2209,8 +2264,7 @@ Algunos enlaces:
   \href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R and Data -- When Should we Use Relational Databases?}
 \end{itemize}
 
-\hypertarget{ejemplos}{%
-\subsection{Ejemplos}\label{ejemplos}}
+\subsection{Ejemplos}\label{ejemplos}
 
 Como ejemplo emplearemos la base de datos de \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{SQLite Sample Database Tutorial}, almacenada en el archivo \href{datos/chinook.db}{\emph{chinook.db}}.
 
@@ -2239,7 +2293,7 @@ Podemos listar las tablas:
 \end{Shaded}
 
 \begin{verbatim}
-## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## src:  sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 \end{verbatim}
@@ -2254,24 +2308,23 @@ Para enlazar una tabla:
 \end{Shaded}
 
 \begin{verbatim}
-## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
-## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
-##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
-##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
-##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
-##  2         2          4 2009-01-0~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
-##  3         3          8 2009-01-0~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
-##  4         4         14 2009-01-0~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
-##  5         5         23 2009-01-1~ 69 Sal~ Boston  MA      USA     2113    13.9 
-##  6         6         37 2009-01-1~ Berger~ Frankf~ <NA>    Germany 60316    0.99
-##  7         7         38 2009-02-0~ Barbar~ Berlin  <NA>    Germany 10779    1.98
-##  8         8         40 2009-02-0~ 8, Rue~ Paris   <NA>    France  75002    1.98
-##  9         9         42 2009-02-0~ 9, Pla~ Bordea~ <NA>    France  33000    3.96
-## 10        10         46 2009-02-0~ 3 Chat~ Dublin  Dublin  Ireland <NA>     5.94
-## # ... with more rows, and abbreviated variable names 1: InvoiceDate,
-## #   2: BillingAddress, 3: BillingCity, 4: BillingState, 5: BillingCountry,
-## #   6: BillingPostalCode
+## # A query:  ?? x 9
+## # Database: sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
+##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
+##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
+##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
+##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
+## # i more rows
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 \end{verbatim}
 
 Ojo \texttt{{[}??\ x\ 9{]}}: de momento no conoce el número de filas.
@@ -2325,16 +2378,16 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 
 \begin{verbatim}
 ## # A tibble: 6 x 9
-##   InvoiceId CustomerId InvoiceDate Billi~1 Billi~2 Billi~3 Billi~4 Billi~5 Total
-##       <int>      <int> <chr>       <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
-## 1         1          2 2009-01-01~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
-## 2         2          4 2009-01-02~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
-## 3         3          8 2009-01-03~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
-## 4         4         14 2009-01-06~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
-## 5         5         23 2009-01-11~ 69 Sal~ Boston  MA      USA     2113    13.9 
-## 6         6         37 2009-01-19~ Berger~ Frankf~ <NA>    Germany 60316    0.99
-## # ... with abbreviated variable names 1: BillingAddress, 2: BillingCity,
-## #   3: BillingState, 4: BillingCountry, 5: BillingPostalCode
+##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
+##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
+## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
+## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2344,9 +2397,8 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
 \end{Shaded}
 
 \begin{verbatim}
-## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
-## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # A query:  ?? x 1
+## # Database: sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -2395,7 +2447,7 @@ Para obtener el total de las facturas de cada uno de los países:
 ##  8 Czech Republic    14  90.2
 ##  9 Denmark            7  37.6
 ## 10 Finland            7  41.6
-## # ... with 14 more rows
+## # i 14 more rows
 \end{verbatim}
 
 Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
@@ -2424,11 +2476,9 @@ Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada u
 \begin{verbatim}
 ## <SQL>
 ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
-## FROM `customers` AS `LHS`
-## INNER JOIN `invoices` AS `RHS`
-## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
-## )
+## FROM `customers`
+## INNER JOIN `invoices`
+##   ON (`customers`.`CustomerId` = `invoices`.`CustomerId`)
 \end{verbatim}
 
 \begin{Shaded}
@@ -2451,7 +2501,7 @@ Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada u
 ##  8 Leonie    Köhler    Germany  1.98
 ##  9 Leonie    Köhler    Germany 13.9 
 ## 10 Leonie    Köhler    Germany  8.91
-## # ... with 402 more rows
+## # i 402 more rows
 \end{verbatim}
 
 Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
@@ -2459,7 +2509,7 @@ Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{customers }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(invoices, }\AttributeTok{by =} \StringTok{"CustomerId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(CustomerId) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{summarise}\NormalTok{(FirstName, LastName, country, }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{summarise}\NormalTok{(FirstName, LastName, Country, }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}  
     \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(total)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
 \end{Highlighting}
 \end{Shaded}
@@ -2473,8 +2523,8 @@ Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más
 ##  3         57 Luis      Rojas      Chile           46.6
 ##  4         45 Ladislav  Kovács     Hungary         45.6
 ##  5         46 Hugh      O'Reilly   Ireland         45.6
-##  6         28 Julia     Barnett    USA             43.6
-##  7         24 Frank     Ralston    USA             43.6
+##  6         24 Frank     Ralston    USA             43.6
+##  7         28 Julia     Barnett    USA             43.6
 ##  8         37 Fynn      Zimmermann Germany         43.6
 ##  9          7 Astrid    Gruber     Austria         42.6
 ## 10         25 Victor    Stevens    USA             42.6
@@ -2488,8 +2538,7 @@ Al finalizar hay que desconectar la base de datos:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{referencias}{%
-\chapter*{Referencias}\label{referencias}}
+\chapter*{Referencias}\label{referencias}
 \addcontentsline{toc}{chapter}{Referencias}
 
 Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). \emph{\href{https://rubenfcasal.github.io/aprendizaje_estadistico}{Aprendizaje Estadístico}}. \href{https://github.com/rubenfcasal/aprendizaje_estadistico}{github}.
@@ -2510,8 +2559,7 @@ Wickham, H., y Grolemund, G. (2016). \emph{\href{http://r4ds.had.co.nz}{R for da
 
 NOTA: En la bibliografía complementaria se incluyen algunas de estas referencias, y una selección de libros en abierto, organizados por temas.
 
-\hypertarget{bibliografuxeda-por-temas}{%
-\section*{Bibliografía por temas}\label{bibliografuxeda-por-temas}}
+\section*{Bibliografía por temas}\label{bibliografuxeda-por-temas}
 \addcontentsline{toc}{section}{Bibliografía por temas}
 
 \textbf{\emph{En preparación\ldots{}}}
@@ -2525,8 +2573,7 @@ Para referencias adicionales recomiendo consultar:
   Baruffa, O. (2022). \emph{\href{https://www.bigbookofr.com}{Big Book of R}}: Your last-ever bookmark (hopefully\ldots).
 \end{itemize}
 
-\hypertarget{iniciaciuxf3n-a-la-programaciuxf3n-en-r}{%
-\subsection*{Iniciación a la programación en R}\label{iniciaciuxf3n-a-la-programaciuxf3n-en-r}}
+\subsection*{Iniciación a la programación en R}\label{iniciaciuxf3n-a-la-programaciuxf3n-en-r}
 \addcontentsline{toc}{subsection}{Iniciación a la programación en R}
 
 \begin{itemize}
@@ -2540,8 +2587,7 @@ Para referencias adicionales recomiendo consultar:
   Peng, R.D. (2022). \emph{\href{https://bookdown.org/rdpeng/rprogdatascience}{R Programming for Data Science}}, \href{https://leanpub.com/rprogramming}{Leanpub}.
 \end{itemize}
 
-\hypertarget{programaciuxf3n-avanzada-en-r}{%
-\subsection*{Programación avanzada en R}\label{programaciuxf3n-avanzada-en-r}}
+\subsection*{Programación avanzada en R}\label{programaciuxf3n-avanzada-en-r}
 \addcontentsline{toc}{subsection}{Programación avanzada en R}
 
 \begin{itemize}
@@ -2555,8 +2601,7 @@ Para referencias adicionales recomiendo consultar:
   Gillespie, C. y Lovelace, R. (2016). \emph{\href{https://bookdown.org/csgillespie/efficientR/}{Efficient R programming}}. \href{https://www.oreilly.com/library/view/efficient-r-programming/9781491950777/}{O'Reilly}.
 \end{itemize}
 
-\hypertarget{rmarkdown-y-shiny}{%
-\subsection*{Rmarkdown y Shiny}\label{rmarkdown-y-shiny}}
+\subsection*{Rmarkdown y Shiny}\label{rmarkdown-y-shiny}
 \addcontentsline{toc}{subsection}{Rmarkdown y Shiny}
 
 \begin{itemize}
@@ -2578,8 +2623,7 @@ Para referencias adicionales recomiendo consultar:
   Rochette, S., Fay, C., Girard, C., Guyader, V. (2021). \emph{\href{https://engineering-shiny.org/}{Engineering Production-Grade Shiny Apps}}. \href{https://www.routledge.com/p/book/9780367466022}{Chapman \& Hall/CRC}.
 \end{itemize}
 
-\hypertarget{gruxe1ficos-1}{%
-\subsection*{Gráficos}\label{gruxe1ficos-1}}
+\subsection*{Gráficos}\label{gruxe1ficos-1}
 \addcontentsline{toc}{subsection}{Gráficos}
 
 \begin{itemize}
@@ -2591,19 +2635,26 @@ Para referencias adicionales recomiendo consultar:
   Wilke, C. (2019). \emph{\href{https://clauswilke.com/dataviz/}{Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures}}. \href{https://www.oreilly.com/library/view/fundamentals-of-data/9781492031079}{O'Reilly}.
 \end{itemize}
 
-\hypertarget{regresiuxf3n-y-aprendizaje-estaduxedstico}{%
-\subsection*{Regresión y aprendizaje estadístico}\label{regresiuxf3n-y-aprendizaje-estaduxedstico}}
+\subsection*{Regresión y aprendizaje estadístico}\label{regresiuxf3n-y-aprendizaje-estaduxedstico}
 \addcontentsline{toc}{subsection}{Regresión y aprendizaje estadístico}
 
 \begin{itemize}
 \item
   Fernández-Casal, R., Costa, J. y Oviedo de la Fuente, M. (2021). \emph{\href{https://rubenfcasal.github.io/aprendizaje_estadistico}{Aprendizaje Estadístico}}. \href{https://github.com/rubenfcasal/aprendizaje_estadistico}{github}.
 \item
+  James, G., Witten, D., Hastie, T. y Tibshirani, R. (2021). \emph{\href{https://www.statlearning.com}{An Introduction to Statistical Learning: with Aplications in R, Segunda Edición}}. \href{https://link.springer.com/book/10.1007/978-1-0716-1418-1}{Springer}.
+\item
+  Friedman, J., Tibshirani, R. y Hastie, T. (2013). \emph{\href{https://hastie.su.domains/ElemStatLearn/}{The Elements of Statistical Learning}}. \href{https://link.springer.com/book/10.1007/978-0-387-84858-7}{Springer}.
+\item
   Kuhn, M., y Silge, J. (2022). \emph{\href{https://www.tmwr.org}{Tidy Modeling with R}}, \href{https://www.oreilly.com/library/view/tidy-modeling-with/9781492096474}{O'Reilly}.
 \item
   Luraschi, J., Kuo, K. y Ruiz, E. (2019). \emph{\href{https://therinspark.com/}{Mastering Spark with R}}. \href{https://www.oreilly.com/library/view/mastering-spark-with/9781492046363/}{O'Reilly}.
 \item
   Irizarry, R.A. (2020). \emph{\href{http://rafalab.dfci.harvard.edu/dsbook/}{Introduction to Data Science: Data Analysis and Prediction Algorithms with R}}. \href{https://www.routledge.com/p/book/9780367357986}{Chapman \& Hall/CRC}.
+\item
+  Hastie, T. y Efron, B. (2016). \emph{\href{https://hastie.su.domains/CASI/}{Computer Age Statistical Inference: Algorithms, Evidence, and Data Science}}. \href{http://www.amazon.com/dp/1107149894/}{Cambridge University Press}.
+\item
+  Hastie, T., Wainwright, M. y Tibshirani, R. (2015). \emph{\href{https://hastie.su.domains/StatLearnSparsity/}{Statistical Learning with Sparsity: The Lasso and Generalizations}}. \href{https://www.routledge.com/p/book/9781498712163}{Chapman \& Hall/CRC}.
 \item
   Roback, P. y Legler, J. (2021). \emph{\href{https://bookdown.org/roback/bookdown-BeyondMLR/}{Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R}}. \href{https://www.routledge.com/p/book/9781439885383}{Chapman \& Hall/CRC}.
 \item
@@ -2624,13 +2675,16 @@ Para referencias adicionales recomiendo consultar:
 \item
   García-Portugués, E. (2023). \emph{\href{https://bookdown.org/egarpor/NP-UC3M/}{Notes for Nonparametric Statistics}}.
 \item
+  Molnar, C. (2020). \emph{\href{https://christophm.github.io/interpretable-ml-book}{Interpretable Machine Learning}}. \href{https://leanpub.com/interpretable-machine-learning}{Leanpub}.
+\item
   Hanck, c., Arnold, M., Gerber, A. y Schmelzer, M. (2023). \emph{\href{https://www.econometrics-with-r.org/}{Introduction to Econometrics with R}}.
 \item
   Fieberg, J. (2022). \emph{\href{https://fw8051statistics4ecologists.netlify.app/}{Statistics for Ecologists: A Frequentist and Bayesian Treatment of Modern Regression Models}}.
+\item
+  \href{https://mlr3book.mlr-org.com/}{Flexible and Robust Machine Learning Using mlr3 in R}.
 \end{itemize}
 
-\hypertarget{datos-temporales-y-espaciales}{%
-\subsection*{Datos temporales y espaciales}\label{datos-temporales-y-espaciales}}
+\subsection*{Datos temporales y espaciales}\label{datos-temporales-y-espaciales}
 \addcontentsline{toc}{subsection}{Datos temporales y espaciales}
 
 \begin{itemize}
@@ -2661,8 +2715,7 @@ Para referencias adicionales recomiendo consultar:
   \emph{\href{https://rspatial.org/}{Spatial Data Science with R and ``terra''}}.
 \end{itemize}
 
-\hypertarget{datos-faltantes}{%
-\subsection*{Datos faltantes}\label{datos-faltantes}}
+\subsection*{Datos faltantes}\label{datos-faltantes}
 \addcontentsline{toc}{subsection}{Datos faltantes}
 
 \begin{itemize}
@@ -2671,8 +2724,7 @@ Para referencias adicionales recomiendo consultar:
   Buuren, S. (2018). \emph{\href{https://stefvanbuuren.name/fimd}{Flexible Imputation of Missing Data}}, \href{}{Chapman \& Hall}.
 \end{itemize}
 
-\hypertarget{manuales-oficiales-r}{%
-\subsection*{Manuales oficiales R}\label{manuales-oficiales-r}}
+\subsection*{Manuales oficiales R}\label{manuales-oficiales-r}
 \addcontentsline{toc}{subsection}{Manuales oficiales R}
 
 \url{https://cran.r-project.org/manuals.html}
@@ -2692,8 +2744,7 @@ Para referencias adicionales recomiendo consultar:
   \href{http://colinfay.me/r-internals/}{R Internals}
 \end{itemize}
 
-\hypertarget{links}{%
-\section*{Enlaces}\label{links}}
+\section*{Enlaces}\label{links}
 \addcontentsline{toc}{section}{Enlaces}
 
 \textbf{\emph{Repositorio}}: \href{https://github.com/rubenfcasal/book_notasr}{rubenfcasal/book\_notasr}
@@ -2743,12 +2794,10 @@ Para referencias adicionales recomiendo consultar:
   \href{http://shiny.rstudio.com}{shiny}
 \end{itemize}
 
-\hypertarget{appendix-apuxe9ndices}{%
-\appendix}
+\appendix
 
 
-\hypertarget{pandoc}{%
-\chapter{Pandoc}\label{pandoc}}
+\chapter{Pandoc}\label{pandoc}
 
 Pandoc es un conversor de documentos libre y de código abierto,
 Pandoc puede leer archivos en distintos formatos, incluyendo:
@@ -2775,8 +2824,7 @@ Pandoc también proporciona distintas extensiones de Markdown para que admita re
 Pandoc es una herramienta independiente de línea de comandos (sin interfaz gráfica), que se instala automáticamente con RStudio porque el paquete \texttt{rmarkdown} la emplea para generar los documentos de salida a partir de documentos Markdown
 (por ejemplo, en Windows en \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash bin\textbackslash pandoc\textbackslash pandoc.exe}).
 
-\hypertarget{conversion}{%
-\section{Conversión de documentos con Pandoc}\label{conversion}}
+\section{Conversión de documentos con Pandoc}\label{conversion}
 
 La sintaxis del comando es \texttt{pandoc\ {[}opciones{]}\ {[}ficheros{]}}. Si se ejecuta \texttt{pandoc\ -\/-help},
 en la ventana de comandos o en la pestaña \emph{Terminal} de RStudio, se obtiene un listado detallado de las opciones.
@@ -2820,8 +2868,7 @@ Podemos emplear Pandoc para convertir contenido escrito en otros formatos a Mark
 Por defecto \emph{pandoc} produce en algunos casos un fragmento de documento (cuando el formato de salida no es markdown).
 Para obtener un documento independiente (e.g.~un fichero HTML válido incluyendo \texttt{\textless{}head\textgreater{}} y \texttt{\textless{}body\textgreater{}}), habrá que emplear la opción \texttt{-s} o \texttt{-\/-standalone}.
 
-\hypertarget{pandoc-y-rmarkdown}{%
-\section{Pandoc y RMarkdown}\label{pandoc-y-rmarkdown}}
+\section{Pandoc y RMarkdown}\label{pandoc-y-rmarkdown}
 
 Como ya se comentó, el paquete \texttt{rmarkdown} llama a \emph{pandoc} para renderizar un documento RMarkdown\footnote{Desde la \href{https://blog.rstudio.org/2014/06/18/r-markdown-v2/}{versión 2}, antes se utilizaba \texttt{knitr} y \texttt{markdown}.}, y esta llamada se muestra en la consola (o en la correspondiente pestaña de RStudio):
 
@@ -2869,6 +2916,6 @@ mediante el campo \texttt{pandoc\_args}, por ejemplo:
 
 (en este caso la numeración comenzaría en 4).
 
-  \bibliography{book.bib,packages.bib}
+\bibliography{book.bib,packages.bib}
 
 \end{document}

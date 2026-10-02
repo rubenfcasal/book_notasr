@@ -61,9 +61,9 @@ También puede resultar de interés consultar:
 
 Sin embargo, en ciertos casos puede ser recomendable ejecutar el código R directamente desde una ventana de comandos (por ejemplo para ejecutar varios programas de forma simultánea en distintos directorios de trabajo o si los requerimientos computacionales son grandes).
 En mi caso, cuando trabajo en Windows, acostumbro a emplear el explorador para situarme en el directorio donde quiero ejecutar código y abrir una ventana de comandos, escribiendo `cmd` en el cuadro superior donde se muestra la ruta.
-Posteriormente, como añadí en directorio de instalación de R al *path* (ver [post](https://rubenfcasal.github.io/post/instalacion-de-r/#rtools)), ejecuto^[También se puede ejecutar un script de R de forma no interactiva ejecutando en el intérprete de comandos del sistema operativo: `R CMD BATCH [opciones] mi_script.R [fichero_salida]` (cambiando `R` por la ruta completa, e.g. `"C:\Program Files\R\R-4.2.1\bin\R.exe"`, si no se añadió al path. También se puede incluir en un fichero *.bat*, para poder ejecutarlo repetidas veces con mayor facilidad). Ver [Appendix B Invoking R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R) de [Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) para información sobre las distintas opciones.] `R` y finalmente un comando de la forma:
+Posteriormente, como añadí en directorio de instalación de R al *path* (ver [post](https://rubenfcasal.github.io/post/instalacion-de-r/#rtools)), ejecuto^[También se puede ejecutar un script de R de forma no interactiva ejecutando en el intérprete de comandos del sistema operativo `R CMD BATCH [opciones] mi_script.R [fichero_salida]` o bien `Rscript mi_script.R` para salida por pantalla (cambiando `R` por la ruta completa, e.g. `"C:\Program Files\R\R-4.2.1\bin\R.exe"`, si no se añadió al path. También se puede incluir en un fichero *.bat*, para poder ejecutarlo repetidas veces con mayor facilidad). Ver [Appendix B Invoking R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R) de [Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) para información sobre las distintas opciones.] `R` y finalmente un comando de la forma:
 
-```r
+``` r
 source("mi_script.R", echo = TRUE, encoding = "UTF-8") # UTF-8 importante en R < 4.2
 ```
 
@@ -108,7 +108,7 @@ En primer lugar me preocupo de escribir un código funcional y, además de ir a�
 Finalmente, cuando tengo una primera versión del código (que puedo ir previsualizando; en RStudio basta con pulsar^[Para mostrar las combinaciones de teclas en RStudio podemos emplear el menú *Tools > Keyboard Shortcuts Help*.] *Ctrl + Shift + K*, el icono correspondiente en la barra superior, o seleccionar *File > Compile Report...*), lo transformo a formato *.Rmd* con un comando de la forma:
 
 
-```r
+``` r
 knitr::spin("Informe.R", knit = FALSE)
 ```
 
@@ -122,7 +122,7 @@ Lo principal sería el operador de asignación, el espaciado y el estilo de nomb
 
 - `estilo_serpiente` (o `Estilo_serpiente`): es el estilo de la colección de paquetes [`tidyverse`](https://tidyverse.tidyverse.org).
 
-- `EstiloCamello` (o `estiloCamello`): es el estilo (casi obligatorio) para las clases [`R6`](https://r6.r-lib.org) (ver Sección \@ref(oop)). El paquete [`shiny`](https://shiny.rstudio.com/) emplea la variante que comienza por minúsculas.
+- `EstiloCamello` (o `estiloCamello`): es el estilo (casi obligatorio) para las clases [`R6`](https://r6.r-lib.org) (ver Sección \@ref(oop)). El paquete [`shiny`](https://shiny.posit.co/) emplea la variante que comienza por minúsculas.
 
 **Recomiendo emplear `<-`** como operador de asignación y escribir todos los **nombres en minúsculas**.
 Yo tengo tendencia a emplear el `estilo.clasico`, sobre todo si el código no depende de paquetes tidyverse (en ese caso suelo emplear `estilo_serpiente`).
@@ -144,7 +144,7 @@ Además se recomienda **crear secciones y documentar el código adecuadamente**.
 En RStudio se puede crear una sección pulsando *Ctrl + Shift + R* o añadiendo al menos 4 guiones (`-`, también `=` o `#`) después de un comentario.
 Por ejemplo:
 
-```r
+``` r
 # Sección ----
 ## Subsección ----
 ```
@@ -159,7 +159,7 @@ Al principio del código debería ir:
 
 **No se recomienda** emplear rutas absolutas en el código, del tipo:
 
-```r
+``` r
 setwd("C:/Documentos/Proyectos/Proyecto_X")
 load("C:/Documentos/Proyectos/Proyecto_X/datos_x.RData")
 source("C:/Documentos/Proyectos/R/Herramientas.R")
@@ -173,7 +173,7 @@ Si no es el caso se puede emplear el menú *Sesion > Set Working Directory > To 
 Para establecer la ruta a archivos o directorios **se recomienda emplear rutas relativas** (usando *../* para acceder a la carpeta anterior; *./* sería el actual directorio de trabajo).
 Por ejemplo:
 
-```r
+``` r
 load("datos/datos_x.RData")
 source("../R/Herramientas.R")
 fecha_txt <- as.character(Sys.Date() - 1, format = "%m_%d") # Por ejemplo...
@@ -204,7 +204,7 @@ En muchas ocasiones, para modificar los nombres de las variables o los niveles d
 
 Yo recomiendo añadir un atributo `variable.labels` que contenga un vector de etiquetas de las variables y empleando como nombres de las componentes las propias variables:
 
-```r
+``` r
 data(cars)
 # dput(names(cars))
 var.lab <- c(speed = "Speed (mph)", dist = "Stopping distance (ft)")
@@ -220,7 +220,7 @@ str(cars)
 ##   ..- attr(*, "names")= chr [1:2] "speed" "dist"
 ```
 
-```r
+``` r
 # View(cars)
 # with(cars, plot(speed, dist, xlab = var.lab["speed"], 
 #                 ylab = var.lab["dist"]))

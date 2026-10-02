@@ -25,9 +25,9 @@ header-includes:
 - \setcounter{section}{1} 
 ---
 
-bookdown::preview_chapter("01-Introduccion.Rmd")
-knitr::purl("01-Introduccion.Rmd", documentation = 2)
-knitr::spin("01-Introduccion.R", knit = FALSE)
+bookdown::preview_chapter("08_rmarkdown.Rmd")
+knitr::purl("08_rmarkdown.Rmd", documentation = 2)
+knitr::spin("08_rmarkdown.R", knit = FALSE)
 -->
 
 
@@ -80,8 +80,9 @@ El texto no marcado se renderiza como texto normal aunque es necesario dejar una
 Las principales reglas de Markdown se sumarizan en la siguiente tabla:
 
 +--------------------------+-----------------------------+--------------------------+
-| Escribir                 | o alternativamente          | para obtener ...         |
-+==========================+=============================+==========================+
+| Escribir                 | o alternativamente          | para obtener             |
++:=========================+:============================+:=========================+
+|                          |                             |                          |
 | ```                      | ```                         |                          |
 | # Título 1               | Título 1                    | Los distintos            |
 |                          | ========                    | niveles de encabezados   |
@@ -105,7 +106,7 @@ Las principales reglas de Markdown se sumarizan en la siguiente tabla:
 | ```                      | ```                         |                          |
 +--------------------------+-----------------------------+--------------------------+
 | ```                      | ```                         |                          |
-| ![Imagen](rmarkdown.png) | ![Imagen][1]                | ![Imagen](figuras/rmd.png) |
+| ![Imagen](rmarkdown.png) | ![Imagen][1]                | ![Imagen][1]             |
 |                          | Más adelante...             |                          |
 |                          | [1]:http://url/b.jpg        |                          |
 | ```                      | ```                         |                          |
@@ -150,6 +151,7 @@ Las principales reglas de Markdown se sumarizan en la siguiente tabla:
 
 Es muy recomendable dejar siempre una linea de separación entre elementos distintos consecutivos.
 
+[1]: figuras/rmd.png
 
 
 ## Inclusión de código R {#codigormd}
@@ -165,7 +167,7 @@ summary(mtcars[1:3])
 ````
 produce:
 
-```r
+``` r
 head(mtcars[1:3])
 ```
 
@@ -179,7 +181,7 @@ head(mtcars[1:3])
 ## Valiant           18.1   6  225
 ```
 
-```r
+``` r
 summary(mtcars[1:3])
 ```
 
@@ -303,9 +305,9 @@ gear  |  Número de marchas (hacia adelante)
 carb  |  Número de carburadores
 
 
-Para convertir resultados de R en tablas de una forma simple se puede emplear la función [`ktable()`](NA) del paquete [`knitr`](https://yihui.org/knitr/). Por ejemplo la Tabla \@ref(tab:kable) se obtuvo mediante el siguiente código:
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función [`kable()`](https://rdrr.io/pkg/knitr/man/kable.html) del paquete [`knitr`](https://yihui.org/knitr/). Por ejemplo la Tabla \@ref(tab:kable) se obtuvo mediante el siguiente código:
 
-```r
+``` r
 knitr::kable(
   head(mtcars), 
   caption = "Una kable knitr"
@@ -335,7 +337,7 @@ Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 & 1\\
 \end{tabular}
 \end{table}
 
-Otros paquetes proporcionan opciones adicionales: [`xtable`](http://xtable.r-forge.r-project.org/), [`stargazer`](https://CRAN.R-project.org/package=stargazer), [`pander`](https://rapporter.github.io/pander/), [`tables`](https://r-forge.r-project.org/projects/tables/) y [`ascii`](https://github.com/mclements/ascii).
+Otros paquetes proporcionan opciones adicionales: [`xtable`](http://xtable.r-forge.r-project.org/), [`stargazer`](https://CRAN.R-project.org/package=stargazer), [`pander`](https://rapporter.github.io/pander/), [`tables`](https://dmurdoch.github.io/tables/) y [`ascii`](https://github.com/mclements/ascii).
 
 
 ## Cabecera YAML {#yaml}
@@ -398,7 +400,7 @@ author:
   affiliation: "Universidade da Coruña"
 - name: "Tomás R. Cotos Yáñez (tcotos@uvigo.es)"
   affiliation: "Universidade de Vigo"
-date: "2023-04-01"
+date: "2026-10-02"
 logo: rmarkdown.png
 output:
   html_document:
@@ -423,7 +425,7 @@ En el [Capítulo 3](https://bookdown.org/yihui/rmarkdown/documents.html) del lib
 
 ## Extracción del código R
 
-Para generar un fichero con el código R se puede emplear la función [`knitr::ktable()`](NA). 
+Para generar un fichero con el código R se puede emplear la función [`knitr::purl()`](https://rdrr.io/pkg/knitr/man/knit.html). 
 Por ejemplo:
 ```
 purl("Informe.Rmd")
@@ -489,15 +491,17 @@ la forma:
 
 Como ya se comentó, RMarkdown utiliza la sintaxis extendida proporcionada por Pandoc. 
 Por ejemplo, se pueden añadir sub~índices~ y super^índices^ con `sub~índices~` y `super^índices^`,  
-y notas al pie con `^[texto]`.
+y notas al pie con[^notaalternativa] `^[texto]`.
+
+[^notaalternativa]: Otra alternativa es incluir la nota en un enlace de la forma `[^enlace]: Texto de la nota.` y referenciarlo en el texto con `[^enlace]`.
 
 Podemos incluir expresiones matemáticas en formato LateX (ver e.g. [Free online introduction to LaTeX](https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1))):
 
-*   En linea escribiendo la expresión latex entre dos símbolos de dolar, 
+*   En linea escribiendo la expresión latex entre dos símbolos de dolar (o entre `\(` y `\)`), 
     por ejemplo ``$\alpha, \beta, \gamma, \delta$ ``
     resultaría en $\alpha, \beta, \gamma, \delta$.
   
-*   En formato ecuación empleando dos pares de símbolos de dolar. Por ejemplo:
+*   En formato ecuación empleando dos pares de símbolos de dolar (o entre `\[` y `\]`). Por ejemplo:
     ```
     $$\Theta = \begin{pmatrix}\alpha & \beta\\
     \gamma & \delta
@@ -510,7 +514,7 @@ Podemos incluir expresiones matemáticas en formato LateX (ver e.g. [Free online
 
 También admite bibliografía, ver p.e. [Pandoc Citations](https://pandoc.org/MANUAL.html#citations).
 Lo más cómodo puede ser emplear un archivo de bibliografía en formato BibTeX, lo que se describe con detalle en [Citations](https://bookdown.org/yihui/bookdown/citations.html).
-Será necesario añadir un campo `bibliography` en la cabezera YAML, por ejemplo:
+Será necesario añadir un campo `bibliography` en la cabecera YAML, por ejemplo:
 ```yaml
 bibliography: bibliografia.bib
 csl: apa.csl  # opcional
@@ -519,13 +523,17 @@ Suponiendo que en el directorio de trabajo están los ficheros de bibliografía 
 y de estilo *apa.csl* (ver  <http://citationstyles.org/>, desde donde se pueden descargar 
 distintos archivos de estilo). 
 
-Las referencias en el texto RMarkdown se incluyen con `@referencia` o `[@referencia]`. 
+Las referencias en el texto RMarkdown se incluyen con `@referencia`, o con `[@referencia]` para mostrarlas entre paréntesis[^referencias]. 
 Pandoc generará el listado de referencias al final del documento, 
 por lo que nos puede interesar insertar una última sección `# Bibliografía {-}`
 al generar documentos HTML (en PDF se hará automáticamente al emplear LaTeX).
 En RStudio se puede instalar el "[Addin](https://rstudio.github.io/rstudioaddins/)"
 [`citr`](https://github.com/crsh/citr) para insertar
 citas a referencias bibliográficas en formato BibTeX.
+
+[^referencias]: El resultado dependerá siempre del estilo. 
+  Se pueden incluir múltiples referencias (e.g. `[@ref1; @ref2, p. 10]`).
+  Se puede evitar que pandoc automáticamente determine el texto anterior y posterior estableciéndolo a mano entre llaves (e.g. `[como @ref{}, entre otros]`).
 
 Para más detalles de las extensiones de Pandoc ver por ejemplo [Pandoc’s Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown).
 

@@ -51,7 +51,7 @@ La principal ventaja de [`dplyr`](https://dplyr.tidyverse.org/index.html) es que
 
 - bases de datos relacionales (lenguaje SQL, locales o remotas); extensión [`dbplyr`](https://dbplyr.tidyverse.org).
 
-- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (ver menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
+- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (la referencia recomendada es Luraschi et al., 2019, [Mastering Spark with R](https://therinspark.com/); también se puede acceder a la chuleta a través del menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
 
 
 El paquete dplyr permite sustituir operaciones con funciones base de R (como `r cite_fun_(c("subset", "split", "apply", "sapply", "lapply", "tapply", "aggregate"))`...) por una "gramática" más sencilla para la manipulación de datos.
@@ -320,7 +320,7 @@ Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más
 
 ```{r }
 customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
-    summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
+    summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
     arrange(desc(total)) %>% head(10) %>% collect
 ```
 

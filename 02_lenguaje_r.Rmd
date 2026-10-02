@@ -205,6 +205,9 @@ x
 
 <!-- 
 Pendiente: sección objetos, comentarios objetos básicos de R
+
+En principio, se puede agregar cualquier atributo a un objeto, por lo que el parámetro `which` podría ser cualquier nombre válido. Ciertas herramientas usan atributos con nombres específicos. Por ejemplo `class`, `dim`, `dimnames`, `names`, `levels`... son atributos usados por el paquete base de R, y es preferible configurarlos o acceder a ellos usando funciones auxiliares (como `class()`, `dim()`...) . Algunos paquetes de R y RStudio utilizan el atributo `"variable.labels"` y se puede considerar como uno de los estándares para almacenar etiquetas de variables.
+
 -->
 
 

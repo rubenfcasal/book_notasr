@@ -48,7 +48,7 @@ Al instalar R se instalan los denominados **paquetes base** y (por defecto) los 
 Podemos acceder a la lista de paquetes instalados:
 
 
-```r
+``` r
 pkgs <- installed.packages()
 names(which(pkgs[ ,"Priority"] == "base"))
 ```
@@ -59,7 +59,7 @@ names(which(pkgs[ ,"Priority"] == "base"))
 ## [13] "tools"     "utils"
 ```
 
-```r
+``` r
 names(which(pkgs[ ,"Priority"] == "recommended"))
 ```
 
@@ -69,10 +69,10 @@ names(which(pkgs[ ,"Priority"] == "recommended"))
 ## [11] "nlme"       "nnet"       "rpart"      "spatial"    "survival"
 ```
 
-Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2023-04-01, están disponibles 19217 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
+Para instalar paquetes adicionales se puede emplear `install.packages()` (actualmente, 2026-10-02, están disponibles 25257 en [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html), incluso para interactuar con ChatGPT como [`gptstudio`](https://michelnivard.github.io/gptstudio)).
 Por ejemplo:
 
-```r
+``` r
 pkgs <- c("Rcmdr", "caret", "tidymodels", "tidyverse", "remotes", "devtools",
           "sf", "gstat", "geoR", "quadprog", "DEoptim", "spam", "openxlsx",
 	        "bookdown", "blogdown", "pkgdown")
@@ -89,7 +89,7 @@ En Windows (y en MacOS) esta función instala por defecto paquetes compilados (`
 Aunque podría instalar paquetes disponibles en otros repositorios.
 Por ejemplo:
 
-```r
+``` r
 url <- "https://github.com/rubenfcasal/simres/releases/download/v0.1/simres_0.1.3.zip"
 install.packages(url, repos = NULL)
 ```
@@ -100,7 +100,7 @@ Esto permitiría incluso instalar paquetes retirados de CRAN (e.g. actualmente [
 Si se quieren instalar paquetes de repositorios distintos de CRAN (GitHub, GitLab, Bitbucket...), puede ser recomendable instalar [`remotes`](https://remotes.r-lib.org/). 
 Por ejemplo:
 
-```r
+``` r
 remotes::install_github("rubenfcasal/simres", INSTALL_opts = "--with-keep.source")
 ```
 Además puede ser de utilidad mantener los comentarios originales del paquete para entender mejor el código (por ejemplo si se quiere modificar).
@@ -113,25 +113,25 @@ Otras funciones que pueden ser de interés son: `remove.packages()`, `update.pac
 
 Al iniciar el programa `R` se cargan por defecto en memoria los principales paquetes base, añadiéndolos a la ruta de búsqueda (a continuación del entorno de trabajo `.GlobalEnv` y siempre terminando con en el paquete `base`, el primero que se carga):
 
-```r
+``` r
 search()
 ```
 
 ```
-##  [1] ".GlobalEnv"        "package:dbplyr"    "package:forcats"  
-##  [4] "package:stringr"   "package:dplyr"     "package:purrr"    
-##  [7] "package:readr"     "package:tidyr"     "package:tibble"   
-## [10] "package:ggplot2"   "package:tidyverse" "package:magrittr" 
-## [13] "package:stats"     "package:graphics"  "package:grDevices"
-## [16] "package:utils"     "package:datasets"  "package:methods"  
-## [19] "Autoloads"         "package:base"
+##  [1] ".GlobalEnv"        "package:dbplyr"    "package:magrittr" 
+##  [4] "package:lubridate" "package:forcats"   "package:stringr"  
+##  [7] "package:dplyr"     "package:purrr"     "package:readr"    
+## [10] "package:tidyr"     "package:tibble"    "package:ggplot2"  
+## [13] "package:tidyverse" "package:stats"     "package:graphics" 
+## [16] "package:grDevices" "package:utils"     "package:datasets" 
+## [19] "package:methods"   "Autoloads"         "package:base"
 ```
 Concretamente se añade a la ruta de búsqueda un entorno que contiene el conjunto de objetos exportables del paquete, definido en el denominado ***namespace*** del paquete.
 Esta ruta determina los objetos visibles en el entorno global y el orden en se buscan (para más detalles ver [7.2 Environment basics](https://adv-r.hadley.nz/environments.html#env-basics) y [7.4 Special environments](https://adv-r.hadley.nz/environments.html#special-environments) de [Advanced R](https://adv-r.hadley.nz/index.html)).
 
 Podemos cargar paquetes adicionales (previamente instalados) con `library()` o `require()`, por ejemplo:
 
-```r
+``` r
 if (!require(knitr)) {
   install.packages("knitr")
   library(knitr)
@@ -145,19 +145,19 @@ También se podrían añadir otros objetos, por ejemplo data.frames, con la func
 
 Hay que tener cuidado con las versiones instaladas de los paquetes:
 
-```r
+``` r
 packageVersion("dplyr")
 ```
 
 ```
-## [1] '1.0.10'
+## [1] '1.2.1'
 ```
 y con sus dependencias (los paquetes tienen su propia ruta de búsqueda, determinada por el *namespace* del paquete).
 Al actualizar o instalar nuevos paquetes pueden aparecer problemas al ejecutar código antiguo (a veces al trabajar en nuevos proyectos acabamos haciendo que los antiguos dejen de funcionar).
 
 Se puede instalar versiones específicas de un paquete con [`remotes::install_version()`](https://remotes.r-lib.org/reference/install_version.html):
 
-```r
+``` r
 remotes::install_version("dplyr", version = "1.11") # repos = "https://ftp.cixug.es/CRAN")
 ```
 
@@ -188,7 +188,7 @@ Podemos llamar a una función de un paquete sin necesidad de cargarlo (añadirlo
 Esto es especialmente recomendable al desarrollar nuevas funciones (es un requisito para subir paquetes a CRAN), ya que de esta forma se evitan conflictos entre funciones con el mismo nombre en paquetes distintos.
 Por ejemplo:
 
-```r
+``` r
 if (!requireNamespace("knitr")) stop("'knitr' package required")
 knitr::spin("01-Introduccion.R", knit = FALSE)
 ```
@@ -198,7 +198,7 @@ Hay que tener en cuenta que R emplea [Lazy evaluation](https://adv-r.hadley.nz/f
 R es un lenguaje interpretado y podemos evaluar expresiones empleando código.
 Por ejemplo, podemos reproducir el proceso de introducir un comando en la consola con las funciones `eval()` y `parse()` (aunque esta forma de proceder no es la más eficiente):
 
-```r
+``` r
 eval(parse(text = "1:10"))
 ```
 
@@ -206,7 +206,7 @@ eval(parse(text = "1:10"))
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 distr <- "norm"  # "unif", "exp", "t"
 ddistr <- eval(parse(text = paste0("d", distr)))
 # str(ddistr)
@@ -216,7 +216,7 @@ ddistr <- eval(parse(text = paste0("d", distr)))
 Para llamar a una función especificando los parámetros de forma dinámica (empleando una lista) podemos emplear `do.call()`.
 Por ejemplo:
 
-```r
+``` r
 # Listar ficheros csv 
 files.csv <- dir(path = "datos", pattern = "*.csv", full.names = TRUE)
 # Leer datos a una lista
@@ -233,7 +233,7 @@ Hay que tener en cuenta que las funciones tienen su propio entorno y su propia r
 Esto es lo que se conoce como [Lexical scoping](https://adv-r.hadley.nz/functions.html#lexical-scoping).
 
 
-```r
+``` r
 x <- 1
 addx <- function(y) {
   x + y
@@ -245,7 +245,7 @@ addx(10)
 ## [1] 11
 ```
 
-```r
+``` r
 addx10 <- function() {
   x <- 10   # x <<- 10   # assign("x", 10, envir = .GlobalEnv)
   addx(x)
@@ -257,7 +257,7 @@ addx10()
 ## [1] 11
 ```
 
-```r
+``` r
 x
 ```
 
@@ -268,6 +268,9 @@ x
 
 <!-- 
 Pendiente: sección objetos, comentarios objetos básicos de R
+
+En principio, se puede agregar cualquier atributo a un objeto, por lo que el parámetro `which` podría ser cualquier nombre válido. Ciertas herramientas usan atributos con nombres específicos. Por ejemplo `class`, `dim`, `dimnames`, `names`, `levels`... son atributos usados por el paquete base de R, y es preferible configurarlos o acceder a ellos usando funciones auxiliares (como `class()`, `dim()`...) . Algunos paquetes de R y RStudio utilizan el atributo `"variable.labels"` y se puede considerar como uno de los estándares para almacenar etiquetas de variables.
+
 -->
 
 
@@ -307,37 +310,38 @@ Si la clase del objeto es heredada (un vector de cadenas), se van buscando los m
 La función genérica suele ser muy sencilla, básicamente incluye una llamada a `UseMethod("generica")`.
 Por ejemplo:
 
-```r
+``` r
 plot
 ```
 
 ```
 ## function (x, y, ...) 
 ## UseMethod("plot")
-## <bytecode: 0x000000001d8a0168>
+## <bytecode: 0x000001faeb531238>
 ## <environment: namespace:base>
 ```
 
 Podemos obtener los métodos asociados a una función genérica con `methods(genérica)`.
 Por ejemplo:
 
-```r
+``` r
 methods(plot)
 ```
 
 ```
-##  [1] plot,ANY-method     plot,color-method   plot.acf*          
-##  [4] plot.data.frame*    plot.decomposed.ts* plot.default       
-##  [7] plot.dendrogram*    plot.density*       plot.ecdf          
-## [10] plot.factor*        plot.formula*       plot.function      
-## [13] plot.ggplot*        plot.gtable*        plot.hcl_palettes* 
-## [16] plot.hclust*        plot.histogram*     plot.HoltWinters*  
-## [19] plot.isoreg*        plot.lm*            plot.medpolish*    
-## [22] plot.mlm*           plot.ppr*           plot.prcomp*       
-## [25] plot.princomp*      plot.profile.nls*   plot.R6*           
-## [28] plot.raster*        plot.spec*          plot.stepfun       
-## [31] plot.stl*           plot.table*         plot.trans*        
-## [34] plot.ts             plot.tskernel*      plot.TukeyHSD*     
+##  [1] plot.acf*             plot.data.frame*      plot.decomposed.ts*  
+##  [4] plot.default          plot.dendrogram*      plot.density*        
+##  [7] plot.ecdf             plot.factor*          plot.formula*        
+## [10] plot.free1way*        plot.function         plot.ggplot2::ggplot*
+## [13] plot.gtable*          plot.hclust*          plot.histogram*      
+## [16] plot.HoltWinters*     plot.isoreg*          plot.lm*             
+## [19] plot.medpolish*       plot.mlm*             plot.pal_continuous* 
+## [22] plot.pal_discrete*    plot.ppr*             plot.prcomp*         
+## [25] plot.princomp*        plot.profile*         plot.profile.nls*    
+## [28] plot.R6*              plot.raster*          plot.spec*           
+## [31] plot.stepfun          plot.stl*             plot.table*          
+## [34] plot.transform*       plot.ts               plot.tskernel*       
+## [37] plot.TukeyHSD*       
 ## see '?methods' for accessing help and source code
 ```
 Podemos acceder a la ayuda del correspondiente método de la forma habitual (e.g. `?plot.lm`), pero puede que algunos métodos no sean objetos definidos como exportables en el *namespace* del paquete que los implementa (los marcados con un `*`) y por tanto no son en principio accesibles para el usuario.
@@ -346,19 +350,20 @@ Siempre podemos acceder a ellos empleando `paquete:::metodo` o `getAnywhere(meto
 Para listar los métodos disponibles para una clase, podemos emplear el parámetro `class`.
 Por ejemplo:
 
-```r
+``` r
 methods(class = "lm")
 ```
 
 ```
 ##  [1] add1           alias          anova          case.names     coerce        
 ##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
-## [11] drop1          dummy.coef     effects        extractAIC     family        
-## [16] formula        fortify        hatvalues      influence      initialize    
-## [21] kappa          labels         logLik         model.frame    model.matrix  
-## [26] nobs           plot           predict        print          proj          
-## [31] qr             residuals      rstandard      rstudent       show          
-## [36] simulate       slotsFromS3    summary        variable.names vcov          
+## [11] dffits         drop1          dummy.coef     effects        extractAIC    
+## [16] family         formula        fortify        hatvalues      influence     
+## [21] initialize     kappa          labels         logLik         model.frame   
+## [26] model.matrix   nobs           plot           predict        print         
+## [31] proj           qr             residuals      rstandard      rstudent      
+## [36] show           simulate       slotsFromS3    summary        variable.names
+## [41] vcov          
 ## see '?methods' for accessing help and source code
 ```
 
@@ -379,7 +384,7 @@ Al finalizar, la recomendación es **documentar la función**, preferiblemente e
 Por ejemplo:
 
 
-```r
+``` r
 # read_excel_list(path, pattern, ...) 
 # ·············································
 #' Lee los ficheros xls y xlsx de un directorio

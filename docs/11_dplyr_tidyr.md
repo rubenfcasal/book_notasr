@@ -35,7 +35,7 @@ También puede resultar de utilidad la viñeta del paquete [Introduction to dply
 ## El paquete dplyr {#dplyr-pkg}
 
 
-```r
+``` r
 library(dplyr)
 ```
 
@@ -49,7 +49,7 @@ La principal ventaja de [`dplyr`](https://dplyr.tidyverse.org/index.html) es que
 
 - bases de datos relacionales (lenguaje SQL, locales o remotas); extensión [`dbplyr`](https://dbplyr.tidyverse.org).
 
-- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (ver menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
+- grandes volúmenes de datos (incluso almacenados en múltiples servidores; ecosistema [Hadoop](http://hadoop.apache.org/)/[Spark](https://spark.apache.org/)): extensión [`sparklyr`](https://spark.rstudio.com) (la referencia recomendada es Luraschi et al., 2019, [Mastering Spark with R](https://therinspark.com/); también se puede acceder a la chuleta a través del menú de RStudio *Help > Cheat Sheets > Interfacing Spark with sparklyr*).
 
 
 El paquete dplyr permite sustituir operaciones con funciones base de R (como [`subset`](NA), [`split`](NA), [`apply`](NA), [`sapply`](NA), [`lapply`](NA), [`tapply`](NA), [`aggregate`](NA)...) por una "gramática" más sencilla para la manipulación de datos.
@@ -76,7 +76,7 @@ En la primera parte de este capítulo consideraremos solo  `data.frame` por como
 Emplearemos como ejemplo los datos de empleados de banca almacenados en el fichero *empleados.RData* (y supondremos que estamos interesados en estudiar si hay discriminación por cuestión de sexo o raza).
 
 
-```r
+``` r
 load("datos/empleados.RData")
 attr(empleados, "variable.labels") <- NULL                  
 ```
@@ -88,7 +88,7 @@ En la Sección \@ref(dbplyr) final emplearemos una base de datos relacional como
 
 Podemos **seleccionar variables con [`select()`](https://dplyr.tidyverse.org/reference/select.html)**:
 
-```r
+``` r
 emplea2 <- empleados %>% select(id, sexo, minoria, tiempemp, salini, salario)
 head(emplea2)
 ```
@@ -105,7 +105,7 @@ head(emplea2)
 
 Se puede cambiar el nombre (ver también [`rename()`](https://dplyr.tidyverse.org/reference/rename.html)):
 
-```r
+``` r
 empleados %>% select(sexo, noblanca = minoria, salario) %>% head()
 ```
 
@@ -121,7 +121,7 @@ empleados %>% select(sexo, noblanca = minoria, salario) %>% head()
 
 Se pueden emplear los nombres de variables como índices:
 
-```r
+``` r
 empleados %>% select(sexo:salario) %>% head()
 ```
 
@@ -135,7 +135,7 @@ empleados %>% select(sexo:salario) %>% head()
 ## 6 Hombre 1958-08-22   15 Administrativo   32100
 ```
 
-```r
+``` r
 # empleados %>% select(-(sexo:salario)) %>% head()
 empleados %>% select(!(sexo:salario)) %>% head()
 ```
@@ -162,7 +162,7 @@ Se pueden emplear distintas herramientas (*[selection helpers](https://tidyselec
 
 Por ejemplo:
 
-```r
+``` r
 empleados %>% select(starts_with("s")) %>% head()
 ```
 
@@ -178,7 +178,7 @@ empleados %>% select(starts_with("s")) %>% head()
 
 Podemos **crear variables con [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)**:
 
-```r
+``` r
 emplea2 %>% mutate(incsal = salario - salini, tsal = incsal/tiempemp) %>% head()
 ```
 
@@ -197,7 +197,7 @@ emplea2 %>% mutate(incsal = salario - salini, tsal = incsal/tiempemp) %>% head()
 
 Podemos **seleccionar casos con [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)**:
 
-```r
+``` r
 emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 ```
 
@@ -213,7 +213,7 @@ emplea2 %>% filter(sexo == "Mujer", minoria == "Sí") %>% head()
 
 Podemos **reordenar casos con [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)**:
 
-```r
+``` r
 emplea2 %>% arrange(salario) %>% head()
 ```
 
@@ -227,7 +227,7 @@ emplea2 %>% arrange(salario) %>% head()
 ## 6 448 Mujer      Sí       66  10200   16350
 ```
 
-```r
+``` r
 emplea2 %>% arrange(desc(salini), salario) %>% head()
 ```
 
@@ -243,7 +243,7 @@ emplea2 %>% arrange(desc(salini), salario) %>% head()
 
 Podemos **resumir valores con [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)**:
 
-```r
+``` r
 empleados %>% summarise(sal.med = mean(salario), n = n())
 ```
 
@@ -254,7 +254,7 @@ empleados %>% summarise(sal.med = mean(salario), n = n())
 
 Para realizar **operaciones con múltiples variables podemos emplear [`across()`](https://dplyr.tidyverse.org/reference/across.html)** (admite selección de variables [`tidyselect`](https://tidyselect.r-lib.org)):
 
-```r
+``` r
 empleados %>% summarise(across(where(is.numeric), mean), n = n())
 ```
 
@@ -263,7 +263,7 @@ empleados %>% summarise(across(where(is.numeric), mean), n = n())
 ## 1 237.5 13.49156 34419.57 17016.09  81.1097 95.86076 474
 ```
 
-```r
+``` r
 # empleados %>% summarise(across(where(is.numeric) & !id, mean), n = n())
 ```
 
@@ -272,7 +272,7 @@ En el caso de `filter()` se puede emplear [`if_any()`](https://dplyr.tidyverse.o
 
 Podemos **agrupar casos con [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)**:
 
-```r
+``` r
 empleados %>% group_by(sexo, minoria) %>% 
     summarise(sal.med = mean(salario), n = n()) %>%
     ungroup()
@@ -288,7 +288,7 @@ empleados %>% group_by(sexo, minoria) %>%
 ## 4 Mujer  Sí       23062.    40
 ```
 
-```r
+``` r
 empleados %>% group_by(sexo, minoria) %>% 
     summarise(sal.med = mean(salario), n = n(), .groups = "drop")
 ```
@@ -303,7 +303,7 @@ empleados %>% group_by(sexo, minoria) %>%
 ## 4 Mujer  Sí       23062.    40
 ```
 
-```r
+``` r
 # dplyr >= 1.1.0 # packageVersion("dplyr")
 # empleados %>% summarise(sal.med = mean(salario), n = n(), 
 #                         .by = c(sexo, minoria))
@@ -386,7 +386,7 @@ Algunos enlaces:
 Como ejemplo emplearemos la base de datos de [SQLite Sample Database Tutorial](https://www.sqlitetutorial.net/sqlite-sample-database/), almacenada en el archivo [*chinook.db*](datos/chinook.db).
 
 
-```r
+``` r
 # install.packages('dbplyr')
 library(dplyr)
 library(dbplyr)
@@ -394,53 +394,52 @@ library(dbplyr)
 
 En primer lugar hay que conectar la base de datos:
 
-```r
+``` r
 chinook <- DBI::dbConnect(RSQLite::SQLite(), "datos/chinook.db")
 ```
 
 Podemos listar las tablas:
 
-```r
+``` r
 src_dbi(chinook)
 ```
 
 ```
-## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## src:  sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
 ## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
 ##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
 ```
 
 Para enlazar una tabla:
 
-```r
+``` r
 invoices <- tbl(chinook, "invoices")
 invoices
 ```
 
 ```
-## # Source:   table<invoices> [?? x 9]
-## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
-## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
-##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
-##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
-##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
-##  2         2          4 2009-01-0~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
-##  3         3          8 2009-01-0~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
-##  4         4         14 2009-01-0~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
-##  5         5         23 2009-01-1~ 69 Sal~ Boston  MA      USA     2113    13.9 
-##  6         6         37 2009-01-1~ Berger~ Frankf~ <NA>    Germany 60316    0.99
-##  7         7         38 2009-02-0~ Barbar~ Berlin  <NA>    Germany 10779    1.98
-##  8         8         40 2009-02-0~ 8, Rue~ Paris   <NA>    France  75002    1.98
-##  9         9         42 2009-02-0~ 9, Pla~ Bordea~ <NA>    France  33000    3.96
-## 10        10         46 2009-02-0~ 3 Chat~ Dublin  Dublin  Ireland <NA>     5.94
-## # ... with more rows, and abbreviated variable names 1: InvoiceDate,
-## #   2: BillingAddress, 3: BillingCity, 4: BillingState, 5: BillingCountry,
-## #   6: BillingPostalCode
+## # A query:  ?? x 9
+## # Database: sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
+##    InvoiceId CustomerId InvoiceDate      BillingAddress BillingCity BillingState
+##        <int>      <int> <chr>            <chr>          <chr>       <chr>       
+##  1         1          2 2009-01-01 00:0~ Theodor-Heuss~ Stuttgart   <NA>        
+##  2         2          4 2009-01-02 00:0~ Ullevålsveien~ Oslo        <NA>        
+##  3         3          8 2009-01-03 00:0~ Grétrystraat ~ Brussels    <NA>        
+##  4         4         14 2009-01-06 00:0~ 8210 111 ST NW Edmonton    AB          
+##  5         5         23 2009-01-11 00:0~ 69 Salem Stre~ Boston      MA          
+##  6         6         37 2009-01-19 00:0~ Berger Straße~ Frankfurt   <NA>        
+##  7         7         38 2009-02-01 00:0~ Barbarossastr~ Berlin      <NA>        
+##  8         8         40 2009-02-01 00:0~ 8, Rue Hanovre Paris       <NA>        
+##  9         9         42 2009-02-02 00:0~ 9, Place Loui~ Bordeaux    <NA>        
+## 10        10         46 2009-02-03 00:0~ 3 Chatham Str~ Dublin      Dublin      
+## # i more rows
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 ```
 
 Ojo `[?? x 9]`: de momento no conoce el número de filas.
 
-```r
+``` r
 nrow(invoices)
 ```
 
@@ -450,7 +449,7 @@ nrow(invoices)
 
 Podemos mostrar la consulta SQL correspondiente a una operación:
 
-```r
+``` r
 show_query(head(invoices))
 ```
 
@@ -461,7 +460,7 @@ show_query(head(invoices))
 ## LIMIT 6
 ```
 
-```r
+``` r
 # str(head(invoices))
 ```
 
@@ -473,32 +472,31 @@ Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
    agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
    
 
-```r
+``` r
 invoices %>% head %>% collect
 ```
 
 ```
 ## # A tibble: 6 x 9
-##   InvoiceId CustomerId InvoiceDate Billi~1 Billi~2 Billi~3 Billi~4 Billi~5 Total
-##       <int>      <int> <chr>       <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
-## 1         1          2 2009-01-01~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
-## 2         2          4 2009-01-02~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
-## 3         3          8 2009-01-03~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
-## 4         4         14 2009-01-06~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
-## 5         5         23 2009-01-11~ 69 Sal~ Boston  MA      USA     2113    13.9 
-## 6         6         37 2009-01-19~ Berger~ Frankf~ <NA>    Germany 60316    0.99
-## # ... with abbreviated variable names 1: BillingAddress, 2: BillingCity,
-## #   3: BillingState, 4: BillingCountry, 5: BillingPostalCode
+##   InvoiceId CustomerId InvoiceDate       BillingAddress BillingCity BillingState
+##       <int>      <int> <chr>             <chr>          <chr>       <chr>       
+## 1         1          2 2009-01-01 00:00~ Theodor-Heuss~ Stuttgart   <NA>        
+## 2         2          4 2009-01-02 00:00~ Ullevålsveien~ Oslo        <NA>        
+## 3         3          8 2009-01-03 00:00~ Grétrystraat ~ Brussels    <NA>        
+## 4         4         14 2009-01-06 00:00~ 8210 111 ST NW Edmonton    AB          
+## 5         5         23 2009-01-11 00:00~ 69 Salem Stre~ Boston      MA          
+## 6         6         37 2009-01-19 00:00~ Berger Straße~ Frankfurt   <NA>        
+## # i 3 more variables: BillingCountry <chr>, BillingPostalCode <chr>,
+## #   Total <dbl>
 ```
 
-```r
+``` r
 invoices %>% count # número de filas
 ```
 
 ```
-## # Source:   lazy query [?? x 1]
-## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
-## #   Coruña\__Actual\__IGE\_book_notasr\datos\chinook.db]
+## # A query:  ?? x 1
+## # Database: sqlite 3.53.3 [E:\OneDrive - Universidade da Coruña\__R_Machinery\book_notasr\datos\chinook.db]
 ##       n
 ##   <int>
 ## 1   412
@@ -507,7 +505,7 @@ invoices %>% count # número de filas
 Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
 
 
-```r
+``` r
 res <- invoices %>% summarise(min = min(Total, na.rm = TRUE), 
                         max = max(Total, na.rm = TRUE), med = mean(Total, na.rm = TRUE))
 # show_query(res)
@@ -524,7 +522,7 @@ res  %>% collect
 Para obtener el total de las facturas de cada uno de los países:
 
 
-```r
+``` r
 res <- invoices %>% group_by(BillingCountry) %>% 
           summarise(n = n(), total = sum(Total, na.rm = TRUE))
 # show_query(res)
@@ -545,13 +543,13 @@ res  %>% collect
 ##  8 Czech Republic    14  90.2
 ##  9 Denmark            7  37.6
 ## 10 Finland            7  41.6
-## # ... with 14 more rows
+## # i 14 more rows
 ```
 
 Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
 
 
-```r
+``` r
 customers <- tbl(chinook, "customers")
 tbl_vars(customers) 
 ```
@@ -563,7 +561,7 @@ tbl_vars(customers)
 ## [11] "Fax"          "Email"        "SupportRepId"
 ```
 
-```r
+``` r
 res <- customers %>% inner_join(invoices, by = "CustomerId") %>% select(FirstName, LastName, Country, Total) 
 show_query(res)
 ```
@@ -571,14 +569,12 @@ show_query(res)
 ```
 ## <SQL>
 ## SELECT `FirstName`, `LastName`, `Country`, `Total`
-## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
-## FROM `customers` AS `LHS`
-## INNER JOIN `invoices` AS `RHS`
-## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
-## )
+## FROM `customers`
+## INNER JOIN `invoices`
+##   ON (`customers`.`CustomerId` = `invoices`.`CustomerId`)
 ```
 
-```r
+``` r
 res  %>% collect
 ```
 
@@ -596,15 +592,15 @@ res  %>% collect
 ##  8 Leonie    Köhler    Germany  1.98
 ##  9 Leonie    Köhler    Germany 13.9 
 ## 10 Leonie    Köhler    Germany  8.91
-## # ... with 402 more rows
+## # i 402 more rows
 ```
 
 Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
 
 
-```r
+``` r
 customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %>% 
-    summarise(FirstName, LastName, country, total = sum(Total, na.rm = TRUE)) %>%  
+    summarise(FirstName, LastName, Country, total = sum(Total, na.rm = TRUE)) %>%  
     arrange(desc(total)) %>% head(10) %>% collect
 ```
 
@@ -617,8 +613,8 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
 ##  3         57 Luis      Rojas      Chile           46.6
 ##  4         45 Ladislav  Kovács     Hungary         45.6
 ##  5         46 Hugh      O'Reilly   Ireland         45.6
-##  6         28 Julia     Barnett    USA             43.6
-##  7         24 Frank     Ralston    USA             43.6
+##  6         24 Frank     Ralston    USA             43.6
+##  7         28 Julia     Barnett    USA             43.6
 ##  8         37 Fynn      Zimmermann Germany         43.6
 ##  9          7 Astrid    Gruber     Austria         42.6
 ## 10         25 Victor    Stevens    USA             42.6
@@ -628,7 +624,7 @@ customers %>% inner_join(invoices, by = "CustomerId") %>% group_by(CustomerId) %
 Al finalizar hay que desconectar la base de datos:
 
 
-```r
+``` r
 DBI::dbDisconnect(chinook)            
 ```
 

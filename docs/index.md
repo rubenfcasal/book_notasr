@@ -1,14 +1,14 @@
 --- 
 title: "Notas de Programación en R"
 author: "Rubén Fernández Casal (rubenfcasal@gmail.com)"  
-date: "Edición: Marzo de 2023. Impresión: 2023-04-01"
+date: "Edición: Marzo de 2023. Impresión: 2026-10-02"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rubenfcasal/notasr
+github-repo: rubenfcasal/book_notasr
 description: "Libro con notas personales sobre programación en R"
 ---
 
@@ -41,10 +41,10 @@ Se puede acceder a la versión en línea a través del siguiente enlace:
 donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/book_notasr/Notas_R.pdf).
 
 Para seguir los ejemplos mostrados en el libro (en la carpeta [ejemplos](https://github.com/rubenfcasal/book_notasr/tree/main/ejemplos) se incluyen algunos ejemplos adicionales) se recomienda tener instalados los siguientes paquetes (realmente no se emplean todos):
-[`Rcmdr`](https://www.r-project.org), [`caret`](https://github.com/topepo/caret/), [`tidymodels`](https://tidymodels.tidymodels.org), [`tidyverse`](https://tidyverse.tidyverse.org), [`openxlsx`](https://ycphs.github.io/openxlsx/index.html), [`DT`](https://github.com/rstudio/DT), [`rmarkdown`](https://github.com/rstudio/rmarkdown), [`knitr`](https://yihui.org/knitr/), [`remotes`](https://remotes.r-lib.org), [`devtools`](https://devtools.r-lib.org/).
+[`Rcmdr`](https://github.com/RCmdr-Project/rcmdr), [`caret`](https://github.com/topepo/caret/), [`tidymodels`](https://tidymodels.tidymodels.org), [`tidyverse`](https://tidyverse.tidyverse.org), [`openxlsx`](https://ycphs.github.io/openxlsx/index.html), [`DT`](https://github.com/rstudio/DT), [`rmarkdown`](https://github.com/rstudio/rmarkdown), [`knitr`](https://yihui.org/knitr/), [`remotes`](https://remotes.r-lib.org), [`devtools`](https://devtools.r-lib.org/).
 Por ejemplo mediante los siguientes comandos:
 
-```r
+``` r
 pkgs <- c("Rcmdr", "caret", "tidymodels", "tidyverse", "openxlsx", "DT", 
           "rmarkdown", "knitr", "remotes", "devtools")
 install.packages(setdiff(pkgs, installed.packages()[,"Package"]), dependencies = TRUE)
@@ -54,7 +54,7 @@ install.packages(setdiff(pkgs, installed.packages()[,"Package"]), dependencies =
 El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada). 
 Si es el caso, en lugar de la última línea se puede ejecutar: 
 
-```r
+``` r
 install.packages(pkgs, dependencies = TRUE) # Instala todos...
 ```
 

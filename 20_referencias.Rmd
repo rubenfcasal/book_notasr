@@ -84,11 +84,19 @@ Para referencias adicionales recomiendo consultar:
 
 - Fernández-Casal, R., Costa, J. y Oviedo de la Fuente, M. (2021). *[Aprendizaje Estadístico](https://rubenfcasal.github.io/aprendizaje_estadistico)*. [github](https://github.com/rubenfcasal/aprendizaje_estadistico).
 
+- James, G., Witten, D., Hastie, T. y Tibshirani, R. (2021). *[An Introduction to Statistical Learning: with Aplications in R, Segunda Edición](https://www.statlearning.com)*. [Springer](https://link.springer.com/book/10.1007/978-1-0716-1418-1).
+
+- Friedman, J., Tibshirani, R. y Hastie, T. (2013). *[The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)*. [Springer](https://link.springer.com/book/10.1007/978-0-387-84858-7).
+
 - Kuhn, M., y Silge, J. (2022). *[Tidy Modeling with R](https://www.tmwr.org)*, [O'Reilly](https://www.oreilly.com/library/view/tidy-modeling-with/9781492096474).
 
 - Luraschi, J., Kuo, K. y Ruiz, E. (2019). *[Mastering Spark with R](https://therinspark.com/)*. [O’Reilly](https://www.oreilly.com/library/view/mastering-spark-with/9781492046363/).
 
 - Irizarry, R.A. (2020). *[Introduction to Data Science: Data Analysis and Prediction Algorithms with R](http://rafalab.dfci.harvard.edu/dsbook/)*. [Chapman & Hall/CRC](https://www.routledge.com/p/book/9780367357986).
+
+- Hastie, T. y Efron, B. (2016). *[Computer Age Statistical Inference: Algorithms, Evidence, and Data Science](https://hastie.su.domains/CASI/)*. [Cambridge University Press](http://www.amazon.com/dp/1107149894/).
+
+- Hastie, T., Wainwright, M. y Tibshirani, R. (2015). *[Statistical Learning with Sparsity: The Lasso and Generalizations](https://hastie.su.domains/StatLearnSparsity/)*. [Chapman & Hall/CRC](https://www.routledge.com/p/book/9781498712163).
 
 - Roback, P. y Legler, J. (2021). *[Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R](https://bookdown.org/roback/bookdown-BeyondMLR/)*. [Chapman & Hall/CRC](https://www.routledge.com/p/book/9781439885383).
 
@@ -109,10 +117,13 @@ Para referencias adicionales recomiendo consultar:
 
 - García-Portugués, E. (2023). *[Notes for Nonparametric Statistics](https://bookdown.org/egarpor/NP-UC3M/)*.
 
+- Molnar, C. (2020). *[Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book)*. [Leanpub](https://leanpub.com/interpretable-machine-learning). 
+
 - Hanck, c., Arnold, M., Gerber, A. y Schmelzer, M. (2023). *[Introduction to Econometrics with R](https://www.econometrics-with-r.org/)*.
 
 - Fieberg, J. (2022). *[Statistics for Ecologists: A Frequentist and Bayesian Treatment of Modern Regression Models](https://fw8051statistics4ecologists.netlify.app/)*.
 
+- [Flexible and Robust Machine Learning Using mlr3 in R](https://mlr3book.mlr-org.com/).
 
 
 ### Datos temporales y espaciales {-}
